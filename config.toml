@@ -1,0 +1,4 @@
+baseURL = "http://kael-larkin.com"
+languageCode = "en-us"
+title = "Kael's Kabbage"
+theme = "Paper"
