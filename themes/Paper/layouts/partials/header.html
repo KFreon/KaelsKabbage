@@ -37,21 +37,7 @@
 </head>
 <body class="{{if eq .Kind `page` }}single{{else}}list{{ if .IsHome }} home{{ end }}{{end}}">
   <header class="header">
-    {{ if .IsHome }}
     <h1 class="title"><a href="{{.Site.BaseURL}}">{{ .Site.Title }}</a></h1>
-    {{ else }}
-    <p class="title"><a href="{{.Site.BaseURL}}">{{ .Site.Title }}</a></p>
-    {{ end }}
-    <button class="menu-toggle" type="button"></button>
-    <nav class="menu">
-      <ul>
-        {{ $currentPage := . }}
-        {{ range .Site.Menus.main }}
-        <li class="{{ if $currentPage.IsMenuCurrent `main` . }}active{{ end }}">
-          <a href="{{ .URL }}">{{ .Name }}</a>
-        </li>
-        {{ end }}
-      </ul>
-    </nav>
+    <img class="profile-picture" src="/images/profile.jpg"></img>
   </header>
   <main class="main">

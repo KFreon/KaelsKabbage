@@ -13,3 +13,10 @@
     padding: 0.5rem;
     font-size: 1rem;
 }
+
+.profile-picture {
+    margin-top: 1rem;
+    width: 9.5rem;
+    height: 10rem;
+    border-radius: 1rem;
+}
