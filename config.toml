@@ -1,4 +1,22 @@
-baseURL = "http://kael-larkin.com"
+baseURL = "http://kaels-kabbage.netlify.com"
 languageCode = "en-us"
 title = "Kael's Kabbage"
-theme = "Paper"
+theme = "sp-minimal"
+paginate        = 5
+
+[params]
+  title       = "Kaels's Kabbage"
+  subtitle    = "A tech blog possibly filled with Kael (kale?)"
+  copyright   = "Released under the MIT license."
+  authorImage = "Cabbage.png"
+
+  #"single" or "multi"
+  renderType = "multi"
+  #"simple" or "original"
+  themeStyle = "simple"
+
+  googleAnalytics = ""
+
+  name = "EM"
+  description = "Software observations and thoughts"
+  pageNotFoundTitle = "404 - Page not found"
