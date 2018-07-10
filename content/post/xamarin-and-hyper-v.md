@@ -1,0 +1,21 @@
+---
+title: "Xamarin and Hyper V"
+date: 2018-07-10T16:08:35+10:00
+draft: false
+---
+
+Generally, the Android emulator for Windows ran on Intel's HAXM hypervisor. Unfortunately HAXM runs in the same way as Microsofts Hyper-V, and both cannot be enabled at once. While some users get away without using Virtual Machines (I'm one), many prefer the separation VM's afford, and there's no way they'll ditch Hyper-V capabilities (if that's the hypervisor they're using...). The hardest hit would have to be the Docker users though, as Docker runs it's VM's on Hyper-V (Mine is at least).  
+Android [recently updated](https://android-developers.googleblog.com/2018/07/android-emulator-amd-processor-hyper-v.html) their Android Emulator to support Hyper-V AND HAXM, which is great for us! It should be noted that they still tout HAXM as the preferred method, as it's "more performant".  
+
+The [Visual Studio Blog](https://blogs.msdn.microsoft.com/visualstudio/2018/05/08/hyper-v-android-emulator-support/) indicates a preview version of Xamarin and Visual Studio is required, but I got on fine with my standard 15.7.4 install.  
+# Method
+### Enable new Windows Hypervisor features (Requires April 2018 Update)
+![Enable Hypervisor](/img/XamarinHyperV/WindowsFeaturesHyperV.png)
+### Update the Android Emulator to 27.8.3+ via SDKManager (Android Studio, Visual Studio, or command line) 
+![Update Android Emulator](/img/XamarinHyperV/EmulatorUpdate.png)
+### Create/run an Android Virtual Device (AVD) and it'll pick up the new acceleration!
+![Run Emulator](/img/XamarinHyperV/AndroidEmulatorScreen.png)
+### Run project through Visual Studio AFTER starting the AVD and once it's finished booting (You'll get Package Manager access errors otherwise)
+![Run Xamarin](/img/XamarinHyperV/AndroidEmulatorXamarin.png)
+
+Debugging looks to work fine using this method as well, but the best part is just being able to run the app without weird emulation issues or disabling Hyper-V!
