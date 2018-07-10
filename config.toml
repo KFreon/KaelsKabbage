@@ -19,4 +19,4 @@ paginate        = 10
   googleAnalytics = ""
 
   name = "Kael Larkin"
-  pageNotFoundTitle = "404 - Page not found"
+  pageNotFoundTitle = "Uh oh, that page wasn't found!"
