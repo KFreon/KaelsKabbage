@@ -2,7 +2,7 @@ baseURL = "https://kaels-kabbage.com/"
 languageCode = "en-us"
 title = "Kael's Kabbage"
 theme = "sp-minimal"
-paginate        = 5
+paginate        = 10
 
 [params]
   title       = "Kaels's Kabbage"
