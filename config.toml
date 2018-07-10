@@ -16,7 +16,7 @@ paginate        = 10
   #"simple" or "original"
   themeStyle = "simple"
 
-  googleAnalytics = ""
+  googleAnalytics = "UA-122097969-1"
 
   name = "Kael Larkin"
   pageNotFoundTitle = "Uh oh, that page wasn't found!"
