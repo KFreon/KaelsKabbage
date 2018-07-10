@@ -3,7 +3,6 @@ title: "Building iOS store certificates on Windows"
 date: 2018-05-31T07:11:59+07:00
 draft: false
 type: "post"
-tags: []
 ---
 
 How many times have you been working on a cross platform app and been ready to submit to the app stores, but then the Apple store needs a .csr that you should “use a Mac” to generate?  
@@ -21,9 +20,6 @@ I’ll pull it out here in case the links break but this is all Ian Devlin’s w
 <p class="code">openssl req -new -key ios.key -out .csr -subj "/emailAddress=MY-EMAIL-ADDRESS, CN=COMPANY-NAME, C=COUNTRY-CODE</p>
 4. Upload the .CSR to the portal which then gives you a .CER in return
 5. Convert .CER to a .P12 (Required to sign apps, or at least Cordova apps)
- 
-
-
 <p class="code">openssl x509 -in ios_<development/distribution>.cer -inform DER -out .pem -outform PEM</p>
 <p class="code">openssl pkcs12 -export -inkey .key -in .pem -out .p12</p>
 
