@@ -15,9 +15,9 @@
     {{ "<!-- Stylesheets -->" | safeHTML }}
     <link rel="stylesheet" href="{{ .Site.BaseURL }}css/styles.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}css/sp-minimal.css">
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}styles.css">
     {{ if eq .Site.Params.themeStyle "simple"}}
-      <link rel="stylesheet" href="{{ .Site.BaseURL }}css/sp-minimal-simple.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/sp-minimal-simple.css">
     {{ end }}
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/default.min.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}styles.css">
 </head>

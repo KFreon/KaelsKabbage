@@ -14,9 +14,53 @@
     font-size: 1rem;
 }
 
+section {
+    font-size: 1.3rem;
+}
+
+
 .profile-picture {
-    margin-top: 1rem;
-    width: 9.5rem;
-    height: 10rem;
-    border-radius: 1rem;
+}
+
+@media print, screen and (max-width: 960px) {
+    html {
+        font-size: 8px;
+    }
+
+    h2 {
+        font-size: 3rem;
+    }
+
+    .site-title {
+
+    }
+
+    .site-subtitle {
+        font-size: 1.4rem;
+    }
+
+    body {
+        padding: 0.1rem;
+    }
+
+    header {
+        position: fixed;
+        width: 8rem;
+    }
+
+    section {
+        margin-left: 9.5rem;
+    }
+
+    footer {
+        float: left;
+        position: fixed;
+        width: 9.5rem;
+        border-right: none;
+        font-size: 1rem;
+    }
+
+    section {
+        font-size: 2rem;
+    }
 }
