@@ -1,6 +1,14 @@
 {{ if not (eq .Site.Params.renderType "single") }}
   {{ partial "head" . }}
-  {{ template "_internal/google_analytics_async.html" . }}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122097969-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-122097969-1');
+    </script>
 
 
   <body><div class="wrapper">
