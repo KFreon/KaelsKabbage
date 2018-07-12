@@ -3,6 +3,7 @@ languageCode = "en-us"
 title = "Kael's Kabbage"
 theme = "sp-minimal"
 paginate        = 10
+googleAnalytics = "UA-122097969-1"
 
 [params]
   title       = "Kaels's Kabbage"
