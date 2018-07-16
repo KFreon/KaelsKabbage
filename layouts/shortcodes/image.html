@@ -1,0 +1,5 @@
+<picture>
+    <source srcset="{{ .Get "path" }}.webp" type="image/webp">
+    <source srcset="{{ .Get "path" }}.jpg" type="image/jpeg"> 
+    <img src="{{ .Get "path" }}.jpg" alt="{{ if .Get "alt" }}{{ .Get "alt" }}{{ else }} 'No Alt Text' {{ end }}">
+</picture>
