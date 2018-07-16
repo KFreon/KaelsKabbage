@@ -18,4 +18,14 @@ The [Visual Studio Blog](https://blogs.msdn.microsoft.com/visualstudio/2018/05/0
 ### Run project through Visual Studio AFTER starting the AVD and once it's finished booting (You'll get Package Manager access errors otherwise)
 ![Run Xamarin](/img/XamarinHyperV/AndroidEmulatorXamarin.png)
 
-Debugging looks to work fine using this method as well, but the best part is just being able to run the app without weird emulation issues or disabling Hyper-V!
+Debugging looks to work fine using this method as well, but the best part is just being able to run the app without weird emulation issues or disabling Hyper-V!  
+
+<br></br>  
+
+EDIT: Something else that came up was that some of the build configurations failed to deploy because `INSTALL_FAILED_NO_MATCHING_ABIS`.  
+
+[Turns out](https://stackoverflow.com/questions/24572052/install-failed-no-matching-abis-when-install-apk) this was due to a missing checkbox that seems to be enabled for `debug` but not for most of the other default configs.  
+Unwrapping the link, the fix is:  
+![Arm vs x86 checkboxes](/img/XamarinHyperV/Armx86Fix.png)  
+
+Another thing I noticed was that sometimes deploying to this emulator (in the setup described here) could take on the order of minutes to get running.
