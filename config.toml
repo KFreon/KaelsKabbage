@@ -10,7 +10,7 @@ googleAnalytics = "UA-122097969-1"
   subtitle    = "Tech Superfood"
   description = ""
   copyright   = "Kael Larkin 2018"
-  authorImage = "Cabbage.png"
+  authorImage = "Cabbage.webp"
 
   #"single" or "multi"
   renderType = "multi"

@@ -10,13 +10,13 @@ Android [recently updated](https://android-developers.googleblog.com/2018/07/and
 The [Visual Studio Blog](https://blogs.msdn.microsoft.com/visualstudio/2018/05/08/hyper-v-android-emulator-support/) indicates a preview version of Xamarin and Visual Studio is required, but I got on fine with my standard 15.7.4 install.  
 # Method
 ### Enable new Windows Hypervisor features (Requires April 2018 Update)
-![Enable Hypervisor](/img/XamarinHyperV/WindowsFeaturesHyperV.png)
+![Enable Hypervisor](/img/XamarinHyperV/WindowsFeaturesHyperV.webp)
 ### Update the Android Emulator to 27.8.3+ via SDKManager (Android Studio, Visual Studio, or command line) 
-![Update Android Emulator](/img/XamarinHyperV/EmulatorUpdate.png)
+![Update Android Emulator](/img/XamarinHyperV/EmulatorUpdate.webp)
 ### Create/run an Android Virtual Device (AVD) and it'll pick up the new acceleration!
-![Run Emulator](/img/XamarinHyperV/AndroidEmulatorScreen.png)
+![Run Emulator](/img/XamarinHyperV/AndroidEmulatorScreen.webp)
 ### Run project through Visual Studio AFTER starting the AVD and once it's finished booting (You'll get Package Manager access errors otherwise)
-![Run Xamarin](/img/XamarinHyperV/AndroidEmulatorXamarin.png)
+![Run Xamarin](/img/XamarinHyperV/AndroidEmulatorXamarin.webp)
 
 Debugging looks to work fine using this method as well, but the best part is just being able to run the app without weird emulation issues or disabling Hyper-V!  
 
@@ -26,6 +26,6 @@ EDIT: Something else that came up was that some of the build configurations fail
 
 [Turns out](https://stackoverflow.com/questions/24572052/install-failed-no-matching-abis-when-install-apk) this was due to a missing checkbox that seems to be enabled for `debug` but not for most of the other default configs.  
 Unwrapping the link, the fix is:  
-![Arm vs x86 checkboxes](/img/XamarinHyperV/Armx86Fix.png)  
+![Arm vs x86 checkboxes](/img/XamarinHyperV/Armx86Fix.webp)  
 
 Another thing I noticed was that sometimes deploying to this emulator (in the setup described here) could take on the order of minutes to get running.
