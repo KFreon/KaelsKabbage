@@ -64,3 +64,10 @@ section {
         font-size: 2rem;
     }
 }
+
+.right-chevrons {
+    font-size: 3rem;
+    position: absolute;
+    margin-top: -1rem;
+    margin-left: 1rem;
+}
