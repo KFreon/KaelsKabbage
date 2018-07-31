@@ -15,12 +15,24 @@ I’ll pull it out here in case the links break but this is all Ian Devlin’s w
 
 1. Install [OpenSSL](https://www.openssl.org/) (Directly didn’t work for me, but it came installed with [Cmder](http://cmder.net/))
 2. Generate a key  
-{{% code "openssl genrsa -des3 -out ios.key 2048 // must be 2048" %}}
+
+``` cmd
+    openssl genrsa -des3 -out ios.key 2048 // must be 2048
+```
 3. Use key to generate Certificate Signing Request (CSR)  
-{{% code "openssl req -new -key ios.key -out .csr -subj '/emailAddress=MY-EMAIL-ADDRESS, CN=COMPANY-NAME, C=COUNTRY-CODE'" %}}
+
+``` cmd
+    openssl req -new -key ios.key -out .csr -subj '/emailAddress=MY-EMAIL-ADDRESS, CN=COMPANY-NAME, C=COUNTRY-CODE'
+```
 4. Upload the .CSR to the portal which then gives you a .CER in return
 5. Convert .CER to a .P12 (Required to sign apps, or at least Cordova apps)
-{{% code "openssl x509 -in ios_<development/distribution>.cer -inform DER -out .pem -outform PEM" %}}
-{{% code "openssl pkcs12 -export -inkey .key -in .pem -out .p12" %}}
+
+``` cmd 
+    openssl x509 -in ios_<development/distribution>.cer -inform DER -out .pem -outform PEM
+```
+
+``` cmd 
+openssl pkcs12 -export -inkey .key -in .pem -out .p12
+```
 
 That’s it! No more hunting for someone around the office with a Mac.

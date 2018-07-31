@@ -4,6 +4,9 @@ title = "Kael's Kabbage"
 theme = "sp-minimal"
 paginate        = 10
 googleAnalytics = "UA-122097969-1"
+PygmentsCodeFences = true
+pygmentsStyle = "manni"
+pygmentsOptions = ["noclasses"]
 
 [params]
   title       = "Kaels's Kabbage"
