@@ -9,7 +9,7 @@ pygmentsStyle = "manni"
 pygmentsOptions = ["noclasses"]
 
 [params]
-  title       = "Kaels's Kabbage"
+  title       = "Kael's Kabbage"
   subtitle    = "Tech Superfood"
   description = ""
   copyright   = "Kael Larkin 2018"
