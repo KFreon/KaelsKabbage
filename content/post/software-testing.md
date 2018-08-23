@@ -24,7 +24,7 @@ Chatting with workmates on the subject, they pointed out that this could still a
 - Complicated tests are hard to read and maintain, reducing their value. Their title should describe their sole purpose clearly.  
 - Testing for the sake of testing doesn't provide value. Running the test doesn't give you any confidence that there're no bugs because the test doesn't really do anything.  
 Testing complex areas and subcutaneous/integration tests are more high value tests.  
-Don't want really brittle tests either, like 
+Don't want really brittle tests either. Asserting absolutely everything means that one change can break unrelated tests.
 - Deleting tests that are no longer useful is OK. If they add no value, they’re tech debt.  
 
 The video asserts that the point of testing is to allow you to gain enough confidence to release to production.  
