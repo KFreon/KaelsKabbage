@@ -6,7 +6,7 @@ type: "post"
 ---
 
 Background tasks are often delegated to worker projects or external libraries to be handled, but ASP.NET Core has something like this inbuilt.  
-The actual interface is {{< inline "startup.cs" >}} and is registered in {{< inline "IHostedService" >}} like:  
+The actual interface is {{< inline "IHostedService" >}} and is registered in {{< inline "startup.cs" >}} like:  
 ```csharp 
 services.AddHostedServices<SOME_BACKGROUND_SERVICE>
 ```
