@@ -1,15 +1,13 @@
 param([Boolean]$forceRebuild=$False)
 
 $images = Get-ChildItem "./static/img" -Filter "*.png" -File -Recurse
-
 $images | ForEach-Object {
     $newPath = Join-Path $_.DirectoryName -ChildPath "$($_.BaseName).webp"
     $fileExists = Test-Path $newPath
-    if (!$forceRebuild -and $fileExists)
+    
+    if (!(!$forceRebuild -and $fileExists))
     {
-        continue
-    }
-
-    Write-Host "Converting " $_.Name "..."
-    Start-Process "C:\Users\kaell\Documents\Tools\Webp\bin\cwebp.exe" "-q 80 $($_.FullName) -o $newPath"
+        Write-Host "Converting " $_.Name "..."
+        Start-Process "C:\Users\kaell\Documents\Tools\Webp\bin\cwebp.exe" "-q 80 $($_.FullName) -o $newPath"
+    }    
 }
