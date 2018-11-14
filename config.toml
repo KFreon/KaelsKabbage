@@ -14,6 +14,7 @@ pygmentsOptions = ["noclasses"]
   description = ""
   copyright   = "Kael Larkin 2018"
   authorImage = "Cabbage.png"
+  email       = "kael.larkin@readify.net"
 
   #"single" or "multi"
   renderType = "multi"
