@@ -36,8 +36,9 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
 {{% image path="/img/AddingSnyk/SnykVstsInstall" %}}
     - **First step** installs Snyk to the Agent: {{% inline "npm install -g snyk" %}}  
     - **Second step** performs the Snyk checks on the npm packages: {{% inline "snyk test" %}}  
-    - **Third step** performs Snyk checks on Nuget packages (different folder, so different task): {{% inline "snyk test" %}}  
+    - **Third step** performs Snyk checks on Nuget packages (different folder, so different task): {{% inline "snyk test --file=slnname.sln" %}}  
       - *NOTE: These two tasks have different working directories set as these checks must be run in the directory with the package file*
+      - *Also note: The extra *file* parameter there as Snyk currently doesn't support sln detection.  
 <br/>  
 
 ## Some Explanations  
