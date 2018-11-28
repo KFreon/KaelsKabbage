@@ -18,6 +18,8 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
 
 # Snyk setup  
 
+*EDIT:* As noted by a colleague, there are different [pricing plans](https://snyk.io/plans) and the free may not suit all situations.
+
 - Create Snyk account  
   - *NOTE: Only Github, Bitbucket, and Google accounts supported at time of writing i.e. MUST have one of these to continue :(*  
 - Go to Account Settings  
