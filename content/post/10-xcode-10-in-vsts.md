@@ -25,6 +25,7 @@ Turns out (after a bunch of googling) that you can set the path where Xcode is f
 
 Below shows the area in the VSTS Cordova build step to add. Remember that the VSTS Mac build agent has all lots of versions, and changing the version number seems to correctly target the version specified.  
 {{% image path="/img/Xcode-10-in-vsts/XcodeDevPath" alt="Cordova build step, iOS, Xcode developer path" %}}  
+**EDIT:** Adding this for copy paste ease: `/Applications/Xcode_10.1.app/Contents/Developer`
 
 Yay, that was easy!  
 
