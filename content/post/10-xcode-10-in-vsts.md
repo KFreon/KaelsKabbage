@@ -3,6 +3,7 @@ title: "Forcing any version of Xcode on VSTS Mac build agent"
 date: 2019-01-29T13:45:59+10:00
 draft: false
 type: "post"
+slug: "xcode-10-in-vsts"
 ---
 
 Developers using the Apple Store might have recently noticed a message indiciating that "This app has been built for iOS 11.x. Starting March 2019, all apps will be required to target iOS 12.1 available in Xcode 10.1"  

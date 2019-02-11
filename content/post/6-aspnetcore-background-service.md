@@ -3,6 +3,7 @@ title: "ASP.NET Core Background Service"
 date: 2018-08-27T09:15:29+10:00
 draft: false
 type: "post"
+slug: "aspnetcore-background-service"
 ---
 
 Background tasks are often delegated to worker projects or external libraries to be handled, but ASP.NET Core has something like this inbuilt.  

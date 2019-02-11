@@ -2,6 +2,7 @@
 title: "Xamarin and Hyper V"
 date: 2018-07-10T16:08:35+10:00
 draft: false
+slug: "xamarin-and-hyper-v"
 ---
 
 Generally, the Android emulator for Windows ran on Intel's HAXM hypervisor. Unfortunately HAXM runs in the same way as Microsofts Hyper-V, and both cannot be enabled at once. While some users get away without using Virtual Machines (I'm one), many prefer the separation VM's afford, and there's no way they'll ditch Hyper-V capabilities (if that's the hypervisor they're using...). The hardest hit would have to be the Docker users though, as Docker runs it's VM's on Hyper-V (Mine is at least).  

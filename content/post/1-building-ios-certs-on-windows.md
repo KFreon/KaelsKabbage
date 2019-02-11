@@ -3,6 +3,7 @@ title: "Building iOS store certificates on Windows"
 date: 2018-05-31T07:11:59+07:00
 draft: false
 type: "post"
+slug: "building-ios-certs-on-windows"
 ---
 
 How many times have you been working on a cross platform app and been ready to submit to the app stores, but then the Apple store needs a .csr that you should “use a Mac” to generate?  

@@ -3,6 +3,7 @@ title: "Incorporating .NET Core 2.1 into existing .NET Framework/UWP application
 date: 2018-07-09T10:47:07+10:00
 draft: false
 type: "post"
+slug: "incorporating-net-core-21-into-existing-app"
 ---
 
 EDIT: As a colleague pointed out, the method below could potentially cause errors at runtime if the [.NET Core 2.1 runtime](https://www.microsoft.com/net/download/dotnet-core/runtime-2.1.0) is not installed.  
