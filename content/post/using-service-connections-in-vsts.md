@@ -1,5 +1,5 @@
 ---
-title: "Using Service Connections in VSTS"
+title: "Using Service Connections in Azure DevOps"
 date: 2019-02-07T13:45:59+10:00
 draft: false
 type: "post"
