@@ -35,6 +35,7 @@ Oh.
 
 Turns out that Xcode has updated their build structure, since version 8 and thus there's a build flag to use the older system, as shown below.  
 {{% image path="/img/Xcode-10-in-vsts/XcodeBuildFlags" alt="Cordova currently requires that Xcode use the UseModernBuildSystem be set to 0" %}}   
+*EDIT: Adding for copy paste ease: `--buildFlag="-UseModernBuildSystem=0"`
 
 Builds should succeed!  
 Again, we're yet to test these builds actually get to the stores, but at least there's learnings here :)
