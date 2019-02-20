@@ -21,7 +21,17 @@ Not that I could find.
 We need to set the version for Cordova, but Cordova doesn't provide an obvious way of setting the desired Xcode version, and there's a caveat in the way they do provide.
 Turns out (after a bunch of googling) that you can set the path where Xcode is found.  
 
-- Not sure about the cmdline.  
+And on the command line:
+```
+echo Current Xcode version:
+xcode-select --print-path
+
+echo Selecting Xcode version 10.1
+sudo xcode-select -switch /Applications/Xcode_10.1.app/Contents/Developer
+
+echo New Xcode version:
+xcode-select --print-path
+```  
 
 Below shows the area in the VSTS Cordova build step to add. Remember that the VSTS Mac build agent has all lots of versions, and changing the version number seems to correctly target the version specified.  
 {{% image path="/img/Xcode-10-in-vsts/XcodeDevPath" alt="Cordova build step, iOS, Xcode developer path" %}}  
