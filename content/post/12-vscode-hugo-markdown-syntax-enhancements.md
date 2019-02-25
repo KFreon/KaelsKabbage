@@ -5,6 +5,8 @@ slug: "vscode-hugo-markdown-syntax-enhancements"
 draft: false
 ---
 
+**EDIT:** After this, I realised my shortcodes were a bit annoying to type, so I made some snippets for them (at the end of the page)
+
 Some time ago, just after the first post on this blog, I started using [Hugo Shortcodes](https://gohugo.io/content-management/shortcodes/).  
 The theme I was (still am) using didn't have great support for some of the markdown stylings that I wanted, and instead of fiddling with that, I figured I'd create my own with custom styles and Hugo Shortcodes.  
 
@@ -98,6 +100,26 @@ In the end, I came up with some syntax highlighting rules for Hugo Shortcodes, s
 
 [Extension repository](https://dev.azure.com/kaellarkin/_git/Hugo-Shortcode-Syntax-Highlighting) (not currently published)  
 
+EDIT  
+<details>
+    <summary>Snippets</summary>  
+
+    "HugoShortcode Image": {
+        "prefix": "himage",
+        "body": [
+            "{{%/* image path=\"img/${1:folder}\" alt=\"${2:alt-text}\" */%}}"
+        ],
+        "description": "Image ShortCode"
+    },
+
+    "HugoShortcode Inline": {
+        "prefix": "hinline",
+        "body": [
+            "{{%/* inline \"${1:text}\" */%}}"
+        ],
+        "description": "Inline ShortCode"
+    }
+</details>
 
 <details>
 <summary>Final syntax highlighting (tmLanguage)</summary>
