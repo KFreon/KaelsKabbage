@@ -19,7 +19,7 @@
     "HugoShortcode Image": {
         "prefix": "himage",
         "body": [
-            "{{% image path=\"img/${1:folder}\" alt=\"${2:alt-text}\" %}}"
+            "{{< image path=\"img/${1:folder}\" alt=\"${2:alt-text}\" >}}"
         ],
         "description": "Image ShortCode"
     },
@@ -27,8 +27,22 @@
     "HugoShortcode Inline": {
         "prefix": "hinline",
         "body": [
-            "{{% inline \"${1:text}\" %}}"
+            "{{< inline \"$1\" >}}"
         ],
         "description": "Inline ShortCode"
+    },
+
+    "HugoShortcode Spit Code": {
+        "prefix": "hsplit",
+        "body": [
+            "{{% split %}}",
+            "{{% splitLeft title=\"$1\" %}}",
+            "$0",
+            "{{% /splitLeft %}}",
+            "{{% splitRight %}}",
+            "",
+            "{{% /splitRight title=\"$2\" %}}",
+            "{{% /split %}}"
+        ]
     }
 }

@@ -13,7 +13,7 @@ Developers using the Apple Store might have recently noticed a message indiciati
 Normally this is fine, just upgrade Xcode and rebuild. Not so obvious for VSTS (ADOPS?) and Cordova.  
 Surely Microsoft would just have the latest installed right?  
 Hmm, well kind of. If you look at the Mac build agent details, there's versions of ALL major Xcode builds, it's just that 8.x is set as default.
-{{% image path="/img/Xcode-10-in-vsts/VSTSAgentXcodeVersions" alt="The many versions of Xcode supported by VSTS Mac build agent" %}}  
+{{< image path="/img/Xcode-10-in-vsts/VSTSAgentXcodeVersions" alt="The many versions of Xcode supported by VSTS Mac build agent" >}}  
 
 Hmm, well maybe there's a build step to set the default version of Xcode for this session?  
 Not that I could find.  
@@ -34,7 +34,7 @@ xcode-select --print-path
 ```  
 
 Below shows the area in the VSTS Cordova build step to add. Remember that the VSTS Mac build agent has all lots of versions, and changing the version number seems to correctly target the version specified.  
-{{% image path="/img/Xcode-10-in-vsts/XcodeDevPath" alt="Cordova build step, iOS, Xcode developer path" %}}  
+{{< image path="/img/Xcode-10-in-vsts/XcodeDevPath" alt="Cordova build step, iOS, Xcode developer path" >}}  
 **EDIT:** Adding this for copy paste ease: `/Applications/Xcode_10.1.app/Contents/Developer`
 
 Yay, that was easy!  
@@ -44,7 +44,7 @@ Yay, that was easy!
 Oh.  
 
 Turns out that Xcode has updated their build structure, since version 8 and thus there's a build flag to use the older system, as shown below.  
-{{% image path="/img/Xcode-10-in-vsts/XcodeBuildFlags" alt="Cordova currently requires that Xcode use the UseModernBuildSystem be set to 0" %}}   
+{{< image path="/img/Xcode-10-in-vsts/XcodeBuildFlags" alt="Cordova currently requires that Xcode use the UseModernBuildSystem be set to 0" >}}   
 *EDIT: Adding for copy paste ease: `--buildFlag="-UseModernBuildSystem=0"`
 
 Builds should succeed!  

@@ -22,7 +22,7 @@ footer {
 
 section {
     font-size: 1.3rem;
-    width: unset;
+    width: 80%;
 }
 
 @media print, screen and (max-width: 960px) {
@@ -79,4 +79,21 @@ section {
     color: slategray;
     font-size: 75%;
     margin-bottom: 2rem;
+}
+
+.split-code-container {
+    display: flex;
+}
+
+.split-code-container .left {
+    margin-right: 1rem;
+    width: 50%;
+}
+
+.split-code-container .right {
+    width: 50%;
+}
+
+code {
+    font-size: 0.8rem;
 }
