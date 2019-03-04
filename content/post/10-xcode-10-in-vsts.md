@@ -22,7 +22,7 @@ We need to set the version for Cordova, but Cordova doesn't provide an obvious w
 Turns out (after a bunch of googling) that you can set the path where Xcode is found.  
 
 And on the command line:
-```
+``` cmd
 echo Current Xcode version:
 xcode-select --print-path
 

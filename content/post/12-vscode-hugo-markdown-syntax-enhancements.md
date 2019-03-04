@@ -32,7 +32,7 @@ Long story short, I trawled through posts and discovered [this post](https://www
 * Some research for styling will probably be necessary.  
 * Regex is hard. (I mean really...)
 
-```
+``` regex
 (\w+)\s([a-zA-Z]+)=\"(\S+)\"\s*(?:([a-zA-Z]+)=\"([^\"]+)\")*
 ```  
 <br>  
