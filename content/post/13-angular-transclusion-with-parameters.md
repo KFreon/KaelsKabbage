@@ -9,6 +9,8 @@ I recently came across a scenario where I had several components with the same s
 Simple right? Everyday scenario?  
 Were it so easy...  
 
+<!--more-->  
+
 **TL;DR**  
 *Problem*: Can't do transclusion and pass properties to content.  
 *Solution*: Use {{< inline "ng-template" >}} with {{< inline "ng-container *ngTemplateOutlet" >}} with a {{< inline "context: { $implicit: variable-name }" >}} property.  

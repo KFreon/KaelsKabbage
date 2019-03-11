@@ -5,10 +5,12 @@ slug: "vscode-hugo-markdown-syntax-enhancements"
 draft: false
 ---
 
-**EDIT:** After this, I realised my shortcodes were a bit annoying to type, so I made some snippets for them (at the end of the page)
-
 Some time ago, just after the first post on this blog, I started using [Hugo Shortcodes](https://gohugo.io/content-management/shortcodes/).  
-The theme I was (still am) using didn't have great support for some of the markdown stylings that I wanted, and instead of fiddling with that, I figured I'd create my own with custom styles and Hugo Shortcodes.  
+The theme I was (still am) using didn't have great support for some of the markdown stylings that I wanted, and instead of fiddling with that, I figured I'd create my own with custom styles and Hugo Shortcodes. 
+
+<!--more-->  
+
+**EDIT:** After this, I realised my shortcodes were a bit annoying to type, so I made some snippets for them (at the end of the page)
 
 This ended up working fine, things displayed how I wanted them and all was right, except when I went back to posts and had a look.  
 {{< image path="/img/HugoShortcodes/HugoShortcodes_NoExtension" alt="Hugo Shortcodes with no syntax highlighting" >}}  

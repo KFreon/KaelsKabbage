@@ -11,6 +11,7 @@ There are [much](https://dotnetcoretutorials.com/2017/11/02/using-mailkit-send-r
 
 - Install the [nuget package](https://www.nuget.org/packages/MailKit/) to your project.
 - Use.  
+<!--more-->  
 
 Nuget is nice sometimes.  
 The usage is also fairly straightforward. Below is a generalised snippit for SENDING an email and the tutorials above cover both sending and receiving. 

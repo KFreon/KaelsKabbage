@@ -15,6 +15,9 @@ Xamarin Forms should be an easy sell.
 - Even works for UWP, enabling a desktop experience if desired  
 
 But there's a shadow that hangs over Xamarin, one shared by most mobile dev platforms: **FIDDLINESS**.  
+
+<!--more-->  
+
 Getting everything working can be curiously painful. Full disclosure, I'm talking about the following setup:
 
 - Xamarin Forms  

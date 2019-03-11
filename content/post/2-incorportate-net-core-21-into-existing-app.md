@@ -6,13 +6,11 @@ type: "post"
 slug: "incorporating-net-core-21-into-existing-app"
 ---
 
-EDIT: As a colleague pointed out, the method below could potentially cause errors at runtime if the [.NET Core 2.1 runtime](https://www.microsoft.com/net/download/dotnet-core/runtime-2.1.0) is not installed.  
+**EDIT:** As a colleague pointed out, the method below could potentially cause errors at runtime if the [.NET Core 2.1 runtime](https://www.microsoft.com/net/download/dotnet-core/runtime-2.1.0) is not installed.  
 
-
-<br></br>  
- 
 
 The recently announced [.NET Core 2.1](https://blogs.msdn.microsoft.com/dotnet/2018/05/30/announcing-net-core-2-1/) brings some nice new features, but the big draw is the support of [Span<T>](https://docs.microsoft.com/en-us/dotnet/api/system.span-1?view=netcore-2.1) and it’s performance happy friends.
+<!--more-->  
 
 There’s a slight catch though. .NET Core 2.1 projects can’t be referenced by UWP and .NET Framework projects, so if you have a desktop application in need of a (potential) performance boost to, it’s not as easy as it could be.
 

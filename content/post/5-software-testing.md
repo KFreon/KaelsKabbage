@@ -9,6 +9,8 @@ slug: "software-testing"
 Testing is an oft argued topic, as I discovered when I started at [Readify](https://readify.net/).  
 As a bit of a testing noob, I'd only read a bit about testing and thought "That sounds useful, more things caught before deployment", but upon trying to write them, I found it hard to come up with sensible scenarios. Many of the tutorials I'd seen were around calculations which just aren't a part of my job in any way. 
 
+<!--more-->  
+
 This was likely due to my lack of knowledge around programming at the time (if not still) and lack of imagination. Reading through some of the tests in my projects I often pondered the point of them. I'm always adjusting them to fit the code, but not in a useful way. They didn't so much test scenario as tell me when I changed a scenario, which isn't necessarily a bad thing, but wasn't the point of that test.  
 
 My colleague [Andrew Best](https://www.andrew-best.com/) linked me an [NDC talk](https://vimeo.com/189830215) about testing which was quite informative.   

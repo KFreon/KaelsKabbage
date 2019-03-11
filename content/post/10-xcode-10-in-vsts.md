@@ -8,6 +8,9 @@ slug: "xcode-10-in-vsts"
 
 Developers using the Apple Store might have recently noticed a message indiciating that "This app has been built for iOS 11.x. Starting March 2019, all apps will be required to target iOS 12.1 available in Xcode 10.1"  
 
+<!--more-->  
+
+
 **DISCLAIMER:** We haven't yet had the opportunity to submit to the store to see if it accepts it, but the builds now work targetting the higher version.
 
 Normally this is fine, just upgrade Xcode and rebuild. Not so obvious for VSTS (ADOPS?) and Cordova.  

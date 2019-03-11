@@ -12,6 +12,9 @@ The easy way would be to get my account access to the Azure resources, but:
 1. I'd be the only one with the ability to change those deployment options, or at least new devs would to get access as well before they could.  
 2. The onsite guy for that kind of access was away.  
 
+<!--more-->  
+
+
 I had access to an account that had Azure resource access, so there had to be a way to use it in the pipeline somehow.  
 Turns out there is, and it's via the [Azure Service Connections](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops). 
 Most of this is based off [this tutorial](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) from Microsoft.  

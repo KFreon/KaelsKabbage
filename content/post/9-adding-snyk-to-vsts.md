@@ -13,7 +13,9 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
 
 - Setup Snyk account and get API key
 - Setup pipeline with SNYK_TOKEN (api key)  
-- Have task to install Snyk and run {{< inline "snyk test" >}}  
+- Have task to install Snyk and run {{< inline "snyk test" >}} 
+ 
+<!--more-->  
 
 <br/>  
 
