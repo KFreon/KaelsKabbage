@@ -17,7 +17,6 @@ footer {
     background-color: rgba(0, 0, 0, .05);
     color: rgba(0,0,0,.7);
     padding: 0.1rem 0.5rem;
-    font-size: 1rem;
 }
 
 section {
@@ -25,50 +24,15 @@ section {
     width: 80%;
 }
 
-@media print, screen and (max-width: 960px) {
-    html {
-        font-size: 8px;
-    }
-
-    h2 {
-        font-size: 3rem;
-    }
-
-    .site-subtitle {
-        font-size: 1.4rem;
-    }
-
-    body {
-        padding: 0.1rem;
-    }
-
-    header {
-        position: fixed;
-        width: 8rem;
-    }
-
-    section {
-        margin-left: 9.5rem;
-    }
-
-    footer {
-        float: left;
-        position: fixed;
-        width: 9.5rem;
-        border-right: none;
-        font-size: 1rem;
-    }
-
-    section {
-        font-size: 2rem;
-    }
+small {
+    font-size: 1rem;
 }
 
 .right-chevrons {
     font-size: 2.5rem;
     position: absolute;
     margin-top: -1.1rem;
-    margin-left: 0.5rem;
+    margin-left: 0.5rem;   
 }
 
 .image {
@@ -96,4 +60,86 @@ section {
 
 code {
     font-size: 0.8rem;
+}
+
+.pagination .pagination {
+    background: white;
+}
+
+.pagination .pagination .page-item a {
+    font-size: 1.5rem;
+}
+
+.pagination .pagination .page-item.active {
+    background: #90ee9052;
+    font-weight: bold;
+}
+
+.pagination li:last-child {
+    float: left;
+    border-right: 0;
+  }
+
+body {
+    padding: 0.5rem;
+}
+  
+@media print, screen and (max-width: 960px) {
+    html {
+        font-size: 8px;
+    }
+
+    h2 {
+        font-size: 3rem;
+    }
+
+    .site-subtitle {
+        font-size: 1.4rem;
+    }
+
+    header {
+        position: fixed;
+        width: 8rem;
+    }
+
+    section {
+        margin-left: 9.5rem;
+    }
+
+    footer {
+        float: left;
+        position: fixed;
+        width: 9.5rem;
+        border-right: none;
+        font-size: 1rem;
+    }
+
+    section {
+        font-size: 2rem;
+    }
+
+    .right-chevrons {
+        margin-top: -0.5rem;
+    }
+
+    small {
+        font-size: 1.5rem;
+    }
+
+    .split-code-container {
+        display: block;
+    }
+    
+    .split-code-container .left {
+        margin-right: unset;
+        width: 100%;
+    }
+    
+    .split-code-container .right {
+        width: 100%;
+    }
+
+    code {
+        font-size: 1.5rem;
+    }
 }
