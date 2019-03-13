@@ -223,6 +223,18 @@ export class RefactoredComponent implements OnInit {
 {{% /splitRight %}}
 {{% /split %}}  
 
+**EDIT:** Note that for reduced black box magic, you can specify the template directly instead of with {{< inline "@ContentChild" >}}.  
+See below. {{< inline "@ContentChild" >}} replaced in the Typescript with {{< inline "@Input()" >}} and the html altered slightly to give the template an id with {{< inline "#template" >}} and the {{< inline "app-extracted" >}} component takes the template as a variable directly.  
+
+``` html
+<app-extracted [holidays]="holidays" [template]="template">
+    <ng-template let-location #template>
+        <strong>{{ location.name }}</strong>
+        <p>{{ location.picture }}</p>
+    </ng-template>
+</app-extracted>
+```
+
 # Steps I took  
 1. Pull those {{< inline "*ngFor" >}} divs out into a new component  
 2. Provide the new component with the data previously given to the outer {{< inline "*ngFor" >}}
