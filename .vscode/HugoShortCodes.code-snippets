@@ -17,7 +17,7 @@
     // }
     
     "HugoShortcode Image": {
-        "prefix": "himage",
+        "prefix": "himg",
         "body": [
             "{{< image path=\"img/${1:folder}\" alt=\"${2:alt-text}\" >}}"
         ],

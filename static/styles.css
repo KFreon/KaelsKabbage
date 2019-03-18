@@ -116,3 +116,7 @@ ul.tag-list {
     display: flex;
     flex-wrap: wrap;
 }
+
+img.about-pic {
+    border-radius: 50px;
+}
