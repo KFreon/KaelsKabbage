@@ -19,7 +19,7 @@
         <section>
             <ul>
                 {{ range $key, $taxonomy := .Site.Taxonomies.tags }}
-                <li><a class="tag-header" href="{{ $.Site.BaseURL }}/tags/{{ $key }}" >{{ $key }}</a></li>
+                <li class="tag-header">{{ humanize $key }}</li>
                 <ul>
                     {{ range $taxonomy.Pages }}
                     <li hugo-nav="{{ .RelPermalink}}"><a href="{{ .Permalink}}">{{ .LinkTitle }}</a></li>

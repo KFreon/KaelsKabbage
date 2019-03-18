@@ -83,71 +83,6 @@ code {
 body {
     padding: 0.5rem;
 }
-  
-@media print, screen and (max-width: 960px) {
-    html {
-        font-size: 8px;
-    }
-
-    h2 {
-        font-size: 3rem;
-    }
-
-    .site-subtitle {
-        font-size: 1.4rem;
-    }
-
-    header {
-        position: fixed;
-        width: 8rem;
-    }
-
-    section {
-        margin-left: 9.5rem;
-    }
-
-    footer {
-        float: left;
-        position: fixed;
-        width: 9.5rem;
-        border-right: none;
-        font-size: 1rem;
-    }
-
-    section {
-        font-size: 2rem;
-    }
-
-    .right-chevrons {
-        margin-top: -0.5rem;
-    }
-
-    small {
-        font-size: 1.5rem;
-    }
-
-    .split-code-container {
-        display: block;
-    }
-    
-    .split-code-container .left {
-        margin-right: unset;
-        width: 100%;
-    }
-    
-    .split-code-container .right {
-        width: 100%;
-    }
-
-    code {
-        font-size: 1.5rem;
-    }
-
-    a.tag-header {
-        font-size: 3rem;
-        font-weight: bold;
-    }
-}
 
 blockquote.info {
     background: rgba(144, 238, 144, 0.5);
@@ -157,17 +92,13 @@ blockquote.info {
     margin-left: 1rem;
 }
 
-a.category {
-    border-radius: 5px;
-    padding: 0.5rem;
-}
-
 p.tags {
     text-align: center;
     font-size: 1.5rem;
 }
 
-a.tag-header {
+li.tag-header {
     font-size: 2rem;
     font-weight: bold;
+    list-style-type: none;
 }
