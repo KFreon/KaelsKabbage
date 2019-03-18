@@ -17,14 +17,16 @@
         {{ partial "header" . }}
 
         <section>
-            <ul>
+            <ul class="tag-list">
                 {{ range $key, $taxonomy := .Site.Taxonomies.tags }}
-                <li class="tag-header">{{ humanize $key }}</li>
-                <ul>
-                    {{ range $taxonomy.Pages }}
-                    <li hugo-nav="{{ .RelPermalink}}"><a href="{{ .Permalink}}">{{ .LinkTitle }}</a></li>
-                    {{ end }}
-                </ul>
+                <div class="tag">
+                    <li class="tag-header">{{ humanize $key }}</li>
+                    <ul>
+                        {{ range $taxonomy.Pages }}
+                        <li hugo-nav="{{ .RelPermalink}}"><a href="{{ .Permalink}}">{{ .LinkTitle }}</a></li>
+                        {{ end }}
+                    </ul>
+                </div>
                 {{ end }}
             </ul>
         </section>

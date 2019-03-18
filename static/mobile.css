@@ -61,4 +61,12 @@
         font-size: 3rem;
         font-weight: bold;
     }
+
+    div.tag {
+        width: 100%;
+    }
+    
+    ul.tag-list {
+        display: block;
+    }
 }

@@ -92,6 +92,11 @@ blockquote.info {
     margin-left: 1rem;
 }
 
+a.category {
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
 p.tags {
     text-align: center;
     font-size: 1.5rem;
@@ -101,4 +106,13 @@ li.tag-header {
     font-size: 2rem;
     font-weight: bold;
     list-style-type: none;
+}
+
+div.tag {
+    width: 50%;
+}
+
+ul.tag-list {
+    display: flex;
+    flex-wrap: wrap;
 }
