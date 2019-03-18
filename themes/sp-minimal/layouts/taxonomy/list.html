@@ -1,0 +1,38 @@
+{{ if not (eq .Site.Params.renderType "single") }}
+{{ partial "head" . }}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122097969-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-122097969-1');
+</script>
+
+
+<body>
+    <div class="wrapper">
+
+        {{ partial "header" . }}
+
+        <section>
+            <ul>
+                {{ range $key, $taxonomy := .Site.Taxonomies.tags }}
+                <li><a class="tag-header" href="{{ $.Site.BaseURL }}/tags/{{ $key }}" >{{ $key }}</a></li>
+                <ul>
+                    {{ range $taxonomy.Pages }}
+                    <li hugo-nav="{{ .RelPermalink}}"><a href="{{ .Permalink}}">{{ .LinkTitle }}</a></li>
+                    {{ end }}
+                </ul>
+                {{ end }}
+            </ul>
+        </section>
+
+        {{ partial "footer" . }}
+
+    </div>
+</body>
+
+</html>
+{{ end }}

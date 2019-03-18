@@ -4,6 +4,7 @@ date: 2018-10-17T15:19:00+10:00
 draft: false
 type: "post"
 slug: "android-emulator-dns"
+tags: ["android"]
 ---
 
 The [Android Emulator](https://developer.android.com/studio/run/emulator) is pretty sweet now. Fairly performant, [works with Hyper-V](https://www.kaels-kabbage.com/post/xamarin-and-hyper-v/) still enabled, etc.  

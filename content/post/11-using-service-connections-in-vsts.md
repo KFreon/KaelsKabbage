@@ -4,6 +4,7 @@ date: 2019-02-07T13:45:59+10:00
 draft: false
 type: "post"
 slug: "using-service-connections-in-vsts"
+tags: ["vsts-devops"]
 ---
 
 I was recently setting up a build pipeline in Azure DevOps and realised I didn't have access to the Azure resources to be able to pick the app service as a deployment target.  

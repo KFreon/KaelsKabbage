@@ -12,6 +12,8 @@
   {{ with .Site.Params.description }}
     <p class="text-right remove-margin-bottom add-padding-right">{{ . | markdownify }}</p>
   {{ end }}
+  
+  <p class="tags"><a href="{{ $.Site.BaseURL }}/tags">Tags</a></p>
 </header>
 
 

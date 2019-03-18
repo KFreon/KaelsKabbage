@@ -4,6 +4,7 @@ date: 2018-11-28T13:45:59+10:00
 draft: false
 type: "post"
 slug: "adding-snyk-to-vsts"
+tags: ["vsts-devops"]
 ---
 
 [Snyk](https://snyk.io/) is an open source tool for checking project packages for vulnerabilities. It currently checks the main package sources like npm and Nuget.  While it has many integrations with source control (github, bitbucket, etc), there's no VSTS build pipeline integration yet.  

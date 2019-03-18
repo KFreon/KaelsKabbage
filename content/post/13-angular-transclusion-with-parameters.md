@@ -3,6 +3,7 @@ title: "Angular Transclusion With Parameters"
 date: 2019-03-01T15:51:30+10:00
 draft: false
 slug: angular-transclusion-with-parameters
+tags: ["angular"]
 ---
 
 I recently came across a scenario where I had several components with the same structure in them, so I figured I'd extract it out into it's own component.   

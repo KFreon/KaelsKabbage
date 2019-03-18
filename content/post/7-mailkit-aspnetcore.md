@@ -4,6 +4,7 @@ date: 2018-08-27T09:57:44+10:00
 draft: false
 type: "post"
 slug: "mailkit-aspnetcore"
+tags: ["aspnet"]
 ---
 
 [Mailkit](https://github.com/jstedfast/MailKit) is the new official replacement for the {{< inline "SMTPClient">}} as indicated [here](https://www.infoq.com/news/2017/04/MailKit-MimeKit-Official).

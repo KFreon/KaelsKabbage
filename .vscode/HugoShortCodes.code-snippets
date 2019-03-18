@@ -44,5 +44,14 @@
             "{{% /splitRight title=\"$2\" %}}",
             "{{% /split %}}"
         ]
+    },
+
+    "HugoShortcode Info": {
+        "prefix": "hinfo",
+        "body": [
+            "{{% info %}}",
+            "$0",
+            "{{% /info %}}"
+        ]
     }
 }

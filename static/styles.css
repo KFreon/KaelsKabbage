@@ -142,4 +142,32 @@ body {
     code {
         font-size: 1.5rem;
     }
+
+    a.tag-header {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+}
+
+blockquote.info {
+    background: rgba(144, 238, 144, 0.5);
+    border-left: solid 7px green;
+    font-style: normal;
+    border-radius: 5px;
+    margin-left: 1rem;
+}
+
+a.category {
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+p.tags {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+a.tag-header {
+    font-size: 2rem;
+    font-weight: bold;
 }

@@ -3,6 +3,7 @@ title: "VSCode Extension: Hugo syntax highlighting for Markdown"
 date: 2019-02-25T10:45:38+10:00
 slug: "vscode-hugo-markdown-syntax-enhancements"
 draft: false
+tags: ["vscode", "markdown"]
 ---
 
 Some time ago, just after the first post on this blog, I started using [Hugo Shortcodes](https://gohugo.io/content-management/shortcodes/).  

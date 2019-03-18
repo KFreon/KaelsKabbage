@@ -4,6 +4,7 @@ date: 2018-07-30T11:11:59+10:00
 draft: false
 type: "post"
 slug: "adventures-in-xamarin"
+tags: ["xamarin"]
 ---
 
 ### Issues getting started, and differences to WPF/UWP
