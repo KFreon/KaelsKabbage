@@ -8,6 +8,6 @@ $images | ForEach-Object {
     if (!(!$forceRebuild -and $fileExists))
     {
         Write-Host "Converting " $_.Name "..."
-        Start-Process "C:\Users\kaell\Documents\Tools\Webp\bin\cwebp.exe" "-q 80 $($_.FullName) -o $newPath"
+        Start-Process "C:\Users\kaell\Documents\Tools\Webp\bin\cwebp.exe" "$($_.FullName) -o $newPath"
     }    
 }
