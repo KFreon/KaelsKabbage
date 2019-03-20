@@ -1,4 +1,4 @@
-baseURL = "https://kaels-kabbage.com/"
+baseURL = "https://www.kaels-kabbage.com/"
 languageCode = "en-us"
 title = "Kael's Kabbage"
 theme = "sp-minimal"
@@ -7,6 +7,7 @@ googleAnalytics = "UA-122097969-1"
 pygmentsCodeFences = true
 pygmentsStyle = "manni"
 pygmentsUseClasses = true
+assetDir = "."
 
 [params]
   title       = "Kael's Kabbage"
