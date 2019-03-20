@@ -25,7 +25,7 @@ The [Visual Studio Blog](https://blogs.msdn.microsoft.com/visualstudio/2018/05/0
 
 Debugging looks to work fine using this method as well, but the best part is just being able to run the app without weird emulation issues or disabling Hyper-V!  
 
-<br></br>  
+<br>  
 
 EDIT: Something else that came up was that some of the build configurations failed to deploy because `INSTALL_FAILED_NO_MATCHING_ABIS`.  
 

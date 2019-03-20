@@ -47,21 +47,21 @@ Chances are this won't help, so the main option is: *NOTE: Must end in slash*
 ```
 
 It should be noted that these options didn't work for me. They definitely solved this particular problem but created numerous and seeminly un-replicatable problems.
-<br></br>
+<br>
 
 #### Incorrect architectures and Simulation
 I've included these for completeness, but I've gone through them in [another post](https://www.kaels-kabbage.com/post/xamarin-and-hyper-v/) (at the bottom).
 The biggest bit out of those is that the build architecture defaults were incorrect, and the simulator needs to be started prior to running the first time (it takes a while to start up)
-<br></br>  
+<br>  
 
 ### More General issues
 ### Versions and upgrades
 Upgrading Nuget packages and getting running again is painful. Xamarin Forms nuget packages are tightly bound to some of the other Microsoft packages, and while those packages are also getting updated, it doesn't realise. You can probably force it, or go Prerelease (must have been a dependency somewhere), but then I couldn't get anything running again due to depencency issues across the board. This also seems to be due to .NET Standard support which leads us to...
-<br></br>
+<br>
 
 #### UWP .NET.Runtime.2.1-rel Error
 [It seems](https://doumer.me/how-to-resolve-microsoft-net-native-runtime-2-1-rel-not-found/) that this relates to the Microsoft Store not supporting .NET 2.1 yet, and occured after upgrading some Nuget Packages to a Pre-release version (to try to get around the above issues). Solution was to run as Debug (non-store related configuration). As aluded to above, I was still unable to get things running, but this wasn't the reason.
-<br></br>
+<br>
 
 #### UWP doesn't hit breakpoints in Debug Mode
 Debug mode, why this betrayal? Turns out it's another case of bad defaults.
