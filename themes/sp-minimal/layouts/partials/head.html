@@ -16,28 +16,17 @@
     {{ "<!-- Stylesheets -->" | safeHTML }}
 
     {{ $themeStylesCSS := resources.Get "themes/sp-minimal/static/css/styles.css" }}
-    {{ $themeStyles := $themeStylesCSS | resources.Minify }}
-    <link rel="stylesheet" href="{{ $themeStyles.Permalink }}">
-
     {{ $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" }}
-    {{ $minimalStyles := $minimalStylesCSS | resources.Minify }}
-    <link rel="stylesheet" href="{{ $minimalStyles.Permalink }}">
+    {{ $stylesCSS := resources.Get "static/styles.css" }}
+    {{ $mobileCSS := resources.Get "static/mobile.css" }}
+    {{ $pygmentsCSS := resources.Get "static/pygments-gen.css" }}
 
     {{ if eq .Site.Params.themeStyle "simple"}}
     {{ $minimalSimpleCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal-simple.css" }}
-    {{ $minimalSimple := $minimalSimpleCSS | resources.Minify }}
-    <link rel="stylesheet" href="{{ $minimalSimple.Permalink }}">
-    {{ end }}
-
-    {{ $stylesCSS := resources.Get "static/styles.css" }}
-    {{ $styles := $stylesCSS | resources.Minify }}
+    {{ $styles := slice $themeStylesCSS $minimalStylesCSS $minimalSimpleCSS $pygmentsCSS $stylesCSS $mobileCSS | resources.Concat "css/styles.min.css" | minify }}
     <link rel="stylesheet" href="{{ $styles.Permalink }}">
-
-    {{ $mobileCSS := resources.Get "static/mobile.css" }}
-    {{ $mobile := $mobileCSS | resources.Minify }}
-    <link rel="stylesheet" href="{{ $mobile.Permalink }}">
-
-    {{ $pygmentsCSS := resources.Get "static/pygments-gen.css" }}
-    {{ $pygments := $pygmentsCSS | resources.Minify }}
-    <link rel="stylesheet" href="{{ $pygments.Permalink }}">
+    {{ else }}
+    {{ $styles := slice $themeStylesCSS $minimalStylesCSS $pygmentsCSS $stylesCSS $mobileCSS | resources.Concat "css/styles.min.css" | minify }}
+    <link rel="stylesheet" href="{{ $styles.Permalink }}">
+    {{ end }}
 </head>
