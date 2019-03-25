@@ -11,7 +11,7 @@
     {{ .Hugo.Generator }}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <link rel="shortcut icon" href="{{ .Site.BaseURL }}img/Cabbage.png">
+    <link rel="shortcut icon" async href="{{ .Site.BaseURL }}img/Cabbage.png">
 
     {{ "<!-- Stylesheets -->" | safeHTML }}
 
@@ -29,4 +29,12 @@
     {{ $styles := slice $themeStylesCSS $minimalStylesCSS $pygmentsCSS $stylesCSS $mobileCSS | resources.Concat "css/styles.min.css" | minify }}
     <link rel="stylesheet" href="{{ $styles.Permalink }}">
     {{ end }}
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    {{ $lunr := resources.Get "static/lunr.js" }}
+    {{ $search := resources.Get "search.js" }}
+    {{ $combined := slice $lunr $search | resources.Concat "bundle.js" | minify }}
+
+    <script type="text/javascript" src="{{ $combined.Permalink }}"></script>
 </head>

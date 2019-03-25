@@ -1,5 +1,5 @@
 <header class="text-center">
-  {{ with .Site.Params.authorImage }} <a href="{{ $.Site.BaseURL }}"><img src="{{ $.Site.BaseURL }}img/{{ . }}" class="img-circle profile-picture"></a> {{ end }}
+  {{ with .Site.Params.authorImage }} <a href="{{ $.Site.BaseURL }}"><img async src="{{ $.Site.BaseURL }}img/{{ . }}" class="img-circle profile-picture"></a> {{ end }}
 
   {{ with .Site.Params.title }}
     <h1 class="border-bottom add-padding-bottom site-title"><a href="{{ $.Site.BaseURL }}">{{ . | markdownify }}</a></h1>
@@ -14,6 +14,14 @@
   {{ end }}
   
   <p class="tags"><a href="{{ $.Site.BaseURL }}/tags">Tags</a></p>
+
+  <div class="search-area">
+      <p>Search</p>
+      <input id="searchbox" type="text">
+      <ul id="results">
+          
+      </ul>
+  </div>
 </header>
 
 
