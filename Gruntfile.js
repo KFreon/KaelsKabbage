@@ -35,22 +35,17 @@ module.exports = function(grunt) {
                 console.error(e.message);
             }
 
-            var href = S(abspath).chompLeft(CONTENT_PATH_PREFIX).chompRight(".md").s;
-            // href for index.md files stops at the folder name
-            if (filename === "index.md") {
-                href = S(abspath).chompLeft(CONTENT_PATH_PREFIX).chompRight(filename).s;
-            }
-
             // Build Lunr index for this page
             pageIndex = {
                 title: frontMatter.title,
                 tags: frontMatter.tags,
+                href: '/post/' + frontMatter.slug
             };
 
             return pageIndex;
         };
 
-        grunt.file.write("static/PagesIndex.json", JSON.stringify(indexPages()));
+        grunt.file.write("static/js/PagesIndex.json", JSON.stringify(indexPages()));
         grunt.log.ok("Index built");
     });
 };

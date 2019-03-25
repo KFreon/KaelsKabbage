@@ -1,11 +1,11 @@
 var lunrIndex,
-        $results,
-        pagesIndex;
+    $results,
+    pagesIndex;
 
 // Initialize lunrjs using our generated index file
 function initLunr() {
     // First retrieve the index file
-    $.getJSON("PagesIndex.json")
+    $.getJSON("js/PagesIndex.json")
         .done(function(index) {
             pagesIndex = index;
             console.log("index:", pagesIndex);
@@ -26,7 +26,7 @@ function initLunr() {
 
                 pagesIndex.forEach(page => {
                     this.add(page);
-                });
+                }, this);
             });
         })
         .fail(function(jqxhr, textStatus, error) {
@@ -65,11 +65,13 @@ function search(query) {
     //  {ref: "/section/page1", score: 0.2725657778206127}
     // Our result:
     //  {title:"Page1", href:"/section/page1", ...}
-    return lunrIndex.search(query).map(function(result) {
-            return pagesIndex.filter(function(page) {
-                return page.href === result.ref;
-            })[0];
-        });
+    var lunrquery = lunrIndex.search("*" + query + "*");
+    var mapped = lunrquery.map(function(result) {
+        return pagesIndex.filter(function(page) {
+            return page.href === result.ref;
+        })[0];
+    });
+    return mapped;
 }
 
 /**

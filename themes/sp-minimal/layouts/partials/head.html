@@ -17,9 +17,9 @@
 
     {{ $themeStylesCSS := resources.Get "themes/sp-minimal/static/css/styles.css" }}
     {{ $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" }}
-    {{ $stylesCSS := resources.Get "static/styles.css" }}
-    {{ $mobileCSS := resources.Get "static/mobile.css" }}
-    {{ $pygmentsCSS := resources.Get "static/pygments-gen.css" }}
+    {{ $stylesCSS := resources.Get "static/css/styles.css" }}
+    {{ $mobileCSS := resources.Get "static/css/mobile.css" }}
+    {{ $pygmentsCSS := resources.Get "static/css/pygments-gen.css" }}
 
     {{ if eq .Site.Params.themeStyle "simple"}}
     {{ $minimalSimpleCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal-simple.css" }}
@@ -30,11 +30,11 @@
     <link rel="stylesheet" href="{{ $styles.Permalink }}">
     {{ end }}
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 
-    {{ $lunr := resources.Get "static/lunr.js" }}
-    {{ $search := resources.Get "search.js" }}
-    {{ $combined := slice $lunr $search | resources.Concat "bundle.js" | minify }}
+    {{ $jquery := resources.Get "static/js/jquery-3.3.1.min.js" }}
+    {{ $lunr := resources.Get "static/js/lunr.js" }}
+    {{ $search := resources.Get "static/js/search.js" }}
+    {{ $combined := slice $jquery $lunr $search | resources.Concat "js/bundle.js" | minify }}
 
     <script type="text/javascript" src="{{ $combined.Permalink }}"></script>
 </head>
