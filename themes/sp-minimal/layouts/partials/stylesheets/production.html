@@ -7,10 +7,10 @@
 {{ if eq .Site.Params.themeStyle "simple"}}
 {{ $minimalSimpleCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal-simple.css" }}
 {{ $styles := slice $themeStylesCSS $minimalStylesCSS $minimalSimpleCSS $pygmentsCSS $stylesCSS $mobileCSS | resources.Concat "css/styles.min.css" | minify }}
-<link rel="stylesheet" href="{{ $styles.Permalink }}">
+<link rel="stylesheet" async href="{{ $styles.Permalink }}">
 {{ else }}
 {{ $styles := slice $themeStylesCSS $minimalStylesCSS $pygmentsCSS $stylesCSS $mobileCSS | resources.Concat "css/styles.min.css" | minify }}
-<link rel="stylesheet" href="{{ $styles.Permalink }}">
+<link rel="stylesheet" async href="{{ $styles.Permalink }}">
 {{ end }}
 
 
@@ -19,4 +19,4 @@
 {{ $search := resources.Get "static/js/search.js" }}
 {{ $combined := slice $jquery $lunr $search | resources.Concat "js/bundle.js" | minify }}
 
-<script type="text/javascript" src="{{ $combined.Permalink }}"></script>
+<script type="text/javascript" defer src="{{ $combined.Permalink }}"></script>
