@@ -53,6 +53,16 @@ function initUI() {
 
         renderResults(results);
     });
+
+    $("#searchbox").blur(function() {
+        toggleResults(false);
+    });
+
+    $("#searchbox").focus(function() {
+        if ($results[0].children.length > 0) {
+            toggleResults(true);
+        }
+    });
 }
 
 /**

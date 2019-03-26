@@ -16,9 +16,9 @@
     {{ "<!-- Stylesheets -->" | safeHTML }}
 
     {{ if eq .Hugo.Environment "development" }}
-    {{ partial "stylesheets/development" . }}
+    {{ partial "stylesheets/development.html" . }}
     {{ else }}
-    {{ partial "stylesheet/production" . }}
+    {{ partial "stylesheets/production.html" . }}
     {{ end }}
 
     
