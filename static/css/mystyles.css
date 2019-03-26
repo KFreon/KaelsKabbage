@@ -33,6 +33,7 @@ small {
     position: absolute;
     margin-top: -1.1rem;
     margin-left: 0.5rem;   
+    z-index: -1;
 }
 
 .image {

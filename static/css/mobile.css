@@ -73,4 +73,17 @@
     .search-box {
         font-size: 1.2rem;
     }
+
+    .results {
+        width: 50rem;
+    }
+
+    .results-list {
+        max-height: 35rem;
+        width: 45rem;
+    }
+
+    .search-result {
+        font-size: 0.8rem;
+    }
 }

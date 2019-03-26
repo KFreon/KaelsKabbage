@@ -5,7 +5,7 @@ var lunrIndex,
 // Initialize lunrjs using our generated index file
 function initLunr() {
     // First retrieve the index file
-    $.getJSON("js/PagesIndex.json")
+    $.getJSON("/js/PagesIndex.json")
         .done(function(index) {
             pagesIndex = index;
             console.log("index:", pagesIndex);
