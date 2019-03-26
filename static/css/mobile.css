@@ -69,4 +69,8 @@
     ul.tag-list {
         display: block;
     }
+
+    .search-box {
+        font-size: 1.2rem;
+    }
 }

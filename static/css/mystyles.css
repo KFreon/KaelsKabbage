@@ -120,3 +120,51 @@ ul.tag-list {
 img.about-pic {
     border-radius: 50px;
 }
+
+.search-box {
+    width: 90%;
+    border: lightgrey 1px solid;
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.2rem;
+}
+
+.search-box:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px 1px lightgreen;
+    transition: all 0.2s;
+}
+
+.results-list {
+    margin: auto;
+    width: 90%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    height: unset;
+    max-height: 12rem;
+}
+
+.results-list.visible {
+    opacity: 1;
+}
+
+.search-result {
+    width: unset;
+    height: unset;
+    float: unset;
+    border: none;
+    background: rgba(144, 238, 144, 0.1);
+    border: rgba(144, 238, 144, 0.3) 1px solid;
+    transition: all 0.1s;
+}
+
+.search-result:hover {
+    box-shadow: 0px 0px 3px 1px lightgreen;
+}
+
+.search-result > a {
+    color: gray;
+}
+
+.search-result > a:hover {
+    color: darkslategray;
+}

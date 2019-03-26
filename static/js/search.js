@@ -38,12 +38,14 @@ function initLunr() {
 // Nothing crazy here, just hook up a listener on the input field
 function initUI() {
     $results = $("#results");
+    $results.empty();
     $("#searchbox").keyup(function() {
         $results.empty();
 
         // Only trigger a search when 2 chars. at least have been provided
         var query = $(this).val();
         if (query.length < 2) {
+            toggleResults(false);
             return;
         }
 
@@ -81,18 +83,29 @@ function search(query) {
  */
 function renderResults(results) {
     if (!results.length) {
+        toggleResults(false);
         return;
     }
 
+    toggleResults(true);
+
     // Only show the ten first results
     results.slice(0, 10).forEach(function(result) {
-        var $result = $("<li>");
+        var $result = $("<li class='search-result'>");
         $result.append($("<a>", {
             href: result.href,
-            text: "» " + result.title
+            text: result.title
         }));
         $results.append($result);
     });
+}
+
+function toggleResults(isVisible) {
+    if (isVisible) {
+        $results.addClass("visible")
+    } else {
+        $results.removeClass("visible")        
+    }
 }
 
 // Let's get started
