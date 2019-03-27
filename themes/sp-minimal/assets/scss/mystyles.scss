@@ -1,0 +1,177 @@
+header {
+    background: white;
+}
+
+footer {
+    background: white;
+}
+
+section {
+    font-size: 1.3rem;
+    width: 80%;
+}
+
+small {
+    font-size: 1rem;
+}
+
+.subtitle {   
+    text-align: center;
+    font-size: 70%;
+    color: rgba(0, 0, 0, .5);
+}
+
+.inline-code {
+    font-family: Inconsolata,monospace;
+    background-color: rgba(0, 0, 0, .05);
+    color: rgba(0,0,0,.7);
+    padding: 0.1rem 0.5rem;
+}
+
+.right-chevrons {
+    font-size: 2.5rem;
+    position: absolute;
+    margin-top: -1.1rem;
+    margin-left: 0.5rem;   
+    z-index: -1;
+}
+
+.image {
+    text-align: center;
+    
+    .image-alt-text {
+        color: slategray;
+        font-size: 75%;
+        margin-bottom: 2rem;
+    }
+}
+
+.split-code-container {
+    display: flex;
+
+    .left {
+        margin-right: 1rem;
+        width: 50%;
+    }
+
+    .right {
+        width: 50%;
+    }
+}
+
+code {
+    font-size: 0.8rem;
+}
+
+.pagination {
+    .pagination {
+        background: white;
+
+        .page-item {
+            .active {
+                background: #90ee9052;
+                font-weight: bold;
+            }
+
+            a {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    li:last-child {
+        float: left;
+        border-right: 0;
+    }
+}
+
+body {
+    padding: 0.5rem;
+}
+
+blockquote {
+    .info {
+        background: rgba(144, 238, 144, 0.5);
+        border-left: solid 7px green;
+        font-style: normal;
+        border-radius: 5px;
+        margin-left: 1rem;
+    }
+}
+
+.category {
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.tags {
+    text-align: center;
+    font-size: 1.5rem;
+} 
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    .tag {
+        width: 50%;
+
+        .tag-header {
+            font-size: 2rem;
+            font-weight: bold;
+            list-style-type: none;
+        }
+    }
+}
+
+.about-pic {
+    border-radius: 50px;
+}
+
+.search-box {
+    width: 90%;
+    border: lightgrey 1px solid;  // CLean up styles --> SASS, up fontsize for search results
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.2rem;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0px 0px 5px 1px lightgreen;
+        transition: all 0.2s;
+    }
+}
+
+.results-list {
+    margin: auto;
+    width: 90%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    height: unset;
+    max-height: 12rem;
+
+    &.visible {
+        opacity: 1;
+    }
+
+    .search-result {
+        width: unset;
+        height: unset;
+        float: unset;
+        border: none;
+        background: rgba(144, 238, 144, 0.1);
+        border: rgba(144, 238, 144, 0.3) 1px solid;
+        transition: all 0.1s;
+        color: gray;
+        font-size: 0.8rem;
+        padding: 0.2rem;
+        line-height: 1.3;
+
+        &:hover {
+            box-shadow: 0px 0px 3px 1px lightgreen;    
+        }
+
+        a:hover {
+            color: darkslategray;
+        }
+    }
+}

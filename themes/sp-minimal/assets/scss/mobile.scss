@@ -42,49 +42,43 @@
 
     .split-code-container {
         display: block;
-    }
-    
-    .split-code-container .left {
-        margin-right: unset;
-        width: 100%;
-    }
-    
-    .split-code-container .right {
-        width: 100%;
+        .left {
+            margin-right: unset;
+            width: 100%;
+        }
+        .right {
+            width: 100%;
+        }
     }
 
     code {
         font-size: 1.5rem;
     }
 
-    li.tag-header {
-        font-size: 3rem;
-        font-weight: bold;
-    }
-
-    div.tag {
-        width: 100%;
-    }
-    
-    ul.tag-list {
+    .tag-list {
         display: block;
+
+        .tag {
+            width: 100%;
+            
+            .tag-header {
+                font-size: 3rem;
+                font-weight: bold;
+            }
+        }
     }
 
     .search-box {
         font-size: 1.2rem;
     }
 
-    .results {
-        width: 50rem;
-    }
-
     .results-list {
         max-height: 35rem;
         width: 45rem;
         position: static;
-    }
 
-    .search-result {
-        font-size: 0.8rem;
+        .search-result {
+            font-size: 17rem;
+        }
     }
 }

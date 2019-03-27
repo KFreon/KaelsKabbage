@@ -15,11 +15,32 @@
 
     {{ "<!-- Stylesheets -->" | safeHTML }}
 
-    {{ if eq .Hugo.Environment "development" }}
-    {{ partial "stylesheets/development.html" . }}
+    {{ $themeStylesCSS := resources.Get "themes/sp-minimal/static/css/styles.css" }}
+    {{ $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" }}
+    {{ $pygmentsCSS := resources.Get "scss/pygments-gen.css" }}
+
+    {{ $stylesSCSS := resources.Get "scss/mystyles.scss" }}
+    {{ $mobileSCSS := resources.Get "scss/mobile.scss" }}
+
+    {{ $stylesCSS := $stylesSCSS | toCSS }}
+    {{ $mobileCSS := $mobileSCSS | toCSS }}
+
+    {{ if eq .Site.Params.themeStyle "simple"}}
+    {{ $minimalSimpleCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal-simple.css" }}
+    {{ $styles := slice $themeStylesCSS $minimalStylesCSS $minimalSimpleCSS $pygmentsCSS $stylesCSS $mobileCSS | resources.Concat "css/styles.css" | minify }}
+    <link rel="stylesheet" async href="{{ $styles.Permalink }}"> 
     {{ else }}
-    {{ partial "stylesheets/production.html" . }}
+    {{ $styles := slice $themeStylesCSS $minimalStylesCSS $pygmentsCSS $stylesCSS $mobileCSS | resources.Concat "css/styles.css" | minify }}
+    <link rel="stylesheet" async href="{{ $styles.Permalink }}">
     {{ end }}
+
+
+    {{ $jquery := resources.Get "static/js/jquery-3.3.1.min.js" }}
+    {{ $lunr := resources.Get "static/js/lunr.js" }}
+    {{ $search := resources.Get "static/js/search.js" }}
+    {{ $combined := slice $jquery $lunr $search | resources.Concat "js/bundle.js" | minify }}
+
+<script type="text/javascript" defer src="{{ $combined.Permalink }}"></script>
 
     
 </head>
