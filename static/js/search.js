@@ -55,7 +55,9 @@ function initUI() {
     });
 
     $("#searchbox").blur(function() {
-        toggleResults(false);
+        if (document.documentElement.clientWidth < 960) {   // CSS mobile breakpoint
+            toggleResults(false); 
+        }
     });
 
     $("#searchbox").focus(function() {
