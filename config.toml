@@ -9,6 +9,9 @@ pygmentsStyle = "manni"
 pygmentsUseClasses = true
 assetDir = "."
 
+[permalinks]
+posts = "post/:slug"
+
 [params]
   title       = "Kael's Kabbage"
   subtitle    = "Tech Superfood"

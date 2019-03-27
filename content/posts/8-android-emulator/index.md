@@ -15,4 +15,4 @@ Basically, it boils down to the emulator using the wrong DNS, whether it's misco
 So when starting the emulator, set the DNS with {{< inline "-dns-server 8.8.8.8" >}} or whatever DNS you'd like.
 
 If you use the emulator with Visual Studio (Xamarin for example), you can pass this to the emulator by going: {{< inline "Tools --> Xamarin --> Android Settings" >}} and setting the {{< inline "Additional Emulator Launch Arguments" >}}.
-{{< image path="/img/AndroidEmulatorDNS/VS_Android_Emulator_DNS" alt="Visual Studio Android Emulator DNS Launch Settings" >}}
+{{< image path="img/VS_Android_Emulator_DNS" alt="Visual Studio Android Emulator DNS Launch Settings" >}}

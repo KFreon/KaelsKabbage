@@ -2,6 +2,7 @@
 title: "Angular Transclusion With Parameters"
 date: 2019-03-01T15:51:30+10:00
 draft: false
+type: "post"
 slug: angular-transclusion-with-parameters
 tags: ["angular"]
 ---

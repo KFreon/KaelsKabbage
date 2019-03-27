@@ -3,7 +3,7 @@ title: "About"
 slug: "about"
 ---
 
-<img class="about-pic" src="/img/About/Headshot.jpg" alt="My delightful face and cat" width="300"/>
+<img class="about-pic" src="Headshot.jpg" alt="My delightful face and cat" width="300"/>
 
 My name is Kael Larkin.  
 I'm a developer at [Readify](https://readify.net).  

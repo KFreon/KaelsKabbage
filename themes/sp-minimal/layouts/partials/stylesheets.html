@@ -1,14 +1,14 @@
 {{ $cssOptions := cond (.Site.IsServer) (dict "enableSourceMap" false) (dict "outputStyle" "compressed") }}
 
-{{ $stylesSCSS := resources.Get "scss/mystyles.scss" }}
-{{ $mobileSCSS := resources.Get "scss/mobile.scss" }}
+{{ $stylesSCSS := resources.Get "assets/scss/mystyles.scss" }}
+{{ $mobileSCSS := resources.Get "assets/scss/mobile.scss" }}
 
 {{ $stylesCSS := $stylesSCSS | toCSS }}
 {{ $mobileCSS := $mobileSCSS | toCSS }}
 
 {{ $themeStylesCSS := resources.Get "themes/sp-minimal/static/css/styles.css" }}
 {{ $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" }}
-{{ $pygmentsCSS := resources.Get "scss/pygments-gen.css" }}
+{{ $pygmentsCSS := resources.Get "assets/scss/pygments-gen.css" }}
 
 {{ $minimalSimpleCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal-simple.css" }}
 

@@ -28,7 +28,7 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
   - *NOTE: Only Github, Bitbucket, and Google accounts supported at time of writing i.e. MUST have one of these to continue :(*  
 - Go to Account Settings  
 - Show and copy the API key  
-{{< image path="/img/AddingSnyk/SnykAccount" >}}
+{{< image path="img/SnykAccount" >}}
 
 <br/>    
 
@@ -37,9 +37,9 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
 - In VSTS (Azure DevOps now, so ADOps?)  
   - Create new variable in pipeline for the API key  
   - Add new steps to build pipeline (I used these 3)
-{{< image path="/img/AddingSnyk/SnykVstsTasks" alt="Task setup in VSTS">}}
+{{< image path="img/SnykVstsTasks" alt="Task setup in VSTS">}}
     - *NOTE: The environment variable is **key** here, explained later*  
-{{< image path="/img/AddingSnyk/SnykVstsInstall" alt="Snyk Install Task" >}}
+{{< image path="img/SnykVstsInstall" alt="Snyk Install Task" >}}
     - **First step** installs Snyk to the Agent: {{< inline "npm install -g snyk" >}}  
     - **Second step** performs the Snyk checks on the npm packages: {{< inline "snyk test" >}}  
     - **Third step** performs Snyk checks on Nuget packages (different folder, so different task): {{< inline "snyk test --file=slnname.sln" >}}  
@@ -49,10 +49,10 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
 
 # Output
 ### Safe  
-{{< image path="/img/AddingSnyk/SnykOutputSafe" alt="Snyk output for safe project" >}}  
+{{< image path="img/SnykOutputSafe" alt="Snyk output for safe project" >}}  
 
 ### Vulnerable  
-{{< image path="/img/AddingSnyk/SnykOutputVulnerable" alt="Snyk output for vulnerability" >}}  
+{{< image path="img/SnykOutputVulnerable" alt="Snyk output for vulnerability" >}}  
 
 ## Some Explanations  
 Snyk requires authentication, but if the environment variable **SNYK_TOKEN** is present, it's used automatically as the authentication key. As such, ALL commands you want to run with Snyk will require this environment variable set.    

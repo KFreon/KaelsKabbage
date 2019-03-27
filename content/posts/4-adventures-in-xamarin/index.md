@@ -65,7 +65,7 @@ Upgrading Nuget packages and getting running again is painful. Xamarin Forms nug
 
 #### UWP doesn't hit breakpoints in Debug Mode
 Debug mode, why this betrayal? Turns out it's another case of bad defaults.
-{{< image path="/img/AdventuresInXamarin/UWPDebugMode" alt="Setting for UWP breakpoints" >}}
+{{< image path="img/UWPDebugMode" alt="Setting for UWP breakpoints" >}}
 
 
 # Differences to WPF/UWP

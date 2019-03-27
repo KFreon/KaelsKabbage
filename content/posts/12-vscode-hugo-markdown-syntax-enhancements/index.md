@@ -2,6 +2,7 @@
 title: "VSCode Extension: Hugo syntax highlighting for Markdown"
 date: 2019-02-25T10:45:38+10:00
 slug: "vscode-hugo-markdown-syntax-enhancements"
+type: "post"
 draft: false
 tags: ["vscode", "markdown"]
 ---
@@ -14,11 +15,11 @@ The theme I was (still am) using didn't have great support for some of the markd
 **EDIT:** After this, I realised my shortcodes were a bit annoying to type, so I made some snippets for them (at the end of the page)
 
 This ended up working fine, things displayed how I wanted them and all was right, except when I went back to posts and had a look.  
-{{< image path="/img/HugoShortcodes/HugoShortcodes_NoExtension" alt="Hugo Shortcodes with no syntax highlighting" >}}  
+{{< image path="img/HugoShortcodes_NoExtension" alt="Hugo Shortcodes with no syntax highlighting" >}}  
 
 Bit hard to see and visually differentiate all the elements.   
 After installing my extension:   
-{{< image path="/img/HugoShortcodes/HugoShortcodes_WithExtension" alt="Syntax highlighting enabled via TextMate Markdown extension" >}}
+{{< image path="img/HugoShortcodes_WithExtension" alt="Syntax highlighting enabled via TextMate Markdown extension" >}}
 
 At the time, it wasn't possible to have an extension that modified VSCode's markdown syntax (as far as I could tell), so I was forced to dive into the {{< inline "markdown.tmLanguage" >}} file directly and change stuff. It wasn't ideal and I had to do it every time VSCode updated.  
 
@@ -47,10 +48,10 @@ After doing a {{< inline "yo code" >}} and following the instructions, you end u
 ## Code Dive
 ### package.json
 **Languages** should be filled out and isn't really relevant to this situation as it relates to adding support for a currently unsupported language.  
-{{< image path="/img/HugoShortcodes/Hugo_Languages" alt="Languages section in package.json" >}}  
+{{< image path="img/Hugo_Languages" alt="Languages section in package.json" >}}  
 
 **Grammars** contains information about how the syntax highlighting should behave.  
-{{< image path="/img/HugoShortcodes/Hugo_Grammars" alt="Grammars section in package.json" >}}  
+{{< image path="img/Hugo_Grammars" alt="Grammars section in package.json" >}}  
 
 It's name is the language name from the id above (not relevant here either), scope name is something to do with styles and needs to match the {{< inline "<name>.tmLanguage.json" >}} file ([see this post](https://www.apeth.com/nonblog/stories/textmatebundle.html) for more info on scopes and themes)  
 
