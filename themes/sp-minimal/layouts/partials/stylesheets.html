@@ -1,0 +1,25 @@
+{{ $cssOptions := cond (.Site.IsServer) (dict "enableSourceMap" false) (dict "outputStyle" "compressed") }}
+
+{{ $stylesSCSS := resources.Get "scss/mystyles.scss" }}
+{{ $mobileSCSS := resources.Get "scss/mobile.scss" }}
+
+{{ $stylesCSS := $stylesSCSS | toCSS }}
+{{ $mobileCSS := $mobileSCSS | toCSS }}
+
+{{ $themeStylesCSS := resources.Get "themes/sp-minimal/static/css/styles.css" }}
+{{ $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" }}
+{{ $pygmentsCSS := resources.Get "scss/pygments-gen.css" }}
+
+{{ $minimalSimpleCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal-simple.css" }}
+
+
+{{ $combined := cond (eq .Site.Params.themeStyle "simple") (slice $themeStylesCSS $minimalStylesCSS $minimalSimpleCSS $pygmentsCSS $stylesCSS $mobileCSS) (slice $themeStylesCSS $minimalStylesCSS $pygmentsCSS $stylesCSS $mobileCSS) }}
+
+{{ if .Site.IsServer }}
+  {{ range $combined }}
+    <link rel="stylesheet" href="{{ .Permalink }}">
+  {{ end }}
+{{ else }}
+  {{ $styles := $combined | resources.Concat "css/styles.css" | minify}}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}">
+{{ end }}
