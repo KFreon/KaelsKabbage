@@ -15,7 +15,7 @@ posts = "post/:slug"
 [params]
   title       = "Kael's Kabbage"
   subtitle    = "Tech Superfood"
-  description = "Technical-ish blog about technical-ish things"
+  description = ""
   copyright   = "Kael Larkin 2018"
   authorImage = "Cabbage.png"
   email       = "kael.larkin@readify.net"
