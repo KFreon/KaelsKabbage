@@ -39,9 +39,9 @@
             "{{% splitLeft title=\"$1\" %}}",
             "$0",
             "{{% /splitLeft %}}",
-            "{{% splitRight %}}",
+            "{{% splitRight title=\"$2\" %}}",
             "",
-            "{{% /splitRight title=\"$2\" %}}",
+            "{{% /splitRight %}}",
             "{{% /split %}}"
         ]
     },

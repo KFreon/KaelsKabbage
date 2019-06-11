@@ -12,6 +12,9 @@ module.exports = function(grunt) {
         var indexPages = function() {
             var pagesIndex = [];
             grunt.file.recurse(CONTENT_PATH_PREFIX, function(abspath, rootdir, subdir, filename) {
+                if (filename !== 'index.md') {
+                    return;
+                }
                 grunt.verbose.writeln("Parse file:",abspath);
                 pagesIndex.push(processFile(abspath, filename));
             });
@@ -24,6 +27,8 @@ module.exports = function(grunt) {
         };
 
         var processMDFile = function(abspath, filename) {
+            console.log(abspath);
+            console.log(filename);
             var content = grunt.file.read(abspath);
             var pageIndex;
             // First separate the Front Matter from the content and parse it
