@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AssetOptimiser
 {
     class Program
     {
-        static string ChocoPath = null;
+        static string ffmpegPath = null;
+        static string cwepPath = null;
 
         struct Format
         {
@@ -61,7 +63,8 @@ namespace AssetOptimiser
                 new Format("x264", "mp4", "libx264", crf, null, "-movflags +faststart"),
             };
 
-            GetChocoBasePath();
+            ffmpegPath = GetFFMpegPath();
+            cwepPath = GetCWepPath();
 
             Console.WriteLine("Looking for unoptimised assets...");
 
@@ -129,7 +132,7 @@ namespace AssetOptimiser
             foreach (var picture in pictures)
             {
                 var arg = ConstructWebpCmdLine(picture.FileName);
-                await StartProcess("cwebp.exe", picture.Directory, arg);
+                await StartProcess(cwepPath, picture.Directory, arg);
             }
         }
         
@@ -141,7 +144,7 @@ namespace AssetOptimiser
                 foreach(var format in video.requiredFormats)
                 {
                     var arg = ConstructFFMpegCmdLine(video.FileName, format);
-                    await StartProcess("ffmpeg.exe", video.Directory, arg);
+                    await StartProcess(ffmpegPath, video.Directory, arg);
                 }
             }
         }
@@ -165,19 +168,40 @@ namespace AssetOptimiser
 
 
 
-        static void GetChocoBasePath()
+        static string GetFFMpegPath()
         {
             var path = Environment.GetEnvironmentVariable("PATH");
             var chocolateyBinPath = path.Split(';').Single(x => x.Contains("chocol", StringComparison.OrdinalIgnoreCase));
+            var ffmpegPath = "";
             if (Directory.Exists(chocolateyBinPath))
-                ChocoPath = chocolateyBinPath;
+            {
+                ffmpegPath = Path.Combine(chocolateyBinPath, "ffmpeg.exe");
+                if (!File.Exists(ffmpegPath))
+                    throw new FileNotFoundException("ffmpeg is not installed at: " + ffmpegPath);
+            }
             else
                 throw new DirectoryNotFoundException("Choco directory not found on PATH");
+
+            return ffmpegPath;
         }
 
-        static Task StartProcess(string toolName, string workingDirectory, string argument)
+
+        static string GetCWepPath()
         {
-            var psi = new ProcessStartInfo(toolName);
+            var exePath = Path.GetDirectoryName(System.Reflection
+                              .Assembly.GetExecutingAssembly().CodeBase);
+            Regex appPathMatcher = new Regex(@"(?<!fil)[A-Za-z]:\\+[\S\s]*?(?=\\+bin)");
+            var appRoot = appPathMatcher.Match(exePath).Value;
+
+
+            var cwep = Path.Combine(appRoot, "cwep.exe");asf
+
+            return cwep;
+        }
+
+        static Task StartProcess(string tool, string workingDirectory, string argument)
+        {
+            var psi = new ProcessStartInfo(tool);
             psi.WorkingDirectory = workingDirectory;
             psi.CreateNoWindow = true;
             psi.RedirectStandardError = true;

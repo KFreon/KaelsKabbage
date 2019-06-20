@@ -6,3 +6,6 @@ node_modules
 /AssetOptimiser/AssetOptimiser/obj
 /AssetOptimiser/AssetOptimiser/.vs/AssetOptimiser/config
 /AssetOptimiser/AssetOptimiser/bin/Release/netcoreapp2.1
+/AssetOptimiser/.vs/AssetOptimiser
+/AssetOptimiser/bin
+/AssetOptimiser/obj
