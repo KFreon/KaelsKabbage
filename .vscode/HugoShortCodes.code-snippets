@@ -53,5 +53,13 @@
             "$0",
             "{{% /info %}}"
         ]
+    },
+
+    "HugoShortcode Video": {
+        "prefix": "hvideo",
+        "body": [
+            "{{% video path=\"$1\" width=\"$2\" height=\"$3\" %}}"
+        ],
+        "description": "Video Shortcode"
     }
 }
