@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AssetOptimiser": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\KFreon\\source\\repos\\KaelsKabbage\\content\\posts"
+    }
+  }
+}
