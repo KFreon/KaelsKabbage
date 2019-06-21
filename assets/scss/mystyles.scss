@@ -36,14 +36,14 @@ small {
     z-index: -1;
 }
 
-.image {
+.media-container {
     text-align: center;
-    
-    .image-alt-text {
-        color: slategray;
-        font-size: 75%;
-        margin-bottom: 2rem;
-    }
+}
+
+.alt-text {
+    color: slategray;
+    font-size: 75%;
+    margin-bottom: 2rem;
 }
 
 .split-code-container {

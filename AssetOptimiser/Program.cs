@@ -25,7 +25,7 @@ namespace AssetOptimiser
 
             Formats = new[]
             {
-                new Format("AV1", "mp4", "libaom-av1", crf, 0, "-tiles 2x2 -row-mt 1 -strict experimental -movflags +faststart"),
+                new Format("AV1", "mp4", "libaom-av1", crf, 0, "-tiles 2x2 -row-mt 1 -strict experimental -movflags +faststart -cpu-used 0"),
                 new Format("VP9", "webm", "libvpx-vp9", crf, 0, ""),
                 new Format("x264", "mp4", "libx264", crf, null, "-movflags +faststart"),
             };
@@ -48,7 +48,10 @@ namespace AssetOptimiser
             else
                 Console.WriteLine("No videos to convert!");
 
-            Console.WriteLine("Completed!");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("~~~~~ Completed! ~~~~~");
             Console.ReadLine();
         }
 
