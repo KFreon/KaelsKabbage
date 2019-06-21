@@ -2,59 +2,26 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Enumeration;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic;
 
 namespace AssetOptimiser
 {
-    class Program
+    static partial class Program
     {
         static string ffmpegPath = null;
         static string cwepPath = null;
-
-        struct Format
-        {
-            public string Name { get; }
-            public string Encoder { get; }
-            public int CRF { get; }
-            public int? Bitrate { get; }
-            public string AdditionalArguments { get; }
-            public string Extension { get; }
-            public string PostFix => Name=="x264" ? "" : $"_{Name}";
-            public bool HasPostFix => !string.IsNullOrEmpty(PostFix);
-
-            public Format(string name, string extension, string encoder, int crf, int? bitrate, string additionalArguments)
-            {
-                Name = name;
-                Extension = extension;
-                Encoder = encoder;
-                CRF = crf;
-                Bitrate = bitrate;
-                AdditionalArguments = additionalArguments;
-            }
-        }
-
         static Format[] Formats = null;
-
-        
-
 
         static async Task Main(string[] args)
         {
-            if (args?.Any() != true)
-            {
-                Console.WriteLine("1: Root path to search, 2: (optional) CRF 0-51");
+            if (!ProcessCmdLineArgs(args, out int crf, out string rootPath))
                 return;
-            }
-
-            var rootPath = args[0];
-            var crf = 30;
-            if (args.Length > 1)
-            {
-                if (!int.TryParse(args[1], out crf))
-                    throw new ArgumentException("Second argument should be CRF, i.e. an int 0-51");
-            }
 
             Formats = new[]
             {
@@ -64,7 +31,7 @@ namespace AssetOptimiser
             };
 
             ffmpegPath = GetFFMpegPath();
-            cwepPath = GetCWepPath();
+            cwepPath = GetCWebpPath();
 
             Console.WriteLine("Looking for unoptimised assets...");
 
@@ -82,7 +49,29 @@ namespace AssetOptimiser
                 Console.WriteLine("No videos to convert!");
 
             Console.WriteLine("Completed!");
+            Console.ReadLine();
         }
+
+        static bool ProcessCmdLineArgs(string[] args, out int crf, out string rootPath)
+        {
+            crf = 30;
+            if (args?.Any() != true)
+            {
+                Console.WriteLine("1: Root path to search, 2: (optional) CRF 0-51");
+                rootPath = null;
+                return false;
+            }
+
+            rootPath = args[0];
+            if (args.Length > 1)
+            {
+                if (!int.TryParse(args[1], out crf))
+                    throw new ArgumentException("Second argument should be CRF, i.e. an int 0-51");
+            }
+
+            return true;
+        }
+
 
         static IEnumerable<(string Directory, string FileName)> GetPictures(string rootPath)
         {
@@ -90,81 +79,54 @@ namespace AssetOptimiser
                 .Select(x => (Directory: Path.GetDirectoryName(x), FileName: Path.GetFileName(x)));
         }
 
-        static IEnumerable<(string Directory, string FileName, Format[] RequiredFormats)> GetVideos(string rootPath)
+        static IEnumerable<VideoJob> GetVideos(string rootPath)
         {
             bool isUnOptimised(string filename) => !Formats
                 .Any(format => !format.HasPostFix ? false : Path.GetFileNameWithoutExtension(filename).EndsWith(format.PostFix));
 
-            Format[] requiredFormats(string filename) => Path.GetExtension(filename) == ".mp4" ? Formats.Where(f => f.HasPostFix).ToArray() : Formats;
+            string formatDestinationFilename(string fullpath, Format format) => $"{Path.GetFileNameWithoutExtension(fullpath)}{format.PostFix}.{format.Extension}";
 
 
             var allVideos = Directory.GetFiles(rootPath, "*.avi", SearchOption.AllDirectories)
-                .Concat(Directory.GetFiles(rootPath, "*.mp4", SearchOption.AllDirectories));
+                .Concat(Directory.GetFiles(rootPath, "*.mp4", SearchOption.AllDirectories))
+                .Concat(Directory.GetFiles(rootPath, "*.webm", SearchOption.AllDirectories));
 
-            var allUnOptimised = allVideos.Where(isUnOptimised);
-            // now remove those that already have encoded versions
-
-            var encodedVideoNames = allVideos.Except(allUnOptimised)
-                .Select(x =>
+            var jobs = allVideos
+                .Where(isUnOptimised)
+                .SelectMany(video => Formats.Select(f => new VideoJob
                 {
-                    var filename = Path.GetFileNameWithoutExtension(x);
-                    foreach (var format in Formats.Where(f => f.HasPostFix))
-                        filename = filename.Replace(format.PostFix, "");
+                    Directory = Path.GetDirectoryName(video),
+                    FileName = Path.GetFileName(video),
+                    Format = f,
+                    DestinationFileName = formatDestinationFilename(video, f),
+                }));
 
-                    return filename;
-                });
 
-            var videosToConvert = allUnOptimised
-                .Where(vid => !encodedVideoNames.Contains(Path.GetFileNameWithoutExtension(vid)))
-                .Select(x => (
-                    Directory: Path.GetDirectoryName(x),
-                    FileName: Path.GetFileName(x),
-                    RequiredFormats: requiredFormats(x))
-                )
-                .ToList();
-
-            return videosToConvert;
+            return jobs.Where(j => !allVideos.Contains(Path.Join(j.Directory, j.DestinationFileName)));
         }
 
 
         static async Task ConvertPictures(IEnumerable<(string Directory, string FileName)> pictures)
         {
+            Console.WriteLine($"Converting {pictures.Count()} pictures...");
             foreach (var picture in pictures)
             {
-                var arg = ConstructWebpCmdLine(picture.FileName);
+                var newPath = $"{Path.GetFileNameWithoutExtension(picture.FileName)}.webm";
+                var arg = $"{picture.FileName}\" -o \"{newPath} -mt\"";
                 await StartProcess(cwepPath, picture.Directory, arg);
             }
         }
-        
 
-        static async Task ConvertVideos(IEnumerable<(string Directory, string FileName, Format[] requiredFormats)> videos)
+        static async Task ConvertVideos(IEnumerable<VideoJob> jobs)
         {
-            foreach (var video in videos)
+            Console.WriteLine($"Converting {jobs.Count()} videos...");
+            foreach (var job in jobs)
             {
-                foreach(var format in video.requiredFormats)
-                {
-                    var arg = ConstructFFMpegCmdLine(video.FileName, format);
-                    await StartProcess(ffmpegPath, video.Directory, arg);
-                }
+                var bitrate = job.Format.Bitrate.HasValue ? $"-b:v {job.Format.Bitrate}" : "";
+                var arg = $"-i {job.FileName} -c:v {job.Format.Encoder} -crf {job.Format.CRF} {bitrate} {job.Format.AdditionalArguments} {job.DestinationFileName}";
+                await StartProcess(ffmpegPath, job.Directory, arg);
             }
         }
-
-
-
-
-        static string ConstructWebpCmdLine(string picturePath)
-        {
-            var newPath = $"{Path.GetFileNameWithoutExtension(picturePath)}.webm";
-            return $"{picturePath}\" -o \"{newPath} -mt\"";
-        }
-
-        static string ConstructFFMpegCmdLine(string videoPath, Format format)
-        {
-            var newPath = $"{Path.GetFileNameWithoutExtension(videoPath)}{format.PostFix}.{format.Extension}";
-            var bitrate = format.Bitrate.HasValue ? $"-b:v {format.Bitrate}" : "";
-            return $"-i {videoPath} -c:v {format.Encoder} -crf {format.CRF} {bitrate} {format.AdditionalArguments} {newPath}";
-        }
-
 
 
 
@@ -186,21 +148,32 @@ namespace AssetOptimiser
         }
 
 
-        static string GetCWepPath()
+        static string GetCWebpPath()
         {
             var exePath = Path.GetDirectoryName(System.Reflection
                               .Assembly.GetExecutingAssembly().CodeBase);
             Regex appPathMatcher = new Regex(@"(?<!fil)[A-Za-z]:\\+[\S\s]*?(?=\\+bin)");
             var appRoot = appPathMatcher.Match(exePath).Value;
 
+            var cwebp = Path.Combine(appRoot, "Webp", "bin", "cwebp.exe");
+            if (!File.Exists(cwebp))
+                throw new FileNotFoundException("Webp converter not found at: " + cwebp);
 
-            var cwep = Path.Combine(appRoot, "cwep.exe");asf
-
-            return cwep;
+            return cwebp;
         }
 
+
+        /// <summary>
+        /// NOT MULTITHREADED
+        /// </summary>
+        /// <param name="tool"></param>
+        /// <param name="workingDirectory"></param>
+        /// <param name="argument"></param>
+        /// <returns></returns>
         static Task StartProcess(string tool, string workingDirectory, string argument)
         {
+            Console.WriteLine($"Running {Path.GetFileNameWithoutExtension(tool)} from {workingDirectory} with args: {argument}");
+
             var psi = new ProcessStartInfo(tool);
             psi.WorkingDirectory = workingDirectory;
             psi.CreateNoWindow = true;
@@ -214,9 +187,8 @@ namespace AssetOptimiser
                 StartInfo = psi,
                 EnableRaisingEvents = true
             };
-            process.OutputDataReceived += (sender, data) => Console.WriteLine(data.Data);
-            process.ErrorDataReceived += (sender, data) => Console.WriteLine("------- ERROR: " + data.Data);
-
+            process.OutputDataReceived += (sender, data) => Console.Write(data.Data);
+            process.ErrorDataReceived += FFMpegOutputWriter;
             var tcs = new TaskCompletionSource<int>();
             process.Exited += (sender, args) =>
             {
@@ -225,7 +197,18 @@ namespace AssetOptimiser
             };
 
             process.Start();
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
             return tcs.Task;
+        }
+
+        private static void FFMpegOutputWriter(object sender, DataReceivedEventArgs e)
+        {
+            if (e.Data.StartsWith("frame="))
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+
+            Console.WriteLine(e.Data);
+            Console.Out.Flush();
         }
     }
 }
