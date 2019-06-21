@@ -75,8 +75,15 @@ namespace AssetOptimiser
 
         static IEnumerable<(string Directory, string FileName)> GetPictures(string rootPath)
         {
-            return Directory.GetFiles(rootPath, "*.png", SearchOption.AllDirectories)
-                .Select(x => (Directory: Path.GetDirectoryName(x), FileName: Path.GetFileName(x)));
+            var pngs = Directory.GetFiles(rootPath, "*.png", SearchOption.AllDirectories)
+                .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x)});
+
+            var webps = Directory.GetFiles(rootPath, "*.webp", SearchOption.AllDirectories)
+                .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x) });
+
+
+            return pngs.Where(p => !webps.Any(w => w.NoExtension == p.NoExtension))
+                .Select(f => (f.Directory, f.FileName));
         }
 
         static IEnumerable<VideoJob> GetVideos(string rootPath)
@@ -111,8 +118,8 @@ namespace AssetOptimiser
             Console.WriteLine($"Converting {pictures.Count()} pictures...");
             foreach (var picture in pictures)
             {
-                var newPath = $"{Path.GetFileNameWithoutExtension(picture.FileName)}.webm";
-                var arg = $"{picture.FileName}\" -o \"{newPath} -mt\"";
+                var newPath = $"{Path.GetFileNameWithoutExtension(picture.FileName)}.webp";
+                var arg = $"{picture.FileName} -o {newPath} -mt -m 6 -pass 10 -q 80";
                 await StartProcess(cwepPath, picture.Directory, arg);
             }
         }
@@ -172,7 +179,11 @@ namespace AssetOptimiser
         /// <returns></returns>
         static Task StartProcess(string tool, string workingDirectory, string argument)
         {
-            Console.WriteLine($"Running {Path.GetFileNameWithoutExtension(tool)} from {workingDirectory} with args: {argument}");
+            Console.WriteLine();
+            Console.WriteLine($"Running: {Environment.NewLine}" +
+                $"Tool: {Path.GetFileNameWithoutExtension(tool)} {Environment.NewLine}" + 
+                $"WorkingDir: {workingDirectory} {Environment.NewLine}" +
+                $"Args: {argument}");
 
             var psi = new ProcessStartInfo(tool);
             psi.WorkingDirectory = workingDirectory;
@@ -204,6 +215,9 @@ namespace AssetOptimiser
 
         private static void FFMpegOutputWriter(object sender, DataReceivedEventArgs e)
         {
+            if (e?.Data == null)
+                return;
+
             if (e.Data.StartsWith("frame="))
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
 
