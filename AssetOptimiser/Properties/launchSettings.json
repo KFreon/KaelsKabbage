@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "AssetOptimiser": {
-      "commandName": "Project",
-      "commandLineArgs": "C:\\Hugo\\Sites\\kaels-kabbage.com\\content\\posts"
-    }
-  }
-}
