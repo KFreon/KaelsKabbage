@@ -34,9 +34,49 @@ namespace AssetOptimiser
             cwepPath = GetCWebpPath();
 
             Console.WriteLine("Looking for unoptimised assets...");
+            Console.WriteLine();
 
             var pictures = GetPictures(rootPath);
             var videos = GetVideos(rootPath);
+
+            if (!pictures.Any() && !videos.Any())
+            {
+                Console.WriteLine("Nothing to convert!");
+                return;
+            }
+
+            var picsText = pictures.Select(p => $"    {Path.Combine(p.Directory.Replace(rootPath, ""), p.FileName)}");
+            var videosText = videos.Select(v => $"    {Path.Combine(v.Directory.Replace(rootPath, ""), v.FileName)}: {v.Format.Name}");
+
+            Console.WriteLine("Preparing to convert the following files:");
+            if (pictures.Any())
+            {
+                Console.WriteLine("Pictures:");
+                foreach (var line in picsText)
+                    Console.WriteLine(line);
+
+                Console.WriteLine();
+            }
+
+            if (videos.Any())
+            {
+                Console.WriteLine("Videos:");
+                foreach (var line in videosText)
+                    Console.WriteLine(line);
+
+                Console.WriteLine();
+            }
+
+            while(true)
+            {
+                Console.WriteLine("Continue? [y/n]");
+                var entry = Console.ReadLine();
+                if (entry.Contains("y", StringComparison.OrdinalIgnoreCase))
+                    break;
+
+                if (entry.Contains("n", StringComparison.OrdinalIgnoreCase))
+                    return;
+            }
 
             if (pictures.Any())
                 await ConvertPictures(pictures);
@@ -112,7 +152,9 @@ namespace AssetOptimiser
                 }));
 
 
-            return jobs.Where(j => !allVideos.Contains(Path.Join(j.Directory, j.DestinationFileName)));
+            return jobs
+                .Where(j => !allVideos.Contains(Path.Join(j.Directory, j.DestinationFileName)))
+                .Where(x => !File.Exists(Path.Combine(x.Directory, x.DestinationFileName)));
         }
 
 
