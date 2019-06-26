@@ -1,7 +1,7 @@
 ---
 title: "Visual Studio and VS Code Tips and Tricks"
-date: 2019-06-11T12:55:13+10:00
-draft: true
+date: 2019-06-26T18:14:13+10:00
+draft: false
 type: "post"
 slug: "vs-vscode-tips-and-tricks"
 tags: ["visual-studio", "vscode"]
