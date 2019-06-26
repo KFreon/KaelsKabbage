@@ -8,6 +8,7 @@ tags: ["visual-studio", "vscode"]
 ---
 
 Visual Studio and the new shiny beast that is Visual Studio Code have many nice features, but sometimes there's a few that aren't on or known about by default (usually because they're experimental or stylistic)  
+Some you may know, some you may not.  
 
 **Some that I've found useful:** Logpoints, cursor animations, semantic highlighting, parallel stacks, output window filters, and unreferenced assembly Intellisense.
 
@@ -50,19 +51,20 @@ A bit weird, sure, but there was a solution to my weirdness.
 
 ### Smooth Scroll and Cursor Animations
 There's settings for smooth scrolling (can be a bit of a performance hit), and animations for the cursor blink (some crazy ones like pulse and vertical grow), and the transition for the cursor moving to a new location.  
+Both of these are found in the standard settings but are too spaced out to put here.
 
-{{% video path="img/VSCode_Cursors" width="1190" height="200" %}}
-{{% video path="img/VSCode_SmoothCursor" width="840" height="310" %}}
+{{% video path="img/VSCode_Cursors" width="1190" height="200" alt="Different VSCode cursor animations" %}}
+{{% video path="img/VSCode_SmoothCursor" width="840" height="310" alt="VSCode smooth cursor position transitions" %}}
 
 ### Split Terminals  
-I don't see enough people using this. It's especially great for [multi-root workspaces]().  
+I don't see enough people using this. It's especially great for [multi-root workspaces](https://code.visualstudio.com/docs/editor/multi-root-workspaces).  
 
 {{< image path="img/VSCode_TerminalSplit" alt="Splitting the terminal helps me keep context without changing to a new screen" >}}
 
 
 ### Semantic Colourisation  
-There's an extension called [bracket pair colourizer 2]() which highlights bracket pairs, indented code, etc to make it a bit easier to visually parse code.  
-{{< image path="img/" alt="alt-text" >}}
+There's an extension called [bracket pair colourizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer) which highlights bracket pairs, indented code, etc to make it a bit easier to visually parse code.  
+{{< image path="img/BracketPairColouriser" alt="Much nicer semantic colourisation" >}}
 
 {{% info %}}
 As of 2019, Visual Studio does this to an extent as well.  
@@ -76,4 +78,8 @@ Connections in ADS can be grouped together in whatever ways you'd like. I've got
 This is super handy when you open tabs from each connection as there's a setting to highlight the tab background to easily visually distinguish between groups!  
 
 {{< image path="img/ADS_ConnectionGrouping" alt="Coloured connection groups" >}}
-{{< image path="img/ADS_TabColour" alt="Editor tab coloured by the connection group it's in" >}}
+{{< image path="img/ADS_TabColour" alt="Editor tab coloured by the connection group it's in" >}}  
+
+
+There was also a [recent post](https://devblogs.microsoft.com/visualstudio/visual-studio-tips-and-tricks/) from Visual Studio themselves.  
+Enjoy! 
