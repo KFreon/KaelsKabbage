@@ -25,7 +25,7 @@ namespace AssetOptimiser
 
             Formats = new[]
             {
-                new Format("AV1", "mp4", "libaom-av1", crf, 0, "-tiles 2x2 -row-mt 1 -strict experimental -movflags +faststart"),
+                new Format("AV1", "mp4", "libaom-av1", crf, 0, "-tiles 2x2 -row-mt 1 -strict experimental -movflags +faststart -cpu-used 0"),
                 new Format("VP9", "webm", "libvpx-vp9", crf, 0, ""),
                 new Format("x264", "mp4", "libx264", crf, null, "-movflags +faststart"),
             };
@@ -34,9 +34,49 @@ namespace AssetOptimiser
             cwepPath = GetCWebpPath();
 
             Console.WriteLine("Looking for unoptimised assets...");
+            Console.WriteLine();
 
             var pictures = GetPictures(rootPath);
             var videos = GetVideos(rootPath);
+
+            if (!pictures.Any() && !videos.Any())
+            {
+                Console.WriteLine("Nothing to convert!");
+                return;
+            }
+
+            var picsText = pictures.Select(p => $"    {Path.Combine(p.Directory.Replace(rootPath, ""), p.FileName)}");
+            var videosText = videos.Select(v => $"    {Path.Combine(v.Directory.Replace(rootPath, ""), v.FileName)}: {v.Format.Name}");
+
+            Console.WriteLine("Preparing to convert the following files:");
+            if (pictures.Any())
+            {
+                Console.WriteLine("Pictures:");
+                foreach (var line in picsText)
+                    Console.WriteLine(line);
+
+                Console.WriteLine();
+            }
+
+            if (videos.Any())
+            {
+                Console.WriteLine("Videos:");
+                foreach (var line in videosText)
+                    Console.WriteLine(line);
+
+                Console.WriteLine();
+            }
+
+            while(true)
+            {
+                Console.WriteLine("Continue? [y/n]");
+                var entry = Console.ReadLine();
+                if (entry.Contains("y", StringComparison.OrdinalIgnoreCase))
+                    break;
+
+                if (entry.Contains("n", StringComparison.OrdinalIgnoreCase))
+                    return;
+            }
 
             if (pictures.Any())
                 await ConvertPictures(pictures);
@@ -48,7 +88,10 @@ namespace AssetOptimiser
             else
                 Console.WriteLine("No videos to convert!");
 
-            Console.WriteLine("Completed!");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("~~~~~ Completed! ~~~~~");
             Console.ReadLine();
         }
 
@@ -75,8 +118,15 @@ namespace AssetOptimiser
 
         static IEnumerable<(string Directory, string FileName)> GetPictures(string rootPath)
         {
-            return Directory.GetFiles(rootPath, "*.png", SearchOption.AllDirectories)
-                .Select(x => (Directory: Path.GetDirectoryName(x), FileName: Path.GetFileName(x)));
+            var pngs = Directory.GetFiles(rootPath, "*.png", SearchOption.AllDirectories)
+                .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x)});
+
+            var webps = Directory.GetFiles(rootPath, "*.webp", SearchOption.AllDirectories)
+                .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x) });
+
+
+            return pngs.Where(p => !webps.Any(w => w.NoExtension == p.NoExtension))
+                .Select(f => (f.Directory, f.FileName));
         }
 
         static IEnumerable<VideoJob> GetVideos(string rootPath)
@@ -102,7 +152,9 @@ namespace AssetOptimiser
                 }));
 
 
-            return jobs.Where(j => !allVideos.Contains(Path.Join(j.Directory, j.DestinationFileName)));
+            return jobs
+                .Where(j => !allVideos.Contains(Path.Join(j.Directory, j.DestinationFileName)))
+                .Where(x => !File.Exists(Path.Combine(x.Directory, x.DestinationFileName)));
         }
 
 
@@ -111,8 +163,8 @@ namespace AssetOptimiser
             Console.WriteLine($"Converting {pictures.Count()} pictures...");
             foreach (var picture in pictures)
             {
-                var newPath = $"{Path.GetFileNameWithoutExtension(picture.FileName)}.webm";
-                var arg = $"{picture.FileName}\" -o \"{newPath} -mt\"";
+                var newPath = $"{Path.GetFileNameWithoutExtension(picture.FileName)}.webp";
+                var arg = $"{picture.FileName} -o {newPath} -mt -m 6 -pass 10 -q 80";
                 await StartProcess(cwepPath, picture.Directory, arg);
             }
         }
@@ -172,7 +224,11 @@ namespace AssetOptimiser
         /// <returns></returns>
         static Task StartProcess(string tool, string workingDirectory, string argument)
         {
-            Console.WriteLine($"Running {Path.GetFileNameWithoutExtension(tool)} from {workingDirectory} with args: {argument}");
+            Console.WriteLine();
+            Console.WriteLine($"Running: {Environment.NewLine}" +
+                $"Tool: {Path.GetFileNameWithoutExtension(tool)} {Environment.NewLine}" + 
+                $"WorkingDir: {workingDirectory} {Environment.NewLine}" +
+                $"Args: {argument}");
 
             var psi = new ProcessStartInfo(tool);
             psi.WorkingDirectory = workingDirectory;
@@ -204,6 +260,9 @@ namespace AssetOptimiser
 
         private static void FFMpegOutputWriter(object sender, DataReceivedEventArgs e)
         {
+            if (e?.Data == null)
+                return;
+
             if (e.Data.StartsWith("frame="))
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
 
