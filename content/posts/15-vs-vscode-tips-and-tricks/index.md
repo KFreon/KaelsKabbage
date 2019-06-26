@@ -54,7 +54,7 @@ There's settings for smooth scrolling (can be a bit of a performance hit), and a
 Both of these are found in the standard settings but are too spaced out to put here.
 
 {{% video path="img/VSCode_Cursors" width="1190" height="200" alt="Different VSCode cursor animations" %}}
-{{% video path="img/VSCode_SmoothCursor" width="840" height="310" alt="VSCode smooth cursor position transitions" %}}
+{{% video path="img/VSCode_CursorTransitions" width="840" height="310" alt="VSCode smooth cursor position transitions" %}}
 
 ### Split Terminals  
 I don't see enough people using this. It's especially great for [multi-root workspaces](https://code.visualstudio.com/docs/editor/multi-root-workspaces).  
