@@ -50,6 +50,10 @@ Something recently added was the ability for Intellisense to suggest items that 
 {{< image path="img/VS_ExternalIntellisenseSuggestion_Example" alt="Intellisense suggested items that aren't currently available in scope" >}}
 {{< image path="img/VS_ExternalIntellisenseSuggestions" alt="Visual Studio options showing where to turn on the experiement" >}}
 
+### Ones I forgot the first time around  
+
+- {{< inline "Shift + Enter" >}} creates a new line from whatever line you're on. That is, if you're anywhere in a line of code, hitting {{< inline "Shift + Enter" >}} moves the cursor to the line below, creating it as if you'd hit Enter at the end of the previous line. This usually correctly terminates a line with a {{< inline ";" >}} as well.  
+
 
 # Visual Studio Code  
 I sometimes found it hard to track where the cursor was when I was quickly moving it around, like sometimes I'd scroll and not really notice how far I'd scrolled, etc.  
