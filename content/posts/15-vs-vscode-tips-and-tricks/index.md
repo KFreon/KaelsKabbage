@@ -7,10 +7,16 @@ slug: "vs-vscode-tips-and-tricks"
 tags: ["visual-studio", "vscode"]
 ---
 
-Visual Studio and the new shiny beast that is Visual Studio Code have many nice features, but sometimes there's a few that aren't on or known about by default (usually because they're experimental or stylistic)  
-Some you may know, some you may not.  
+A colleague mentioned they weren't aware of Logpoints in Visual Studio, so here's some things that aren't on or known about by default (usually because they're experimental or stylistic)  
 
-**Some that I've found useful:** Logpoints, cursor animations, semantic highlighting, parallel stacks, output window filters, and unreferenced assembly Intellisense.
+**Some that I've found useful:**   
+
+- Logpoints  
+- Cursor animations  
+- Semantic highlighting
+- Parallel stacks
+- Output window filters
+- Unreferenced assembly Intellisense  
 
 <!--more-->  
 
