@@ -3,7 +3,7 @@
 {{ $search := resources.Get "static/js/search.js" }}
 {{ $combined := slice $jquery $lunr $search | resources.Concat "js/bundle.js" | minify }}
 
-<script type="text/javascript" defer src="{{ $combined.Permalink }}"></script>
+<script type="text/javascript" async src="{{ $combined.Permalink }}"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122097969-1"></script>
