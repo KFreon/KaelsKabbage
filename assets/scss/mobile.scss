@@ -3,6 +3,10 @@
         font-size: 8px;
     }
 
+    body {
+        margin: 0;
+    }
+
     h2 {
         font-size: 3rem;
     }
@@ -17,7 +21,7 @@
     }
 
     section {
-        margin-left: 9.5rem;
+        margin-left: 10rem;
     }
 
     footer {
@@ -80,5 +84,10 @@
         .search-result {
             font-size: 1.7rem;
         }
+    }
+
+    .sidebar {
+        width: 9rem;
+        border-right-width: 2px;
     }
 }
