@@ -231,22 +231,23 @@ blockquote {
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.85); /* Black w/ opacity */
 
+
     /* Modal Content (Image) */
     .modal-content {
-        margin: auto;
-        display: block;
-        width: 80%;
+        width: 100%;
+        object-fit: contain;
+        margin-left: 10%;
+        margin-right: 10%;
         animation-name: zoom;
         animation-duration: 0.3s;
 
         @keyframes zoom {
             from {transform:scale(0)} 
             to {transform:scale(1)}
-          }
+        }
     }
 
     /* The Close Button */
