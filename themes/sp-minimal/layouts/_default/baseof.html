@@ -2,6 +2,8 @@
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
     {{- partial "head.html" . -}}
     <body>
+        {{- partial "image-modal.html" . -}}
+
         <div class="sidebar">
             {{- partial "header.html" . -}}
             {{- partial "footer.html" . -}}

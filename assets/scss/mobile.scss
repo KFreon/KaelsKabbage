@@ -94,4 +94,10 @@
         width: 9rem;
         border-right-width: 2px;
     }
+
+    .fullscreen-modal {
+        .modal-content {
+            width: 100%;
+        }
+    }
 }
