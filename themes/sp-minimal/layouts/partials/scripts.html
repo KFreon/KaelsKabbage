@@ -1,7 +1,7 @@
 {{ $jquery := resources.Get "static/js/jquery-3.3.1.min.js" }}
 {{ $lunr := resources.Get "static/js/lunr.js" }}
 {{ $search := resources.Get "static/js/search.js" }}
-{{ $fullscreenImage := resources.Get "static/js/fullscreenImage.js" }}
+{{ $fullscreenImage := resources.Get "static/js/FullscreenImage.js" }}
 {{ $combined := slice $jquery $lunr $search $fullscreenImage | resources.Concat "js/bundle.js" | minify }}
 
 <script type="text/javascript" async src="{{ $combined.Permalink }}"></script>
