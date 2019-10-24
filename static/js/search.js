@@ -1,3 +1,6 @@
+// Original from somewhere I can't remember, sorry :(
+// Also help from here: https://bart.degoe.de/searching-your-hugo-site-with-lunr/
+
 var lunrIndex,
     $results,
     pagesIndex;
@@ -31,7 +34,7 @@ function initLunr() {
         })
         .fail(function(jqxhr, textStatus, error) {
             var err = textStatus + ", " + error;
-            console.error("Error getting Hugo index flie:", err);
+            console.error("Error getting Hugo index file:", err);
         });
 }
 
@@ -79,7 +82,13 @@ function search(query) {
     //  {ref: "/section/page1", score: 0.2725657778206127}
     // Our result:
     //  {title:"Page1", href:"/section/page1", ...}
-    var lunrquery = lunrIndex.search("*" + query + "*");
+    var lunrquery = lunrIndex.query(function(q) {
+        // look for an exact match and give that a massive positive boost
+        q.term(query, { usePipeline: true, boost: 100 });
+        // prefix matches should not use stemming, and lower positive boost
+        q.term(query, { usePipeline: false, boost: 10, wildcard: lunr.Query.wildcard.TRAILING });
+      });
+
     var mapped = lunrquery.map(function(result) {
         return pagesIndex.filter(function(page) {
             return page.href === result.ref;
