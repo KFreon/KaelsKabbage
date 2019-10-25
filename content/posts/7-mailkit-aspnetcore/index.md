@@ -7,7 +7,7 @@ slug: "mailkit-aspnetcore"
 tags: ["aspnet"]
 ---
 
-[Mailkit](https://github.com/jstedfast/MailKit) is the new official replacement for the {{< inline "SMTPClient">}} as indicated [here](https://www.infoq.com/news/2017/04/MailKit-MimeKit-Official).
+[Mailkit](https://github.com/jstedfast/MailKit) is the new official replacement for the `SMTPClient` as indicated [here](https://www.infoq.com/news/2017/04/MailKit-MimeKit-Official).
 There are [much](https://dotnetcoretutorials.com/2017/11/02/using-mailkit-send-receive-email-asp-net-core/) better tutorials than anything I can write right now, but here's a quick primer (there's also a good tutorial in the Readme for Mailkit)
 
 - Install the [nuget package](https://www.nuget.org/packages/MailKit/) to your project.
