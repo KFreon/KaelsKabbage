@@ -8,7 +8,7 @@ tags: ["node"]
 ---
 
 Managing node versions can become painful when switching between projects.  
-There's a mechanism to check node versions during an {{< inline "npm install" >}} called [Engines](https://docs.npmjs.com/files/package.json#engines), but that doesn't help if the projects are installed already.  
+There's a mechanism to check node versions during an `npm install` called [Engines](https://docs.npmjs.com/files/package.json#engines), but that doesn't help if the projects are installed already.  
 The fix is to install node as a dependency. Who would have thought?  
 
 <!--more-->  
@@ -19,10 +19,10 @@ The current way of working (for me anyway) is to use [NVM](https://github.com/co
 It works, but is tedious and can become confusing.  
 
 ## The Solution  
-{{< inline "npm install node@<version> --save-dev" >}}  
+`npm install node@<version> --save-dev`  
 That's it. Any npm commands are then run using the locally installed node version.  
 
-My currently installed version of node is 10.15.3, so running {{< inline "node -v" >}} as part of an npm script gives me the following:  
+My currently installed version of node is 10.15.3, so running `node -v` as part of an npm script gives me the following:  
 {{< image path="img/Node_Before" alt="Node version is the globally installed node version" >}}  
 
 After installing node as a dependency, the build uses the local version instead!  

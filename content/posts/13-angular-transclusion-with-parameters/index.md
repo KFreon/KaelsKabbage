@@ -15,7 +15,7 @@ Were it so easy...
 
 **TL;DR**  
 *Problem*: Can't do transclusion and pass properties to content.  
-*Solution*: Use {{< inline "ng-template" >}} with {{< inline "ng-container *ngTemplateOutlet" >}} with a {{< inline "context: { $implicit: variable-name }" >}} property.  
+*Solution*: Use `ng-template` with `ng-container *ngTemplateOutlet` with a `context: { $implicit: variable-name }` property.  
 
 # The problem  
 {{% split %}}
@@ -65,7 +65,7 @@ export class OriginalComponent implements OnInit {
 {{% /splitRight %}}
 {{% /split %}}  
 
-I wanted to extract the two {{< inline "*ngFor" >}} divs into their own component for reuse in another part of the codebase.   
+I wanted to extract the two `*ngFor` divs into their own component for reuse in another part of the codebase.   
 I wanted to be able to do something like:   
 ``` html
 <div>
@@ -83,7 +83,7 @@ I searched around the internet [and](https://stackoverflow.com/questions/4297808
 
 # Transclusion  
 Transclusion was the first stop. This is where an element indicates where it's child content will be rendered without explicitly knowing what the content is.  
-Angular provides the {{< inline "ng-content" >}} component for this purpose.  
+Angular provides the `ng-content` component for this purpose.  
 
 ##### transclusion.component.html
 ``` html
@@ -106,16 +106,16 @@ This is a title
 This is some content   <--- Pulled through the ng-content
 ```  
 
-However I'm looking to have the transclusion **BUT** with some context from structural directives like {{< inline "*ngFor" >}}. I figured you'd be able to pass some context to this content, but unfortunately {{< inline "ng-content" >}} doesn't allow dynamic content (docs says it's performed at compile time), so I needed another solution.  
+However I'm looking to have the transclusion **BUT** with some context from structural directives like `*ngFor`. I figured you'd be able to pass some context to this content, but unfortunately `ng-content` doesn't allow dynamic content (docs says it's performed at compile time), so I needed another solution.  
 
 I talked with [Tristan Menzel](https://github.com/tristanmenzel) about how to approach this, and he pointed me towards structural directives and templates.   
 
 <br/>  
 
 # Templates  
-{{< inline "ng-template" >}} provides a way of specifying dynamic transclusion content that can be modified/populated at runtime.  
+`ng-template` provides a way of specifying dynamic transclusion content that can be modified/populated at runtime.  
 
-Templates can be rendered inside a {{< inline "ng-container" >}} via the {{< inline "*ngTemplateOutput" >}} directive.  
+Templates can be rendered inside a `ng-container` via the `*ngTemplateOutput` directive.  
 
 ``` html
 <div>
@@ -128,7 +128,7 @@ Templates can be rendered inside a {{< inline "ng-container" >}} via the {{< inl
 ``` html
 <ng-container *ngTemplateOutlet="template; context: { $implicit: location }"></ng-container>
 ```    
-The above code indicates that the {{< inline "ng-container" >}} should render the template called *template* providing it with the implicit knowledge of a variable called *location*, so the template itself can function. How does this context work?  
+The above code indicates that the `ng-container` should render the template called *template* providing it with the implicit knowledge of a variable called *location*, so the template itself can function. How does this context work?  
 It'll be easier to just go through the solution as a whole.    
 
 # My Solution  
@@ -225,8 +225,8 @@ export class RefactoredComponent implements OnInit {
 {{% /splitRight %}}
 {{% /split %}}  
 
-**EDIT:** Note that for reduced black box magic, you can specify the template directly instead of with {{< inline "@ContentChild" >}}.  
-See below. {{< inline "@ContentChild" >}} replaced in the Typescript with {{< inline "@Input()" >}} and the html altered slightly to give the template an id with {{< inline "#template" >}} and the {{< inline "app-extracted" >}} component takes the template as a variable directly.  
+**EDIT:** Note that for reduced black box magic, you can specify the template directly instead of with `@ContentChild`.  
+See below. `@ContentChild` replaced in the Typescript with `@Input()` and the html altered slightly to give the template an id with `#template` and the `app-extracted` component takes the template as a variable directly.  
 
 ``` html
 <app-extracted [holidays]="holidays" [template]="template">
@@ -238,28 +238,28 @@ See below. {{< inline "@ContentChild" >}} replaced in the Typescript with {{< in
 ```
 
 # Steps I took  
-1. Pull those {{< inline "*ngFor" >}} divs out into a new component  
-2. Provide the new component with the data previously given to the outer {{< inline "*ngFor" >}}
-3. Wrap the content of the inner {{< inline "*ngFor" >}} in a {{< inline "ng-template" >}} instead
-  * We need to provide the {{< inline "location" >}} variable to this as it's undefined right now
-4. Provide context via the {{< inline "let-location" >}} directive 
+1. Pull those `*ngFor` divs out into a new component  
+2. Provide the new component with the data previously given to the outer `*ngFor`
+3. Wrap the content of the inner `*ngFor` in a `ng-template` instead
+  * We need to provide the `location` variable to this as it's undefined right now
+4. Provide context via the `let-location` directive 
   * *let-variablename* creates an implicit variable called *variablename* for the code block. This means that the variable is expected to be defined in the context provided to the template.  
-5. The extracted component requires a template outlet container, somewhere to render the {{< inline "ng-template" >}} we just defined.  
-  * We also need to setup that implicit variable for the {{< inline "ng-template" >}} context.
+5. The extracted component requires a template outlet container, somewhere to render the `ng-template` we just defined.  
+  * We also need to setup that implicit variable for the `ng-template` context.
 
 ## Some detail 
 
-* {{< inline "*ng-container" >}} renders the {{< inline "ng-template" >}} from the parent component.  
-* In this example, the {{< inline "ng-template" >}} is discovered by the {{< inline "ng-container" >}} via the {{< inline "@ContentChild(TemplateRef)" >}} decorator.  
-  * Searches the tree for the first occurrance of the indicated type (TemplateRef, which here is a {{< inline "ng-template" >}})  
-* The template gets the inner variable via the {{< inline "context: { $implicit: location}" >}} part of the {{< inline "ng-container *ngTemplateOutput" >}} statement.  
-  * Coupled with the {{< inline "ng-template let-location" >}} statement, this creates an implicit context containing the variable **location** as if it was declared.   
-  * There's no intellisense provided for the {{< inline "let-location" >}} or any use of the **location** variable afterwards.
+* `*ng-container` renders the `ng-template` from the parent component.  
+* In this example, the `ng-template` is discovered by the `ng-container` via the `@ContentChild(TemplateRef)` decorator.  
+  * Searches the tree for the first occurrance of the indicated type (TemplateRef, which here is a `ng-template`)  
+* The template gets the inner variable via the `context: { $implicit: location}` part of the `ng-container *ngTemplateOutput` statement.  
+  * Coupled with the `ng-template let-location` statement, this creates an implicit context containing the variable **location** as if it was declared.   
+  * There's no intellisense provided for the `let-location` or any use of the **location** variable afterwards.
 
 ### Take home points
-* *let-variable* indicates to {{< inline "ng-template" >}} an implicit variable it can expect  
-* Context can be provided to {{< inline "ng-container" >}} by expanding on the {{< inline "*ngTemplateOutlet" >}} property  
-* {{< inline "@ContentChild" >}} can be used to find the template for you or you can provide it as a standard angular input variable (but looks messier)  
+* *let-variable* indicates to `ng-template` an implicit variable it can expect  
+* Context can be provided to `ng-container` by expanding on the `*ngTemplateOutlet` property  
+* `@ContentChild` can be used to find the template for you or you can provide it as a standard angular input variable (but looks messier)  
 * The combination of all this allows transclusion with passed variables
 
 

@@ -45,14 +45,14 @@ By default, the Output window spits out all sorts of garbage like thread exits, 
 {{< image path="img/VS_OutputMessageFiltering" alt="Filter the output window to hide 'thread exited' messages" >}}
 
 ### Experimental Intellisense Suggestions  
-Something recently added was the ability for Intellisense to suggest items that aren't referenced. Selecting one such suggestion adds the {{< inline "using" >}} statement to the file.  
+Something recently added was the ability for Intellisense to suggest items that aren't referenced. Selecting one such suggestion adds the `using` statement to the file.  
 
 {{< image path="img/VS_ExternalIntellisenseSuggestion_Example" alt="Intellisense suggested items that aren't currently available in scope" >}}
 {{< image path="img/VS_ExternalIntellisenseSuggestions" alt="Visual Studio options showing where to turn on the experiement" >}}
 
 ### Ones I forgot the first time around  
 
-- {{< inline "Shift + Enter" >}} creates a new line from whatever line you're on. That is, if you're anywhere in a line of code, hitting {{< inline "Shift + Enter" >}} moves the cursor to the line below, creating it as if you'd hit Enter at the end of the previous line. This usually correctly terminates a line with a {{< inline ";" >}} as well.  
+- `Shift + Enter` creates a new line from whatever line you're on. That is, if you're anywhere in a line of code, hitting `Shift + Enter` moves the cursor to the line below, creating it as if you'd hit Enter at the end of the previous line. This usually correctly terminates a line with a `;` as well.  
 
 
 # Visual Studio Code  

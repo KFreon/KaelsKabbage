@@ -13,7 +13,7 @@ In essence, they're a small app that browsers can interpret and run, caching inf
 
 <!--more-->
 
-**tl;dr** Updates are not automatic in many cases and can be forced by sending the {{< inline "skipWaiting" >}} message to the service worker, however it can have it's issues.  
+**tl;dr** Updates are not automatic in many cases and can be forced by sending the `skipWaiting` message to the service worker, however it can have it's issues.  
 
 There are really good explanations and examples of the hows and whys of service workers so I won't retread most of it.
 
@@ -59,10 +59,10 @@ Workbox give us two files:
 - src/sw/sw.ts  
 - src/serviceWorker.ts  
 
-{{< inline "sw.ts (or sw.js)" >}} defines the service worker itself; It's purview over routes, strategies, cache behaviours, etc.  
+`sw.ts (or sw.js)` defines the service worker itself; It's purview over routes, strategies, cache behaviours, etc.  
 It's the external bit that runs outside your webpage.  
 
-{{< inline "ServiceWorker.ts" >}} controls the behaviour of the service worker from the webpage; Registration and deregistration logic, which essentially controls installation and updates.  
+`ServiceWorker.ts` controls the behaviour of the service worker from the webpage; Registration and deregistration logic, which essentially controls installation and updates.  
 
 The below is from the generated files from create-react-app (using Workbox)
 
@@ -179,19 +179,19 @@ function registerValidSW(swUrl: string, config?: Config) {
 
 Quick explanations are the best explanations:  
 
-- Precache {{< inline "index.html" >}} i.e. download it immediately and store it for offline access (might not be able to do much, but it ensures that something can be shown offline)
-- Register a navigation route for the SPA. This means that there's a single page to be served for many sub-routes, which is {{< inline "index.html" >}} in this case
+- Precache `index.html` i.e. download it immediately and store it for offline access (might not be able to do much, but it ensures that something can be shown offline)
+- Register a navigation route for the SPA. This means that there's a single page to be served for many sub-routes, which is `index.html` in this case
 
 {{% info %}}
-We're blacklisting some routes as we don't want them to be considered navigations within the SPA and thus treated with {{< inline "index.html" >}} 
+We're blacklisting some routes as we don't want them to be considered navigations within the SPA and thus treated with `index.html` 
 {{% /info %}}  
 
-- Register all routes under {{< inline "/api/assets" >}} as NetworkOnly. Results for these routes are never returned by the cache
-  - *I don't fully understand why the {{< inline "cacheName" >}} and expiration are there*
+- Register all routes under `/api/assets` as NetworkOnly. Results for these routes are never returned by the cache
+  - *I don't fully understand why the `cacheName` and expiration are there*
   - [BackgroundSync](https://developers.google.com/web/tools/workbox/modules/workbox-background-sync) handles the queueing of requests made when the network is unavailable. These requests are stored in local IndexDB and replayed when the service worker detects a network connection.  
-- Also note that this particular example is for a {{< inline "POST" >}}. That can be omitted for a {{< inline "GET" >}} and BackgroundSync is not valid (since there's nothing to queue)
+- Also note that this particular example is for a `POST`. That can be omitted for a `GET` and BackgroundSync is not valid (since there's nothing to queue)
 
-The {{< inline "ServiceWorker.ts" >}} example is incomplete to reduce the reading, and I won't go line by line. 
+The `ServiceWorker.ts` example is incomplete to reduce the reading, and I won't go line by line. 
 We register a window handler to register the service worker, with some different behaviour when running locally.  
 The registration handler does the "installation" of the worker. In this case, I've also extended it to handle the update process.  
 
@@ -202,7 +202,7 @@ Updates for service workers are a bit tricky.
 Browsers check every now and then automatically, and when navigating to a managed route (I think? I didn't get much out of the docs from this)  
 For this SPA app, it doesn't get closed much, meaning updates were at the mercy of the browsers' "every now and then" (seems to be 24h-ish)  
 
-We wanted to reduce this time period and the uncertainty around it, so we used the manual update method of {{< inline "registration.Update()" >}}.  
+We wanted to reduce this time period and the uncertainty around it, so we used the manual update method of `registration.Update()`.  
 Calling this method gets the service worker file (sw.js) from the server and checks to see if it's different to the current one. If it is, it is installed and put into the *waiting* phase.  
 
 The waiting phase means the worker is installed successfully but the old worker is still handling requests; The new worker isn't yet "active".  
@@ -213,10 +213,10 @@ For a SPA, this wasn't desirable, and we implemented an auto update system. On r
 If one is found, it's installed as per usual, but also registers a route handler such that when the app is on the home/login page (where state is irrelevant), kick the old worker out.  
 
 Service workers can be communicated to and from the parent website via messages/events (terminology seems to be in flux).  
-{{< inline "SkipWaiting" >}} is one of the messages that can be communicated and it tells the browser/service worker combo to kick out the old worker and activate the new one immediately.  
+`SkipWaiting` is one of the messages that can be communicated and it tells the browser/service worker combo to kick out the old worker and activate the new one immediately.  
 
-In the service worker file (sw.ts) we register a event handler to listen for messages, specifically {{< inline "skipWaiting" >}}.   
-We also pass it the route listener from that posts the {{< inline "skipWaiting" >}} message when the route matches.  
+In the service worker file (sw.ts) we register a event handler to listen for messages, specifically `skipWaiting`.   
+We also pass it the route listener from that posts the `skipWaiting` message when the route matches.  
 
 {{% split %}}
 {{% splitLeft title="sw.ts" %}}
@@ -255,8 +255,8 @@ NOTE that the page is refreshed on service worker update. This is to ensure that
 {{% /info %}}
 
 # Issues
-One issue we had was local testing. CRA doesn't run the service worker when doing an {{< inline "npm start" >}} as there isn't really a server for it to run on. See the [documentation](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app) for info.   
-The workaround was to do {{< inline "npm build" >}} and setup a local server using {{< inline "http-server" >}} and run it from there.  
+One issue we had was local testing. CRA doesn't run the service worker when doing an `npm start` as there isn't really a server for it to run on. See the [documentation](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app) for info.   
+The workaround was to do `npm build` and setup a local server using `http-server` and run it from there.  
 
 
 The fun one that I didn't have to worry about was the one where you cache something too aggressively and can't get the service worker to behave.  

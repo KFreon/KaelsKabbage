@@ -14,7 +14,7 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
 
 - Setup Snyk account and get API key
 - Setup pipeline with SNYK_TOKEN (api key)  
-- Have task to install Snyk and run {{< inline "snyk test" >}} 
+- Have task to install Snyk and run `snyk test` 
  
 <!--more-->  
 
@@ -40,9 +40,9 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
 {{< image path="img/SnykVstsTasks" alt="Task setup in VSTS">}}
     - *NOTE: The environment variable is **key** here, explained later*  
 {{< image path="img/SnykVstsInstall" alt="Snyk Install Task" >}}
-    - **First step** installs Snyk to the Agent: {{< inline "npm install -g snyk" >}}  
-    - **Second step** performs the Snyk checks on the npm packages: {{< inline "snyk test" >}}  
-    - **Third step** performs Snyk checks on Nuget packages (different folder, so different task): {{< inline "snyk test --file=slnname.sln" >}}  
+    - **First step** installs Snyk to the Agent: `npm install -g snyk`  
+    - **Second step** performs the Snyk checks on the npm packages: `snyk test`  
+    - **Third step** performs Snyk checks on Nuget packages (different folder, so different task): `snyk test --file=slnname.sln`  
       - *NOTE: These two tasks have different working directories set as these checks must be run in the directory with the package file*
       - *Also note: The extra *file* parameter there as Snyk currently doesn't support sln detection.  
 <br/>  
@@ -56,7 +56,7 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
 
 ## Some Explanations  
 Snyk requires authentication, but if the environment variable **SNYK_TOKEN** is present, it's used automatically as the authentication key. As such, ALL commands you want to run with Snyk will require this environment variable set.    
-The {{< inline "snyk test" >}} command must be run from a directory containing a package manangement file (package.json, packages.config, etc)  
+The `snyk test` command must be run from a directory containing a package manangement file (package.json, packages.config, etc)  
 The full list of supported package managers is on their website, but it's quite extensive.  
 
 Some other things to note:  

@@ -38,4 +38,4 @@ using (var emailClient = new SmtpClient())
 }
 ```  
 
-{{< inline "_emailConfiguration" >}} is just a config dump and makes environment changes easy.
+`_emailConfiguration` is just a config dump and makes environment changes easy.

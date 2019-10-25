@@ -7,11 +7,17 @@ slug: "building-ios-certs-on-windows"
 tags: ["ios"]
 ---
 
+UPDATE Oct 2019: 2FA breaks things :(  
+
 How many times have you been working on a cross platform app and been ready to submit to the app stores, but then the Apple store needs a .csr that you should “use a Mac” to generate?  
 
 When I google this, I got lots of complicated methods using IIS to request certificates through a quite frankly terrible UI/UX, and most of the guides glossed over how to actually get that .p12 at the end you needed.
   
 <!--more-->  
+
+UPDATE: 2FA breaks the automated links with the AppStore, making things quite painful indeed.  
+While this is all still correct, you may still need a Mac to help if you have 2FA on the Apple Id.  
+Details at the end.  
 
 I’m sure some of those guides work, but I was sure it had to be easier than that. I found [this post](http://www.iandevlin.com/blog/2012/11/phonegap/building-an-ios-signing-key-for-phonegap-in-windows/) which does it all in four commands…A colleague pointed out that it’s from 2012 and is still relevant, but it works.  
 
@@ -42,4 +48,23 @@ I’ll pull it out here in case the links break but this is all Ian Devlin’s w
         openssl pkcs12 -export -inkey ios.key -in <pemName>.pem -out <p12Name>.p12
     ```
 
-That’s it! No more hunting for someone around the office with a Mac.
+That’s it! No more hunting for someone around the office with a Mac.  
+
+**UPDATE Oct 2019**  
+I had an issue where the only Apple ID in use by the client (and our CI pipeline) was upgraded with 2FA.  
+This caused the old 'deploy to AppStores' stuff to break, and apparently there are only two fixes at this time (without xcode):  
+
+{{% info %}}
+According to the official documentation on the Microsoft Azure Devops 'Deploy to Appstore' task, 2FA shouldn't be enabled on the CI Apple ID, and there should be one specifically for CI. This wasn't an option for me at the time.  
+{{% /info %}}  
+  
+  
+- Deploy from AppCenter (Needs App Specific passwords, which it'll tell you about and is fairly well documented)  
+  - NOTE that this automatically deploys and you aren't able to change any settings outside of what AppCenter provides (name, icons, screenshots, etc)  
+- Get a Fastlane session token for use with the Azure Devops task  
+  - Get a mac :(  
+  - Install Ruby and Fastlane  
+  - Be logged in with the relevant Apple Id  
+  - `fastlane spaceauth -u <appleId user name>`
+  - Copy that crazy cookie off the Mac  
+  - You're already likely using a service connection to deploy to the App Store via that MS task (if not, HOW!!), so edit that and add the Fastlane cookie as the Fastlane Session  

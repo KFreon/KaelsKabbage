@@ -24,14 +24,6 @@
         "description": "Image ShortCode"
     },
 
-    "HugoShortcode Inline": {
-        "prefix": "hinline",
-        "body": [
-            "{{< inline \"$1\" >}}"
-        ],
-        "description": "Inline ShortCode"
-    },
-
     "HugoShortcode Spit Code": {
         "prefix": "hsplit",
         "body": [
@@ -42,7 +34,7 @@
             "{{% splitRight title=\"$2\" %}}",
             "",
             "{{% /splitRight %}}",
-            "{{% /split %}}"
+            "{{% /split %}}  "
         ]
     },
 
@@ -51,7 +43,7 @@
         "body": [
             "{{% info %}}",
             "$0",
-            "{{% /info %}}"
+            "{{% /info %}}  "
         ]
     },
 

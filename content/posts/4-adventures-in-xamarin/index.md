@@ -72,8 +72,8 @@ Debug mode, why this betrayal? Turns out it's another case of bad defaults.
 ## XAML Controls
 - **Generally a limited set of the features of WPF/UWP**
 - Views are things that can be viewed, Layouts are things that do layouts, Pages are...well pages, and Cells are things inside tables.  
-- The {{< inline "BoxView" >}} is a strangely named control, used for squares and rectangles, and contains no content. In WPF, it would be {{< inline "Rectangle" >}}... 
-- Still XAML staples such as {{< inline "Grid" >}} and {{< inline "StackLayout" >}} (renamed from {{< inline "StackPanel" >}}), but the different controls are a bit interesting to get used to
-- Controls tend not to have the {{< inline "content" >}} attribute. On reflection, it's likely because there's fewer _general_ components. Instead of having a {{< inline "Label" >}}  and a {{< inline "TextBlock" >}}, one essentially an implementation of the other, there's just {{< inline "Label" >}}.  
+- The `BoxView` is a strangely named control, used for squares and rectangles, and contains no content. In WPF, it would be `Rectangle`... 
+- Still XAML staples such as `Grid` and `StackLayout` (renamed from `StackPanel`), but the different controls are a bit interesting to get used to
+- Controls tend not to have the `content` attribute. On reflection, it's likely because there's fewer _general_ components. Instead of having a `Label`  and a `TextBlock`, one essentially an implementation of the other, there's just `Label`.  
 - Being quite familiar with WPF, UWP was easier to get familiar with compared to Xamarin (fewer direct parallels)
-- Instead of {{< inline "Context" >}} it's {{< inline "BindingContext" >}}  
+- Instead of `Context` it's `BindingContext`  
