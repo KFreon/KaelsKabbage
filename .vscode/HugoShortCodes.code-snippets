@@ -38,15 +38,6 @@
         ]
     },
 
-    "HugoShortcode Info": {
-        "prefix": "hinfo",
-        "body": [
-            "{{% info %}}",
-            "$0",
-            "{{% /info %}}  "
-        ]
-    },
-
     "HugoShortcode Video": {
         "prefix": "hvideo",
         "body": [

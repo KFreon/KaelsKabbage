@@ -76,9 +76,7 @@ I don't see enough people using this. It's especially great for [multi-root work
 There's an extension called [bracket pair colourizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer) which highlights bracket pairs, indented code, etc to make it a bit easier to visually parse code.  
 {{< image path="img/BracketPairColouriser" alt="Much nicer semantic colourisation" >}}
 
-{{% info %}}
-As of 2019, Visual Studio does this to an extent as well.  
-{{% /info %}}  
+> As of 2019, Visual Studio does this to an extent as well.  
 
 # BONUS! Azure Data Studio  
 Since Azure Data Studio is built on the same engine as VSCode, many of it's tips work here too! I've got cursor animations and smooth scrolling enabled.  

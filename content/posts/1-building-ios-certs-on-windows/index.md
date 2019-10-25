@@ -54,9 +54,7 @@ That’s it! No more hunting for someone around the office with a Mac.
 I had an issue where the only Apple ID in use by the client (and our CI pipeline) was upgraded with 2FA.  
 This caused the old 'deploy to AppStores' stuff to break, and apparently there are only two fixes at this time (without xcode):  
 
-{{% info %}}
-According to the official documentation on the Microsoft Azure Devops 'Deploy to Appstore' task, 2FA shouldn't be enabled on the CI Apple ID, and there should be one specifically for CI. This wasn't an option for me at the time.  
-{{% /info %}}  
+> According to the official documentation on the Microsoft Azure Devops 'Deploy to Appstore' task, 2FA shouldn't be enabled on the CI Apple ID, and there should be one specifically for CI. This wasn't an option for me at the time.  
   
   
 - Deploy from AppCenter (Needs App Specific passwords, which it'll tell you about and is fairly well documented)  

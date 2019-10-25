@@ -80,8 +80,8 @@ small {
     }  
 }
 
-p {
-    code {
+p, li, section {
+    > code {
         font-family: Inconsolata,monospace;
         background-color: rgba(0, 0, 0, .05);
         color: rgba(0,0,0,.7);
@@ -90,7 +90,7 @@ p {
 }
 
 pre {
-    code {
+    > code {
         font-size: 0.8rem;;
     }
 }
@@ -123,15 +123,12 @@ body {
 
 blockquote {
     padding: 0.8rem 1.5rem;
-
-    &.info {
-        background: rgba(144, 238, 144, 0.5);
-        border-left: solid 7px green;
-        font-style: normal;
-        border-radius: 5px;
-        margin-left: 1rem;
-        margin-bottom: 1rem;
-    }
+    background: rgba(144, 238, 144, 0.5);
+    border-left: solid 7px green;
+    font-style: normal;
+    border-radius: 5px;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
 }
 
 .category {

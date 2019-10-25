@@ -182,9 +182,7 @@ Quick explanations are the best explanations:
 - Precache `index.html` i.e. download it immediately and store it for offline access (might not be able to do much, but it ensures that something can be shown offline)
 - Register a navigation route for the SPA. This means that there's a single page to be served for many sub-routes, which is `index.html` in this case
 
-{{% info %}}
-We're blacklisting some routes as we don't want them to be considered navigations within the SPA and thus treated with `index.html` 
-{{% /info %}}  
+> We're blacklisting some routes as we don't want them to be considered navigations within the SPA and thus treated with `index.html` 
 
 - Register all routes under `/api/assets` as NetworkOnly. Results for these routes are never returned by the cache
   - *I don't fully understand why the `cacheName` and expiration are there*
@@ -250,9 +248,7 @@ function onUpdate(registration: ServiceWorkerRegistration, store: IRootStoreMode
 {{% /splitRight  %}}
 {{% /split %}}
 
-{{% info %}}
-NOTE that the page is refreshed on service worker update. This is to ensure that stylesheets and html changes are immediately visible (cached items will be revalidated on registration of the service worker in this case)
-{{% /info %}}
+> NOTE that the page is refreshed on service worker update. This is to ensure that stylesheets and html changes are immediately visible (cached items will be revalidated on registration of the service worker in this case)
 
 # Issues
 One issue we had was local testing. CRA doesn't run the service worker when doing an `npm start` as there isn't really a server for it to run on. See the [documentation](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app) for info.   
