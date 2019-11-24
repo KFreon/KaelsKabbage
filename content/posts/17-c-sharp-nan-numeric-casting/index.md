@@ -4,7 +4,7 @@ date: 2019-10-25T09:50:37+10:00
 draft: false
 type: "post"
 slug: "c-sharp-nan-numeric-casting"
-tags: ["c#"]
+tags: ["c-sharp"]
 ---
 
 I came across an interesting problem today where a cast from `double` to `int` resulted in `int.MinValue`.  
