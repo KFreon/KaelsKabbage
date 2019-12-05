@@ -245,6 +245,7 @@ blockquote {
         margin-right: 10%;
         animation-name: zoom;
         animation-duration: 0.3s;
+        min-width: 1px;
 
         @keyframes zoom {
             from {transform:scale(0)} 

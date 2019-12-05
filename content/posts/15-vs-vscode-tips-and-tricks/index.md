@@ -53,6 +53,10 @@ Something recently added was the ability for Intellisense to suggest items that 
 ### Ones I forgot the first time around  
 
 - `Shift + Enter` creates a new line from whatever line you're on. That is, if you're anywhere in a line of code, hitting `Shift + Enter` moves the cursor to the line below, creating it as if you'd hit Enter at the end of the previous line. This usually correctly terminates a line with a `;` as well.  
+- `Shift + Alt + =` and `Shift + Alt + -` expands and contracts the selection of the current block. e.g. with your cursor in the body of an `if` statement, `Shift + Alt + =` selects the whole `if` block. Hitting it again, selects the encompassing block, and so forth.  
+- Multi-caret support is still a thing, with box select `Hold Alt + left mouse` but also with `Hold Alt and Ctrl + click left mouse` so you can place carets anywhere for editing.  
+- Similar to the above, but perhaps more usefully, `Shift + Alt + ;` adds cursors at all matching sites in the file. i.e. selecting a `;` and hitting `Shift + Alt + ;` selects all `;` in the file and places cursors. If instead you hit `Shift + Alt + .`, only the next occurrence would be added, and you can hit it again to add more. `Shift + Alt + ,` removes the previous.  
+- There's a new pinning feature for the debugger! It behaves similarly to the `DebuggerBrowsableAttribute` but at debug time instead of build. Instead of seeing `{SomeObject}`, you can open its properties and pin one, and see `{Property = val}` instead!
 
 
 # Visual Studio Code  
