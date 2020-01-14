@@ -6,7 +6,8 @@
   "scripts": {
     "build-index": "npx grunt build",
     "optimise-assets": "cd AssetOptimiser && dotnet run --configuration Release ../content/posts/",
-    "build": "npm-run-all build-index optimise-assets"
+    "build": "npm-run-all build-index optimise-assets",
+    "new": "hugo new --kind post-bundle"
   },
   "author": "",
   "license": "ISC",
