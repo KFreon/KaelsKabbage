@@ -1,5 +1,12 @@
 <footer>
     <p class="add-padding-right">
+        <a class="renders" href="{{ .Site.BaseURL }}renders">
+            <img height="32" width="32" src="{{ .Site.BaseURL }}/img/BlenderIcon.png"></img>
+            Blender Renders
+        </a>
+    </p>
+
+    <p class="add-padding-right">
         <a href="{{ .Site.BaseURL }}about">About</a>
     </p>
     <p class="add-padding-right">
@@ -9,6 +16,7 @@
         &copy; {{ now.Format "2006"}}
         <a href="{{ .Site.BaseURL }}about">{{ .Site.Params.name }}</a>
     </p>
+
 
     <p class="remove-margin-bottom add-padding-right">
         <a href="https://github.com/eueung/hugo-sp-minimal">Hugo SP-Minimal</a> Theme |

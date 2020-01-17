@@ -5,7 +5,7 @@
   "main": "Gruntfile.js",
   "scripts": {
     "build-index": "npx grunt build",
-    "optimise-assets": "cd AssetOptimiser && dotnet run --configuration Release ../content/posts/",
+    "optimise-assets": "cd AssetOptimiser && dotnet run --configuration Release ../content",
     "build": "npm-run-all build-index optimise-assets",
     "new": "hugo new --kind post-bundle"
   },
