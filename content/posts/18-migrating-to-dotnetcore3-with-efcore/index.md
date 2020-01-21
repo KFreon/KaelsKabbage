@@ -26,6 +26,8 @@ Much more thought needs to go into what LINQ is going to do with your query. Som
 The three things: Sql translation (cannot be translated), entity access (RelationalProjectionBindingExpressionVisitor), and another entity access (NavigationExpandingExpressionVisitor)
 I think the second one is issue with children when accessing it and projecting out, and the last one is about includes and joining (not really sure, and it's hard to know)
 
+Sometimes when projecting out an included navigation, it fails, and can be beaten by <navigation>.Select(x => x). Unsure why this works, maybe just type coercion?
+
 Breaking change with database sequences - Need to add `ValueGeneratedNever` to property in entity configuration.
 
 Because EFCore 2 used to pull things into memory, behaviours often change, e.g. Ordering wasn't working for some reason, and I realised that of course it wasn't, it was only one one table join, but in EFCore 2, that would have been the entire dataset, but in 3, it was doing that in the DB, then joining in more tables and coming up with some semi-sorted result.
