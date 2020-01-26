@@ -164,7 +164,7 @@ namespace AssetOptimiser
             foreach (var picture in pictures)
             {
                 var newPath = $"{Path.GetFileNameWithoutExtension(picture.FileName)}.webp";
-                var arg = $"{picture.FileName} -o {newPath} -mt -m 6 -pass 10 -q 80";
+                var arg = $"{picture.FileName} -o {newPath} -mt -m 6 -pass 10 -q 90";
                 await StartProcess(cwepPath, picture.Directory, arg);
             }
         }
