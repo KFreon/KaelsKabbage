@@ -22,3 +22,7 @@ I do like a bit of Blender, and I got some wind in my sails after doing the obli
 {{< render_img description="This was going to be a bright grassy scene, but then I needed to hide the bad grass." rendertime="~1 hour" samples="100" >}}
 {{< image path="img/Grass" alt="Spooky :) Ground turned out really good" nospacer="true" >}}
 {{< /render_img >}}  
+
+{{< render_img description="Olives are my favourite single food. Good inspiration." rendertime="25 seconds" samples="100" >}}
+{{< image path="img/Olives" alt="Olives on a plate!" >}}
+{{< /render_img >}}  
