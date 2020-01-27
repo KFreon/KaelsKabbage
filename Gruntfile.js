@@ -1,5 +1,4 @@
 var toml = require("yamljs");
-var S = require("string");
 
 var CONTENT_PATH_PREFIX = "content";
 
