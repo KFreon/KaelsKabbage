@@ -1,0 +1,20 @@
+<div class="render">
+    {{ .Inner }}
+    <div class="info">
+        <p class="description">{{ .Get "description" }}</p>
+        <div class="details">
+            <p>
+                <strong>🛠Engine: </strong>
+                <span>{{ with .Get "engine" }}{{ . }}{{ else }}Cycles (with denoiser node){{ end }}</span>
+            </p>
+            <p>
+                <strong>🕑Render Time: </strong>
+                <span>{{ .Get "rendertime" }}</span>
+            </p>
+            <p>
+                <strong>🔢Samples: </strong>
+                <span>{{ .Get "samples" }}</span>
+            </p>
+        </div>
+    </div>
+</div>

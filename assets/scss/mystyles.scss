@@ -59,6 +59,10 @@ small {
 .media {
     text-align: center;
 
+    &.video {
+        margin-bottom: 2rem;
+    }
+
     .image {
         border-radius: 5px;
         cursor: pointer;
@@ -74,6 +78,10 @@ small {
     color: slategray;
     font-size: 75%;
     margin-bottom: 2rem;
+
+    &.nospacer {
+        margin-bottom: 0;
+    }
 }
 
 .split-code-container {
@@ -245,6 +253,23 @@ blockquote {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.85); /* Black w/ opacity */
 
+    .hq-button {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        font-size: 1.5rem;
+        padding: 0.5rem;
+        background-color: transparent;
+        border: 1px solid grey;
+        color: white;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+            box-shadow: 0px 0px 5px 0px grey;
+        }
+    }
+
 
     /* Modal Content (Image) */
     .modal-content {
@@ -276,6 +301,28 @@ blockquote {
             color: #bbb;
             text-decoration: none;
             cursor: pointer;
+        }
+    }
+}
+
+.render {
+    margin-bottom: 1rem;
+
+    .info {
+        p {
+            font-size: 0.8rem;
+        }
+
+        .description {
+            margin: 0;
+        }
+
+        .details {
+            display: flex;
+
+            p {
+                margin-right: 2rem;
+            }
         }
     }
 }

@@ -41,8 +41,18 @@
     "HugoShortcode Video": {
         "prefix": "hvideo",
         "body": [
-            "{{% video path=\"$1\" width=\"$2\" height=\"$3\" %}}"
+            "{{% video path=\"$1\" width=\"$2\" height=\"$3\" alt=\"$4\" %}}"
         ],
         "description": "Video Shortcode"
+    },
+
+    "HugoShortcode Render": {
+        "prefix": "hrender",
+        "body": [
+            "{{< render_img description=\"${1:description}\" rendertime=\"${2:xx seconds}\" samples=\"${3:20}\" >}}",
+            "himg$0",
+            "{{< /render_img >}}",
+        ],
+        "description": "Render Shortcode"
     }
 }

@@ -4,8 +4,7 @@
     <span class="close">&times;</span>
     
     <!-- Modal Content (The Image) -->
-    <img class="modal-content" id="fullscreen-image">
-    
-    <!-- Modal Caption (Image Text) -->
-    <div id="fullscreen-image-caption"></div>
+    <img class="modal-content" id="fullscreen-image" onload="fullscreenLoading(event)">
+
+    <button id="hq-button" class="hq-button" onclick="fullscreenHQClick(event)">View HQ</button>
 </div>
