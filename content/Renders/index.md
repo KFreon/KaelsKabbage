@@ -6,6 +6,8 @@ type: "renders"
 I do like a bit of Blender, and I got some wind in my sails after doing the obligatory [BlenderGuru Donut tutorial](https://www.youtube.com/watch?v=TPrnSACiTJ4), so here's some of them.  
 All textures used are from [Poligon](https://www.poliigon.com/)  
 
+<!--more-->  
+
 {{< render_img description="Added a true Australian treat. Lamington :)" rendertime="~30 seconds" samples="20" >}}
 {{< image path="img/Donut_WithMyMarble" alt="Obligatory Donut Render" nospacer="true" >}}
 {{< /render_img >}}  
