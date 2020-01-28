@@ -15,7 +15,10 @@ module.exports = function(grunt) {
                     return;
                 }
                 grunt.verbose.writeln("Parse file:",abspath);
-                pagesIndex.push(processFile(abspath, filename));
+                var index = processFile(abspath, filename);
+                if (index !== -1) {
+                    pagesIndex.push(index);
+                }
             });
 
             return pagesIndex;
@@ -37,6 +40,11 @@ module.exports = function(grunt) {
                 frontMatter = toml.parse(content[1].trim());
             } catch (e) {
                 console.error(e.message);
+            }
+            
+            if (frontMatter.draft === true) {
+                console.log('hereeeeeee');
+                return -1;
             }
 
             // Build Lunr index for this page

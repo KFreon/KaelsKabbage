@@ -4,12 +4,13 @@ type: "renders"
 ---
 
 I do like a bit of Blender, and I got some wind in my sails after doing the obligatory [BlenderGuru Donut tutorial](https://www.youtube.com/watch?v=TPrnSACiTJ4), so here's some of them.  
+All textures used are from [Poligon](https://www.poliigon.com/)  
 
 {{< render_img description="Added a true Australian treat. Lamington :)" rendertime="~30 seconds" samples="20" >}}
-{{< image path="img/DonutRENDER" alt="Obligatory Donut Render" nospacer="true" >}}
+{{< image path="img/Donut_WithMyMarble" alt="Obligatory Donut Render" nospacer="true" >}}
 {{< /render_img >}}  
 
-{{% video path="img/Doonut" width="1920" height="1080" alt="I can almost hear it" %}}  
+{{% video path="img/Donut_WithMyMarble" width="1920" height="1080" alt="I can almost hear it" %}}  
 
 {{< render_img description="I like floating rocks ¯\_(ツ)_/¯" rendertime="60 seconds" samples="20" >}}
 {{< image path="img/FloatingRocks" alt="Random floating rock" nospacer="true" >}}
