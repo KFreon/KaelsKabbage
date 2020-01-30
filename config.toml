@@ -6,7 +6,6 @@ paginate        = 10
 googleAnalytics = "UA-122097969-1"
 pygmentsCodeFences = true
 pygmentsStyle = "manni"
-pygmentsUseClasses = true
 assetDir = "."
 
 [permalinks]
