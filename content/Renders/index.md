@@ -29,3 +29,7 @@ All textures used are from [Poligon](https://www.poliigon.com/)
 {{< render_img description="Olives are my favourite single food. Good inspiration." rendertime="25 seconds" samples="100" >}}
 {{< image path="img/Olives" alt="Olives on a plate!" >}}
 {{< /render_img >}}  
+
+{{< render_img description="Finally fixed the olives. Note the differences mainly in the olives themselves, jar, and fork. I wasn't happy with the materials originally, and I want to show the difference now afterwards." rendertime="25 seconds" samples="100" >}}
+{{< image path="img/Olives_Difference" alt="Old olive render vs new bits" >}}
+{{< /render_img >}}  
