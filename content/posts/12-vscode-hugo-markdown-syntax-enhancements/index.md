@@ -12,6 +12,7 @@ The theme I was (still am) using didn't have great support for some of the markd
 
 <!--more-->  
 
+**EDIT (1-2-2020):** I rewrote the syntax highlighting bits at the bottom. See [the revisit](/post/hugo-syntax-extension-revisited) for the updated syntaxes.  
 **EDIT:** After this, I realised my shortcodes were a bit annoying to type, so I made some snippets for them (at the end of the page)
 
 This ended up working fine, things displayed how I wanted them and all was right, except when I went back to posts and had a look.  
@@ -34,7 +35,7 @@ Long story short, I trawled through posts and discovered [this post](https://www
   * Note that I didn't base mine off any other tmLanguage since it wasn't adding a new language, just extending Markdown.   
 * `injectTo` in the **grammars** section of **package.json** and `injectionSelector` in the main area of the **tmLanguage** file are key.  
 * Some research for styling will probably be necessary.  
-* Regex is hard. (I mean really...)
+* Regex is hard. (I mean really...) **EDIT (1-2-2020):** It's hard when it's done wrong for sure :)  
 
 ``` regex
 (\w+)\s([a-zA-Z]+)=\"(\S+)\"\s*(?:([a-zA-Z]+)=\"([^\"]+)\")*
@@ -103,6 +104,8 @@ Multiple capture groups are also possible to style different parts of the syntax
 In the end, I came up with some syntax highlighting rules for Hugo Shortcodes, specifically my shortcodes and style thereof, so there's no guarantee that it'll work for anyone elses, but perhaps it'll help someone out.  
 
 [Extension repository](https://dev.azure.com/kaellarkin/_git/Hugo-Shortcode-Syntax-Highlighting) (not currently published)  
+**EDIT (1-2-2020):** Repository has [changed](https://github.com/kael-larkin/hugo-vscode-shortcode-syntax-highlighting) and it is now [published](https://marketplace.visualstudio.com/items?itemName=kaellarkin.hugo-shortcode-syntax
+). For more info, see [The Revisit](/post/hugo-syntax-extension-revisited).  
 
 EDIT  
 <details>
