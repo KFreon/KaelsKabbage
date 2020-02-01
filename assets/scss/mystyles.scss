@@ -66,10 +66,10 @@ small {
     .image {
         border-radius: 5px;
         cursor: pointer;
-        transition: 0.3s;
+        transition: all 0.3s;
 
         &:hover {
-            opacity: 0.7;
+            box-shadow: 0px 0px 5px 5px grey;
         }
     }
 }
@@ -244,69 +244,6 @@ blockquote {
     height: 100%;
     width: 290px;
     border-right: 10px solid #eee;
-}
-
-.fullscreen-modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.85); /* Black w/ opacity */
-
-    .hq-button {
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        font-size: 1.5rem;
-        padding: 0.5rem;
-        background-color: transparent;
-        border: 1px solid grey;
-        color: white;
-        cursor: pointer;
-        transition: all 0.2s;
-
-        &:hover {
-            box-shadow: 0px 0px 5px 0px grey;
-        }
-    }
-
-
-    /* Modal Content (Image) */
-    .modal-content {
-        width: 100%;
-        object-fit: contain;
-        margin-left: 10%;
-        margin-right: 10%;
-        animation-name: zoom;
-        animation-duration: 0.3s;
-        min-width: 1px;
-
-        @keyframes zoom {
-            from {transform:scale(0)} 
-            to {transform:scale(1)}
-        }
-    }
-
-    /* The Close Button */
-    .close {
-        position: absolute;
-        top: 15px;
-        right: 35px;
-        color: #f1f1f1;
-        font-size: 40px;
-        font-weight: bold;
-        transition: 0.3s;
-
-        &:hover, &:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    }
 }
 
 .render {
