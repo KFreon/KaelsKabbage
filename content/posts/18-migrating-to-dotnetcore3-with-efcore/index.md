@@ -1,6 +1,6 @@
 ---
 title: "Migrating to dotnetcore 3.1 (mostly EFCore)"
-date: 2020-01-31T20:57:48+10:00
+date: 2020-02-01T20:57:48+10:00
 type: "post"
 slug: "migrating-to-dotnetcore3-with-efcore"
 tags: ["dotnetcore", "Entity Framework"]
@@ -132,36 +132,41 @@ The first is easy to understand, but the latter two are a bit of a mystery for m
 - `DBTable<type>.Where(x => ValidateItem(x)).ToArray()` (Generally speaking. Sometimes, if the function is super simple, or an Expression, it can be translated.)  
 - `Table.GroupJoin(OtherTable)`  
 - `Table.SelectMany(x => x.Property)`  
-- `Table.GroupBy(x => x)` where x is a complex type (non-sql type) e.g. x could be a Guid, int, etc, but not an entity. More on this later.  
+- `Table.GroupBy(x => x)` where x is a complex type (non-sql type) e.g. some entity, NodaTime LocalDate, etc. More on this later.  
 
 **I also had troubles with things:** 
 
 - `FinalProjection.Select(x => x.Navigation)`  
 - `Table.Where(x => x.Navigation.Id == 6)`   
 
-These often resulted in the `Relational` or `Navigation` errors from above. They could sometimes be bypassed with `x.Navigation.Select(t => t)`, although I'm unsure why.   
+> These often resulted in the `Relational` or `Navigation` errors from above. They could sometimes be bypassed with `x.Navigation.Select(t => t)`, although I'm unsure why.   
 
 - Database Sequences and generated/sourced Ids
 
-**A quick aside**, [value converters](https://docs.microsoft.com/en-us/ef/core/modeling/value-conversions) DO still work in these queries. I believed they didn't for some time, and went around exposing all the underlying columns.
+> [Value converters](https://docs.microsoft.com/en-us/ef/core/modeling/value-conversions) DO still work in these queries. I believed they didn't for some time, and went around exposing all the underlying columns.
 
 ### The GroupBy Problem  
-One of the most frustrating items for us was that `GroupBy` didn't work anymore. We did a lot of grouping, then ordering, then returning data.  
-Although it wasn't being done in the database, it was still doing ok compared to massive cross multiplication leading to millions of rows that I got with my first attempt to rewrite this query.  
-Now we usually do all our grouping, ordering, etc but get the ID's only, so we can query later to get the rest of the navigations etc. This cuts down the number of joins required, and thus the number of rows that have to be returned.  
+One of the most frustrating issues for us was that `GroupBy` didn't work anymore.  
+We used a common pattern of ordering and paging, and used `GroupBy` to do it.  
+The issue is that in 2.1, it was being done through some amalgamation of DB and client-side, thus we were allowed to group on whole entities, which we can't do anymore.   
+The fix we went with was applying filtering and ordering, return the ID's only, THEN fetch all that data and group by on the client.  
+Approaching it this way allowed us to keep the ordering, grouping, etc, without all the joins blowing out into massive cross mutliplication, while allowing us to do the ordering and paging on the database.  
 
 An example of the `GroupBy` problem:  
 
 If you have a type: `{Guid Id, string Name, int Price}`, and you want to have a result: `{Id, Name, List<int> Prices}`.  
 
 ```go  
+// Worked on 2.1 and brought the required rows back (or the whole table?) and functioned correctly.
+// Fails to translate in EFCore 3 as you haven't told it how to aggregate the price.
 SomeArray
   .GroupBy(x => new { x.Id, x.Name })
-  .ToList();  // Will fail to translate in EFCore 3 as you haven't told it how to aggregate the price.  
+  .ToList();    
 
+// One option for 3.1 to do client-side.  
 SomeArray
   .ToList()
-  .GroupBy(x => new { x.Id, x.Name }); // Could be used to do it client-side.  
+  .GroupBy(x => new { x.Id, x.Name });  
 
 // This can done to group by the ID and Name to get them and the MAX price, just not ALL the prices
 SomeArray
@@ -180,17 +185,29 @@ config.HasKey(x => x.Id);
 config.Property(x => x.Id).ValueGeneratedNever();
 ```
 
-#### Ordering differences
+#### Ordering Differences
 Because EFCore 2 used to pull things into memory, behaviours were C# like. Database ordering isn't always the same :(   
 For me, ordering of Includes wasn't behaving consistently. Ok, I need to get around that another way, fair enough.  
 Another situation was that we had ordering on an early table join, which was working fine in EFCore 2 because it was clientside.  
 EFCore 3 disregarded that OR at least didn't preserve the ordering indicated after further operations, like joins, which is fair enough.  
 It also seems that ordering on a nullable field wasn't being done correctly in EFCore 2x, and resulted in nulls spread throughout the rest of the values. EFCore 3 has fixed that.  
 
-#### Unit testing
-Catch 22 when unit testing EF queries - I had a query that worked fine in EF but failed in the unit test (NSubstitute, etc) because one of the entites  was null, and while SQL could handle that, C# + Linq couldn't.
+#### Unit Testing
+Catch 22 when unit testing EF queries - I had a query that worked fine in EF but failed in the unit test (NSubstitute, etc) because one of the entites was null, and while SQL could handle that, C# + Linq couldn't.
+For reference, this is issue in question:  
+
+```go
+.Select(x => x.NullableProperty.Id)
+```  
+The tests mocked out the DB call, and it turns out C# doesn't like that NullableProperty being null :)  
+SQL generates a null check in that case, and so the actual call works fine in Production.  
 In the end, there was no way I could make both of them happy, so I had to move to a subcutaneous test that hit a localdb instance.  
 
+
 ### Conclusion
-Ultimately we were abusing the frameworks we had and we were allowed to do so in EFCore 2, making the move to EFCore 3 more difficult.  
 The actual dotnetcore 2 --> 3 migration was quite nice and simple.  
+The EFCore migration was more difficult, but it was mostly due to our abuse of EFCore 2 (although we really shouldn't have been allowed to)  
+I feel like some of our pain points could have been solved with entity configuration, but I wasn't able to figure it out.  
+If you have more luck migrating or insight on any of this, I'd love to hear from you!  
+
+Happy dotnetcore 3.1! 

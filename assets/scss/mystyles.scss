@@ -146,6 +146,10 @@ blockquote {
     border-radius: 5px;
     margin-left: 1rem;
     margin-bottom: 1rem;
+
+    p {
+        margin: 0;
+    }
 }
 
 .category {
