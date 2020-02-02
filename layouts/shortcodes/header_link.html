@@ -1,0 +1,8 @@
+{{ $id := .Get 0 | lower | replaceRE "[^0-9a-z]" "-" | replaceRE "-+" "-" -}}
+<a href="#{{ $id }}">
+    <h3 id="{{ $id }}">{{ .Get 0 }}</h3>
+</a>
+
+<!-- From this legend
+https://github.com/vonbrownie/circuidipity/blob/master/layouts/shortcodes/note-heading.html
+-->

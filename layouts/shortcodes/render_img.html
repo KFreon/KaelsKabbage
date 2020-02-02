@@ -1,7 +1,14 @@
 <div class="render">
     {{ .Inner }}
     <div class="info">
-        <p class="description">{{ .Get "description" }}</p>
+        <div class="description">
+            {{ with .Get "description" }}
+                {{ $arg := split . "|" }}
+                {{ range $arg }}
+                    <p>{{ . }}</p>
+                {{ end }}
+            {{ end }}
+        </div>
         <div class="details">
             <p>
                 <strong>🛠Engine: </strong>

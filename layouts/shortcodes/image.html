@@ -3,10 +3,9 @@
         <picture>
             <source srcset='{{ .Get "path" }}.webp' type="image/webp">
             <source srcset='{{ .Get "path" }}.png' type="image/png"> 
-            <img class="image" src='{{ .Get "path" }}.png' alt='{{ with .Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}'>
+            <img class="image" src='{{ .Get "path" }}.png' alt='{{ with .Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}' width='{{ with .Get "width" }}{{ . }}{{ end }}'>
         </picture>
     </a>
-    
     
     <div class='alt-text {{ with .Get "nospacer" }}nospacer{{ else }}{{ end }}'>{{ .Get "alt" }}</div>
 </div>

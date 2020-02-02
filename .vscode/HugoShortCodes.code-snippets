@@ -46,10 +46,19 @@
         "description": "Video Shortcode"
     },
 
+    "HugoShortcode Header Link": {
+        "prefix": "hheader",
+        "body": [
+            "{{% header_link \"$1\" %}}"
+        ],
+        "description": "Video Shortcode"
+    },
+
     "HugoShortcode Render": {
         "prefix": "hrender",
         "body": [
             "{{< render_img description=\"${1:description}\" rendertime=\"${2:xx seconds}\" samples=\"${3:20}\" >}}",
+            "{{% header_link \"$4\" %}}",
             "himg$0",
             "{{< /render_img >}}",
         ],

@@ -256,10 +256,14 @@ blockquote {
 
         .description {
             margin: 0;
+
+            p {
+                margin: 0;
+            }
         }
 
         .details {
-            margin-top: 0.2rem;
+            margin-top: 0.5rem;
             display: flex;
 
             p {
