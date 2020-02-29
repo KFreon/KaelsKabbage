@@ -46,4 +46,9 @@ All textures used are from [Poligon](https://www.poliigon.com/)
 {{% header_link "Urban Takeaway Coffee" %}}
 {{< image path="img/TakeawayCoffee" alt="Takeaway coffee up on a wooden table, so relaxing" >}}
 {{< image path="img/TakeawayCoffee_Less_DOF" alt="Less DOF, since I'm pleased with the bridge :)" width="500px" >}}
+{{< /render_img >}}  
+
+{{< render_img description="My go at an enchanting table. Not really happy with it, but sometimes you're just done, you know?" rendertime="15 minutes" samples="500" >}}
+{{% header_link "Enchanting table" %}}
+{{< image path="img/EnchantingTable" alt="Enchanting table with some fun knick knacks" >}}
 {{< /render_img >}}

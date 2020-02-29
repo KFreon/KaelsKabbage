@@ -20,7 +20,7 @@ namespace AssetOptimiser
 
         static async Task Main(string[] args)
         {
-            if (!ProcessCmdLineArgs(args, out int crf, out string rootPath))
+            if (!ProcessCmdLineArgs(args, out int crf, out int webpQuality, out string rootPath))
                 return;
 
             Formats = new[]
@@ -79,7 +79,7 @@ namespace AssetOptimiser
             }
 
             if (pictures.Any())
-                await ConvertPictures(pictures);
+                await ConvertPictures(pictures, webpQuality);
             else
                 Console.WriteLine("No images to convert!");
 
@@ -95,12 +95,13 @@ namespace AssetOptimiser
             Console.ReadLine();
         }
 
-        static bool ProcessCmdLineArgs(string[] args, out int crf, out string rootPath)
+        static bool ProcessCmdLineArgs(string[] args, out int crf, out int webpQuality, out string rootPath)
         {
             crf = 30;
+            webpQuality = 90;
             if (args?.Any() != true)
             {
-                Console.WriteLine("1: Root path to search, 2: (optional) CRF 0-51");
+                Console.WriteLine("1: Root path to search, 2: (optional) CRF 0-51, 3: (optional) Q 1-100");
                 rootPath = null;
                 return false;
             }
@@ -108,13 +109,39 @@ namespace AssetOptimiser
             rootPath = args[0];
             if (args.Length > 1)
             {
-                if (!int.TryParse(args[1], out crf))
-                    throw new ArgumentException("Second argument should be CRF, i.e. an int 0-51");
+                foreach(var arg in args.Skip(1))
+                {
+                    (var crfq, var webp) = ProcessArg(arg);
+                    if (crfq.HasValue) crf = crfq.Value;
+                    if (webp.HasValue) webpQuality = webp.Value;
+                }
             }
 
             return true;
         }
 
+        static (int? CRF, int? webpQuality) ProcessArg(string arg)
+        {
+            var isCRF = arg.ToLower().Contains("crf");
+            if (isCRF)
+            {
+                if (!int.TryParse(arg.Replace("--crf=", ""), out int crf))
+                    throw new ArgumentException("CRF is not formatted right. Should be '--crf=0-51'");
+
+                return (crf, null);
+            }
+
+            var isQ = arg.ToLower().Contains("webpq");
+            if (isQ)
+            {
+                if (!int.TryParse(arg.Replace("--webpq=", ""), out int webpQ))
+                    throw new ArgumentException("webpQ is not formatted right. Should be '--webpq=1-100'");
+
+                return (null, webpQ);
+            }
+
+            return (null, null);
+        }
 
         static IEnumerable<(string Directory, string FileName)> GetPictures(string rootPath)
         {
@@ -158,13 +185,13 @@ namespace AssetOptimiser
         }
 
 
-        static async Task ConvertPictures(IEnumerable<(string Directory, string FileName)> pictures)
+        static async Task ConvertPictures(IEnumerable<(string Directory, string FileName)> pictures, int webpQuality)
         {
             Console.WriteLine($"Converting {pictures.Count()} pictures...");
             foreach (var picture in pictures)
             {
                 var newPath = $"{Path.GetFileNameWithoutExtension(picture.FileName)}.webp";
-                var arg = $"{picture.FileName} -o {newPath} -mt -m 6 -pass 10 -q 90";
+                var arg = $"{picture.FileName} -o {newPath} -mt -m 6 -pass 10 -q {webpQuality}";
                 await StartProcess(cwepPath, picture.Directory, arg);
             }
         }
@@ -179,8 +206,6 @@ namespace AssetOptimiser
                 await StartProcess(ffmpegPath, job.Directory, arg);
             }
         }
-
-
 
         static string GetFFMpegPath()
         {
