@@ -21,7 +21,6 @@ Need to think about how the Linq will translate into SQL.
 
 - `DBTable<type>.Where(x => ValidateItem(x)).ToArray()`
 - GroupJoin  
-- SelectMany  
 - GroupBy
 
 
@@ -131,7 +130,6 @@ The first is easy to understand, but the latter two are a bit of a mystery for m
 
 - `DBTable<type>.Where(x => ValidateItem(x)).ToArray()` (Generally speaking. Sometimes, if the function is super simple, or an Expression, it can be translated.)  
 - `Table.GroupJoin(OtherTable)`  
-- `Table.SelectMany(x => x.Property)`  
 - `Table.GroupBy(x => x)` where x is a complex type (non-sql type) e.g. some entity, NodaTime LocalDate, etc. More on this later.  
 
 **I also had troubles with things:** 
