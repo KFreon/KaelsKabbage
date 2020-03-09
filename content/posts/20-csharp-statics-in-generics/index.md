@@ -1,50 +1,93 @@
 ---
-title: "C# - Static members in Generic classes don't work"
+title: "C# - Static members in Generic classes are weird"
 date: 2020-03-04T14:51:26+10:00
-draft: true
+draft: false
 type: "post"
 slug: "csharp-statics-in-generics"
-tags: []
+tags: ["csharp", "generics"]
 ---
 
-[Generic classes](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/) are useful coding constructs that I thought I mostly understood, but I had an issue with them recently that blew my mind... Static members in Generic classes don't work as you naively expect.   
+[Generic classes](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/) are useful coding constructs that I thought I mostly understood, but I had an issue with them recently that blew my mind... Static members in Generic classes don't work as I naively expected.   
 
 <!--more-->  
 
+# Setup
 The conversation went something like this:  
-- The tests fail due to some concurrency issues in the database prework for test setup.  
-- It has async code, so add `private static readonly SemaphoreSlim` and we're done!  
-- Wait...that didn't help?  
+
+- The tests fail due to some concurrency issues in the database prework for test setup.   
+- It has async code, so add `private static readonly SemaphoreSlim` and we're done!   
+- Wait...that didn't help?   
 - Debugging shows it's still concurrent?! HOW!?!?!11  
 
 {{< image path="img/Statics-Generics" alt="Parallel stacks indicating the bypassing of the semaphore" >}}  
 
-Before I continue, I had an abstract generic base class deciding the majority of the test setup logic, with some concrete implementations setting up the specific scenarios.  
+# Background  
+I had: 
 
-I then jumped onto my internal company channels for assistance (after assuring myself that `static` really did what I thought it did).  
+- Abstract base class to perform test setup  
+- Several concrete implementations for various test scenarios  
+- Recently (and slipping my mind) made generic for readbility
+
+# How is it so?
+I jumped onto my internal company channels for assistance (after assuring myself that `static` really did what I thought it did).  
 The conversation wound around as I re-explained my poorly worded initial question, but the themes were:  
-- Are you really sure all those threads are PAST the semaphore, or just one and the rest are waiting? 
-- Maybe the debugger isn't behaving as expected?  
-- Maybe the test suite isn't behaving as expected?  
 
-Eventually, someone piped up with: "Statics in generic classes are not the same value in each of their concrete implementations." which immediately drew attention since it was a bit odd. 
-"Surely statics are...static? That's the point?"  
+- Are you really sure all those threads are PAST the semaphore, or just one and the rest are waiting?  
+- Maybe the debugger isn't behaving as expected?   
+- Maybe the test suite isn't behaving as expected?   
 
-The conversation bounced around on this topic a bit as well, and it does turn out that statics in generic classes don't behave as you might initially expect.  
-This was mindblowing to me, so maybe someone else will find it interesting.  
+As I was investigating these avenues, someone piped up with: 
 
+> "Statics in generic classes are not the same value in each of their concrete implementations."  
+
+This immediately drew my attention since it was a bit odd. Surely statics are...**static**? That's the point?  
+
+The conversation bounced around on this topic a bit, and it does turn out that statics in generic classes don't behave as you might initially expect.  
+Static members in generic classes aren't the same as in normal classes (on the face of it)  
+
+# Explanation  
 Generic classes take type parameters, and the static member you have is static, but only within that generated concrete type.  
 e.g.  
-``` go
+``` cs
 public class GenericTest<T> {
-  private static readonly int _imStatic;
+  public static int ImStatic;
 }
+
+var str = new GenericTest<string>();
+var number = new GenericTest<int>();
+
+str.ImStatic != number.ImStatic;  // Brainsplosion!
 ```  
+  
+It kinda makes sense when I think of Generics as templates, and the compiler generates a concrete implementation of them for each type used in your code, then each type parameter is a different class.  
+I'm aware that's not quite how it works, and I don't really know how it works, but this works in my head :)  
 
-If you instantiate this class with `new GenericTest<string>`, all instances of this class with the type parameter `string` will share that static member, but if you have another instantiation `new GenericTest<char>`, it will have a different version of that static.  
-It kinda makes sense if you think of Generics as templates, and the compiler generates a concrete implementation of them for each type used in your code, then each type parameter is a different class.  
-I'm fully aware that's not quite how it works, and I don't really know how it works, but this works in my head :)  
+The IDE's have [warnings](https://docs.microsoft.com/en-us/visualstudio/code-quality/ca1000?view=vs-2019) about this as well, although the default for VS was a bit lax, barely noticable.  
 
-The IDE's have warnings about this as well, although the default for VS was a bit lax, barely noticable.  
+# Solution  
+The solution we went with was another static class, unrelated to the others, that just held the Semaphore for locking purposes.  
+Not the nicest or cleanest, but it's not complicated and does the job.  
 
-So the takeaway: Static members in generic classes aren't necessarily behaving the way you expect.
+``` cs
+internal static class TestDBSetupLocker {
+  private static SemaphoreSlim _locker = new SemaphoreSlim(1, 1);
+
+  public static Task Lock() {
+    return _locker.WaitAsync();
+  }
+
+  public static void Release() {
+    _locker.Release();
+  }
+}
+
+public abstract class TestBase<T> {
+  public async Task Setup() {
+    await TestDBSetupLocker.Lock();
+
+    // ... DB setup stuff
+
+    TestDBSetupLocker.Release();
+  }
+}
+```
