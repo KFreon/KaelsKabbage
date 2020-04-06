@@ -52,3 +52,13 @@ All textures used are from [Poligon](https://www.poliigon.com/)
 {{% header_link "Enchanting table" %}}
 {{< image path="img/EnchantingTable" alt="Enchanting table with some fun knick knacks" >}}
 {{< /render_img >}}
+
+{{< render_img description="The CG Fasttrack tutorial sword. I ended up making a lot of the assets/textures/effects out of stubborness. The final result suffers for it, but I learned many new things." rendertime="5 seconds..." samples="64" engine="Eevee" >}}
+{{% header_link "Sword from CG Fasttrack" %}}
+{{< image path="img/Sword" alt="Sword with cinematic compositing" >}}
+{{< /render_img >}}
+
+{{< render_img description="I almost like this one better. Still, compositing can add much more flair than I gave it credit for." rendertime="5 seconds..." samples="64" engine="Eevee" >}}
+{{% header_link "Sword WITHOUT cinematic compositing" %}}
+{{< image path="img/Sword_Original" alt="Sword WITHOUT compositing" >}}
+{{< /render_img >}}
