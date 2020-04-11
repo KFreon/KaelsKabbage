@@ -272,3 +272,39 @@ blockquote {
         }
     }
 }
+
+.render-list {
+    &.tiles {
+        display: flex;
+        flex-wrap: wrap;
+
+        > div {
+            width: 15rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+    
+        .info {
+            display: none;
+        }
+    }
+}
+
+.render-toggle-buttons {
+    flex-basis: 100%;
+
+    button {
+        border: 1px solid lightgrey;
+        background-color: transparent;
+        border-radius: 6px;
+        height: 3em;
+        width: 3em;
+        transition: all 0.25s;
+        outline-color: green;
+    }
+
+    .selected {
+        border-color: green;
+        box-shadow: 0px 0px 5px 0px green;
+    }
+}
