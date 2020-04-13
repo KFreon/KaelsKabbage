@@ -80,4 +80,9 @@ All textures used are from [Poligon](https://www.poliigon.com/), [HDRIHaven](htt
 {{< render_img description="I did another one from the other side so I could see all those cool runes :D" rendertime="5 seconds..." samples="64" engine="Eevee" >}}
 {{% header_link "Sword showing runes" %}}
 {{< image path="img/SwordRunesView" alt="Sword showing runes" >}}
+{{< /render_img >}}   
+
+{{< render_img description="Eggster!" rendertime="1.5 minutes..." samples="128" >}}
+{{% header_link "Happy Easter!" %}}
+{{< image path="img/Easter" alt="Easter Eggs" >}}
 {{< /render_img >}}
