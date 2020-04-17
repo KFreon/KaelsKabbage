@@ -1,6 +1,8 @@
 {{ define "main" }}
 <section>
     <h1 class="post-title">{{ .Title }}</h1>
-    {{ .Content }}
+    <div id="render-list" class="render-list">
+        {{ .Content }}
+    </div>
 </section>
 {{end}}

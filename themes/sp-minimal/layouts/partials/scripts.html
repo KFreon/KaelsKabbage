@@ -2,7 +2,8 @@
 {{ $jquery := resources.Get "static/js/zepto.min.js" }}
 {{ $lunr := resources.Get "static/js/lunr.min.js" }}
 {{ $search := resources.Get "static/js/search.js" }}
-{{ $combined := slice $jquery $lunr $search | resources.Concat "js/bundle.js" | minify }}
+{{ $scripts := resources.Get "static/js/Scripts.js" }}
+{{ $combined := slice $jquery $lunr $search $scripts | resources.Concat "js/bundle.js" | minify }}
 
 <script type="text/javascript" async src="{{ $combined.Permalink }}"></script>
 
