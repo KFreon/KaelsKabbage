@@ -8,10 +8,8 @@ var lunrIndex,
 // Initialize lunrjs using our generated index file
 function initLunr() {
     // First retrieve the index file
-    $.getJSON("/js/PagesIndex.json")
-        .done(function(index) {
+    $.getJSON("/js/PagesIndex.json", function(index) {
             pagesIndex = index;
-            console.log("index:", pagesIndex);
 
             // Set up lunrjs by declaring the fields we use
             // Also provide their boost level for the ranking
@@ -31,10 +29,6 @@ function initLunr() {
                     this.add(page);
                 }, this);
             });
-        })
-        .fail(function(jqxhr, textStatus, error) {
-            var err = textStatus + ", " + error;
-            console.error("Error getting Hugo index file:", err);
         });
 }
 

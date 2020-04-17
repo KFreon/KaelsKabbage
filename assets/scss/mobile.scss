@@ -26,6 +26,7 @@
 
     section {
         margin-left: 10rem;
+        width: 80%;
     }
 
     footer {
@@ -93,5 +94,9 @@
     .sidebar {
         width: 9rem;
         border-right-width: 2px;
+    }
+
+    .description {
+        font-size: 1rem;
     }
 }
