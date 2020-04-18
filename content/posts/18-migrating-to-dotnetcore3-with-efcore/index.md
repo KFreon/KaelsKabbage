@@ -37,7 +37,7 @@ There were also some simple changes to Program.cs and Startup.cs (in my case, YM
 {{% splitLeft title="Original" %}}
 ```go
 var webHostBuilder = WebHost.CreateDefaultBuilder(args)
-  .ConfigureAppConfiguration(builder => additionalConfig?.Invoke(builder))
+  .ConfigureAppConfiguration(builder => additionalConfig.Invoke(builder))
   .UseContentRoot(appRootPath)
   .ConfigureServices(services => services.AddAutofac())
   .UseStartup<TStartup>()
@@ -51,7 +51,7 @@ var webHostBuilder = Host.CreateDefaultBuilder(args)
   .UseSerilog()
   .ConfigureWebHostDefaults(webBuilder =>
   {
-      webBuilder.ConfigureAppConfiguration(builder => additionalConfig?.Invoke(builder))
+      webBuilder.ConfigureAppConfiguration(builder => additionalConfig.Invoke(builder))
           .UseContentRoot(appRootPath)
           .UseStartup<TStartup>();
   });
@@ -87,13 +87,13 @@ app.UseEndpoints(endpoints => endpoints.MapControllers());  <-- instead of UseMv
 Test config needed adjusting: 
 {{% split %}}
 {{% splitLeft title="Original" %}}
-```go
+```cs
 Server = new TestServer(Program
   .GetWebHostBuilder<TestServerStartup<TestUserIdentity>>(appRootPath, null, TestConfiguration.AddTestConfig));
 ```
 {{% /splitLeft %}}
 {{% splitRight title="Dotnetcore3" %}}
-```go
+```cs
 var server = await Program
   .GetWebHostBuilder<TestServerStartup<TestUserIdentity>>(appRootPath, null, TestConfiguration.AddTestConfig)
   .ConfigureWebHost(webBuilder => webBuilder.UseTestServer()).StartAsync();
@@ -154,7 +154,7 @@ An example of the `GroupBy` problem:
 
 If you have a type: `{Guid Id, string Name, int Price}`, and you want to have a result: `{Id, Name, List<int> Prices}`.  
 
-```go  
+```cs
 // Worked on 2.1 and brought the required rows back (or the whole table?) and functioned correctly.
 // Fails to translate in EFCore 3 as you haven't told it how to aggregate the price.
 SomeArray

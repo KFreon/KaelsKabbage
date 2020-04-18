@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Code:normal,ital:400:700');
+
 p {
     font-size: 1.2rem;
 }
@@ -86,29 +88,31 @@ small {
 
 .split-code-container {
     display: flex;
-
-    .left {
-        margin-right: 1rem;
-        width: 50%;
-    }
-
-    .right {
-        width: 50%;
-    }  
+    flex-direction: column;
 }
 
+code {
+    font-family: 'Fira Code';
+    font-size: 1rem;
+}
+
+// Inline stuff
 p, li, section {
     > code {
-        font-family: Inconsolata,monospace;
         background-color: rgba(0, 0, 0, .05);
         color: rgba(0,0,0,.7);
         padding: 0.1rem 0.5rem;
+        border-radius: 5px;
     }
 }
 
+// Code blocks
 pre {
+    overflow-x: auto;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
     > code {
-        font-size: 0.8rem;;
+        font-size: 0.8rem;
     }
 }
 

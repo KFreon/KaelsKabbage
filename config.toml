@@ -5,7 +5,7 @@ theme = "sp-minimal"
 paginate        = 10
 googleAnalytics = "UA-122097969-1"
 pygmentsCodeFences = true
-pygmentsStyle = "manni"
+pygmentsStyle = "native"
 assetDir = "."
 
 [permalinks]

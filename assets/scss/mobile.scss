@@ -5,6 +5,11 @@
 
     p {
         font-size: 2rem;
+        overflow-wrap: break-word;
+    }
+
+    ul {
+        overflow-wrap: break-word;
     }
 
     body {
@@ -49,19 +54,14 @@
         font-size: 1.5rem;
     }
 
-    .split-code-container {
-        display: block;
-        .left {
-            margin-right: unset;
-            width: 100%;
-        }
-        .right {
-            width: 100%;
-        }
-    }
-
     code {
         font-size: 1.5rem;
+    }
+
+    pre {
+        code {
+            font-size: 1.5rem;
+        }
     }
 
     .tag-list {
