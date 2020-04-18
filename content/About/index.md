@@ -6,7 +6,7 @@ type: "renders"
 <img class="about-pic" src="img/Headshot.jpg" alt="My delightful face and cat" width="300"/>
 
 My name is Kael Larkin.  
-I'm a developer at [Readify](https://readify.net).  
+I'm a developer at [Telstra Purple](https://www.telstra.com.au/business-enterprise/services/telstra-purple).  
 
 **Primary languages:** C#, Javascript/Typescript  
 **Favourite languages:** C#, Typescript (Strongly typed for life)  
