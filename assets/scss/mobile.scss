@@ -99,4 +99,23 @@
     .description {
         font-size: 1rem;
     }
+
+    .recent-title {
+        font-size: 1.4rem;
+    }
+
+    .recent-posts {
+        position: unset;
+        right: unset;
+        top: unset;
+        width: 8rem;
+
+        li {
+            font-size: 1rem;
+            height: 2.5rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
 }

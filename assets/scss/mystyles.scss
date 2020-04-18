@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Fira+Code:normal,ital:400:700');
-
 p {
     font-size: 1.2rem;
 }
@@ -310,5 +308,31 @@ blockquote {
     .selected {
         border-color: green;
         box-shadow: 0px 0px 5px 0px green;
+    }
+}
+
+.recent-posts {
+    display: block;
+    margin: auto;
+    border: none;
+    background: none;
+    height: unset;
+
+    li {
+        font-size: 0.9rem;
+        width: auto;
+        margin: auto;
+        border: none;
+        text-align: right;
+        float: unset;
+        height: 3rem;;
+
+        a {
+            display: unset;
+            text-align: unset;
+            padding: unset;
+            height: unset;
+            color: green;
+        }
     }
 }
