@@ -14,10 +14,25 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
- header {
-     width: unset;
-     position:  unset;
- }
+header {
+    width: unset;
+    position:  unset;
+}
+
+table {
+    width: unset;
+
+    tr {
+        td {
+            border: 1px solid #e5e5e5;
+
+            &:first-child {
+                font-weight: bold;
+                white-space: nowrap;
+            }
+        }
+    }
+}
 
 footer {
     bottom: 20px;
@@ -40,7 +55,7 @@ header, footer {
 }
 
 section {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     width: 60%;
     border: none;
 }
@@ -94,7 +109,6 @@ small {
 
 .split-code-container {
     display: flex;
-    flex-direction: column;
 }
 
 code {

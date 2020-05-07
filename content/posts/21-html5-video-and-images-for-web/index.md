@@ -15,50 +15,50 @@ I like being efficient with my bits and bytes. I bought into the `webp` image fo
 Recently I made a video longer than 2 seconds, so I started looking properly into codecs like VP9 and AV1.  
 Lets take a look into some video and image codecs and how the new shiny ones can be used.  
 
-I'm looking at codecs, not conatiners. This is better explained by others: 
-LINKS TOP BETTER POSTS  
-
-Essentially, MP4/MKV are containers, boxes that contain codecs (mp3, h264, VP9).
+Quick aside, MP4/MKV are containers, boxes that contain codecs (mp3, h264, VP9).  
+Codecs are the things I'm looking at here.
 
 # The Setup
-Moving forward, the codecs I care about are:  
 
-### Video
-- AV1
-- H264
-- VP9
-
-I'm not including H265 since it's not royalty free and probably doesn't have much future against these free ones.  
-
-### Image
-- webp (VP8 I think?)
-- png
-- jpg
-
-## Tools
-[FFMpeg](https://www.ffmpeg.org/) and the [Webp](https://developers.google.com/speed/webp) tools from google because they're common, simple, and reasonably well documented.  
-
-## Sources
-The sources I'm using are pngs from a Blender animation: ~8mb each, 1100 of them.  
+|        |       |
+| ------ | ----- |
+| Video Codecs  | AV1, h264, VP9 |
+| Image Codecs  | webp , png, jpg  |
+| Video Sources | PNGs from a Blender animation: ~8mb each, 1100 of them. [Result]() |
+| Image Sources | [The Floating Rock render PNG]() and [Sword]() |
+| Tools  | [FFMpeg](https://www.ffmpeg.org/) and the [Webp](https://developers.google.com/speed/webp) tools from google because they're common, simple, and reasonably well documented. |
 
 # The Plan
 I want to provide the best tradeoff between size and quality to users, while still providing compatibilty to those without the shiny toys (often mobile users).  
 This involves having a widely supported codec available, but providing better ones to those who can use them.  
 It's encoding time!  
 
-# Images
+# Image Codecs
 Generally speaking, png's are a lot of unnecessary bytes to transfer, and while jpg is less bytes, it suffers visually.  
 The only one I really considered was Webp as AVIF isn't supported yet and webp is widely supported.    
 
 ## Webp  
 [Webp](https://developers.google.com/speed/webp) is a Google driven format based on their VP8 (VP9 now?) video compression, just being applied to a single image.  
 It's USUALLY a fair bit smaller than a jpg with better quality.  
-I say usually because sometimes it can be higher, but generally it's lower. 
+I say usually because sometimes it can be larger, but generally it's smaller. 
 
-{{< image path="img/WebpComparison" alt="Comparison of webp compared to png and jpg" >}}  
-
-The original images were two of my renders, and as the above comparison shows, webp is smaller and that size difference can vary a LOT.  
-Quality-wise, they're almost indistinguishable (you can check by viewing them in the [renders]() page - clicking them gives the png version)
+### Details  
+{{% split %}}
+{{% splitLeft title="Floating Rock" %}}
+| Format | Size (kb) |
+| ------ | ---- |
+| png    | 3599 |
+| jog    | 558  |
+| webp   | 311  |
+{{% /splitLeft %}}
+{{% splitRight title="Sword" %}}
+| Format | Size (kb) |
+| ------ | ---- |
+| png    | 8022 |
+| jog    | 209  |
+| webp   | 87   |
+{{% /splitRight %}}
+{{% /split %}}  
 
 ### Command Line  
 `cwebp sword.png -o sword.webp -mt -m 6 -pass 10 -q 90`  
@@ -69,25 +69,23 @@ Quality-wise, they're almost indistinguishable (you can check by viewing them in
 - q 90 = quality 0-100, higher is better
 
 # Video  
-Quick breakdown:  
 
-- [h264](https://trac.ffmpeg.org/wiki/Encode/H.264)
-    - Very common and widespread  
-    - Decent balance between encoding speed, filesize, and quality
-- [VP9](https://trac.ffmpeg.org/wiki/Encode/VP9)
-    - Slower encoding time
-    - USUALLY smaller and better quality than h264
-- [AV1](https://trac.ffmpeg.org/wiki/Encode/AV1)
-    - Slow encoding...I mean SLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOW (like 500x slower than h264)
-    - USUALLY smaller and better quality than VP9
+| Codec | Adoption | Size | Quality | Encoding Speed | Notes |
+| ----- | -------- | ---- | ------- | -------------- | ----- |
+| [h264](https://trac.ffmpeg.org/wiki/Encode/H.264) | [Common and widespread](https://caniuse.com/#feat=mpeg4) | Reference | Good | Good | Good balance between encoding speed, filesize, and quality |
+| [VP9](https://trac.ffmpeg.org/wiki/Encode/VP9) | [Generally well supported](https://caniuse.com/#feat=webm) | Often 10x smaller | Decent | Much slower | Much smaller with limited hit to quality, but much slower encode speed.
+| [AV1](https://trac.ffmpeg.org/wiki/Encode/AV1) | [Desktop, not mobile](https://caniuse.com/#feat=av1) | Often 10x smaller | Good | Sooo much slower | Smaller, better quality, but limited support and really slow encode time |
 
 There's more interesting tradeoffs for video, since you don't want to sit around until the heat death of the universe waiting for that perfect AV1 encode.  
-AV1 is really slow to encode right now. VP9 is faster, but does suffer jpg-like blocking artifacts at lower bitrates.  
+AV1 is really slow to encode right now, like 500x slower. VP9 is faster, but does suffer jpg-like blocking artifacts at lower bitrates.  
 
-> AV1 12 bit colour doesn't seem to work in browsers. The stutter is real. The PNG's I had were apparently 12 bit colour (yuv444p12le), and the default for FFMpeg was to use the input pixel format. Use `-pix_fmt yuv444p` (or `yuv420p`/`yuv422p`) to workaround.  
+> AV1 10 and 12 bit colour don't seem to work in browsers. The stutter is real. The PNG's I had were apparently 12 bit colour (`yuv444p12le`), and the default for FFMpeg was to use the input pixel format. Use `-pix_fmt yuv444p` (or `yuv420p`/`yuv422p`) to workaround.  
 
-SIZE COMPARISON
-size, time taken
+| Codec | Size (mb) | Encode Time (mins) |
+| ----- | --------- | ------------------ |
+| h264  | 15.6      | 2                  |
+| VP9   | 4.86      | 12                 |
+| AV1   | 2.06      | 140                |
 
 ## Command lines
 Note that this is slightly different from the usual commands around, since I'm using an image sequence instead of another video.  
