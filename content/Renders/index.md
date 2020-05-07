@@ -86,3 +86,10 @@ All textures used are from [Poligon](https://www.poliigon.com/), [HDRIHaven](htt
 {{% header_link "Happy Easter!" %}}
 {{< image path="img/Easter" alt="Easter Eggs" >}}
 {{< /render_img >}}
+
+<!--Hack for now -->
+<div>
+{{% header_link "Ancient Door" %}}
+
+{{% video path="img/AncientDoor" width="1280" height="720" alt="Creeepy" %}}  
+</div>
