@@ -35,6 +35,12 @@
     header {
         position: fixed;
         width: 8rem;
+        padding-right: 0;
+        border-right: 0 solid #eee;
+
+        .text-right {
+            text-align: center;
+        }
     }
 
     section {

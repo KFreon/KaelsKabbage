@@ -397,3 +397,57 @@ blockquote {
         }
     }
 }
+
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.border-top {
+    border-top: 2px solid #eee;
+}
+.border-bottom {
+    border-bottom: 10px solid #eee;
+}
+
+.add-padding-bottom {
+    padding-bottom: 10px;
+}
+
+header, footer {
+  text-align: right;
+}
+.add-padding-right {
+  padding-right: 10px;
+}
+
+.img-circle {
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 3px;
+}
+
+.remove-margin-bottom {
+    margin-bottom: 0;
+}
+
+.pagination ul {
+  list-style: none;
+    padding: 0;
+    background: #f4f4f4;
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+}
+.pagination li {
+  float: left;
+  border-right: 1px solid #e0e0e0;
+}
+.pagination ul a {
+    color: #999;
+    display: block;
+    text-align: center;
+    padding: 6px 6px;
+    min-width: 2em;
+}
