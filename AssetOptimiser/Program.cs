@@ -25,7 +25,8 @@ namespace AssetOptimiser
 
             Formats = new[]
             {
-                new Format("AV1", "mp4", "libaom-av1", crf, 0, "-row-mt 1 -strict experimental -tile-columns 2 -threads 8 -pix_fmt yuv444p -movflags +faststart"), // yuv444 - can't have 12 bit colour - pngs seem to be 12 bit colour :(
+                // Disabling for now since there's some issues to work out
+                // new Format("AV1", "mp4", "libaom-av1", crf, 0, "-row-mt 1 -strict experimental -tile-columns 2 -threads 8 -pix_fmt yuv444p -movflags +faststart"), // yuv444 - can't have 12 bit colour - pngs seem to be 12 bit colour :(
                 new Format("VP9", "webm", "libvpx-vp9", crf, 0, ""),
                 new Format("x264", "mp4", "libx264", crf, null, "-movflags +faststart"),
             };

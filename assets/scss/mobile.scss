@@ -4,12 +4,12 @@
     }
 
     p {
-        font-size: 2rem;
+        font-size: 1.5rem;
         overflow-wrap: break-word;
     }
 
     li {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     ul {
@@ -21,7 +21,11 @@
     }
 
     h2 {
-        font-size: 3rem;
+        font-size: 2rem;
+    }
+
+    .site-title {
+        margin: 0 0 0.5rem 0;
     }
 
     .site-subtitle {
@@ -34,8 +38,10 @@
     }
 
     section {
+        padding: 0;
         margin-left: 10rem;
-        width: 80%;
+        width: 75%;
+        font-size: 1.5rem;
     }
 
     footer {
@@ -50,26 +56,26 @@
         }
     }
 
-    section {
-        font-size: 2rem;
-    }
-
     .right-chevrons {
         margin-top: -0.5rem;
     }
 
     small {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     code {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     pre {
         code {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
+    }
+
+    .tags {
+        margin: 0 0 0.5rem 0;
     }
 
     .tag-list {
@@ -102,6 +108,7 @@
     .sidebar {
         width: 9rem;
         border-right-width: 2px;
+        padding-left: 0.5rem;
     }
 
     .description {
@@ -110,6 +117,7 @@
 
     .recent-title {
         font-size: 1.4rem;
+        margin: 0.5rem 0 0.5rem 0;
     }
 
     .recent-posts {
@@ -121,9 +129,26 @@
         li {
             font-size: 1rem;
             height: 2.5rem;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
         }
+    }
+
+    .render {
+        .info {
+            .description, .details {
+                p {
+                    font-size: 1.2rem;
+                    margin: 0;
+                    margin-bottom: 0.5rem;
+                }
+            }
+
+            .details {
+                flex-direction: column;
+            }
+        }
+    }
+
+    hr {
+        margin: 0;
     }
 }

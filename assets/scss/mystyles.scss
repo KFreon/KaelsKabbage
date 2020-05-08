@@ -11,12 +11,19 @@ h2 {
 }
 
 body {
+    padding: 0;
+    margin: 0;
     background-color: rgb(255, 255, 255);
 }
 
 header {
     width: unset;
     position:  unset;
+
+    .description {
+        font-size: 1rem;
+        text-align: right;
+    }
 }
 
 table {
@@ -38,6 +45,12 @@ footer {
     bottom: 20px;
     p {
         font-size: 1rem;
+        padding: 0;
+        margin: 0;
+    }
+
+    .citations {
+        font-size: 0.75rem;
     }
 
     .renders {
@@ -58,6 +71,7 @@ section {
     font-size: 1.2rem;
     width: 60%;
     border: none;
+    margin-left: 20rem;
 }
 
 small {
@@ -86,7 +100,7 @@ small {
         margin-bottom: 2rem;
     }
 
-    .image {
+    .inner {
         border-radius: 5px;
         cursor: pointer;
         transition: all 0.3s;
@@ -109,6 +123,19 @@ small {
 
 .split-code-container {
     display: flex;
+    justify-content: space-around;
+
+    &.smaller {
+        justify-content: unset;
+
+        .left {
+            margin-right: 3rem;
+        }
+    }
+
+    .left, .right {
+        max-width: 49%;
+    }
 }
 
 code {
@@ -156,10 +183,6 @@ pre {
         float: left;
         border-right: 0;
     }
-}
-
-body {
-    padding: 0.5rem;
 }
 
 blockquote {
@@ -268,10 +291,17 @@ blockquote {
     height: 100%;
     width: 290px;
     border-right: 10px solid #eee;
+    padding-top: 1rem;
 }
 
 .render {
     margin-bottom: 1rem;
+
+    .video {
+        .alt-text {
+            margin: 0;
+        }
+    }
 
     .info {
         p {
@@ -295,6 +325,12 @@ blockquote {
             }
         }
     }
+}
+
+.wrapper {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
 }
 
 .render-list {
@@ -322,9 +358,9 @@ blockquote {
         background-color: transparent;
         border-radius: 6px;
         height: 3em;
-        width: 3em;
         transition: all 0.25s;
         outline-color: green;
+        cursor: pointer;
     }
 
     .selected {
@@ -347,7 +383,10 @@ blockquote {
         border: none;
         text-align: right;
         float: unset;
-        height: 3rem;;
+        height: 2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         a {
             display: unset;

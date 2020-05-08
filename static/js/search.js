@@ -71,18 +71,7 @@ function initUI() {
  * @return {Array}  results
  */
 function search(query) {
-    // Find the item in our index corresponding to the lunr one to have more info
-    // Lunr result: 
-    //  {ref: "/section/page1", score: 0.2725657778206127}
-    // Our result:
-    //  {title:"Page1", href:"/section/page1", ...}
-    var lunrquery = lunrIndex.query(function(q) {
-        // look for an exact match and give that a massive positive boost
-        q.term(query, { usePipeline: true, boost: 100 });
-        // prefix matches should not use stemming, and lower positive boost
-        q.term(query, { usePipeline: false, boost: 10, wildcard: lunr.Query.wildcard.TRAILING });
-      });
-
+    var lunrquery = lunrIndex.search(query);
     var mapped = lunrquery.map(function(result) {
         return pagesIndex.filter(function(page) {
             return page.href === result.ref;

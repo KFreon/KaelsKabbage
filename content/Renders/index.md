@@ -6,9 +6,7 @@ type: "renders"
 I do like a bit of Blender, and I got some wind in my sails after doing the obligatory [BlenderGuru Donut tutorial](https://www.youtube.com/watch?v=TPrnSACiTJ4), so here's some of them.  
 All textures used are from [Poligon](https://www.poliigon.com/), [HDRIHaven](https://hdrihaven.com/), and [Quixel](https://quixel.com/megascans/home/), with characters from [Mixamo](https://www.mixamo.com/)   
 
-
 <!--more-->  
-  
 
 <p class="render-toggle-buttons">
   <button id="render-list-button" class="selected" onclick="toggleRenderDisplay()">
@@ -24,12 +22,10 @@ All textures used are from [Poligon](https://www.poliigon.com/), [HDRIHaven](htt
 {{< image path="img/Donut_WithMyMarble" alt="Obligatory Donut Render" nospacer="true" >}}
 {{< /render_img >}}  
 
-<!--Hack for now -->
-<div>
+{{< render_img description="Donut gettin spun into scene like a champ" rendertime="~2 minutes" samples="20" frames="60" >}}
 {{% header_link "Moovin Doonut" %}}
-
 {{% video path="img/Donut_WithMyMarble" width="1920" height="1080" alt="I can almost hear it" %}}  
-</div>
+{{< /render_img >}}
 
 {{< render_img description="I like floating rocks ¯\_(ツ)_/¯" rendertime="60 seconds" samples="20" >}}
 {{% header_link "Floating Rocks" %}}
@@ -67,29 +63,27 @@ All textures used are from [Poligon](https://www.poliigon.com/), [HDRIHaven](htt
 {{< image path="img/EnchantingTable" alt="Enchanting table with some fun knick knacks" >}}
 {{< /render_img >}}
 
-{{< render_img description="The CG Fasttrack tutorial sword. I ended up using different assets or making some out of stubborness. The final result suffers for it, but I learned many new things." rendertime="5 seconds..." samples="64" engine="Eevee" >}}
+{{< render_img description="The CG Fasttrack tutorial sword. I ended up using different assets or making some out of stubborness. The final result suffers for it, but I learned many new things." rendertime="5 seconds" samples="64" engine="Eevee" >}}
 {{% header_link "Sword from CG Fasttrack" %}}
 {{< image path="img/Sword" alt="Sword with cinematic compositing" >}}
 {{< /render_img >}}
 
-{{< render_img description="I almost like this one better. Still, compositing can add much more flair than I gave it credit for." rendertime="5 seconds..." samples="64" engine="Eevee" >}}
+{{< render_img description="I almost like this one better. Still, compositing can add much more flair than I gave it credit for." rendertime="5 seconds" samples="64" engine="Eevee" >}}
 {{% header_link "Sword WITHOUT cinematic compositing" %}}
 {{< image path="img/Sword_Original" alt="Sword WITHOUT compositing" >}}
 {{< /render_img >}}
 
-{{< render_img description="I did another one from the other side so I could see all those cool runes :D" rendertime="5 seconds..." samples="64" engine="Eevee" >}}
+{{< render_img description="I did another one from the other side so I could see all those cool runes :D" rendertime="5 seconds" samples="64" engine="Eevee" >}}
 {{% header_link "Sword showing runes" %}}
 {{< image path="img/SwordRunesView" alt="Sword showing runes" >}}
 {{< /render_img >}}   
 
-{{< render_img description="Eggster!" rendertime="1.5 minutes..." samples="128" >}}
+{{< render_img description="Eggster!" rendertime="1.5 minutes" samples="128" >}}
 {{% header_link "Happy Easter!" %}}
 {{< image path="img/Easter" alt="Easter Eggs" >}}
 {{< /render_img >}}
 
-<!--Hack for now -->
-<div>
+{{< render_img description="Ancient areas are creepy places! I wanted to try my hand at animating. I need to do a tutorial..." rendertime="5 hours" samples="64" engine="Eevee" frames="1100" >}}
 {{% header_link "Ancient Door" %}}
-
-{{% video path="img/AncientDoor" width="1280" height="720" alt="Creeepy" %}}  
-</div>
+{{% video path="img/AncientDoor" width="1280" height="720" alt="I like ancient looking places :)" %}}  
+{{< /render_img >}}

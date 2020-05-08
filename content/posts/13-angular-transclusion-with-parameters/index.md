@@ -72,10 +72,10 @@ I wanted to be able to do something like:
     <h1>Super cool page title</h1>
     <p>You're going to love this demo</p>
 
-    <EXTACTED-COMPONENT [data]="holidays">
+    <EXTRACTED-COMPONENT [data]="holidays">
         <strong>{{ location.name }}</strong>
         <p>{{ location.picture }}</p>
-    </EXTACTED-COMPONENT>
+    </EXTRACTED-COMPONENT>
 </div>
 ```  
 
@@ -101,7 +101,8 @@ Such a component would be used like this:
 ```  
 
 And you'd get:   
-```
+
+``` go
 This is a title  
 This is some content   <--- Pulled through the ng-content
 ```  
@@ -266,7 +267,7 @@ See below. `@ContentChild` replaced in the Typescript with `@Input()` and the ht
 <br/>  
 
 # Building blocks:  
-###### https://stackoverflow.com/questions/42978082/what-is-let-in-angular-2-templates  
-###### https://blog.angular-university.io/angular-ng-content/   
-###### https://medium.com/claritydesignsystem/ng-content-the-hidden-docs-96a29d70d11b  
-###### https://stackoverflow.com/questions/51807192/passing-for-variable-to-ng-content  
+https://stackoverflow.com/questions/42978082/what-is-let-in-angular-2-templates  
+https://blog.angular-university.io/angular-ng-content/   
+https://medium.com/claritydesignsystem/ng-content-the-hidden-docs-96a29d70d11b  
+https://stackoverflow.com/questions/51807192/passing-for-variable-to-ng-content  
