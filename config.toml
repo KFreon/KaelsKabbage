@@ -1,7 +1,6 @@
 baseURL = "https://www.kaels-kabbage.com/"
 languageCode = "en-us"
 title = "Kael's Kabbage"
-theme = "sp-minimal"
 paginate        = 10
 googleAnalytics = "UA-122097969-1"
 pygmentsCodeFences = true
@@ -22,7 +21,6 @@ posts = "post/:slug"
   #"single" or "multi"
   renderType = "multi"
   #"simple" or "original"
-  themeStyle = "simple"
 
   googleAnalytics = "UA-122097969-1"
 
