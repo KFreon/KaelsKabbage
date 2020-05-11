@@ -143,14 +143,10 @@ Note that this is slightly different from the usual commands around, since I'm u
 `ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libx264 -b:v 0 -crf 35 -movflags +faststart output.mp4`  
 
 ### VP9  
-`ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libvpx-vp9 -b:v 1024k -minrate 512k -maxrate 2000k -crf 10 -deadline best -row-mt 1 -tile-columns 2 -threads 8 output.webm`  
+`ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libvpx-vp9 -b:v 0 -crf 35 -deadline best -row-mt 1 -tile-columns 2 -threads 8 output.webm`  
 
-VP9 needed some quality tweaking to get what I wanted.  
-
-- Target bitrate mode:
-    - Aim for 1024k bitrate
-    - Allow bitrate to vary down to 512k and up to 2000k 
-- deadline is like profile. Best means it's slower but better compression
+- deadline is like profile. Best means it's slower but better compression  
+- A colleague pointed out that my original comparison with `-b:v 1024k` was unfair vs h264. Turns out it didn't matter, but fixed anyway :)
 
 ### AV1  
 `ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libaom-av1 -b:v 0 -crf 35 -strict experimental -row-mt 1 -cpu-used 5 -tile-columns 2 -threads 8 -pix_fmt yuv444p -movflags +faststart output.mp4`
