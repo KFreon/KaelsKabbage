@@ -148,6 +148,15 @@ Note that this is slightly different from the usual commands around, since I'm u
 - deadline is like profile. Best means it's slower but better compression  
 - A colleague pointed out that my original comparison with `-b:v 1024k` was unfair vs h264. Turns out it didn't matter, but fixed anyway :)
 
+I've had a lot better results from two-pass in target bitrate mode.  
+
+#### VP9 Two Pass
+**Pass 1:** `ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libvpx-vp9 -b:v 800k -pass 1 -f webm emptyfile`   
+
+**Pass 2:** `ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libvpx-vp9 -b:v 800k -pass 2 output.webm`
+
+> Silly Windows and FFMpeg docs. Apparently you should be able to go `-pass 1 NUL && ^` but I can't get that to work, so generating a temporary file instead.  
+
 ### AV1  
 `ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libaom-av1 -b:v 0 -crf 35 -strict experimental -row-mt 1 -cpu-used 5 -tile-columns 2 -threads 8 -pix_fmt yuv444p -movflags +faststart output.mp4`
 
