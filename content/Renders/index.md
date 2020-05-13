@@ -87,3 +87,8 @@ All textures used are from [Poligon](https://www.poliigon.com/), [HDRIHaven](htt
 {{% header_link "Ancient Door" %}}
 {{% video path="img/AncientDoor" width="1280" height="720" alt="I like ancient looking places :)" %}}  
 {{< /render_img >}}
+
+{{< render_img description="I got to practice some rigging, animations, and compositing :D" rendertime="2 hours" samples="400" engine="Cycles" frames="600" >}}
+{{% header_link "The Beast Planet" %}}
+{{% video path="img/ShadowRaiders" width="1280" height="720" alt="Did anyone else watch this show? Shadow Raiders, it's pretty good, got some interesting ideas" %}}  
+{{< /render_img >}}
