@@ -334,9 +334,17 @@ blockquote {
 }
 
 .render-list {
+    .render-resources {
+        margin-bottom: 2rem;
+    }
+
     &.tiles {
         display: flex;
         flex-wrap: wrap;
+
+        > h1, details {
+            display: block;
+        }
 
         > div {
             width: 15rem;

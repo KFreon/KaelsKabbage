@@ -4,9 +4,33 @@ type: "renders"
 ---
 
 I do like a bit of Blender, and I got some wind in my sails after doing the obligatory [BlenderGuru Donut tutorial](https://www.youtube.com/watch?v=TPrnSACiTJ4), so here's some of them.  
-All textures used are from [Poligon](https://www.poliigon.com/), [HDRIHaven](https://hdrihaven.com/), and [Quixel](https://quixel.com/megascans/home/), with characters from [Mixamo](https://www.mixamo.com/)   
+All tools, textures, and tutorials used are listed below.    
 
 <!--more-->  
+
+<details class="render-resources">
+  <summary>Resources (sites, tutorials, tools, etc)</summary>
+  <h2>Sites</h2>
+
+  - [Poligon](https://www.poliigon.com/)  
+  - [HDRIHaven](https://hdrihaven.com/)  
+  - [Quixel](https://quixel.com/megascans/home/)
+  - Models: [Mixamo](https://www.mixamo.com/)   
+
+  <h2>Tools</h2>
+
+  - [Blender](https://www.blender.org/) - Makes all this possible  
+  - [Paint.NET](https://www.getpaint.net/) - Easy quick image editor  
+  - [GIMP](https://www.gimp.org/) - xplat alternative  
+  - [JSDisplacement](https://windmillart.net/?p=jsplacement) - Greeble generator  
+
+  <h2>Tutorials</h2>
+
+  - [The infamous doughnut](https://www.youtube.com/watch?v=TPrnSACiTJ4) - You gotta do it!  
+  - [Anvil](https://www.youtube.com/watch?v=yi87Dap_WOc) - Modelling  
+  - [Sword](https://www.youtube.com/watch?v=zHv4VDoCwYc) - Eevee
+  - [Borg Cube](https://www.blendernation.com/2020/04/08/create-a-borg-cube-using-displacements/)  - Cool displacements  
+</details>
 
 <p class="render-toggle-buttons">
   <button id="render-list-button" class="selected" onclick="toggleRenderDisplay()">
@@ -85,10 +109,35 @@ All textures used are from [Poligon](https://www.poliigon.com/), [HDRIHaven](htt
 
 {{< render_img description="Ancient areas are creepy places! I wanted to try my hand at animating. I need to do a tutorial..." rendertime="5 hours" samples="64" engine="Eevee" frames="1100" >}}
 {{% header_link "Ancient Door" %}}
-{{% video path="img/AncientDoor" width="1280" height="720" alt="I like ancient looking places :)" %}}  
+{{% video path="img/AncientDoor" width="1280" height="720" alt="Old dusty door animation" %}}  
 {{< /render_img >}}
 
-{{< render_img description="I got to practice some rigging, animations, and compositing :D" rendertime="2 hours" samples="400" engine="Cycles" frames="600" >}}
+{{< render_img description="I got to practice some rigging, animations, and compositing :D It's from a show called Shadow Raiders. Some good sci-fi ideas in there." rendertime="2 hours" samples="400" engine="Cycles" frames="600" >}}
 {{% header_link "The Beast Planet" %}}
-{{% video path="img/ShadowRaiders" width="1280" height="720" alt="Did anyone else watch this show? Shadow Raiders, it's pretty good, got some interesting ideas" %}}  
+{{% video path="img/ShadowRaiders" width="1280" height="720" alt="Shadow Raiders Beast Planet animation" %}}  
+{{< /render_img >}}
+
+{{< render_img description="Proving to myself I COULD do rocks with displacements, also the rope and grass." rendertime="11 minutes" samples="400" engine="Cycles" >}}
+{{% header_link "Well and Bucket" %}}
+{{< image path="img/CrackedWell" alt="Rocky well with a bucket and rope next to it" >}}
+{{< /render_img >}}
+
+{{< render_img description="The teapot was the hardest thing to mode. Feels like I did it the hardest way possible." rendertime="3.5 minutes" samples="300" engine="Cycles" >}}
+{{% header_link "Tea and Biscuits" %}}
+{{< image path="img/PoyasTea" alt="Tea and biscuits scene from a colleagues' photo" >}}
+{{< /render_img >}}
+
+{{< render_img description="Playing Halo MCC with a friend and figured it'd be easy to do that menu scene with all the bullets ¯\_(ツ)_/¯" rendertime="6 minutes" samples="800" engine="Cycles" >}}
+{{% header_link "Bullets" %}}
+{{< image path="img/Bullets" alt="Bullets scattered everywhere on a table" >}}
+{{< /render_img >}}
+
+{{< render_img description="Wanted to make a shattered world for a while. I'm not happy with this, but it's a start for next time. That volume tanked the rendertime too..." rendertime="20.5 minutes" samples="400" engine="Cycles" >}}
+{{% header_link "Shattered World" %}}
+{{< image path="img/ShatteredPlanet" alt="Shattered World with dust cloud" >}}
+{{< /render_img >}}
+
+{{< render_img description="I got a decent way through making this without a tutorial, so I'm pleased. The JSDisplacement greebles and AO emmision methods are really cool." rendertime="4.5 minutes" samples="400" engine="Cycles" >}}
+{{% header_link "Borg Cube" %}}
+{{< image path="img/BorgCube" alt="Borg Cube - you will be assimilated" >}}
 {{< /render_img >}}
