@@ -24,6 +24,10 @@ The actual .NET to dotnetcore part wasn't particularly bad. It was essentially:
 
 I expected the Nuget breakages and had time set aside for those. I also anticipated some of the auth/routing issues, but not as many as I got **(NAAAANCYYYYYY!!!)**  
 
+Auth was fun. I ran into a few issues, but one that stood out was the client was sending a token along with the login (to get some details from the server).  
+Since the token was expired, it'd fail auth, and fail getting the details it needed to get new auth, so you couldn't log in!  
+Took a while to realise what was going on and why, but in the end, I put a handler above the auth handlers to intercept and suitably redirect/handle those few situations.  
+
 The database stamping was an interesting one.  
 The way it used to work was:  
 
@@ -75,7 +79,7 @@ Since I can't make a container for tests without spinning up a whole TestServer 
 
 #### Auto-registration doesn't have a built-in replacement  
 In Castle, you could register all implementations of a type like: 
-``` 
+``` csharp
 Classes.FromThisAssembly()
     .Where(Component.IsInSameNamespaceAs<CsvSerialiser>())
     .WithServiceDefaultInterfaces()
@@ -140,3 +144,8 @@ Controllers were modules, and built completely differently.
 - Looooots of `dynamic` returns, ripped all that out and moved to the built in methods like `Ok(some object to return)` or `Created(new ID to return)`  
 - Tests rewritten to use the new [`TestServer`](https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-3.1) in-memory server hosting instead of what Nancy was doing (similar...?)
 
+Early in the migration, I was getting `415 Unsupported Media Type` when testing the migrated controllers.  
+There was no way that was true, so digging lead me to wonder if the binding engine was struggling with some of the types.  
+Maybe that would cause it too, but no, turns out it was just missing the bindings.  
+Nancy binds to HTTP Action parameters like this: `var dto = this.Bind<SomeDto>()` and some black magic made it work.  
+Now, I can just take it in as a parameter to the action (sometimes requiring extra attributes): `public async Task Post([FromBody] SomeDto dto)`  
