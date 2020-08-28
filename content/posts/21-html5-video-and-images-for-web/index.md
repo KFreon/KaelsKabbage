@@ -5,8 +5,6 @@ draft: false
 type: "post"
 slug: "html5-video-and-images-for-web"
 tags: ["ffmpeg"]
-images:
-- post-cover.png
 ---
 
 I like being efficient with my bits and bytes. I bought into the `webp` image format train pretty early, adopting it when I made this blog.  
