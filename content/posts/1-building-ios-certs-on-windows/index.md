@@ -19,6 +19,8 @@ UPDATE: 2FA breaks the automated links with the AppStore, making things quite pa
 While this is all still correct, you may still need a Mac to help if you have 2FA on the Apple Id.  
 Details at the end.  
 
+ANOTHER UPDATE: This is slightly unrelated to certificates, but the `codeSignIdentity` MUST be `iPhone Developer` regardless of production/development.  
+
 I’m sure some of those guides work, but I was sure it had to be easier than that. I found [this post](http://www.iandevlin.com/blog/2012/11/phonegap/building-an-ios-signing-key-for-phonegap-in-windows/) which does it all in four commands…A colleague pointed out that it’s from 2012 and is still relevant, but it works.  
 
 I’ll pull it out here in case the links break but this is all Ian Devlin’s work. I’m just replicating it.  
@@ -49,6 +51,8 @@ I’ll pull it out here in case the links break but this is all Ian Devlin’s w
     ```
 
 That’s it! No more hunting for someone around the office with a Mac.  
+**Update Aug 2020**: If you do want to run things up on a Mac at some point, you'll need those `.CER` and `.P12` files to install into the keychain.  The `CER` is the certificate, and the `P12` is the private key.  
+Should just be able to double click them (`CER` first) and follow any prompts to get them into the keychain.  
 
 **UPDATE Oct 2019**  
 I had an issue where the only Apple ID in use by the client (and our CI pipeline) was upgraded with 2FA.  
