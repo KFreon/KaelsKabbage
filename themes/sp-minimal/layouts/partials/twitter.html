@@ -1,6 +1,7 @@
 {{- with $.Params.images -}}
 <meta name="twitter:card" content="summary"/>  <!--other option: summary_large_image-->
 <meta name="twitter:image" content="{{ $.Params.slug | absURL}}{{ index . 0 | relURL }}"/>
+<meta name="og:image" content="{{ $.Params.slug | absURL}}{{ index . 0 | relURL }}"/>
 {{- end }}
 <meta name="twitter:title" content="{{ .Title }}"/>
 <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end -}}"/>
