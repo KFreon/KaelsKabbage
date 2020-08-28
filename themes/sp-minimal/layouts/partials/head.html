@@ -12,6 +12,8 @@
     <link rel="shortcut icon" async href="{{ .Site.BaseURL }}img/Cabbage_Shortcut.png">
     <link rel="stylesheet" async href='https://fonts.googleapis.com/css?family=Fira+Code:normal,ital:400:700&display=swap'>
 
+    {{ template "_internal/twitter_cards.html" . }}
+
     {{ "<!-- Stylesheets -->" | safeHTML }}
 
     {{- partial "stylesheets.html" . -}}
