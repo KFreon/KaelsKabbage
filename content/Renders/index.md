@@ -41,6 +41,7 @@ All tools, textures, and tutorials used are listed below.
   </button>
 </p>
 
+<div class="render-images" id="render-images">
 {{< render_img description="Added a true Australian treat. Lamington :)" rendertime="~30 seconds" samples="20" >}}
 {{% header_link "Doonut" %}}
 {{< image path="img/Donut_WithMyMarble" alt="Obligatory Donut Render" nospacer="true" >}}
@@ -141,3 +142,9 @@ All tools, textures, and tutorials used are listed below.
 {{% header_link "Borg Cube" %}}
 {{< image path="img/BorgCube" alt="Borg Cube - you will be assimilated" >}}
 {{< /render_img >}}
+
+{{< render_img description="Playing with water and cloth sims" rendertime="12 hours" samples="400" engine="Cycles" frames="250" >}}
+{{% header_link "University Water" %}}
+{{% video path="img/WaterAndCloth" width="1280" height="720" alt="Water and cloth sims take ages" %}}  
+{{< /render_img >}}
+</div>

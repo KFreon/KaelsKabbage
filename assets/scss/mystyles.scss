@@ -338,22 +338,27 @@ blockquote {
         margin-bottom: 2rem;
     }
 
-    &.tiles {
+    .render-images {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column-reverse;
 
-        > h1, details {
-            display: block;
-        }
-
-        > div {
-            width: 15rem;
-            margin-left: 1rem;
-            margin-right: 1rem;
-        }
+        &.tiles {
+            display: flex;
+            flex-flow: row wrap-reverse;
     
-        .info {
-            display: none;
+            > h1, details {
+                display: block;
+            }
+    
+            > div {
+                width: 15rem;
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+        
+            .info {
+                display: none;
+            }
         }
     }
 }

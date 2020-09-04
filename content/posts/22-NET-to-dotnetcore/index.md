@@ -1,7 +1,7 @@
 ---
 title: "Nancy + Castle + .NET 4.7 to dotnetcore"
 date: 2020-08-07T14:44:43+10:00
-draft: true
+draft: false
 type: "post"
 slug: "dotnetcore-nancy-castle"
 tags: ["dotnetcore", "nancy"]
