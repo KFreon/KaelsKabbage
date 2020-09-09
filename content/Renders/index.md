@@ -147,4 +147,19 @@ All tools, textures, and tutorials used are listed below.
 {{% header_link "University Water" %}}
 {{% video path="img/WaterAndCloth" width="1280" height="720" alt="Water and cloth sims take ages" %}}  
 {{< /render_img >}}
+
+{{< render_img description="I love Control (Remedy game), and I wanted to play with boids" rendertime="13 hours" samples="300" engine="Cycles" frames="500" >}}
+{{% header_link "SCP TV" %}}
+{{% video path="img/ControlTV" width="1280" height="720" alt="Boids make this pretty nice, but they're hard to control" %}}  
+{{< /render_img >}}
+
+
+
+
+
+
+
+
+
+
 </div>

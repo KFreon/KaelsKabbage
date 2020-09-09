@@ -8,7 +8,8 @@
     "optimise-assets": "cd AssetOptimiser && dotnet run --configuration Release ../content",
     "optimise-assets-HQ": "cd AssetOptimiser && dotnet run --configuration Release ../content --webpq=97",
     "build": "npm-run-all build-index optimise-assets",
-    "new": "hugo new --kind post-bundle"
+    "new": "hugo new --kind post-bundle",
+    "start": "hugo server -D"
   },
   "author": "",
   "license": "ISC",
