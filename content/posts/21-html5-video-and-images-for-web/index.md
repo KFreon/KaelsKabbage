@@ -68,6 +68,8 @@ Now that we've seen the components that can use new shiny things, let's look at 
 | Image Sources | [The Floating Rock render PNG]({{< ref "/Renders/index.md#floating-rocks" >}}) and [Sword]({{< ref "/Renders/index.md#sword-from-cg-fasttrack" >}}) |
 | Tools  | [FFMpeg](https://www.ffmpeg.org/) and the [Webp](https://developers.google.com/speed/webp) tools from google because they're common, simple, and reasonably well documented. |
 
+Edit: Using  FFMpeg 4.2.1  
+
 # The Plan
 I want to provide the best tradeoff between size and quality to readers, while still providing compatibilty to those without the shiny toys (often mobile users).  
 This involves having a widely supported codec available, but providing better ones to those who can use them.  
