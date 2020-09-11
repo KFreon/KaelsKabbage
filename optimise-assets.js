@@ -3,7 +3,7 @@
 // Pictures = non-webms
 
 // pictures - convert to webm - need to figure out what the settings for that are
-// Videos - AV1, x264, and VP9
+// Videos - AV1, x264, and VP9 - DOESN'T do this anymore, warns they don't exist instead, since they should be generated from source
 
 // Move the original somewhere gitignored?
 // Can probably do video and movies in parallel

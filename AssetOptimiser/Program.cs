@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Enumeration;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Microsoft.VisualBasic;
 
 namespace AssetOptimiser
 {
@@ -20,15 +16,15 @@ namespace AssetOptimiser
 
         static async Task Main(string[] args)
         {
-            if (!ProcessCmdLineArgs(args, out int crf, out int webpQuality, out string rootPath))
+            if (!ProcessCmdLineArgs(args, out int? crf, out int webpQuality, out string rootPath))
                 return;
 
             Formats = new[]
             {
                 // Disabling for now since there's some issues to work out
-                // new Format("AV1", "mp4", "libaom-av1", crf, 0, "-row-mt 1 -strict experimental -tile-columns 2 -threads 8 -pix_fmt yuv444p -movflags +faststart"), // yuv444 - can't have 12 bit colour - pngs seem to be 12 bit colour :(
-                new Format("VP9", "webm", "libvpx-vp9", crf, 0, ""),
-                new Format("x264", "mp4", "libx264", crf, null, "-movflags +faststart"),
+                 new Format("AV1", "mp4", "libaom-av1", crf ?? 50, 0, "-row-mt 1 -strict experimental -tile-columns 2 -threads 8 -pix_fmt yuv444p -movflags +faststart"), // yuv444 - can't have 12 bit colour - pngs seem to be 12 bit colour :(
+                new Format("VP9", "webm", "libvpx-vp9", crf ?? 40, 0, "-row-mt 1 -tiles 2x2 -threads 8"),
+                new Format("x264", "mp4", "libx264", crf ?? 30, null, "-row-mt 1 -tiles 2x2 -threads 8 -movflags +faststart"),
             };
 
             ffmpegPath = GetFFMpegPath();
@@ -61,22 +57,11 @@ namespace AssetOptimiser
 
             if (videos.Any())
             {
-                Console.WriteLine("Videos:");
+                Console.WriteLine("Videos (not converting, do that from sources):");
                 foreach (var line in videosText)
                     Console.WriteLine(line);
 
                 Console.WriteLine();
-            }
-
-            while(true)
-            {
-                Console.WriteLine("Continue? [y/n]");
-                var entry = Console.ReadLine();
-                if (entry.Contains("y", StringComparison.OrdinalIgnoreCase))
-                    break;
-
-                if (entry.Contains("n", StringComparison.OrdinalIgnoreCase))
-                    return;
             }
 
             if (pictures.Any())
@@ -84,10 +69,10 @@ namespace AssetOptimiser
             else
                 Console.WriteLine("No images to convert!");
 
-            if (videos.Any())
-                await ConvertVideos(videos);
-            else
-                Console.WriteLine("No videos to convert!");
+            //if (videos.Any())
+            //    await ConvertVideos(videos);
+            //else
+            //    Console.WriteLine("No videos to convert!");
 
             Console.WriteLine();
             Console.WriteLine();
@@ -96,9 +81,9 @@ namespace AssetOptimiser
             Console.ReadLine();
         }
 
-        static bool ProcessCmdLineArgs(string[] args, out int crf, out int webpQuality, out string rootPath)
+        static bool ProcessCmdLineArgs(string[] args, out int? crf, out int webpQuality, out string rootPath)
         {
-            crf = 30;
+            crf = null;
             webpQuality = 90;
             if (args?.Any() != true)
             {
