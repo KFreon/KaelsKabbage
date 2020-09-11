@@ -13,6 +13,14 @@ Lets take a look into some video and image codecs and how the new shiny ones can
 
 <!--more-->  
 
+# EDIT 11-9-20: AV1 is faster now!  
+It feels like many changes have been made, and FFMpeg 4.3.1 now makes AV1's faster than before (subjectively at least).  
+Still takes a while, but not a crushingly long time.  
+[See here]({{< ref "/posts/23-revisiting-av1/index.md">}}).  
+
+--------  
+
+
 I want to avoid sending an 8mb png or a 70mb video down to the client if I can.  
 New compression formats such as AV1 and webp might be able to help with that.  
 
@@ -103,7 +111,9 @@ I say usually because sometimes it can be larger, but generally it's smaller.
 {{% /split %}}  
 
 ### Command Line  
-`cwebp sword.png -o sword.webp -mt -m 6 -pass 10 -q 90`  
+```bash
+cwebp sword.png -o sword.webp -mt -m 6 -pass 10 -q 90
+```  
 
 - mt = multithreading
 - m 6 = quality/compression speed. 0-6, higher is slower but smaller.
@@ -142,10 +152,14 @@ Note that this is slightly different from the usual commands around, since I'm u
 - `-movflags +faststart` is for MP4 containers, and lets the file play while still downloading
 
 ### H264  
-`ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libx264 -b:v 0 -crf 35 -movflags +faststart output.mp4`  
+```bash
+ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libx264 -b:v 0 -crf 35 -movflags +faststart output.mp4  
+```  
 
 ### VP9  
-`ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libvpx-vp9 -b:v 0 -crf 35 -deadline best -row-mt 1 -tile-columns 2 -threads 8 output.webm`  
+```bash
+ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libvpx-vp9 -b:v 0 -crf 35 -deadline best -row-mt 1 -tile-columns 2 -threads 8 output.webm
+```
 
 - deadline is like profile. Best means it's slower but better compression  
 - A colleague pointed out that my original comparison with `-b:v 1024k` was unfair vs h264. Turns out it didn't matter, but fixed anyway :)
@@ -153,14 +167,22 @@ Note that this is slightly different from the usual commands around, since I'm u
 I've had a lot better results from two-pass in target bitrate mode.  
 
 #### VP9 Two Pass
-**Pass 1:** `ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libvpx-vp9 -b:v 800k -pass 1 -f webm emptyfile`   
+**Pass 1:**  
+```bash
+ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libvpx-vp9 -b:v 800k -pass 1 -f webm emptyfile
+```   
 
-**Pass 2:** `ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libvpx-vp9 -b:v 800k -pass 2 output.webm`
+**Pass 2:**  
+```bash 
+ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libvpx-vp9 -b:v 800k -pass 2 output.webm
+```
 
 > Silly Windows and FFMpeg docs. Apparently you should be able to go `-pass 1 NUL && ^` but I can't get that to work, so generating a temporary file instead.  
 
 ### AV1  
-`ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libaom-av1 -b:v 0 -crf 35 -strict experimental -row-mt 1 -cpu-used 5 -tile-columns 2 -threads 8 -pix_fmt yuv444p -movflags +faststart output.mp4`
+```bash
+ffmpeg -framerate 30 -i %04d.png -vf scale=-1:720:flags=lanczos -c:v libaom-av1 -b:v 0 -crf 35 -strict experimental -row-mt 1 -cpu-used 5 -tile-columns 2 -threads 8 -pix_fmt yuv444p -movflags +faststart output.mp4
+```
 
 > Note the `experimental` flag since AV1 is new  
 

@@ -7,7 +7,8 @@
     "build-index": "npx grunt build",
     "build": "npm-run-all build-index",
     "new": "hugo new --kind post-bundle",
-    "start": "hugo server -D"
+    "start": "hugo server -D",
+    "optimise-images": "cd AssetOptimiser && dotnet run --configuration Release ../content"
   },
   "author": "",
   "license": "ISC",
