@@ -9,6 +9,18 @@
                 {{ end }}
             {{ end }}
         </div>
+        <div class="credits">
+            {{ with .Get "credits" }}
+                <span class="title">Credits:</span>
+                {{ $arg := split . "|" }}
+                {{ range $arg }}
+                    {{ $bits := split . "@" }}
+                    {{ $name := index ($bits) 0 }}
+                    {{ $link := index ($bits) 1 }}
+                    <a class="link" target="_blank" href="{{ $link }}">{{ $name }}</a>
+                {{ end }}
+            {{ end }}
+        </div>
         <div class="details">
             <p>
                 <strong>🛠Engine: </strong>

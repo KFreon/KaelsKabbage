@@ -317,6 +317,20 @@ blockquote {
             }
         }
 
+        .credits {
+            * {
+                display: block;
+            }
+
+            .title {
+                font-size: 1rem;
+            }
+
+            .link {
+                font-size: 0.75rem;
+            }
+        }
+
         .details {
             margin-top: 0.5rem;
             display: flex;
