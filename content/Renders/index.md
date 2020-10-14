@@ -158,7 +158,10 @@ All tools, textures, and tutorials used are listed below.
 {{% video path="img/Relay" width="1280" height="720" alt="Asteroid fields, although unrealistic, feel awesome. As does space magic transportation." %}}  
 {{< /render_img >}}
 
-
+{{< render_img description="Trying some glowing crystal action" rendertime="18 minutes" samples="100, 1000 for volume" engine="Cycles" >}}
+{{% header_link "Crystal Caverns" %}}
+{{< image path="img/CrystalCaverns" alt="Glowing crystals took a while, volume took even longer" >}}
+{{< /render_img >}}
 
 
 
