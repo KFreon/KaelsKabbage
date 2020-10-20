@@ -163,7 +163,10 @@ All tools, textures, and tutorials used are listed below.
 {{< image path="img/CrystalCaverns" alt="Glowing crystals took a while, volume took even longer" >}}
 {{< /render_img >}}
 
-
+{{< render_img description="I've always liked these kinds of spooky atmospheric scenes." rendertime="12 minutes" samples="200" >}}
+{{% header_link "Halloweeeeen" %}}
+{{< image path="img/Spooky" alt="Spooooky Pumpkin fun with knife project" >}}
+{{< /render_img >}}
 
 
 
