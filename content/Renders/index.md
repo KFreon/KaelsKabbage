@@ -168,7 +168,10 @@ All tools, textures, and tutorials used are listed below.
 {{< image path="img/Spooky" alt="Spooooky Pumpkin fun with knife project" >}}
 {{< /render_img >}}
 
-
+{{< render_img description="I wanted to try some procedural texture tiling. It's waaaay over my head though." rendertime="13 minutes" samples="800" >}}
+{{% header_link "Working on the stairs" %}}
+{{< image path="img/MetalStairs" alt="Such lighting!" >}}
+{{< /render_img >}}
 
 
 </div>
