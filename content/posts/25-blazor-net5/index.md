@@ -13,6 +13,10 @@ There's good news and bad news...
 
 <!--more-->  
 
+khwseghskdghosdigh 
+Get GIF of final product  
+Maybe some code snippets  
+
 # TL;DR  
 
 # What this post is and isn't  
@@ -38,7 +42,7 @@ For my simple project, the build/rebuild cycle in VS isn't too bad, but I can im
 ## Generally flakey  
 VS gives up when I rename a `.razor` file, requiring a "turn it off and back on again".  
 This also happens every time I add a code-behind file for razor.  
-The CSS intellisense is a bit out of date (could be fixable, haven't dug) along with some of the built in components.  
+The CSS intellisense is a bit out of date (could be fixable, I haven't dug) along with some of the built in components.  
 `InputText` is an `input` set to text along with extra defaults and config, but it's intellisense doesn't support `placeholder`, BUT you can just put it there and it'll work correctly.  
 
 # CSS  
@@ -116,3 +120,10 @@ I found it most useful for `NavigationManager` which is how you trigger navigati
 - Routing is interesting. It's just a `@page` directive at the top of the page. No intellisense :(
 - Can use `@code {}` blocks in `.razor` files OR code-behind with a `MyComponent.razor.cs` with a `public partial class MyComponent` in it.
 - VS has nice file nesting for all this, so the `.razor` is top level, with scss, css, and cs all hiding under it.
+
+
+# Conclusions  
+There are many little niggles plus the massive lack of hot-reload, but ultimately it was a successful trek into Blazor.  
+Things are different to my normal web dev, so many of my frustrations were centered on not knowing Razor syntax, or how to bind properly, etc.  
+Does it offset not having to write Javascript?  
+It might, time will tell.  
