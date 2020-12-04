@@ -173,5 +173,10 @@ All tools, textures, and tutorials used are listed below.
 {{< image path="img/MetalStairs" alt="Such lighting!" >}}
 {{< /render_img >}}
 
+{{< render_img description="Recently finished Subnautica and liked the aesthetic. Underwater bases are some James Bond villain levels of AWESOME :D" rendertime="12 minutes" samples="500" >}}
+{{% header_link "My Subnautica Base" %}}
+{{< image path="img/SubnauticaBase" alt="Right on the edge of the Jellyshroom Caves!" >}}
+{{< /render_img >}}
+
 
 </div>
