@@ -1,11 +1,10 @@
 <div class="media video" >
-    <a href='{{ .Get "path"}}.mp4'>
-        <video class="inner" autoplay muted playsinline loop style="max-width: 100%">
+        <video class="inner" autoplay controls preload="auto" muted loop style="max-width: 100%">
             <!-- <source src='{{ .Get "path" }}_AV1.mp4' type="video/mp4; codecs=av01.0.05M.08">  EDGE tries to load this but fails -->
             <source src='{{ .Get "path" }}_VP9.webm' type="video/webm; codecs=vp9">
             <source src='{{ .Get "path" }}.mp4' type="video/mp4">
             Video doesn't work :(
         </video>
-    </a>
+    <a href='{{ .Get "path"}}.mp4'>HQ link</a>
     <div class="alt-text">{{ .Get "alt" }}</div>
 </div>
