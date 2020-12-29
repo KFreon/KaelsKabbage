@@ -1,6 +1,6 @@
 {{ $id := .Get 0 | lower | replaceRE "[^0-9a-z]" "-" | replaceRE "-+" "-" -}}
-<a href="#{{ $id }}">
-    <h3 id="{{ $id }}">{{ .Get 0 }}</h3>
+<a class="header-link" href="#{{ $id }}">
+    <h3 class="header-text" id="{{ $id }}">{{ .Get 0 }}</h3>
 </a>
 
 <!-- From this legend

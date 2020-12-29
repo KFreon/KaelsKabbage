@@ -25,12 +25,19 @@
 
   <h2 class="recent-title">Recent Posts</h2>
   <ul class="recent-posts">
-    {{ range first 5 .Site.Pages }}
+    {{ range first 3 .Site.Pages }}
     <li>
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     </li>
   {{ end }}
   </ul>
+
+  <div>
+    <h2 class="recent-title">Recent Render</h2>
+    <a href="{{ $.Site.BaseURL }}/renders">
+      <img class="recent-render" async src="{{ $.Site.BaseURL }}img/recent-render.png" width="275px" alt="Recent render" />
+    </a>
+  </div>
   
 </header>
 

@@ -43,7 +43,6 @@ module.exports = function(grunt) {
             }
             
             if (frontMatter.draft === true) {
-                console.log('hereeeeeee');
                 return -1;
             }
 

@@ -302,10 +302,38 @@ blockquote {
     width: 290px;
     border-right: 10px solid #eee;
     padding-top: 1rem;
+
+    .recent-title {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .recent-render {
+        border-radius: 0.5rem;
+        box-shadow: 0 0 0 gray;
+        transition: all 0.2s;
+
+        &:hover {
+            box-shadow: 0 0 5px 2px gray;
+        }
+    }
 }
 
 .render {
     margin-bottom: 1rem;
+    position: relative;
+
+    .render-date {
+        position: absolute;
+        right: 0;
+        font-size: 1rem;
+    }
+
+    .header-link {
+        .header-text {
+            margin-top: 0;
+        }
+    }
 
     .video {
         .alt-text {

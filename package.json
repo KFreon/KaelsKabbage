@@ -5,10 +5,11 @@
   "main": "Gruntfile.js",
   "scripts": {
     "build-index": "npx grunt build",
-    "build": "npm-run-all build-index optimise-assets",
+    "build": "npm-run-all build-index optimise-assets update-latest-render",
     "new": "hugo new --kind post-bundle",
     "start": "hugo server -D",
-    "optimise-assets": "cd AssetOptimiser && dotnet run --configuration Release ../content"
+    "optimise-assets": "cd AssetOptimiser && dotnet run --configuration Release ../content",
+    "update-latest-render": "pwsh ./SetLatestRender.ps1"
   },
   "author": "",
   "license": "ISC",
