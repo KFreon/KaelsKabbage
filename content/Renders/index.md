@@ -178,5 +178,14 @@ All tools, textures, and tutorials used are listed below.
 {{< image path="img/SubnauticaBase" alt="Right on the edge of the Jellyshroom Caves!" >}}
 {{< /render_img >}}
 
+{{< render_img description="Control is a fun game. I wanted to play with the Service Weapon in Blender" rendertime="60 minutes" samples="200" renderdate="2021-02-02" >}}
+{{% header_link "Control Service Weapon No Spin" %}}
+{{< video path="img/ControlServiceWeapon_Still" alt="Animation is hard, so this was good practice." >}}
+{{< /render_img >}}
+
+{{< render_img description="Control is a fun game. I wanted to play with the Service Weapon in Blender" rendertime="60 minutes" samples="200" renderdate="2021-02-02" >}}
+{{% header_link "Control Service Weapon Spinning" %}}
+{{< video path="img/ControlServiceWeapon_Spinning" alt="Another one where it's got a bit of a spin." >}}
+{{< /render_img >}}
 
 </div>
