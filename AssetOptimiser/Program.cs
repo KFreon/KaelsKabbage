@@ -77,8 +77,7 @@ namespace AssetOptimiser
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("~~~~~ Completed! ~~~~~");
-            Console.ReadLine();
+            Console.WriteLine("~~~~~ Finished optimising assets! ~~~~~");
         }
 
         static bool ProcessCmdLineArgs(string[] args, out int? crf, out int webpQuality, out string rootPath)

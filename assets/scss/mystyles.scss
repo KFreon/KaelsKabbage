@@ -336,6 +336,10 @@ blockquote {
     }
 
     .video {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
         .alt-text {
             margin: 0;
         }

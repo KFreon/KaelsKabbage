@@ -1,5 +1,5 @@
 <div class="media video" >
-        <video class="inner" autoplay controls preload="none" muted loop style="max-width: 100%">
+        <video class="inner" autoplay controls preload="none" muted loop style="max-width: 100%" width='{{ .Get "width" }}'>
             <!-- <source src='{{ .Get "path" }}_AV1.mp4' type="video/mp4; codecs=av01.0.05M.08">  EDGE tries to load this but fails -->
             <source src='{{ .Get "path" }}_VP9.webm' type="video/webm; codecs=vp9">
             <source src='{{ .Get "path" }}.mp4' type="video/mp4">
