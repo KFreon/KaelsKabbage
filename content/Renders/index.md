@@ -41,7 +41,8 @@ All tools, textures, and tutorials used are listed below.
   </button>
 </p>
 
-<div class="render-images" id="render-images">
+<div class="render-images slider" id="render-images">
+<div class="slides">
 {{< render_img description="Added a true Australian treat. Lamington :)" rendertime="~30 seconds" samples="20" renderdate="2020-01-18" >}}
 {{% header_link "Doonut" %}}
 {{< image path="img/Donut_WithMyMarble" alt="Obligatory Donut Render" nospacer="true" >}}
@@ -184,4 +185,5 @@ All tools, textures, and tutorials used are listed below.
 {{< video path="img/ControlServiceWeapon_Still" alt="Another one with less motion." width="500px" >}}
 {{< /render_img >}}
 
+</div>
 </div>

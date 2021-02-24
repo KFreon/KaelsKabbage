@@ -5,9 +5,10 @@
   "main": "Gruntfile.js",
   "scripts": {
     "build-index": "npx grunt build",
-    "build": "npm-run-all build-index optimise-assets update-latest-render",
+    "build": "npm-run-all build-index optimise-assets update-latest-render update-carousel-links",
     "new": "hugo new --kind post-bundle",
     "start": "hugo server -D",
+    "update-carousel-links": "cd render-link-builder && dotnet run --configuration Release ../content/Renders/index.md",
     "optimise-assets": "cd NewAssetOptimiser && dotnet run --configuration Release ../content",
     "update-latest-render": "pwsh ./SetLatestRender.ps1"
   },
