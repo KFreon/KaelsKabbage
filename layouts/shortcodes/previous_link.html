@@ -1,5 +1,4 @@
-<!-- Previous chronologically, but left to right, so 'previous' is to the right -->
 {{ $id := .Get 0 | lower | replaceRE "[^0-9a-z]" "-" | replaceRE "-+" "-" -}}
-<a class="header-link-button right" href="#{{ $id }}">
+<a class="header-link-button left" href="#{{ $id }}">
     <span class="arrow-button"></span>
 </a>
