@@ -1,5 +1,5 @@
-<!-- 'next' from a html flow perspective, actually the left button -->
+<!-- Next chronologically, but left to right, so 'next' is to the left -->
 {{ $id := .Get 0 | lower | replaceRE "[^0-9a-z]" "-" | replaceRE "-+" "-" -}}
 <a class="header-link-button left" href="#{{ $id }}">
-    <span class="arrow-button">&gt;</span>
+    <span class="arrow-button"></span>
 </a>

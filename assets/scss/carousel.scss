@@ -1,11 +1,9 @@
 .slider {
-  //   text-align: center;
   overflow: hidden;
 }
 
 .slides {
   display: flex;
-  flex-direction: row-reverse;
 
   overflow-x: auto;
   scroll-snap-type: x mandatory;

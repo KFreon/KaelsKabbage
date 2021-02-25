@@ -398,11 +398,16 @@ blockquote {
 
     .render-images {
         display: flex;
-        flex-direction: column-reverse;
 
-        &.tiles {
+        .tiles {
             display: flex;
-            flex-flow: row wrap-reverse;
+            flex-flow: row wrap;
+
+            .render {
+                .render-date {
+                    font-size: 0.5rem;
+                }
+            }
     
             > h1, details {
                 display: block;
