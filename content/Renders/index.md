@@ -46,7 +46,15 @@ All tools, textures, and tutorials used are listed below.
 
 <div class="render-images slider" id="render-images">
 <div class="slides" id='slides'>
+
+{{< render_img description="Quick space station using the new Geometry Nodes" renderdate="2021-03-01" rendertime="20 seconds" samples="500" >}}
+{{% header_link "Geometry Node Station" %}}
+{{% next_link "Floating Rock Platform" %}}
+{{< image path="img/GeoNodeStation" alt="Kinda looks like a metal rubbish dump all stuck together" >}}
+{{< /render_img >}}
+
 {{< render_img description="I like floating platforms. I also like volumetrics." rendertime="20 minutes" samples="300" renderdate="2021-02-28" >}}
+{{% previous_link "Geometry Node Station" %}}
 {{% header_link "Floating Rock Platform" %}}
 {{% next_link "Control Service Weapon" %}}
 {{< image path="img/FloatingRockPlatform" alt="Floating rocks in the glowing mist" >}}
