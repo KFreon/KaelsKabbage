@@ -47,7 +47,14 @@ All tools, textures, and tutorials used are listed below.
 <div class="render-images slider" id="render-images">
 <div class="slides" id='slides'>
 
+{{< render_img description="More geometry nodes, with marbles!" renderdate="2021-03-09" rendertime="60 seconds" samples="300" >}}
+{{% header_link "Marbles and Pebbles" %}}
+{{% next_link "Geometry Node Station" %}}
+{{< image path="img/MarblesOnPebbledGround" alt="Does anyone have marbles anymore?" >}}
+{{< /render_img >}}
+
 {{< render_img description="Quick space station using the new Geometry Nodes" renderdate="2021-03-01" rendertime="20 seconds" samples="500" >}}
+{{% previous_link "Marbles and Pebbles" %}}
 {{% header_link "Geometry Node Station" %}}
 {{% next_link "Floating Rock Platform" %}}
 {{< image path="img/GeoNodeStation" alt="Kinda looks like a metal rubbish dump all stuck together" >}}
