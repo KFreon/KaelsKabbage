@@ -2,9 +2,11 @@
 
 {{ $stylesSCSS := resources.Get "assets/scss/mystyles.scss" }}
 {{ $mobileSCSS := resources.Get "assets/scss/mobile.scss" }}
+{{ $darkSCSS := resources.Get "assets/scss/dark.scss" }}
 
 {{ $stylesCSS := $stylesSCSS | toCSS }}
 {{ $mobileCSS := $mobileSCSS | toCSS }}
+{{ $darkCSS := $darkSCSS | toCSS }}
 
 {{ $themeStylesCSS := resources.Get "themes/sp-minimal/static/css/styles.css" }}
 {{ $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" }}
@@ -14,11 +16,14 @@
 
 {{ $combined := cond (eq .Site.Params.themeStyle "simple") (slice $themeStylesCSS $minimalStylesCSS $minimalSimpleCSS $stylesCSS $mobileCSS) (slice $themeStylesCSS $minimalStylesCSS $stylesCSS $mobileCSS) }}
 
+{{ $darkMode := $darkCSS | minify }}
+
 {{ if .Site.IsServer }}
-  {{ range $combined }}
+{{ range $combined }}
     <link rel="stylesheet" defer href="{{ .Permalink }}">
-  {{ end }}
+{{ end }}
 {{ else }}
   {{ $styles := $combined | resources.Concat "css/styles.css" | minify}}
   <link rel="stylesheet" defer href="{{ $styles.Permalink }}">
 {{ end }}
+<link id="dark-mode" rel="stylesheet" disabled defer href="{{ $darkMode.Permalink }}">

@@ -1,0 +1,25 @@
+@import './variables.scss';
+
+:root {
+  --main-background: #{darken($main-colour, 20%)};
+  --main-colour: #{darken($main-background, 10%)};
+  --lightened-black: #{invert($lightened-black, 100%)};
+  --very-light-black: #{invert($very-light-black, 100%)};
+  --slategray: #{invert($slategray, 100%)};
+  --grey: #{invert($grey, 100%)};
+  --page-link-active: #{invert($page-link-active, 100%)};
+  --green: #{$green};
+  --lightgrey: #{invert($lightgrey, 100%)};
+  --lightgreen: #{$lightgreen};
+  --darkgreen: #{$darkgreen};
+
+  --strong-colour: greenyellow;
+  --h1-colour: #{lighten($main-colour, 40%)};
+  --h2-colour: #{lighten($main-colour, 35%)};
+  --h3-colour: #{lighten(invert($main-colour, 100%), 14%)};
+  --darker-background: #{darken($main-colour, 15%)};
+  --quote-background: #{rgba(invert($lightgreen, 100%), 0.5)};
+  --search-result-background: #{darken($main-colour, 15%)};
+  --search-result-border: #{lighten($main-colour, 15%)};
+  --sidebar-border: #{darken($main-colour, 5%)};
+}

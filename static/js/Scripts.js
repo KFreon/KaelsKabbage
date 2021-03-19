@@ -22,4 +22,21 @@ function setRenderDisplay(displayType) {
     default:
       break;
   }
+  localStorage.setItem('render-display', displayType);
+}
+
+function setTheme(theme) {
+  if (theme === 'dark') {
+    $("#dark-mode").prop('disabled', false);
+  } else {
+    $("#dark-mode").prop('disabled', true);
+  }
+}
+
+function toggleTheme() {
+  const currentTheme = localStorage.getItem('theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+  localStorage.setItem('theme', newTheme);
+  setTheme(newTheme);
 }
