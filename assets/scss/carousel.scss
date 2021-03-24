@@ -23,7 +23,7 @@
     font-size: 0;
     transform: translateY(50%);
     box-shadow: 0 0 0.5rem 0 darkslategray;
-    background-color: darkgrey;
+    background-color: transparentize(darkgrey, 0.7);
     background-size: 2.5rem;
     background-position: center;
     background-repeat: no-repeat;

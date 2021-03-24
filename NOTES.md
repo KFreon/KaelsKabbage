@@ -1,7 +1,6 @@
 - search being a bit weird, but works
-- Also why did recent-render change?
+- Latest render looks at lastWriteTime, needs to read the index.md :(
 - add local render filter, just on keydown or something? OR JUST TYPE ANYWHERE INTO THE SEARCHBOX???
-- Use half res videos for main page, with "click for full res". Maybe only use VP9? Support?
+- Use half res videos for main page, with "click for full res", just two links (VP9, mp4?). VP9 not supported on safari
   - videos don't work on xbox
 - xbox/landscape styling is bad
-  - also make carousel buttons bigger on mobile
