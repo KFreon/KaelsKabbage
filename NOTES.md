@@ -1,0 +1,7 @@
+- search being a bit weird, but works
+- Also why did recent-render change?
+- add local render filter, just on keydown or something? OR JUST TYPE ANYWHERE INTO THE SEARCHBOX???
+- Use half res videos for main page, with "click for full res". Maybe only use VP9? Support?
+  - videos don't work on xbox
+- xbox/landscape styling is bad
+  - also make carousel buttons bigger on mobile
