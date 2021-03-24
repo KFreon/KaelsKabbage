@@ -2,9 +2,8 @@
   "name": "kaels-kabbage.com",
   "version": "1.0.0",
   "description": "",
-  "main": "Gruntfile.js",
   "scripts": {
-    "build-index": "npx grunt build",
+    "build-index": "cd IndexBuilder && dotnet run && cd ..",
     "build": "npm-run-all build-index optimise-assets update-latest-render update-carousel-links",
     "new": "hugo new --kind post-bundle",
     "start": "hugo server -D",
@@ -15,8 +14,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "grunt": "^1.0.4",
-    "npm-run-all": "^4.1.5",
-    "yamljs": "^0.3.0"
+    "npm-run-all": "^4.1.5"
   }
 }
