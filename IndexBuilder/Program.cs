@@ -47,7 +47,8 @@ var postIndexEntries = allPosts
   {
       post.title,
       tags = post.tags ?? Array.Empty<string>(),
-      href = "/post/" + Regex.Replace(post.slug.ToLowerInvariant(), "[^0-9a-z]", "-")
+      href = "/post/" + Regex.Replace(post.slug.ToLowerInvariant(), "[^0-9a-z]", "-"),
+      isRender = false
   });
 
 var renderIndexEntries = File.ReadAllLines(renders)
@@ -57,7 +58,8 @@ var renderIndexEntries = File.ReadAllLines(renders)
   {
       title = x,
       tags = Array.Empty<string>(),
-      href = "/renders/#" + Regex.Replace(x.ToLowerInvariant(), "[^0-9a-z]", "-")
+      href = "/renders/#" + Regex.Replace(x.ToLowerInvariant(), "[^0-9a-z]", "-"),
+      isRender = true
   });
 
 var allEntries = postIndexEntries.Concat(renderIndexEntries).ToArray();

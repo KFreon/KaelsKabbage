@@ -14,15 +14,8 @@ function initLunr() {
             // Set up lunrjs by declaring the fields we use
             // Also provide their boost level for the ranking
             lunrIndex = lunr(function() {
-                this.field("title", {
-                    boost: 10
-                });
-                this.field("tags", {
-                    boost: 5
-                });
-                //this.field("content");
-
-                // ref is the result item identifier (I chose the page URL)
+                this.field("title");
+                this.field("tags");
                 this.ref("href");
 
                 pagesIndex.forEach(page => {
@@ -46,7 +39,7 @@ function initUI() {
             return;
         }
 
-        var results = search(query);
+        var results = search(`*${query}*`);
 
         renderResults(results);
     });
@@ -98,7 +91,7 @@ function renderResults(results) {
         var $result = $("<li class='search-result'>");
         $result.append($("<a>", {
             href: result.href,
-            text: result.title
+            text: `${result.isRender ? '🖼' : ''} ${result.title}`
         }));
         $results.append($result);
     });
