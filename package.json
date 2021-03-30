@@ -9,7 +9,7 @@
     "start": "hugo server -D",
     "update-carousel-links": "cd render-link-builder && dotnet run --configuration Release ../content/Renders/index.md",
     "optimise-assets": "cd NewAssetOptimiser && dotnet run --configuration Release ../content",
-    "update-latest-render": "pwsh ./SetLatestRender.ps1"
+    "update-latest-render": "cd SetLatestRender && dotnet run && cd .."
   },
   "author": "",
   "license": "ISC",
