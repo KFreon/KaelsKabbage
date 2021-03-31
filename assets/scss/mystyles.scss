@@ -337,18 +337,20 @@ blockquote {
     border-right: 10px solid var(--sidebar-border);
     padding-top: 1rem;
 
-    .recent-title {
-        margin-top: 1rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .recent-render {
-        border-radius: 0.5rem;
-        box-shadow: 0 0 0 var(--grey);
-        transition: all 0.2s;
-
-        &:hover {
-            box-shadow: 0 0 5px 2px var(--grey);
+    .recent-render-container {
+        .recent-title {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+    
+        .recent-render {
+            border-radius: 0.5rem;
+            box-shadow: 0 0 0 var(--grey);
+            transition: all 0.2s;
+    
+            &:hover {
+                box-shadow: 0 0 5px 2px var(--grey);
+            }
         }
     }
 }
@@ -515,6 +517,7 @@ blockquote {
     border-radius: 5px;
     border-color: var(--search-result-border);
     cursor: pointer;
+    margin-right: 1rem;
 
     &:hover {
         box-shadow: 0 0 1px 2px var(--search-result-border);

@@ -1,2 +1,0 @@
-- videos don't work on xbox
-- xbox/landscape styling is bad
