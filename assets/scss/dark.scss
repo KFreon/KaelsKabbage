@@ -8,15 +8,15 @@
   --slategray: #{invert($slategray, 100%)};
   --grey: #{invert($grey, 100%)};
   --page-link-active: #{invert($page-link-active, 100%)};
-  --green: #{$green};
+  --green: #{lighten($green, 10%)};
   --lightgrey: #{invert($lightgrey, 100%)};
   --lightgreen: #{$lightgreen};
   --darkgreen: #{$darkgreen};
 
   --strong-colour: greenyellow;
-  --h1-colour: #{lighten($main-colour, 40%)};
-  --h2-colour: #{lighten($main-colour, 35%)};
-  --h3-colour: #{lighten(invert($main-colour, 100%), 14%)};
+  --h1-colour: #{lighten($main-colour, 80%)};
+  --h2-colour: #{lighten($main-colour, 70%)};
+  --h3-colour: #{lighten(invert($main-colour, 100%), 60%)};
   --darker-background: #{darken($main-colour, 15%)};
   --quote-background: #{rgba(invert($lightgreen, 100%), 0.5)};
   --search-result-background: #{darken($main-colour, 15%)};
