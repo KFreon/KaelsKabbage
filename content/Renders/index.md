@@ -47,7 +47,14 @@ All tools, textures, and tutorials used are listed below.
 <div class="render-images slider" id="render-images">
 <div class="slides" id='slides'>
 
+{{< render_img description="So much gloss and transparency. There's loads of work in stuff that can't even be seen (e.g. pistons on lifter thing)" renderdate="2021-04-07" rendertime="23 hours" samples="100" frames="1320" >}}
+{{% header_link "Futuristic Star Trek style table" %}}
+{{% next_link "Marbles and Pebbles" %}}
+{{< video path="img/ScifiTable" alt="Futuristic Touch Table, with some shameless self advertising" >}}
+{{< /render_img >}}
+
 {{< render_img description="More geometry nodes, with marbles!" renderdate="2021-03-09" rendertime="60 seconds" samples="300" >}}
+{{% previous_link "Futuristic Star Trek style table" %}}
 {{% header_link "Marbles and Pebbles" %}}
 {{% next_link "Geometry Node Station" %}}
 {{< image path="img/MarblesOnPebbledGround" alt="Does anyone have marbles anymore?" >}}
@@ -67,7 +74,7 @@ All tools, textures, and tutorials used are listed below.
 {{< image path="img/FloatingRockPlatform" alt="Floating rocks in the glowing mist" >}}
 {{< /render_img >}}
 
-{{< render_img description="Control is a fun game. I wanted to play with the Service Weapon in Blender" rendertime="60 minutes" samples="200" renderdate="2021-02-02" >}}
+{{< render_img description="Control is a fun game. I wanted to play with the Service Weapon in Blender" rendertime="60 minutes" samples="200" renderdate="2021-02-02" frames="240" >}}
 {{% previous_link "Floating Rock Platform" %}}
 {{% header_link "Control Service Weapon" %}}
 {{% next_link "My Subnautica Base" %}}
