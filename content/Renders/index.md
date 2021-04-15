@@ -9,7 +9,7 @@ All tools, textures, and tutorials used are listed below.
 <!--more-->  
 
 <details class="render-resources">
-  <summary>Resources (sites, tutorials, tools, etc)</summary>
+  <summary>Resources (sites, tools, etc)</summary>
   <h2>Sites</h2>
 
   - [Poligon](https://www.poliigon.com/)  
@@ -23,13 +23,6 @@ All tools, textures, and tutorials used are listed below.
   - [Paint.NET](https://www.getpaint.net/) - Easy quick image editor  
   - [GIMP](https://www.gimp.org/) - xplat alternative  
   - [JSDisplacement](https://windmillart.net/?p=jsplacement) - Greeble generator  
-
-  <h2>Tutorials</h2>
-
-  - [The infamous doughnut](https://www.youtube.com/watch?v=TPrnSACiTJ4) - You gotta do it!  
-  - [Anvil](https://www.youtube.com/watch?v=yi87Dap_WOc) - Modelling  
-  - [Sword](https://www.youtube.com/watch?v=zHv4VDoCwYc) - Eevee
-  - [Borg Cube](https://www.blendernation.com/2020/04/08/create-a-borg-cube-using-displacements/)  - Cool displacements  
 </details>
 
 <p class="render-toggle-buttons">
@@ -47,34 +40,71 @@ All tools, textures, and tutorials used are listed below.
 <div class="render-images slider" id="render-images">
 <div class="slides" id='slides'>
 
-{{< render_img description="So much gloss and transparency. There's loads of work in stuff that can't even be seen (e.g. pistons on lifter thing)" renderdate="2021-04-07" rendertime="23 hours" samples="100" frames="1320" >}}
+{{< render_img
+  description="Quick run to test this crazy voronoi displacement I saw on Reddit"
+  renderdate="2021-4-15"
+  rendertime="60 minutes"
+  samples="10"
+  engine="Cycles (with denoiser node)"
+  frames="250"
+  tutorialUrl="https://www.youtube.com/watch?v=_bdcQXMQ4e0"
+  tutorialText="CG Matter" >}}
+{{% header_link "Crazy Concentric Voronoi (from tute)" %}}
+{{% next_link "Futuristic Star Trek style table" %}}
+{{< video path="img/ConcentricVoronoi" alt="Some crazy vector node stuff to get this cool voronoi columns effect" >}}
+{{< /render_img >}}
+
+{{< render_img 
+  description="So much gloss and transparency. There's loads of work in stuff that can't even be seen (e.g. pistons on lifter thing)" 
+  renderdate="2021-04-07" 
+  rendertime="23 hours" 
+  samples="100" 
+  frames="1320" >}}
+{{% previous_link "Crazy Concentric Voronoi (from tute)" %}}
 {{% header_link "Futuristic Star Trek style table" %}}
 {{% next_link "Marbles and Pebbles" %}}
 {{< video path="img/ScifiTable" alt="Futuristic Touch Table, with some shameless self advertising" >}}
 {{< /render_img >}}
 
-{{< render_img description="More geometry nodes, with marbles!" renderdate="2021-03-09" rendertime="60 seconds" samples="300" >}}
+{{< render_img 
+  description="More geometry nodes, with marbles!" 
+  renderdate="2021-03-09" 
+  rendertime="60 seconds" 
+  samples="300" >}}
 {{% previous_link "Futuristic Star Trek style table" %}}
 {{% header_link "Marbles and Pebbles" %}}
 {{% next_link "Geometry Node Station" %}}
 {{< image path="img/MarblesOnPebbledGround" alt="Does anyone have marbles anymore?" >}}
 {{< /render_img >}}
 
-{{< render_img description="Quick space station using the new Geometry Nodes" renderdate="2021-03-01" rendertime="20 seconds" samples="500" >}}
+{{< render_img 
+  description="Quick space station using the new Geometry Nodes" 
+  renderdate="2021-03-01" 
+  rendertime="20 seconds" 
+  samples="500" >}}
 {{% previous_link "Marbles and Pebbles" %}}
 {{% header_link "Geometry Node Station" %}}
 {{% next_link "Floating Rock Platform" %}}
 {{< image path="img/GeoNodeStation" alt="Kinda looks like a metal rubbish dump all stuck together" >}}
 {{< /render_img >}}
 
-{{< render_img description="I like floating platforms. I also like volumetrics." rendertime="20 minutes" samples="300" renderdate="2021-02-28" >}}
+{{< render_img 
+  description="I like floating platforms. I also like volumetrics." 
+  rendertime="20 minutes" 
+  samples="300" 
+  renderdate="2021-02-28" >}}
 {{% previous_link "Geometry Node Station" %}}
 {{% header_link "Floating Rock Platform" %}}
 {{% next_link "Control Service Weapon" %}}
 {{< image path="img/FloatingRockPlatform" alt="Floating rocks in the glowing mist" >}}
 {{< /render_img >}}
 
-{{< render_img description="Control is a fun game. I wanted to play with the Service Weapon in Blender" rendertime="60 minutes" samples="200" renderdate="2021-02-02" frames="240" >}}
+{{< render_img 
+  description="Control is a fun game. I wanted to play with the Service Weapon in Blender"
+  rendertime="60 minutes" 
+  samples="200" 
+  renderdate="2021-02-02" 
+  frames="240" >}}
 {{% previous_link "Floating Rock Platform" %}}
 {{% header_link "Control Service Weapon" %}}
 {{% next_link "My Subnautica Base" %}}
@@ -83,15 +113,22 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="Recently finished Subnautica and liked the aesthetic. Underwater bases are some James Bond villain levels of AWESOME :D" rendertime="12 minutes" samples="500" renderdate="2020-12-04" >}}
+{{< render_img 
+  description="Recently finished Subnautica and liked the aesthetic. Underwater bases are some James Bond villain levels of AWESOME :D" 
+  rendertime="12 minutes" 
+  samples="500" 
+  renderdate="2020-12-04" >}}
 {{% previous_link "Control Service Weapon" %}}
 {{% header_link "My Subnautica Base" %}}
 {{% next_link "Working on the stairs" %}}
 {{< image path="img/SubnauticaBase" alt="Right on the edge of the Jellyshroom Caves!" >}}
 {{< /render_img >}}
 
-
-{{< render_img description="I wanted to try some procedural texture tiling. It's waaaay over my head though." rendertime="13 minutes" samples="800" renderdate="2020-11-12" >}}
+{{< render_img
+  description="I wanted to try some procedural texture tiling. It's waaaay over my head though." 
+  rendertime="13 minutes"
+  samples="800" 
+  renderdate="2020-11-12" >}}
 {{% previous_link "My Subnautica Base" %}}
 {{% header_link "Working on the stairs" %}}
 {{% next_link "Halloweeeeen" %}}
@@ -99,7 +136,11 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="I've always liked these kinds of spooky atmospheric scenes." rendertime="12 minutes" samples="200" renderdate="2020-10-20" >}}
+{{< render_img
+  description="I've always liked these kinds of spooky atmospheric scenes." 
+  rendertime="12 minutes" 
+  samples="200"
+  renderdate="2020-10-20" >}}
 {{% previous_link "Working on the stairs" %}}
 {{% header_link "Halloweeeeen" %}}
 {{% next_link "Crystal Caverns" %}}
@@ -107,7 +148,12 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="Trying some glowing crystal action" rendertime="18 minutes" samples="100, 1000 for volume" engine="Cycles" renderdate="2020-10-14" >}}
+{{< render_img 
+  description="Trying some glowing crystal action" 
+  rendertime="18 minutes" 
+  samples="100, 1000 for volume" 
+  engine="Cycles" 
+  renderdate="2020-10-14" >}}
 {{% previous_link "Halloweeeeen" %}}
 {{% header_link "Crystal Caverns" %}}
 {{% next_link "Mass Relay" %}}
@@ -115,7 +161,14 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="Found this in the old boxes. My first foray into Blender, took months. Then about 5 hours to make it way better. Relay model isn't mine" credits="Relay Model: SporeAltair@https://sketchfab.com/models/dbc16b9795234c6fa6c0a6ca8eaa4f00" rendertime="7 hours" samples="100" engine="Cycles" frames="1510" renderdate="2020-09-17" >}}
+{{< render_img 
+  description="Found this in the old boxes. My first foray into Blender, took months. Then about 5 hours to make it way better. Relay model isn't mine" 
+  credits="Relay Model: SporeAltair@https://sketchfab.com/models/dbc16b9795234c6fa6c0a6ca8eaa4f00"
+  rendertime="7 hours" 
+  samples="100"
+  engine="Cycles"
+  frames="1510" 
+  renderdate="2020-09-17" >}}
 {{% previous_link "Crystal Caverns" %}}
 {{% header_link "Mass Relay" %}}
 {{% next_link "SCP TV" %}}
@@ -123,7 +176,13 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="I love Control (Remedy game), and I wanted to play with boids" rendertime="13 hours" samples="300" engine="Cycles" frames="500" renderdate="2020-09-10" >}}
+{{< render_img
+  description="I love Control (Remedy game), and I wanted to play with boids" 
+  rendertime="13 hours"
+  samples="300" 
+  engine="Cycles" 
+  frames="500" 
+  renderdate="2020-09-10" >}}
 {{% previous_link "Mass Relay" %}}
 {{% header_link "SCP TV" %}}
 {{% next_link "University Water" %}}
@@ -131,7 +190,13 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="Playing with water and cloth sims" rendertime="12 hours" samples="400" engine="Cycles" frames="250" renderdate="2020-09-04" >}}
+{{< render_img
+  description="Playing with water and cloth sims" 
+  rendertime="12 hours" 
+  samples="400" 
+  engine="Cycles" 
+  frames="250" 
+  renderdate="2020-09-04" >}}
 {{% previous_link "SCP TV" %}}
 {{% header_link "University Water" %}}
 {{% next_link "Borg Cube" %}}
@@ -139,7 +204,14 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="I got a decent way through making this without a tutorial, so I'm pleased. The JSDisplacement greebles and AO emmision methods are really cool." rendertime="4.5 minutes" samples="400" engine="Cycles" renderdate="2020-08-07" >}}
+{{< render_img 
+  description="I got a decent way through making this without a tutorial, so I'm pleased. The JSDisplacement greebles and AO emmision methods are really cool." 
+  rendertime="4.5 minutes" 
+  samples="400" 
+  engine="Cycles" 
+  renderdate="2020-08-07" 
+  tutorialUrl="https://www.blendernation.com/2020/04/08/create-a-borg-cube-using-displacements/" 
+  tutorialText="By Dikko" >}}
 {{% previous_link "University Water" %}}
 {{% header_link "Borg Cube" %}}
 {{% next_link "Shattered World" %}}
@@ -147,7 +219,12 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="Wanted to make a shattered world for a while. I'm not happy with this, but it's a start for next time. That volume tanked the rendertime too..." rendertime="20.5 minutes" samples="400" engine="Cycles" renderdate="2020-08-07" >}}
+{{< render_img 
+  description="Wanted to make a shattered world for a while. I'm not happy with this, but it's a start for next time. That volume tanked the rendertime too..." 
+  rendertime="20.5 minutes" 
+  samples="400" 
+  engine="Cycles" 
+  renderdate="2020-08-07" >}}
 {{% previous_link "Borg Cube" %}}
 {{% header_link "Shattered World" %}}
 {{% next_link "Bullets" %}}
@@ -155,7 +232,12 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="Playing Halo MCC with a friend and figured it'd be easy to do that menu scene with all the bullets ¯\_(ツ)_/¯" rendertime="6 minutes" samples="800" engine="Cycles" renderdate="2020-08-07" >}}
+{{< render_img 
+  description="Playing Halo MCC with a friend and figured it'd be easy to do that menu scene with all the bullets ¯\_(ツ)_/¯"
+  rendertime="6 minutes" 
+  samples="800" 
+  engine="Cycles" 
+  renderdate="2020-08-07" >}}
 {{% previous_link "Shattered World" %}}
 {{% header_link "Bullets" %}}
 {{% next_link "Tea and Biscuits" %}}
@@ -163,7 +245,12 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="The teapot was the hardest thing to mode. Feels like I did it the hardest way possible." rendertime="3.5 minutes" samples="300" engine="Cycles" renderdate="2020-08-07" >}}
+{{< render_img
+  description="The teapot was the hardest thing to mode. Feels like I did it the hardest way possible."
+  rendertime="3.5 minutes" 
+  samples="300" 
+  engine="Cycles" 
+  renderdate="2020-08-07" >}}
 {{% previous_link "Bullets" %}}
 {{% header_link "Tea and Biscuits" %}}
 {{% next_link "Well and Bucket" %}}
@@ -171,7 +258,12 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="Proving to myself I COULD do rocks with displacements, also the rope and grass." rendertime="11 minutes" samples="400" engine="Cycles" renderdate="2020-08-07" >}}
+{{< render_img 
+  description="Proving to myself I COULD do rocks with displacements, also the rope and grass." 
+  rendertime="11 minutes" 
+  samples="400" 
+  engine="Cycles"
+  renderdate="2020-08-07" >}}
 {{% previous_link "Tea and Biscuits" %}}
 {{% header_link "Well and Bucket" %}}
 {{% next_link "The Beast Planet" %}}
@@ -179,7 +271,13 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="I got to practice some rigging, animations, and compositing :D It's from a show called Shadow Raiders. Some good sci-fi ideas in there." rendertime="2 hours" samples="400" engine="Cycles" frames="600" renderdate="2020-05-13" >}}
+{{< render_img
+  description="I got to practice some rigging, animations, and compositing :D It's from a show called Shadow Raiders. Some good sci-fi ideas in there." 
+  rendertime="2 hours"
+  samples="400"
+  engine="Cycles" 
+  frames="600" 
+  renderdate="2020-05-13" >}}
 {{% previous_link "Well and Bucket" %}}
 {{% header_link "The Beast Planet" %}}
 {{% next_link "Ancient Door" %}}
@@ -187,7 +285,13 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="Ancient areas are creepy places! I wanted to try my hand at animating. I need to do a tutorial..." rendertime="5 hours" samples="64" engine="Eevee" frames="1100" renderdate="2020-05-08" >}}
+{{< render_img
+  description="Ancient areas are creepy places! I wanted to try my hand at animating. I need to do a tutorial..." 
+  rendertime="5 hours"
+  samples="64"
+  engine="Eevee" 
+  frames="1100" 
+  renderdate="2020-05-08" >}}
 {{% previous_link "The Beast Planet" %}}
 {{% header_link "Ancient Door" %}}
 {{% next_link "Happy Easter!" %}}
@@ -203,7 +307,12 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="I did another one from the other side so I could see all those cool runes :D" rendertime="5 seconds" samples="64" engine="Eevee" renderdate="2020-04-06" >}}
+{{< render_img 
+  description="I did another one from the other side so I could see all those cool runes :D" 
+  rendertime="5 seconds" 
+  samples="64" 
+  engine="Eevee" 
+  renderdate="2020-04-06" >}}
 {{% previous_link "Happy Easter!" %}}
 {{% header_link "Sword showing runes" %}}
 {{% next_link "Sword WITHOUT cinematic compositing" %}}
@@ -211,7 +320,12 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}   
 
 
-{{< render_img description="I almost like this one better. Still, compositing can add much more flair than I gave it credit for." rendertime="5 seconds" samples="64" engine="Eevee" renderdate="2020-04-06" >}}
+{{< render_img
+  description="I almost like this one better. Still, compositing can add much more flair than I gave it credit for."
+  rendertime="5 seconds"
+  samples="64" 
+  engine="Eevee" 
+  renderdate="2020-04-06" >}}
 {{% previous_link "Sword showing runes" %}}
 {{% header_link "Sword WITHOUT cinematic compositing" %}}
 {{% next_link "Sword from CG Fasttrack" %}}
@@ -219,7 +333,14 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="The CG Fasttrack tutorial sword. I ended up using different assets or making some out of stubborness. The final result suffers for it, but I learned many new things." rendertime="5 seconds" samples="64" engine="Eevee" renderdate="2020-04-06" >}}
+{{< render_img
+  description="The CG Fasttrack tutorial sword. I ended up using different assets or making some out of stubborness. The final result suffers for it, but I learned many new things." 
+  rendertime="5 seconds" 
+  samples="64" 
+  engine="Eevee" 
+  renderdate="2020-04-06" 
+  tutorialUrl="https://www.youtube.com/watch?v=zHv4VDoCwYc"
+  tutorialText="CG Fasttrack" >}}
 {{% previous_link "Sword WITHOUT cinematic compositing" %}}
 {{% header_link "Sword from CG Fasttrack" %}}
 {{% next_link "Enchanting table" %}}
@@ -235,7 +356,11 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="Coffee is the best thing, and sitting with one during the city buzz is very relaxing.| I was really happy with the bridge, but I realised that the DOF made it hard to see, so I did another one with less DOF :)" rendertime="15 minutes" samples="500" renderdate="2020-02-02" >}}
+{{< render_img 
+  description="Coffee is the best thing, and sitting with one during the city buzz is very relaxing.| I was really happy with the bridge, but I realised that the DOF made it hard to see, so I did another one with less DOF :)"
+  rendertime="15 minutes" 
+  samples="500"
+  renderdate="2020-02-02" >}}
 {{% previous_link "Enchanting table" %}}
 {{% header_link "Urban Takeaway Coffee" %}}
 {{% next_link "Fixed olives, highlighted differences" %}}
@@ -244,7 +369,11 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}  
 
 
-{{< render_img description="Finally fixed the olives. Note the differences mainly in the olives themselves, jar, and fork. I wasn't happy with the materials originally, and I want to show the difference now afterwards." rendertime="25 seconds" samples="100" renderdate="2020-01-31" >}}
+{{< render_img
+  description="Finally fixed the olives. Note the differences mainly in the olives themselves, jar, and fork. I wasn't happy with the materials originally, and I want to show the difference now afterwards."
+  rendertime="25 seconds"
+  samples="100" 
+  renderdate="2020-01-31" >}}
 {{% previous_link "Urban Takeaway Coffee" %}}
 {{% header_link "Fixed olives, highlighted differences" %}}
 {{% next_link "Olives on a plate!" %}}
@@ -292,10 +421,16 @@ All tools, textures, and tutorials used are listed below.
 {{< /render_img >}}
 
 
-{{< render_img description="Added a true Australian treat. Lamington :)" rendertime="~30 seconds" samples="20" renderdate="2020-01-18" >}}
+{{< render_img 
+  description="Added a true Australian treat. Lamington :)" 
+  rendertime="~30 seconds" 
+  samples="20" 
+  renderdate="2020-01-18" 
+  tutorialUrl="https://www.youtube.com/watch?v=TPrnSACiTJ4"
+  tutorialText="The Infamous BlenderGuru!" >}}
 {{% previous_link "Moovin Doonut" %}}
 {{% header_link "Doonut" %}}
-{{< image path="img/Donut_WithMyMarble" alt="Obligatory Donut Render" nospacer="true" >}}
+{{< image path="img/Donut_WithMyMarble" alt="Obligatory Donut Render" nospacer="true" >}}  
 {{< /render_img >}}  
 
 </div>

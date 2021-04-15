@@ -40,7 +40,12 @@
                 <strong>🎬Frames: </strong>
                 <span>{{ . }}</span>
             </p>
-            {{ else }}
+            {{ end }}
+            {{ if isset .Params "tutorialUrl" }}
+            <p>
+                <strong>Tutorial: </strong>
+                <a href='{{ .Get "tutorialUrl" }}'>{{ .Get "tutorialText" }}</a>
+            </p>
             {{ end }}
         </div>
     </div>

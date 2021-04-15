@@ -57,8 +57,8 @@
     "HugoShortcode Render": {
         "prefix": "hrender",
         "body": [
-            "{{< render_img description=\"${1:description1|description2}\" renderdate=\"${2:date}\" rendertime=\"${3:xx seconds}\" samples=\"${4:20}\" credits=\"${6:name@link|name@link}\" engine=\"${7:Cycles (with denoiser node)}\" frames=\"${8:framecount}\" >}}",
-            "{{% header_link \"$5\" %}}",
+            "{{< render_img\n\tdescription=\"${1:description1|description2}\"\n\trenderdate=\"${2:date}\"\n\trendertime=\"${3:xx seconds}\"\n\tsamples=\"${4:20}\"\n\tcredits=\"${6:name@link|name@link}\"\n\tengine=\"${7:Cycles (with denoiser node)}\"\n\tframes=\"${8:framecount}\"\n\ttutorialUrl=\"${9:tutorialUrl}\"\n\ttutorialText=\"${10:tutorial description}\" >}}",
+            "{{% header_link \"$11\" %}}",
             "himg$0",
             "{{< /render_img >}}",
         ],
