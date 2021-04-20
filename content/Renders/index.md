@@ -41,6 +41,17 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="A Stargate was one of the first things I wanted to make. Finally got around to it!"
+  renderdate="2021-4-20"
+  rendertime="5 seconds"
+  samples="200"
+  engine="Cycles (with denoiser node)" >}}
+{{% header_link "Atlantis Stargate" %}}
+{{% next_link "Crazy Concentric Voronoi (from tute)" %}}
+{{< image path="img/AtlantisStargate" alt="Stargate from SG:A with some Wraith Darts incoming" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="Quick run to test this crazy voronoi displacement I saw on Reddit"
   renderdate="2021-4-15"
   rendertime="60 minutes"
@@ -49,6 +60,7 @@ All tools, textures, and tutorials used are listed below.
   frames="250"
   tutorialUrl="https://www.youtube.com/watch?v=_bdcQXMQ4e0"
   tutorialText="CG Matter" >}}
+{{% previous_link "Atlantis Stargate" %}}
 {{% header_link "Crazy Concentric Voronoi (from tute)" %}}
 {{% next_link "Futuristic Star Trek style table" %}}
 {{< video path="img/ConcentricVoronoi" alt="Some crazy vector node stuff to get this cool voronoi columns effect" >}}
