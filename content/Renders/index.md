@@ -43,7 +43,7 @@ All tools, textures, and tutorials used are listed below.
 {{< render_img
   description="A Stargate was one of the first things I wanted to make. Finally got around to it!"
   renderdate="2021-4-20"
-  rendertime="5 seconds"
+  rendertime="50 seconds"
   samples="200"
   engine="Cycles (with denoiser node)" >}}
 {{% header_link "Atlantis Stargate" %}}
