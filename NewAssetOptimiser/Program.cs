@@ -217,7 +217,7 @@ namespace AssetOptimiser
             Regex appPathMatcher = new Regex(@"(?<!fil)[A-Za-z]:\\+[\S\s]*?(?=\\+bin)");
             var appRoot = appPathMatcher.Match(exePath).Value;
 
-            var cwebp = Path.Combine(appRoot, "Webp", "bins", "cwebp.exe");
+            var cwebp = Path.Combine(appRoot, "Webp", "cwebp.exe");
             if (!File.Exists(cwebp))
                 throw new FileNotFoundException("Webp converter not found at: " + cwebp);
 
