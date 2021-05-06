@@ -41,6 +41,27 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="A much more interesting angle with some extras"
+  renderdate="2021-5-6"
+  rendertime="4 minutes"
+  samples="150" >}}
+{{% header_link "Age of Empires Mill Perspective" %}}
+{{% next_link "Age of Empires Mill Comparison" %}}
+{{< image path="img/AOEMill_Perspective" alt="Better perspective, characters, and doodads" >}}
+{{< /render_img >}}
+
+{{< render_img
+  description="Watching some Age of Empires videos got me thinking|That mill looks pretty nice. Many experiments here, most successful."
+  renderdate="2021-5-6"
+  rendertime="4 minutes"
+  samples="150" >}}
+{{% previous_link "Age of Empires Mill Perspective" %}}
+{{% header_link "Age of Empires Mill Comparison" %}}
+{{% next_link "Blowing Desert" %}}
+{{< image path="img/AOEMill_Comparison" alt="Comparison to reference, Age of Empires Mill" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="I saw Pwnisher's car scene and for some reason, the moving volume got me."
   renderdate="2021-4-30"
   rendertime="2 hours"
@@ -50,6 +71,7 @@ All tools, textures, and tutorials used are listed below.
   frames="100"
   tutorialUrl=""
   tutorialText="" >}}
+{{% previous_link "Age of Empires Mill Comparison" %}}
 {{% header_link "Blowing Desert" %}}
 {{% next_link "Atlantis Stargate" %}}
 {{< video path="img/BlowingDesert" alt="Abandoned site in a blowing desert" >}}
