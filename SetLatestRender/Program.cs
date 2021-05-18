@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 //var renders = "../../../../Content/Renders/index.md";
 
 var renders = "../Content/Renders/index.md";
-var destination = "../static/img/recent-render.png";
+var destinationName = "../static/img/recent-render";
+var destination = $"{destinationName}.png";
 
 var latestRenderPath = File.ReadAllLines(renders)
     .First(x => x.StartsWith("{{< image") || x.StartsWith("{{< video"))
@@ -21,9 +22,12 @@ var latestImage = "../Content/Renders/" + latestRenderPath + ".png";
 var latestVideo = "../Content/Renders/" + latestRenderPath + "_VP9.webm";
 
 if (File.Exists(latestImage)) {
-    Process.Start("ffmpeg", $"-i {latestImage} -y -vf scale=300:-1 {destination}");
+    await Process.Start("ffmpeg", $"-i {latestImage} -y -vf scale=275:-1 {destination}").WaitForExitAsync();
 } else if (File.Exists(latestVideo)) {
-    Process.Start("ffmpeg", $"-i {latestVideo} -y -vframes 1 -vf scale=300:-1 {destination}");
+    await Process.Start("ffmpeg", $"-i {latestVideo} -y -vframes 1 -vf scale=275:-1 {destination}").WaitForExitAsync();
 }
+
+// Convert to webp as well
+await Process.Start(@"../NewAssetOptimiser/Webp/cwebp.exe", $"-q 90 {destination} -o {destinationName}.webp").WaitForExitAsync();
 
 Console.WriteLine("Latest Render = " + latestRenderPath);

@@ -35,7 +35,11 @@
   <div class="recent-render-container">
     <h2 class="recent-title">Recent Render</h2>
     <a href="{{ $.Site.BaseURL }}/renders">
-      <img class="recent-render" async src="{{ $.Site.BaseURL }}img/recent-render.png" width="275px" alt="Recent render" />
+      <picture class="recent-render">
+        <source srcset='{{ $.Site.BaseURL }}img/recent-render.webp' type="image/webp">
+        <source srcset='{{ $.Site.BaseURL }}img/recent-render.png' type="image/png"> 
+        <img class="image inner" src='{{ $.Site.BaseURL }}img/recent-render.png' alt='Recent Render' width='275px'>
+    </picture>
     </a>
   </div>
   
