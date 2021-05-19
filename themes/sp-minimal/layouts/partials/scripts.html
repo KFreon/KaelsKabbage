@@ -1,9 +1,8 @@
-{{ $jquery := resources.Get "static/js/zepto.min.js" }}
-{{ $lunr := resources.Get "static/js/lunr.js" }}
 {{ $search := resources.Get "static/js/search.js" }}
+{{ $pagesIndex := resources.Get "static/js/PagesIndex.js" }}
 {{ $scripts := resources.Get "static/js/Scripts.js" }}
-{{ $combined := slice $jquery $lunr $search $scripts | resources.Concat "js/bundle.js" | minify }}
-{{ $stateful := resources.Get "static/js/StatefulScripts.js" | minify }}
+{{ $stateful := resources.Get "static/js/StatefulScripts.js" }}
+{{ $combined := slice $pagesIndex $search $scripts $stateful | resources.Concat "js/bundle.js" | minify }}
 
 <script type="text/javascript" defer src="{{ $combined.Permalink }}"></script>
 
@@ -16,4 +15,3 @@
 
     gtag('config', 'UA-122097969-1');
 </script>
-<script defer src="{{ $stateful.Permalink }}"></script>

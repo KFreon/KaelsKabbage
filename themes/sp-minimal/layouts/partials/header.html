@@ -17,7 +17,7 @@
   <p class="tags"><a href="{{ $.Site.BaseURL }}/tags">Tags</a></p>
 
   <div class="search-area">
-      <input id="searchbox" placeholder="Search..." type="text" class="search-box">
+      <input id="searchbox" placeholder="Search..." type="text" class="search-box" onkeyup="search()" onblur="hideIfNecessary()" onfocus="showIfNecessary()">
       <ul class="results-list" id="results">
           
       </ul>

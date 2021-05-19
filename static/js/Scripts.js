@@ -1,23 +1,23 @@
 function setRenderDisplay(displayType) {
   // Clear all first
-  $("#render-list-button").removeClass("selected");
-  $("#render-tiles-button").removeClass("selected");
-  $("#render-carousel-button").removeClass("selected");
+  document.getElementById("render-list-button").classList.remove("selected");
+  document.getElementById("render-tiles-button").classList.remove("selected");
+  document.getElementById("render-carousel-button").classList.remove("selected");
 
-  $("#slides").removeClass("tiles");
-  $("#slides").removeClass("slides");
+  document.getElementById("slides").classList.remove("tiles");
+  document.getElementById("slides").classList.remove("slides");
 
   switch (displayType) {
     case 'list':
-      $("#render-list-button").addClass("selected");
+      document.getElementById("render-list-button").classList.add("selected");
       break;
     case 'tiles':
-      $("#render-tiles-button").addClass("selected");
-      $("#slides").addClass("tiles");
+      document.getElementById("render-tiles-button").classList.add("selected");
+      document.getElementById("slides").classList.add("tiles");
       break;
     case 'carousel':
-      $("#render-carousel-button").addClass("selected");
-      $("#slides").addClass("slides");
+      document.getElementById("render-carousel-button").classList.add("selected");
+      document.getElementById("slides").classList.add("slides");
       break;
     default:
       break;
@@ -27,9 +27,9 @@ function setRenderDisplay(displayType) {
 
 function setTheme(theme) {
   if (theme === 'dark') {
-    $("#dark-mode").prop('disabled', false);
+    document.getElementById("dark-mode").disabled = false;
   } else {
-    $("#dark-mode").prop('disabled', true);
+    document.getElementById("dark-mode").disabled = true;
   }
 }
 
