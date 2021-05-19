@@ -39,7 +39,7 @@ function renderResults() {
     toggleResults(true);
 
     // Only show the ten first results
-    searchResults.slice(0, 5).forEach(function(result) {
+    searchResults.slice(0, 4).forEach(function(result) {
         const text = `${result.isRender ? '🖼' : ''} ${result.title}`;
         const node = document.createElement("li");
         node.classList.add('search-result');
