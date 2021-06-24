@@ -41,10 +41,22 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="Pirate Treasure for a Reddit contest"
+  renderdate="2021-6-24"
+  rendertime="80 seconds"
+  samples="200"
+  >}}
+{{% header_link "Pirate Treasure" %}}
+{{% next_link "Age of Empires Mill Perspective" %}}
+{{< image path="img/PirateTreasure" alt="Pirates Treasure chest with gold, the typical pirate treasure scene :)" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="A much more interesting angle with some extras"
   renderdate="2021-5-6"
   rendertime="4 minutes"
   samples="150" >}}
+{{% previous_link "Pirate Treasure" %}}
 {{% header_link "Age of Empires Mill Perspective" %}}
 {{% next_link "Age of Empires Mill Comparison" %}}
 {{< image path="img/AOEMill_Perspective" alt="Better perspective, characters, and doodads" >}}
