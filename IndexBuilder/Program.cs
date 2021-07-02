@@ -60,6 +60,11 @@ var renderIndexEntries = File.ReadAllLines(renders)
       isRender = true
   });
 
-var allEntries = postIndexEntries.Concat(renderIndexEntries).ToArray();
+var allEntries = postIndexEntries.Concat(renderIndexEntries).Select(x => new 
+{
+  x.title,
+  href = x.href.Replace("--", "-"),  // Occasionally, there were doubles that needed removal.
+  x.isRender,
+}).ToArray();
 var serialised = "const pagesIndex = " + JsonSerializer.Serialize(allEntries) + ";";
 File.WriteAllText("../static/js/PagesIndex.js", serialised);
