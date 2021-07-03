@@ -47,7 +47,7 @@ All tools, textures, and tutorials used are listed below.
   frames="60"
   samples="200"
   >}}
-{{% header_link "Relaxing nighttime writing" %}}
+{{% header_link "Relaxing Nighttime Writing" %}}
 {{% next_link "Pirate Treasure" %}}
 {{< video path="img/Book" alt="Book with candle, pen, and hot drink!" >}}
 {{< /render_img >}}
@@ -58,7 +58,7 @@ All tools, textures, and tutorials used are listed below.
   rendertime="80 seconds"
   samples="200"
   >}}
-{{% previous_link "Relaxing nighttime writing" %}}
+{{% previous_link "Relaxing Nighttime Writing" %}}
 {{% header_link "Pirate Treasure" %}}
 {{% next_link "Age of Empires Mill Perspective" %}}
 {{< image path="img/PirateTreasure" alt="Pirates Treasure chest with gold, the typical pirate treasure scene :)" >}}
