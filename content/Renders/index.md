@@ -41,11 +41,24 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="Nice relaxing book for my sisters birthday!"
+  renderdate="2021-7-03"
+  rendertime="1 hour"
+  frames="60"
+  samples="200"
+  >}}
+{{% header_link "Relaxing nighttime writing" %}}
+{{% next_link "Pirate Treasure" %}}
+{{< video path="img/Book" alt="Book with candle, pen, and hot drink!" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="Pirate Treasure for a Reddit contest"
   renderdate="2021-6-24"
   rendertime="80 seconds"
   samples="200"
   >}}
+{{% previous_link "Relaxing nighttime writing" %}}
 {{% header_link "Pirate Treasure" %}}
 {{% next_link "Age of Empires Mill Perspective" %}}
 {{< image path="img/PirateTreasure" alt="Pirates Treasure chest with gold, the typical pirate treasure scene :)" >}}

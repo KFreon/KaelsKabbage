@@ -7,6 +7,12 @@ slug: "mediatr-caching"
 tags: ['mediatr', 'caching']
 ---
 
+TODO
+- fix sizing on small screen
+- fix hugo :(
+
+
+
 [Previously]({{< ref "/posts/26-azure-perf-investigation" >}}), I did some performance investigations in Azure. The cause remains elusive, so we've started looking into caching, most interestingly caching Mediatr Query results.  
 
 <!--more-->  
