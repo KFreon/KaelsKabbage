@@ -88,6 +88,8 @@ table {
 }
 
 footer {
+    display: flex;
+    flex-direction: column;
     bottom: 20px;
     p {
         font-size: 1rem;
@@ -95,8 +97,27 @@ footer {
         margin: 0;
     }
 
+    .me {
+        display: flex;
+        justify-content: space-around;
+    }
+
     .citations {
+        display: flex;
+        flex-direction: column;
         font-size: 0.75rem;
+
+        a {
+            margin-left: -5px;
+        }
+    }
+
+    .copyright {
+        margin-top: 5px;
+
+        span {
+            margin-left: -5px;
+        }
     }
 
     .renders {
@@ -338,6 +359,10 @@ blockquote {
     width: 290px;
     border-right: 10px solid var(--sidebar-border);
     padding-top: 1rem;
+
+    .site-title {
+        border-bottom-width: 2px;
+    }
 
     .recent-posts-title {
         margin-top: 1.5rem;

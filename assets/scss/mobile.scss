@@ -1,5 +1,25 @@
-@media media, screen and (orientation:landscape) and (max-height: 500px) {
-    .recent-render-container, .recent-posts, .recent-title, .description, .citations {
+@media screen and (orientation:landscape) and (max-height: 530px) {
+    .recent-posts-title, .recent-posts, .recent-render-container {
+        display: none;
+    }
+
+    .sidebar {
+        .description {
+            display: none;
+        }
+    }
+
+    footer {
+        bottom: 5px;
+
+        .me, .copyright, .citations, hr {
+            display: none;
+        }
+    }
+}
+
+@media screen and (orientation: landscape) and (max-height: 930px) {
+    .recent-posts-title, .recent-posts, .recent-render-container {
         display: none;
     }
 }
@@ -49,7 +69,7 @@
 
     section {
         padding: 0;
-        margin-left: 10rem;
+        margin-left: 10.5rem;
         width: 75%;
         font-size: 1.5rem;
     }
@@ -60,6 +80,7 @@
         width: 9.5rem;
         border-right: none;
         font-size: 1rem;
+        bottom: 5px;
 
         p {
             margin: 0;
@@ -125,22 +146,22 @@
         font-size: 1rem;
     }
 
+    .recent-posts {
+        position: unset;
+        right: unset;
+        top: unset;
+        width: 8rem;
+
+        li {
+            font-size: 1rem;
+            height: 2.5rem;
+        }
+    }
+
     .recent-render-container {
         .recent-title {
             font-size: 1.4rem;
             margin: 0.5rem 0 0.5rem 0;
-        }
-    
-        .recent-posts {
-            position: unset;
-            right: unset;
-            top: unset;
-            width: 8rem;
-    
-            li {
-                font-size: 1rem;
-                height: 2.5rem;
-            }
         }
     }
 

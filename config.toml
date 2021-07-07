@@ -8,6 +8,11 @@ pygmentsCodeFences = true
 pygmentsStyle = "native"
 assetDir = "."
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [permalinks]
 posts = "post/:slug"
 

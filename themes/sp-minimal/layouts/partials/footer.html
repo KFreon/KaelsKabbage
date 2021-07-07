@@ -8,20 +8,22 @@
         </a>
     </p>
 
-    <p class="add-padding-right">
-        <a href="{{ .Site.BaseURL }}about">About</a>
-    </p>
-    <p class="add-padding-right">
-        <a href="mailto:kael.larkin@outlook.com">Contact Me</a>
-    </p>
+    <div class="me">
+        <p class="add-padding-right">
+            <a href="{{ .Site.BaseURL }}about">About</a>
+        </p>
+        <p class="add-padding-right">
+            <a href="mailto:kael.larkin@outlook.com">Contact Me</a>
+        </p>
+    </div>
     <hr>
-    <p class="remove-margin-bottom add-padding-right">
-        &copy; {{ now.Format "2006"}}
+    <p class="remove-margin-bottom add-padding-right copyright">
+        <span>&copy; {{ now.Format "2006"}}</span>
         <a href="{{ .Site.BaseURL }}about">{{ .Site.Params.name }}</a>
     </p>
 
     <p class="remove-margin-bottom add-padding-right citations">
-        <a href="https://github.com/eueung/hugo-sp-minimal">Hugo SP-Minimal</a> Theme |
-        Based on <a href="https://github.com/orderedlist/minimal">Minimal</a>
-        Cabbage images from <a href="https://pngtree.com">pngtree.com</a></p>
+        <a href="https://github.com/eueung/hugo-sp-minimal">Hugo SP-Minimal Theme</a>
+        <span>Cabbage images from <a href="https://pngtree.com">pngtree.com</a></span>
+    </p>
 </footer>
