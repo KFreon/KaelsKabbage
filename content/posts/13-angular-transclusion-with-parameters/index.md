@@ -18,7 +18,7 @@ Were it so easy...
 *Solution*: Use `ng-template` with `ng-container *ngTemplateOutlet` with a `context: { $implicit: variable-name }` property.  
 
 # The problem  
-{{% split %}}
+{{< split >}}
 {{% splitLeft title="Html" %}}
 ``` html
 <div>
@@ -63,7 +63,7 @@ export class OriginalComponent implements OnInit {
 }
 ```
 {{% /splitRight %}}
-{{% /split %}}  
+{{< /split >}}  
 
 I wanted to extract the two `*ngFor` divs into their own component for reuse in another part of the codebase.   
 I wanted to be able to do something like:   
@@ -137,7 +137,7 @@ I had a hard time putting this succinctly, so let's start with the finished sour
 
 ## Extracted component   
 
-{{% split %}}
+{{< split >}}
 {{% splitLeft title="Html" %}}
 ``` html
 <div *ngFor="let holiday of holidays">
@@ -178,7 +178,7 @@ export class ExtractedComponent implements OnInit {
 
 ## Refactored component  
 
-{{% split %}}
+{{< split >}}
 {{% splitLeft title="Html" %}}
 ``` html
 <div>
@@ -224,7 +224,7 @@ export class RefactoredComponent implements OnInit {
 
 ```
 {{% /splitRight %}}
-{{% /split %}}  
+{{< /split >}}  
 
 **EDIT:** Note that for reduced black box magic, you can specify the template directly instead of with `@ContentChild`.  
 See below. `@ContentChild` replaced in the Typescript with `@Input()` and the html altered slightly to give the template an id with `#template` and the `app-extracted` component takes the template as a variable directly.  

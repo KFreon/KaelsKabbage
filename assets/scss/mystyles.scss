@@ -530,3 +530,8 @@ blockquote {
         box-shadow: 0 0 1px 2px var(--search-result-border);
     }
 }
+
+.post-list {
+    display: flex;
+    flex-direction: column-reverse;
+}

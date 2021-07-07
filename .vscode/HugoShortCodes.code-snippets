@@ -24,24 +24,38 @@
         "description": "Image ShortCode"
     },
 
-    "HugoShortcode Spit Code": {
-        "prefix": "hsplit",
+    "HugoShortcode Split Image": {
+        "prefix": "hsplitimg",
         "body": [
-            "{{% split %}}",
+            "{{< split >}}",
+            "{{< splitLeft title=\"$1\" >}}",
+            "himg$0",
+            "{{< /splitLeft %}}",
+            "{{< splitRight title=\"$2\" >}}",
+            "himg",
+            "{{< /splitRight >}}",
+            "{{< /split >}}  "
+        ]
+    },
+
+    "HugoShortcode Split Code": {
+        "prefix": "hsplitcode",
+        "body": [
+            "{{< split >}}",
             "{{% splitLeft title=\"$1\" %}}",
             "$0",
-            "{{% /splitLeft %}}",
+            "{{< /splitLeft %}}",
             "{{% splitRight title=\"$2\" %}}",
             "",
             "{{% /splitRight %}}",
-            "{{% /split %}}  "
+            "{{< /split >}}  "
         ]
     },
 
     "HugoShortcode Video": {
         "prefix": "hvideo",
         "body": [
-            "{{% video path=\"$1\" width=\"$2\" height=\"$3\" alt=\"$4\" %}}"
+            "{{< video path=\"$1\" width=\"$2\" height=\"$3\" alt=\"$4\" >}}"
         ],
         "description": "Video Shortcode"
     },

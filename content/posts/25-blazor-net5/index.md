@@ -19,7 +19,8 @@ There's good news and bad news...
 - It's almost a good time  
 
 I wanted to make something that COULD potentially be used for something and ended up with this:  
-{{% video path="img/TechDebtRadar" alt="Final simple product" %}}  
+
+{{< video path="img/TechDebtRadar" alt="Final simple product" >}}  
 
 # What this post is and isn't  
 This isn't to detail how to Blazor, or compare between Server and Webassembly implementations, or performance.  
@@ -69,13 +70,13 @@ CSS also needed additional setup out of the box.
 In `_Host.cshtml` which manages the main html skeleton, we need `<link href="MyProject.styles.css" rel="stylesheet">` to pull in those scoped modules.  
 The modules also need to be set to content, which can be done in csproj using blob patterns:  
 ``` xml
-	<ItemGroup>
-		<None Remove="Pages\*.razor.css" />
-	  </ItemGroup>
-
-	  <ItemGroup>
-		<Content Include="Pages\*.razor.css" />
+<ItemGroup>
+  <None Remove="Pages\*.razor.css" />
   </ItemGroup>
+
+  <ItemGroup>
+  <Content Include="Pages\*.razor.css" />
+</ItemGroup>
 ```  
 > I'm not 100% why we need a `None` AND `Content` there...  
 

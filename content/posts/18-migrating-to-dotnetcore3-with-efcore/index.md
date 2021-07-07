@@ -33,7 +33,7 @@ Easy as that!
 There were also some simple changes to Program.cs and Startup.cs (in my case, YMMV).  
 **Program.cs**   
 
-{{% split %}}
+{{< split >}}
 {{% splitLeft title="Original" %}}
 ```go
 var webHostBuilder = WebHost.CreateDefaultBuilder(args)
@@ -57,14 +57,14 @@ var webHostBuilder = Host.CreateDefaultBuilder(args)
   });
 ```
 {{% /splitRight %}}
-{{% /split %}}     
+{{< /split >}}     
 Note the different method of registering Autofac.  
 
 **Startup.cs**  
 In `ConfigureServices`, `UseMvc` changed to `AddControllers`. As I understand it, there can be a few ways to configure that method, but in my case that's all I needed (basic endpoint configuration)  
 `Configure` was getting an `IHostingEnvironment`, that's now `IWebHostEnvironment`.  
 Also:  
-{{% split %}}
+{{< split >}}
 {{% splitLeft title="Original" %}}
 ```go
 app.UseStaticFiles();
@@ -82,10 +82,10 @@ app.UseAuthorization();  <-- Added
 app.UseEndpoints(endpoints => endpoints.MapControllers());  <-- instead of UseMvc
 ```
 {{% /splitRight %}}
-{{% /split %}}  
+{{< /split >}}  
 
 Test config needed adjusting: 
-{{% split %}}
+{{< split >}}
 {{% splitLeft title="Original" %}}
 ```cs
 Server = new TestServer(Program
@@ -101,7 +101,7 @@ var server = await Program
 Server = server.GetTestServer();
 ```
 {{% /splitRight %}}
-{{% /split %}}  
+{{< /split >}}  
 
 In the tests, we would resolve services with `Server.Host.Services.GetService`, which now drops the `Host` to just `Server.Services.GetService`  
 

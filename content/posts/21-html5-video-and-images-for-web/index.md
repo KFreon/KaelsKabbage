@@ -108,7 +108,7 @@ I say usually because sometimes it can be larger, but generally it's smaller.
 | jpg    | 209  |
 | webp   | 87   |
 {{% /splitRight %}}
-{{% /split %}}  
+{{< /split >}}  
 
 ### Command Line  
 ```bash

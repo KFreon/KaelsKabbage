@@ -22,7 +22,7 @@ I don't use them so I'm not fussed, but I'm also not sure how I'd detect the sho
 
 The new area of the `.tmLanguages.json` is below.  
 
-{{% split %}}
+{{< split >}}
 {{% splitLeft title="Before" %}}
 ```json
 "patterns": [{
@@ -82,4 +82,4 @@ The new area of the `.tmLanguages.json` is below.
 }
 ```
 {{% /splitRight %}}
-{{% /split %}}  
+{{< /split >}}  

@@ -26,8 +26,9 @@ Sometimes we'd get a list of vehicles then `foreach` vehicle, concat the part na
 This seems reasonable, but let's say we didn't pull the Parts in with the vehicles? What if it wasn't that simple?   
 
 
-{{% split %}}
-{{% splitLeft title="Bad versions" %}}
+{{< split >}}
+{{% splitLeft title="Bad versions" %}}  
+
 ``` csharp
 foreach(var vehicle in dbContext.Table<Vehicle>())
 {
@@ -35,7 +36,8 @@ foreach(var vehicle in dbContext.Table<Vehicle>())
 
     // Or you have EF lazy loading and just access the Parts.
 }
-```
+```  
+
 {{% /splitLeft %}}
 {{% splitRight title="Good versions" %}}
 ``` csharp
@@ -54,7 +56,7 @@ foreach(var vehicle in dbContext.Table<Vehicles>())
 }
 ```
 {{% /splitRight %}}
-{{% /split %}}  
+{{< /split >}}  
 
 There were some less obvious ones like [Mediatr](https://github.com/jbogard/MediatR) queries that would be run on each iteration which were poorly optimised or unnecessary.  
 

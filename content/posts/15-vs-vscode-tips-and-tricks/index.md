@@ -68,8 +68,8 @@ A bit weird, sure, but there was a solution to my weirdness.
 There's settings for smooth scrolling (can be a bit of a performance hit), and animations for the cursor blink (some crazy ones like pulse and vertical grow), and the transition for the cursor moving to a new location.  
 Both of these are found in the standard settings but are too spaced out to put here.
 
-{{% video path="img/VSCode_Cursors" width="1190" height="200" alt="Different VSCode cursor animations" %}}
-{{% video path="img/VSCode_CursorTransitions" width="840" height="310" alt="VSCode smooth cursor position transitions" %}}
+{{< video path="img/VSCode_Cursors" width="1190" height="200" alt="Different VSCode cursor animations" >}}
+{{< video path="img/VSCode_CursorTransitions" width="840" height="310" alt="VSCode smooth cursor position transitions" >}}
 
 ### Split Terminals  
 I don't see enough people using this. It's especially great for [multi-root workspaces](https://code.visualstudio.com/docs/editor/multi-root-workspaces).  

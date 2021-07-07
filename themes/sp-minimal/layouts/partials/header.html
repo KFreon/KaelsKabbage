@@ -25,7 +25,7 @@
 
   <h2 class="recent-posts-title">Recent Posts</h2>
   <ul class="recent-posts">
-    {{ range first 3 .Site.Pages }}
+    {{ range first 3 (where .Site.Pages "Type" "post") }}
     <li>
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     </li>

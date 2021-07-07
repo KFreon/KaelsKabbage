@@ -8,9 +8,8 @@
     {{ end }}
   {{ end }}
 {{ else }}
-  <section>
+  <section class="post-list">
     {{ partial "post-list" . }}
-    <div class="pagination"> {{ template "_internal/pagination.html" . }} </div>
   </section>
 {{ end }}
 {{end}}
