@@ -6,7 +6,7 @@ slug: "mediatr-caching"
 tags: ['perf']
 ---
 
-[Previously]({{< ref "/posts/26-azure-perf-investigation" >}}), I did some performance investigations in Azure. The cause remains elusive, so we've started looking into caching, most interestingly caching Mediatr Query results.  
+[Previously]({{< ref "/posts/26-azure-perf-investigation" >}}), I did some performance investigations in Azure. The cause remains elusive, so I've started looking into caching, most interestingly caching Mediatr Query results.  
 
 <!--more-->  
 
@@ -14,12 +14,12 @@ At `client`, we make extensive use of [Mediatr](https://github.com/jbogard/Media
 While these lookup fetches make our code a bit easier to understand due to all the reuse, it does make things less performant.  
 
 The queries could be rewritten to be more specific, joining on and fetching the specific info that query needs, but right now, readability and maintainability are preferred over raw performance.  
-However, this is starting to get us and `client` down, so we've been exploring our options.  
+However, this is starting to get us and `client` down, so I've been exploring our options.  
 
 # Caching  
-We started off by asking **"Where do we cache?"**.   
+I started off by asking **"Where do we cache?"**.   
 Where in the pipeline caching is done significantly changes the behaviour, complexity, and usefulness of the solution. Do we want quick and dirty, or best performance at the cost of complexity?    
-Our list was something this (paraphrased):  
+After many discussions with my colleagues, I came up with a list:  
 
 - [Redis](https://redis.io/topics/introduction)  
   - Likely the eventual solution. It would act as an intermediate database for the most frequent database accesses.  
@@ -44,7 +44,7 @@ Our list was something this (paraphrased):
   - Invalidation would be the same level of complexity as adding it to the cache.  
   - Much more complex, hard to add to hundreds of queries, maintainability/comprehension, etc.  
 
-Considering all that, we settled on a nice middleground with caching Mediatr requests. We get to reduce the lookup costs, as well as the same cost reductions in a bunch of other, heavier, unrelated queries throughout the application.  
+Considering all that, I settled on a nice middleground with caching Mediatr requests. We get to reduce the lookup costs, as well as the same cost reductions in a bunch of other, heavier, unrelated queries throughout the application.  
 Seeing as the caching libraries use the [Mediatr Pipeline Behaviours](https://github.com/jbogard/MediatR/wiki/Behaviors) feature, it should be "fairly simple" to implement for any query we want to cache.  
 
 # Mediatr Caching  
