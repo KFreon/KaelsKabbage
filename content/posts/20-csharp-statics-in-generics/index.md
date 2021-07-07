@@ -4,7 +4,7 @@ date: 2020-03-04T14:51:26+10:00
 draft: false
 type: "post"
 slug: "csharp-statics-in-generics"
-tags: ["c sharp", "generics"]
+tags: ["c-sharp"]
 ---
 
 [Generic classes](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/) are useful coding constructs that I thought I mostly understood, but I had an issue with them recently that blew my mind... Static members in Generic classes don't work as I naively expected.   

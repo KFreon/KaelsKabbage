@@ -7,5 +7,7 @@
         </picture>
     </a>
     
-    <div class='alt-text {{ with .Get "nospacer" }}nospacer{{ else }}{{ end }}'>{{ .Get "alt" }}</div>
+    {{ with .Get "alt"}}
+    <div class='alt-text'>{{ . }}</div>
+    {{ end }}
 </div>
