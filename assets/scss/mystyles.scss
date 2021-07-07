@@ -365,11 +365,14 @@ blockquote {
     padding-top: 1rem;
 
     .site-title {
+        font-size: 1.75rem;
+        margin-bottom: 5px;
         border-bottom-width: 2px;
     }
 
     .recent-posts-title {
         margin-top: 1.5rem;
+        margin-bottom: 0.2rem;
     }
 
     .recent-render-container {
@@ -530,7 +533,7 @@ blockquote {
         border: none;
         text-align: right;
         float: unset;
-        height: 2rem;
+        height: 1.5rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
