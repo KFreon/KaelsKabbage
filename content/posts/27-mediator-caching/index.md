@@ -164,4 +164,6 @@ In short, not as much as I'd hoped ...Yet!
 The above comparison is only the top Mediatr query being cached. Once more of the top queries get caching added, perhaps a more visible performance boost will be visible.  
 If not, it's been a fun ride!  
 
-[Full example solution](./MediatorCaching_Example.7z)
+### Full example solution  
+[Github](https://github.com/kael-larkin/Mediator-Caching)  
+[7z](./MediatorCaching_Example.7z)
