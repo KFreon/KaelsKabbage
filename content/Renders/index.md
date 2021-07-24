@@ -41,12 +41,26 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="Playing with the Cell Fracture Addon is good fun, but it did take quite a while for it to generate this, and much experimentation."
+  renderdate="2021-07-24"
+  rendertime="4 days or something..."
+  samples="50"
+  credits=""
+  engine="Cycles (with denoiser node)"
+  frames="1150" >}}
+{{% header_link "Desert Archeology" %}}
+{{% next_link "Relaxing Nighttime Writing" %}}
+{{< video path="img/AncientArtifact" alt="The Ancient Default Cube rises!" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="Nice relaxing book for my sisters birthday!"
   renderdate="2021-7-03"
   rendertime="1 hour"
   frames="60"
   samples="200"
   >}}
+{{% previous_link "Desert Archeology" %}}
 {{% header_link "Relaxing Nighttime Writing" %}}
 {{% next_link "Pirate Treasure" %}}
 {{< video path="img/Book" alt="Book with candle, pen, and hot drink!" >}}
