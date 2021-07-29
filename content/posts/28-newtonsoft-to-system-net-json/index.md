@@ -4,7 +4,7 @@ date: 2021-07-19T07:52:30+10:00
 draft: true
 type: "post"
 slug: "28-newtonsoft-to-system-net-json"
-tags: []
+tags: ["net5"]
 ---
 
 
@@ -63,3 +63,11 @@ I guess we need to refactor.
 
 Timespan serialisation isn't supported for some reason, very weird.
 There's a lot of tickets about it, and it's hopefully going to be in NET 6, but for now, I've used [Macross Extensions](https://blog.macrosssoftware.com/index.php/2020/02/16/system-text-json-timespan-serialization/)
+
+More constructor things, it won't pick the 'best' one, and it can't use private setters, so if you don't have public setters and a parameterless AND a parameterised constructor, it'll use the parameterless and just ignore the properties (since it can't set them)
+---- TEST THIS PROPERLY
+Can use the [JsonConstructor] attribute to designate.
+
+
+/././.././././
+MOVE THE RENDER prev/next buttons, they're in the way.
