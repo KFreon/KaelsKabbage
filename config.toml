@@ -12,6 +12,10 @@ assetDir = "."
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.tableOfContents]
+    endLevel = 1
+    ordered = false
+    startLevel = 1
 
 [permalinks]
 posts = "post/:slug"

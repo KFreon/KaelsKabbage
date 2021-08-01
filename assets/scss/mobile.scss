@@ -100,6 +100,8 @@
     }
 
     pre {
+        white-space: break-spaces;
+        
         code {
             font-size: 1.2rem;
         }
@@ -194,5 +196,13 @@
 
     .light-dark-button {
         font-size: 1rem;
+    }
+
+    .split-code-container {
+        flex-direction: column;
+
+        .left, .right {
+            max-width: 90%;
+        }
     }
 }

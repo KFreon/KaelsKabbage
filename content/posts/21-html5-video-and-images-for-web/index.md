@@ -93,7 +93,7 @@ It's USUALLY a fair bit smaller than a jpg with better quality.
 I say usually because sometimes it can be larger, but generally it's smaller. 
 
 ### Results    
-{{% split "smaller" %}}
+{{% split "left-align" %}}
 {{% splitLeft title="Floating Rock" %}}
 | Format | Size (kb) |
 | ------ | ---- |
