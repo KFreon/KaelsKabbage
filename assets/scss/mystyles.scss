@@ -97,6 +97,13 @@ footer {
         margin: 0;
     }
 
+    .renders-link {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
     .me {
         display: flex;
         justify-content: space-around;
@@ -552,7 +559,7 @@ blockquote {
     background-color: transparent;
     color: var(--main-colour);
     border: 1px solid;
-    padding: 0.2rem 0.5rem;
+    padding: 0.5rem 0.5rem;
     border-radius: 5px;
     border-color: var(--search-result-border);
     cursor: pointer;
