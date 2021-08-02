@@ -1,7 +1,6 @@
 ---
 title: "Migrating Newtonsoft to System.Text.Json"
-date: 2021-07-19T07:52:30+10:00
-draft: true
+date: 2021-08-02T16:13:30+10:00
 type: "post"
 slug: "migrating-newtonsoft-to-system-text-json"
 tags: ["net5"]
@@ -32,6 +31,7 @@ Let's take a look at some of the issues/hurdles I came across.
 - JSON.NET (I'll refer to it as Newtonsoft hereon, it's what I'm used to)  
 - NodaTime  
 - EFCore 5 (not really relevant here but for context on some decisions made)  
+- This was a SPIKE! Much of the changes I made could probably be done in better ways, but I often wanted to keep the style, etc.  
 
 # Timespan isn't (really) supported   
 The C# `TimeSpan` struct isn't properly supported in serialisation or deserialisation.  
