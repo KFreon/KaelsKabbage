@@ -41,13 +41,26 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="I've been trying to improve my first person camera animations these last few renders, and I really like this one. Freespace!"
+  renderdate="2021-08-05"
+  rendertime="10 hours"
+  samples="250"
+  credits="Freespace team for models@https://store.steampowered.com/app/273620/Freespace_2/"
+  engine="Cycles (with denoiser node)"
+  frames="600" >}}
+{{% header_link "Freespace Inspired Nebula Flyby" %}}
+{{% next_link "Desert Archeology" %}}
+{{< video path="img/NebulaFlyby_Sathanas" alt="Freespace is an excellent game, and inspired this." >}}
+{{< /render_img >}}
+
+{{< render_img
   description="Playing with the Cell Fracture Addon is good fun, but it did take quite a while for it to generate this, and much experimentation."
   renderdate="2021-07-24"
   rendertime="4 days or something..."
   samples="50"
-  credits=""
   engine="Cycles (with denoiser node)"
   frames="1150" >}}
+{{% previous_link "Freespace Inspired Nebula Flyby" %}}
 {{% header_link "Desert Archeology" %}}
 {{% next_link "Relaxing Nighttime Writing" %}}
 {{< video path="img/AncientArtifact" alt="The Ancient Default Cube rises!" >}}
