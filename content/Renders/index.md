@@ -41,6 +41,18 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="Quick experiment with Geometry Nodes. I knew little, now I know little++."
+  renderdate="08-08-21"
+  rendertime="30 seconds"
+  samples="200"
+  engine="Cycles (with denoiser node)"
+   >}}
+{{% header_link "Bathroom Tiles" %}}
+{{% next_link "Freespace Inspired Nebula Flyby" %}}
+{{< image path="img/BathroomTiles" alt="Bathroom scene inspired by my shower" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="I've been trying to improve my first person camera animations these last few renders, and I really like this one. Freespace!"
   renderdate="2021-08-05"
   rendertime="10 hours"
@@ -48,6 +60,7 @@ All tools, textures, and tutorials used are listed below.
   credits="Freespace team for models@https://store.steampowered.com/app/273620/Freespace_2/"
   engine="Cycles (with denoiser node)"
   frames="600" >}}
+{{% previous_link "Bathroom Tiles" %}}
 {{% header_link "Freespace Inspired Nebula Flyby" %}}
 {{% next_link "Desert Archeology" %}}
 {{< video path="img/NebulaFlyby_Sathanas" alt="Freespace is an excellent game, and inspired this." >}}
