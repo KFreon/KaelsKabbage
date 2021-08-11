@@ -41,12 +41,23 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="Quick spinning ball thing to play with JSDisplacement again"
+  renderdate="2021-08-11"
+  rendertime="4 hours"
+  samples="200"
+  frames="250" >}}
+{{% header_link "Spinny Metal Ball" %}}
+{{% next_link "Bathroom Tiles" %}}
+{{< video path="img/SpinnyBall" alt="Maybe an artifact found by an archer/mage in a forest?" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="Quick experiment with Geometry Nodes. I knew little, now I know little++."
   renderdate="08-08-21"
   rendertime="30 seconds"
   samples="200"
-  engine="Cycles (with denoiser node)"
    >}}
+{{% previous_link "Spinny Metal Ball" %}}
 {{% header_link "Bathroom Tiles" %}}
 {{% next_link "Freespace Inspired Nebula Flyby" %}}
 {{< image path="img/BathroomTiles" alt="Bathroom scene inspired by my shower" >}}
@@ -58,7 +69,6 @@ All tools, textures, and tutorials used are listed below.
   rendertime="10 hours"
   samples="250"
   credits="Freespace team for models@https://store.steampowered.com/app/273620/Freespace_2/"
-  engine="Cycles (with denoiser node)"
   frames="600" >}}
 {{% previous_link "Bathroom Tiles" %}}
 {{% header_link "Freespace Inspired Nebula Flyby" %}}
@@ -71,7 +81,6 @@ All tools, textures, and tutorials used are listed below.
   renderdate="2021-07-24"
   rendertime="4 days or something..."
   samples="50"
-  engine="Cycles (with denoiser node)"
   frames="1150" >}}
 {{% previous_link "Freespace Inspired Nebula Flyby" %}}
 {{% header_link "Desert Archeology" %}}
