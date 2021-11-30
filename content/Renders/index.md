@@ -40,6 +40,20 @@ All tools, textures, and tutorials used are listed below.
 <div class="render-images slider" id="render-images">
 <div class="slides" id='slides'>
 
+
+{{< render_img
+  description="I know this looks like that tutorial, and I was inspired by it, but I just wanted to make rings"
+  renderdate="2021-11-30"
+  rendertime="4 hours"
+  samples="500"
+  frames="140"
+  tutorialText="tutorial description"
+  >}}
+{{% header_link "Gateways to infinity" %}}
+{{% next_link "Little Wooden Crate" %}}
+{{< video path="img/ManyRings" alt="Purple rings off into infinity on a starry night :)" >}}
+{{< /render_img >}}
+
 {{< render_img
   description="Inspired by a crate my girlfriend had while moving house. The rope and the drawn on glass were the fun parts!"
   renderdate="22-11-21"
@@ -48,6 +62,7 @@ All tools, textures, and tutorials used are listed below.
   tutorialUrl="https://www.youtube.com/watch?v=1PWGCWIG_Sk"
   tutorialText="Draw Curves on Surfaces FAST in Blender 2.81-Quick and Dirty"
    >}}
+{{% previous_link "Gateways to infinity" %}}
 {{% header_link "Little Wooden Crate" %}}
 {{% next_link "Spinny Metal Ball" %}}
 {{< image path="img/LisasWoodenBox" alt="A wooden crate with rope I found while helping my girlfriend move." >}}
