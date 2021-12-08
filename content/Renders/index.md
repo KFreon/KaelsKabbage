@@ -40,6 +40,17 @@ All tools, textures, and tutorials used are listed below.
 <div class="render-images slider" id="render-images">
 <div class="slides" id='slides'>
 
+{{< render_img
+  description="Space scenes are great, and I wanted to play with adaptive subdivision (it's great as always, but wow, the default 1px is slooooooooooow)"
+  renderdate="2021-12-09"
+  rendertime="6 hours"
+  samples="400"
+  frames="220"
+  >}}
+{{% header_link "Prepare for exploration!" %}}
+{{% next_link "Gateways to infinity" %}}
+{{< video path="img/ShipDock" alt="Orbital platform with a ship in it!" >}}
+{{< /render_img >}}
 
 {{< render_img
   description="I know this looks like that tutorial, and I was inspired by it, but I just wanted to make rings"
@@ -47,8 +58,8 @@ All tools, textures, and tutorials used are listed below.
   rendertime="4 hours"
   samples="500"
   frames="140"
-  tutorialText="tutorial description"
   >}}
+{{% previous_link "Prepare for exploration!" %}}
 {{% header_link "Gateways to infinity" %}}
 {{% next_link "Little Wooden Crate" %}}
 {{< video path="img/ManyRings" alt="Purple rings off into infinity on a starry night :)" >}}
