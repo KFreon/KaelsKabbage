@@ -41,12 +41,25 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="Quick New Years fireworks!"
+  renderdate="2021-12-31"
+  rendertime="30 minutes"
+  samples="600"
+  frames="90"
+  >}}
+{{% header_link "Happy New Year!" %}}
+{{% next_link "Prepare for exploration!" %}}
+{{< video path="img/NewYears" alt="New years fireworks!!" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="Space scenes are great, and I wanted to play with adaptive subdivision (it's great as always, but wow, the default 1px is slooooooooooow)"
   renderdate="2021-12-09"
   rendertime="6 hours"
   samples="400"
   frames="220"
   >}}
+{{% previous_link "Happy New Year!" %}}
 {{% header_link "Prepare for exploration!" %}}
 {{% next_link "Gateways to infinity" %}}
 {{< video path="img/ShipDock" alt="Orbital platform with a ship in it!" >}}
