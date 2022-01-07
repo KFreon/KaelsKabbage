@@ -41,12 +41,27 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="Playing with geonodes from tutorial, it's a hexworld! It's far more complicated to set up than I thought. A bunch of maths and thinking, and geonodes doesn't have great debugging yet."
+  renderdate="2022-01-07"
+  rendertime="20 minutes"
+  samples="400"
+  frames="250"
+  tutorialUrl="https://www.youtube.com/watch?v=EboNtLKn_m8"
+  tutorialText="Hexagon World with Geometry Nodes Fields - Erindale" >}}
+{{% header_link "Hexworld" %}}
+{{% next_link "Happy New Year!" %}}
+{{< video path="img/Hexworld" alt="Hexworld from tutorial" >}}
+{{< video path="img/HexworldDemo" alt="Showing all the cool control we have over the Hexworld" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="Quick New Years fireworks!"
   renderdate="2021-12-31"
   rendertime="30 minutes"
   samples="600"
   frames="90"
   >}}
+{{% previous_link "Hexworld" %}}
 {{% header_link "Happy New Year!" %}}
 {{% next_link "Prepare for exploration!" %}}
 {{< video path="img/NewYears" alt="New years fireworks!!" >}}
