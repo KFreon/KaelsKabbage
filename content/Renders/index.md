@@ -41,6 +41,20 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="I saw the thumbnail of the linked tutorial and thought to myself 'I can do that', so I did."
+  renderdate="2022-01-15"
+  rendertime="45 seconds"
+  samples="400"
+  engine="Cycles"
+  tutorialUrl="https://www.youtube.com/watch?v=Wp_Fhbbfkxw"
+  tutorialText="How to make procedural pathways" >}}
+{{% header_link "Dry Riverbeds" %}}
+{{% next_link "Hexworld" %}}
+{{< image path="img/GeonodesPaths" alt="Dry riverbeds crossing a field" >}}
+{{< video path="img/GeonodesPathsDevelopment" alt="Progress of construction" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="Playing with geonodes from tutorial, it's a hexworld! It's far more complicated to set up than I thought. A bunch of maths and thinking, and geonodes doesn't have great debugging yet."
   renderdate="2022-01-07"
   rendertime="20 minutes"
@@ -48,6 +62,7 @@ All tools, textures, and tutorials used are listed below.
   frames="250"
   tutorialUrl="https://www.youtube.com/watch?v=EboNtLKn_m8"
   tutorialText="Hexagon World with Geometry Nodes Fields - Erindale" >}}
+{{% previous_link "Dry Riverbeds" %}}
 {{% header_link "Hexworld" %}}
 {{% next_link "Happy New Year!" %}}
 {{< video path="img/Hexworld" alt="Hexworld from tutorial" >}}
