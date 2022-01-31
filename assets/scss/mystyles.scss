@@ -586,3 +586,84 @@ blockquote {
   display: flex;
   flex-direction: column-reverse;
 }
+
+.table-of-contents {
+  #TableOfContents {
+    ul {
+      padding-inline-start: 2rem;
+      margin-block-end: 0;
+    }
+  }
+
+  &.one {
+    #TableOfContents {
+      > ul {
+        > li {
+          > ul {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  &.two {
+    #TableOfContents {
+      > ul {
+        > li {
+          > ul {
+            > li {
+              > ul {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.three {
+    #TableOfContents {
+      > ul {
+        > li {
+          > ul {
+            > li {
+              > ul {
+                > li {
+                  > ul {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.four {
+    #TableOfContents {
+      > ul {
+        > li {
+          > ul {
+            > li {
+              > ul {
+                > li {
+                  > ul {
+                    > li {
+                      > ul {
+                        display: none;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

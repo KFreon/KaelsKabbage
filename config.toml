@@ -13,7 +13,7 @@ assetDir = "."
     [markup.goldmark.renderer]
       unsafe = true
   [markup.tableOfContents]
-    endLevel = 1
+    endLevel = 5
     ordered = false
     startLevel = 1
 

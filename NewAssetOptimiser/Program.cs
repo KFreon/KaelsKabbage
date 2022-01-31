@@ -195,7 +195,12 @@ namespace AssetOptimiser
         static string GetFFMpegPath()
         {
             var path = Environment.GetEnvironmentVariable("PATH");
-            var chocolateyBinPath = path.Split(';').Single(x => x.Contains("chocol", StringComparison.OrdinalIgnoreCase));
+            var chocoBits = path.Split(';').Where(x => x.Contains("chocolatey\\bin", StringComparison.OrdinalIgnoreCase)).ToArray();
+            foreach(var bit in chocoBits) {
+                Console.WriteLine(bit);
+            }
+
+            var chocolateyBinPath = chocoBits.Single();
             var ffmpegPath = "";
             if (Directory.Exists(chocolateyBinPath))
             {
