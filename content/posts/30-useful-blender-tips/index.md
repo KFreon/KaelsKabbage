@@ -2,7 +2,7 @@
 title: "Some Useful Blender Tips"
 date: 2022-01-27T12:11:35+10:00
 type: "post"
-slug: "30-useful-blender-tips"
+slug: "useful-blender-tips"
 tags: ["blender"]
 ---
 

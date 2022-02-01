@@ -6,8 +6,8 @@
     "build-index": "cd IndexBuilder && dotnet run && cd ..",
     "build": "npm-run-all build-index optimise-assets update-latest-render update-carousel-links",
     "new": "hugo new --kind post-bundle",
-    "start": "hugo server -D --poll 1000ms",
-    "start-prod": "hugo server --poll 1000ms",
+    "start": "hugo server -D --poll 2000ms",
+    "start-prod": "hugo server --poll 2000ms",
     "update-carousel-links": "cd render-link-builder && dotnet run --configuration Release ../content/Renders/index.md",
     "optimise-assets": "cd NewAssetOptimiser && dotnet run --configuration Release ../content",
     "update-latest-render": "cd SetLatestRender && dotnet run && cd .."

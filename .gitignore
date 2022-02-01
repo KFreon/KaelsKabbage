@@ -6,3 +6,4 @@ Properties
 bin
 obj
 latest-render-results
+.hugo_build.lock
