@@ -61,6 +61,7 @@ Due to the above issues, let's just start this whole thing in WSL2 ~ in a folder
 
 # Let's begin! 
 ## Project Structure  
+Create the following folder structure in the WSL root ~.  
 ```
 The folder of your choice
 ├── UI  
@@ -69,8 +70,18 @@ The folder of your choice
 ├ docker-compose.yaml 
 ``` 
 
+If you're unsure how to do so, there are a few methods to get to WSL and set this up.  
+My go-to is opening VSCode (doesn't matter where) and searching for "Remote-WSL: New Window" which will open a new VSCode window at the Linux root (running through WSL properly), and you can create the folders in VSCode.  
+{{< image path="img/VSCodeRemoteWSL" alt="VSCode --> Remote-WSL Terminal" >}}
+
+Another way is to navigate to the Linux file system in Windows Explorer, and create the folders from there.  
+{{< image path="img/ExplorerLinux" alt="Linux files in Windows Explorer folder tree" >}}
+
+The last I can think of is navigating there using the Command Line.  
+Windows Terminal has a built in WSL profile, or on any other Command Line running `wsl` will give you a prompt in your current folder (`cd ~` to get to the Linux root)  
+{{< video path="img/WindowsTerminalWSL" alt="Using Windows Terminal WSL profile and normal Powershell" >}}
+
 > ENSURE YOU'RE IN THE WSL FILE SYSTEM FROM NOW ON!!  
-> I found this easiest with VSCode --> Search for "Remote-WSL: New Window"  
 
 ## Database (Sql)    
 Let's start with the bottom layer of the app.  
