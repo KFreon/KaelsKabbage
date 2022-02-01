@@ -507,7 +507,7 @@ My investigation stopped there, so it may well be possible to get this running.
 In the end, I chose to have the Visual Studio container running OUTSIDE the docker compose stack, but with the same internal name and connected to the stack network.  
 This way, the proxy address in the UI is the same for the F5 AND stack containers.  
 
-## NodeJS installed on WSL  
+## Do I need NodeJS installed on WSL?  
 > As alluded to earlier, I broke my Node install...  
 > [Here's]({{< relref "#what-about-without-nodejs-on-wsl" >}}) a method without Node installed in WSL  
 
