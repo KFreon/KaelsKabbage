@@ -102,9 +102,6 @@ RUN chmod +x ./initialise-sql.sh
 RUN chmod +x ./entrypoint.sh
 USER mssql
 
-# NOT default port, so it doesn't interfere with host install
-# This is not required if you don't need to access from host OR don't have sql server installed on your host
-EXPOSE 1633
 CMD /bin/bash ./entrypoint.sh
 ```  
 
@@ -642,9 +639,6 @@ RUN chmod +x ./initialise-sql.sh
 RUN chmod +x ./entrypoint.sh
 USER mssql
 
-# NOT default port, so it doesn't interfere with host install
-# This is not required if you don't need to access from host OR don't have sql server installed on your host
-EXPOSE 1633
 CMD /bin/bash ./entrypoint.sh
 ```
 {{% /splitLeft %}}
