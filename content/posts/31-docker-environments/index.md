@@ -1,5 +1,5 @@
 ---
-title: "Dockerising a Full Stack (SQL, aspnetcore, React) with a nice F5 experience"
+title: "Dockerising a Full Stack (SQL, aspnetcore, React) application with a nice F5 experience"
 date: 2022-02-01T16:24:16+10:00
 type: "post"
 slug: "dockerising-sql-aspnetcore-react-with-nice-f5-experience"
@@ -175,14 +175,18 @@ I used Visual Studio to create a new NET 6 project with Docker Support.
 
 This leaves us with a folder and .sln inside the Api folder, which is important as Visual Studio uses [Fast Mode](https://aka.ms/containerfastmode) to build when debugging. There are examples of turning it off and making it run the Docker build properly, but I did not investigate as for this example (and many of my actual projects) we don't need to do anything tricky in the dockerfile.  
 
+Create `DockerFile_API` in the project folder directory (as below)  
+
 **Current structure**  
 ```
 The folder of your choice
 ├── UI  
 ├── API  
 ├───── YourProjectFolder  
+├──────── Dockerfile  
 ├───── .dockerignore  
 ├───── YourProject.sln  
+├───── DockerFile_API  
 ├── SQL  
 ├───── DockerFile_SQL  
 ├───── entrypoint.sh  
@@ -191,22 +195,10 @@ The folder of your choice
 ├ docker-compose.yaml 
 ```
 
-### Why do it this way?  
-I'll discuss it [later]({{< relref "#why-have-the-vs-f5-container-why-so-complicated" >}}), but I do have reasons!   
+Edit the VS Dockerfile and `DockerFile_API` as below.  
 
 {{< split >}}
-{{% splitLeft title="Visual Studio Dockerfile" %}}
-``` docker 
-# Can't really add/change anything here, it won't matter (Fast mode ignores everything outside base)
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-EXPOSE 442
-EXPOSE 5555
-```
-{{% /splitLeft %}}  
-{{% splitRight title="DockerFile_API" %}}  
+{{% splitLeft title="DockerFile_API" %}}
 ``` docker 
 # This is the Dockerfile we use during the main stack build.
 # NOT used for F5 in Visual Studio, that's in ./DockerTest
@@ -235,12 +227,25 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "DockerTest.dll"]
 ```
+{{% /splitLeft %}}  
+{{% splitRight title="Visual Studio Dockerfile" %}}  
+``` docker 
+# Can't really add/change anything here, it won't matter (Fast mode ignores everything outside base)
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+EXPOSE 442
+EXPOSE 5555
+```
 {{% /splitRight %}}
 {{< /split >}}  
 
 > Note the default MS dockerfile has lots of caching and [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) for performance  
 
 I'll refer to running the Visual Studio Dockerfile as the "F5 container" throughout this article.  
+
+> Why have two dockerfiles? I'll discuss it [later]({{< relref "#why-have-the-vs-f5-container-why-so-complicated" >}}), but I do have reasons!   
 
 Let's add EFCore and create a simple endpoint that returns the first row from the database container.  
 
