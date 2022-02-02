@@ -17,6 +17,9 @@ I succeeded! Kinda...
 ----------   
 I had to do a [LOT of reading]({{< relref "#readings" >}}) for this, and the final code solution is [here](https://github.com/kael-larkin/DockerisationExperiment) on [Github](https://github.com/kael-larkin/DockerisationExperiment).  
 
+This is a POC! I'm not saying this is how to do it and it's the best way to do it.  
+This is the way I did it, and it seems to work, but I'm sure there are better ways.  
+
 # Goals  
 My goal here is simple: I want a template project for how to create a dockerised environment.  
 
@@ -624,7 +627,7 @@ https://medium.com/geekculture/getting-started-with-docker-in-your-react-js-appl
 Looots of stack overflow  
 
 # Github
-[Final Solution](https://github.com/kael-larkin/DockerisationExperiment)  
+[Code](https://github.com/kael-larkin/DockerisationExperiment)  
 
 # Convenience: Final Dockerfiles side by side with relevant docker compose sections  
 ## Database  
