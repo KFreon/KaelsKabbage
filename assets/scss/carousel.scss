@@ -14,18 +14,21 @@
       -webkit-overflow-scrolling: touch;
 
       .render {
+        .header-link {
+          .header-text {
+            margin-bottom: 40px;
+          }
+        }
+
         .header-link-button {
           display: block;
           position: absolute;
-          top: 0;
+          top: 20px;
           z-index: 10;
-          margin-top: 2rem;
-          width: 30%;
-          height: 50%;
+          padding: 0.25rem 0.5rem;
           border-radius: 0.5rem;
           outline: 0;
           background-color: transparentize(darkgrey, 0.2);
-          opacity: 0;
           transition: all 0.2s;
           text-align: center;
 
@@ -37,7 +40,6 @@
 
           &:hover {
             box-shadow: 0 0 0.5rem 0.2rem darkslategray;
-            opacity: 1;
           }
 
           &.left {
