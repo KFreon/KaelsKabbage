@@ -586,23 +586,31 @@ This creates a container that is basically just Node (14 in this case) and nothi
 Now we can run `docker compose run --rm nodeexec npm install cordova` which runs the command in the container, which has access to the source code by volume mounts in docker compose.  
 This is the way to add/update/remove npm packages.  
 
-I can go further and add an alias to `~/.bashrc` to make it easier to run it: `alias npmrun="docker compose up --rm nodeexec npm` so I can run `npmrun ci` or `npmrun install cordova`.  
-Not great, but not bad!  
+We could also add an alias to `~/.bashrc` to make it easier to run it: `alias npmrun="docker compose up --rm nodeexec npm` so I can run `npmrun ci` or `npmrun install cordova`.  
 
-## Does this change the debugging experience?  
-Yes, now we need to run Docker commands against `docker-compose.yaml` instead of my lovingly crafted package.json scripts (e.g. `npm run docker`, `npm run start-sql`, etc)  
-Aside from that, the actual operation of the process is the same, just a different starting point.  
+Is this easy to use? Not really, so let's look for something better.  
 
 ## Always-on Node Dev Container  
-I'm well off the rails now, but curiosity got the better of me.  
 The `nodeexec` container and associated commands spin up the container, run the commands, then shutdown the container.  
 This means commands can only be run in the root directory. I want to see if I can get a Node environment I can execute anywhere in the codebase.  
 
 We can get a shell into the container by running `docker compose run nodeexec sh` from the root, which we can do whatever we want with, but has the nice effect of keeping the container alive.  
-You can now execute commands against that container (and it's volume mounts) from anywhere in WSL with `docker compose exec nodeexec npm install cordova`, essentially doing dev entirely inside Docker containers!  
 
-I don't know where I've ended up here. Is working inside a container a good thing?  
-Let's just move on...  
+I've added a script for non-docker users to get up and running quickly, which runs the database and UI, then gives you a shell into the UI as you would normally have when working with CRA.  
+
+**start-dev-environment.sh**
+``` bash
+docker compose up -d ui sql
+docker compose run --rm nodeexec sh
+```  
+
+There are some other scripts in there to run pieces separately, or the whole thing, but this would be the starting point.  
+You'd then run the Api solution in Visual Studio as normal.  
+
+### Execute anywhere?  
+I'm well off the rails now, but curiosity got the better of me.  
+With the `nodeexec` container running the shell, we can execute commands against that container (and it's volume mounts) from anywhere in WSL with `docker compose exec nodeexec npm install cordova`, essentially doing dev entirely inside Docker containers!  
+For some reason, this felt useful, but you shouldn't need it if you have a shell into the container anyway...  
 
 # Conclusions  
 Docker is a powerful, but confusing piece of software.  
