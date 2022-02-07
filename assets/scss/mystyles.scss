@@ -22,7 +22,7 @@
   --quote-background: #{rgba($lightgreen, 0.5)};
   --search-result-background: #{rgba($lightgreen, 0.1)};
   --search-result-border: #{rgba($lightgrey, 0.3)};
-  --sidebar-border: #{darken($main-background, 5%)};
+  --sidebar-border: #{darken($main-background, 20%)};
 }
 
 p {
@@ -92,6 +92,8 @@ footer {
   display: flex;
   flex-direction: column;
   bottom: 20px;
+  width: 290px;
+
   p {
     font-size: 1rem;
     padding: 0;
@@ -373,8 +375,9 @@ blockquote {
   background: var(--darker-background);
   height: 100%;
   width: 290px;
-  border-right: 10px solid var(--sidebar-border);
   padding-top: 1rem;
+  padding-right: 5px;
+  box-shadow: 0 0 5px 5px var(--sidebar-border);
 
   .site-title {
     font-size: 1.75rem;
@@ -394,13 +397,16 @@ blockquote {
     }
 
     .recent-render {
-      border-radius: 0.5rem;
-      box-shadow: 0 0 0 var(--grey);
-      transition: all 0.2s;
       display: block;
 
-      &:hover {
-        box-shadow: 0 0 5px 2px var(--grey);
+      .image {
+        border-radius: 0.5rem;
+        box-shadow: 0 0 0 var(--grey);
+        transition: all 0.2s;
+
+        &:hover {
+          box-shadow: 0 0 5px 2px var(--grey);
+        }
       }
     }
   }
@@ -575,7 +581,7 @@ blockquote {
   border-radius: 5px;
   border-color: var(--search-result-border);
   cursor: pointer;
-  margin-right: 1rem;
+  margin: auto;
 
   &:hover {
     box-shadow: 0 0 1px 2px var(--search-result-border);

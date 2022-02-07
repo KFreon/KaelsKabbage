@@ -140,8 +140,10 @@
 
     .sidebar {
         width: 9rem;
-        border-right-width: 2px;
         padding-left: 0.5rem;
+
+        box-shadow: none;
+        border-right: 2px solid var(--sidebar-border);
     }
 
     .description {
@@ -203,5 +205,9 @@
         .left, .right {
             max-width: 90%;
         }
+    }
+    
+    .header-link-button {
+        width: 4rem;
     }
 }
