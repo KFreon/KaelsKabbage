@@ -41,6 +41,17 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="A Pyrite ball in 30 minutes!"
+  renderdate="2022-03-13"
+  rendertime="20 seconds"
+  samples="100" >}}
+{{% header_link "Pyrite Ball" %}}
+{{% next_link "Dry Riverbeds" %}}
+{{< image path="img/PyriteBall-30mins" alt="Pyrite Ball after 30 minutes for a challenge" >}}
+{{< image path="img/PyriteBall" alt="Final result after a bit more scene work" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="I saw the thumbnail of the linked tutorial and thought to myself 'I can do that', so I did."
   renderdate="2022-01-15"
   rendertime="45 seconds"
@@ -48,6 +59,7 @@ All tools, textures, and tutorials used are listed below.
   engine="Cycles"
   tutorialUrl="https://www.youtube.com/watch?v=Wp_Fhbbfkxw"
   tutorialText="How to make procedural pathways" >}}
+{{% previous_link "Pyrite Ball" %}}
 {{% header_link "Dry Riverbeds" %}}
 {{% next_link "Hexworld" %}}
 {{< image path="img/GeonodesPaths" alt="Dry riverbeds crossing a field" >}}

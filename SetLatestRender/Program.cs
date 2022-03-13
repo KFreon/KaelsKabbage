@@ -28,6 +28,6 @@ if (File.Exists(latestImage)) {
 }
 
 // Convert to webp as well
-await Process.Start(@"../NewAssetOptimiser/Webp/cwebp.exe", $"-q 90 {destination} -o {destinationName}.webp").WaitForExitAsync();
+await Process.Start(@"../NewAssetOptimiser/Webp/cwebp.exe", $"-q 75 {destination} -o {destinationName}.webp").WaitForExitAsync();
 
 Console.WriteLine("Latest Render = " + latestRenderPath);
