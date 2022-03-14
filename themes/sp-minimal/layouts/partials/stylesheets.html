@@ -1,16 +1,11 @@
 {{ $cssOptions := cond (.Site.IsServer) (dict "enableSourceMap" false) (dict "outputStyle" "compressed") }}
 
-{{ $stylesSCSS := resources.Get "assets/scss/mystyles.scss" }}
-{{ $mobileSCSS := resources.Get "assets/scss/mobile.scss" }}
-{{ $darkSCSS := resources.Get "assets/scss/dark.scss" }}
-
-{{ $stylesCSS := $stylesSCSS | toCSS }}
-{{ $mobileCSS := $mobileSCSS | toCSS }}
-{{ $darkCSS := $darkSCSS | toCSS }}
+{{ $stylesCSS := resources.Get "assets/scss/mystyles.scss" | toCSS }}
+{{ $mobileCSS := resources.Get "assets/scss/mobile.scss" | toCSS }}
+{{ $darkCSS := resources.Get "assets/scss/dark.scss" | toCSS}}
 
 {{ $themeStylesCSS := resources.Get "themes/sp-minimal/static/css/styles.css" }}
 {{ $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" }}
-
 {{ $minimalSimpleCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal-simple.css" }}
 
 {{ $combined := cond (eq .Site.Params.themeStyle "simple") 
@@ -22,6 +17,6 @@
     <link rel="stylesheet" defer href="{{ .Permalink }}">
 {{ end }}
 {{ else }}
-  {{ $styles := $combined | resources.Concat "css/styles.css" | minify}}
+  {{ $styles := $combined | minify}}
   <link rel="stylesheet" defer href="{{ $styles.Permalink }}">
 {{ end }}
