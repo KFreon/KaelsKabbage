@@ -5,6 +5,9 @@
             <source src='{{ .Get "path" }}.mp4' type="video/mp4">
             Video doesn't work :(
         </video>
-    <a href='{{ .Get "path"}}.mp4'>HQ link</a>
-    <div class="alt-text">{{ .Get "alt" }}</div>
+    <div class="hq-links">
+        <a href='{{ .Get "path"}}.webm'>Webm</a>
+        <div class="alt-text">{{ .Get "alt" }}</div>
+        <a href='{{ .Get "path"}}.mp4'>MP4</a>
+    </div>
 </div>

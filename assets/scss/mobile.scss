@@ -183,6 +183,13 @@
                 flex-direction: column;
             }
         }
+
+        .image {
+            &.open {
+                // transform-origin: 80% 50%;
+                transform:scale(1.1);
+            }
+        }
     }
 
     hr {
