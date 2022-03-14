@@ -20,6 +20,9 @@ function setRenderDisplay(displayType) {
       document.getElementById("slides").classList.add("slides");
       break;
     default:
+      // Tiles by default
+      document.getElementById("render-tiles-button").classList.add("selected");
+      document.getElementById("slides").classList.add("tiles");
       break;
   }
   localStorage.setItem('render-display', displayType);
@@ -27,9 +30,9 @@ function setRenderDisplay(displayType) {
 
 function setTheme(theme) {
   if (theme === 'dark') {
-    document.getElementById("dark-mode").disabled = false;
+    document.getElementById("main-body").className = 'dark';
   } else {
-    document.getElementById("dark-mode").disabled = true;
+    document.getElementById("main-body").className = 'light';
   }
 }
 
@@ -39,4 +42,13 @@ function toggleTheme() {
 
   localStorage.setItem('theme', newTheme);
   setTheme(newTheme);
+}
+
+function imageClicked(element) {
+  const isOpen = element.classList.contains('open');
+  if (isOpen) {
+    element.classList.remove('open');
+  } else {
+    element.classList.add('open')
+  }
 }

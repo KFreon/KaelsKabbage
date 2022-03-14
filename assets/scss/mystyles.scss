@@ -1,7 +1,7 @@
 @import "./carousel.scss";
 @import "./variables.scss";
 
-:root {
+#main-body.light {
   --main-background: #{$main-background};
   --main-colour: #{$main-colour};
   --lightened-black: #{$lightened-black};
@@ -190,14 +190,23 @@ small {
   }
 }
 
+.spacer {
+  margin-bottom: 2rem;
+}
+
 .alt-text {
   color: var(--gray);
   font-size: 75%;
+  margin: auto;
   margin-bottom: 2rem;
 
   &.nospacer {
     margin-bottom: 0;
   }
+}
+
+.alt-text-container {
+  display: flex;
 }
 
 .split-code-container {
@@ -435,6 +444,21 @@ blockquote {
 
     .alt-text {
       margin: 0;
+    }
+
+    .hq-links {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  .image {
+    transition: 0.25s all;
+
+    &.open {
+      transform-origin: 80% 50%;
+      transform:scale(1.25);
     }
   }
 
