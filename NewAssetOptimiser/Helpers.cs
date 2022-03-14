@@ -10,7 +10,7 @@ namespace AssetOptimiser
 {
   static partial class Program
   {
-    static IEnumerable<(string Directory, string FileName)> GetPictures(string rootPath)
+    static IEnumerable<PictureJob> GetPictures(string rootPath)
     {
       var pngs = Directory.GetFiles(rootPath, "*.png", SearchOption.AllDirectories)
         .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x) });
@@ -18,15 +18,21 @@ namespace AssetOptimiser
       var webps = Directory.GetFiles(rootPath, "*.webp", SearchOption.AllDirectories)
         .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x) });
 
-      var halfSizeWebps = Directory.GetFiles(rootPath, "*_halfsize.webp", SearchOption.AllDirectories)
-        .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x) });
-
-      var webpsThatNeedHalfSizes = webps.Where(x => !halfSizeWebps.Any(h => h.NoExtension == x.NoExtension));
-
       return pngs
         .Where(p => !webps.Any(w => w.NoExtension == p.NoExtension))
-        .Concat(webpsThatNeedHalfSizes)
-        .Select(f => (f.Directory, f.FileName));
+        .Select(f => new PictureJob(f.Directory, f.FileName));
+    }
+
+    static IEnumerable<PictureJob> GetRenders(string renderPath) {
+      var webps = Directory.GetFiles(renderPath, "*.webp", SearchOption.AllDirectories)
+        .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x) });
+
+      var halfsize = Directory.GetFiles(renderPath, "*_halfsize.webp", SearchOption.AllDirectories)
+        .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x) });
+
+      return webps
+        .Where(x => !halfsize.Any(h => h.NoExtension == x.NoExtension))
+        .Select(x => new PictureJob(x.Directory, x.FileName));
     }
 
     static IEnumerable<VideoJob> GetVideos(string rootPath)
@@ -57,24 +63,19 @@ namespace AssetOptimiser
           .Where(x => !File.Exists(Path.Combine(x.Directory, x.DestinationFileName)));
     }
 
-
-    static async Task ConvertPictures(IEnumerable<(string Directory, string FileName)> pictures, int webpQuality)
+    static async Task ConvertPictures(IEnumerable<PictureJob> pictures, int webpQuality)
     {
       Console.WriteLine($"Converting {pictures.Count()} pictures...");
-      foreach (var picture in pictures)
+      foreach (var picture in pictures.DistinctBy(x => x.FilenameNoExt))
       {
-        var halfsizePath = $"{Path.GetFileNameWithoutExtension(picture.FileName)}_halfsize.webp";
-        var newPath = $"{Path.GetFileNameWithoutExtension(picture.FileName)}.webp";
-        var arg = $"{picture.FileName} -o {newPath} -mt -m 6 -pass 10 -q {webpQuality}";
-        var halfsizeArg = $"{picture.FileName} -o {halfsizePath} -resize 900 0 -mt -m 6 -pass 10 -q {webpQuality}";
+        var normalExec = picture.GetExecutionString(webpQuality, false);
+        var halfsizeExec = picture.GetExecutionString(webpQuality, true);
 
-        if (picture.FileName.EndsWith("webp")) {
-          // TODO: Legacy, once all existing are converted, won't need this anymore.
-          // Only needs a halfsize
-          await StartProcess(cwepPath, picture.Directory, halfsizeArg);
+        if (picture.RequiresHalfsize) {
+          await StartProcess(cwepPath, picture.Directory, halfsizeExec);
         } else {
-          await StartProcess(cwepPath, picture.Directory, arg);
-          await StartProcess(cwepPath, picture.Directory, halfsizeArg);
+          await StartProcess(cwepPath, picture.Directory, normalExec);
+          await StartProcess(cwepPath, picture.Directory, halfsizeExec);
         }
       }
     }

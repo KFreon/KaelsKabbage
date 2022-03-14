@@ -1,6 +1,6 @@
 <div class="media image" onclick="imageClicked(this)">
         <picture>
-            <source media="(max-width: 960px)" srcset='{{ .Get "path" }}_half.webp' type="image/webp">
+            <source media="(max-width: 960px)" srcset='{{ .Get "path" }}_halfsize.webp' type="image/webp">
             <source srcset='{{ .Get "path" }}.webp' type="image/webp">
             <source srcset='{{ .Get "path" }}.png' type="image/png"> 
             <img class="image inner" 

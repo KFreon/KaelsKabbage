@@ -33,7 +33,10 @@ namespace AssetOptimiser
       Console.WriteLine("Looking for unoptimised assets...");
       Console.WriteLine();
 
-      var pictures = GetPictures(rootPath);
+      var normalImages = GetPictures(rootPath);
+      var renders = GetRenders(rootPath + "/Renders/img");
+      var pictures = normalImages.Concat(renders);
+
       var videos = GetVideos(rootPath);
 
       if (!pictures.Any() && !videos.Any())
@@ -42,7 +45,7 @@ namespace AssetOptimiser
         return;
       }
 
-      var picsText = pictures.Select(p => $"    {Path.Combine(p.Directory.Replace(rootPath, ""), p.FileName)}");
+      var picsText = pictures.Select(p => $"    {Path.Combine(p.Directory.Replace(rootPath, ""), p.Filename)}");
       var videosText = videos.Select(v => $"    {Path.Combine(v.Directory.Replace(rootPath, ""), v.FileName)}: {v.Format.Name}");
 
       Console.WriteLine("Preparing to convert the following files:");
