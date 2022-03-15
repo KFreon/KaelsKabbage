@@ -3,14 +3,13 @@ title: "Blender Renders"
 type: "renders"
 ---
 
-<details class="blender-details">
-<summary>Info</summary>
-<p>
-I do like a bit of Blender, and I got some wind in my sails after doing the obligatory <a href="https://www.youtube.com/watch?v=TPrnSACiTJ4">BlenderGuru Donut tutorial</a>, so here's some of them.  
-All tools, textures, and tutorials used are listed below.   
-</p> 
+I do like a bit of Blender, and I got some wind in my sails after doing the obligatory [BlenderGuru Donut tutorial](https://www.youtube.com/watch?v=TPrnSACiTJ4), so here's some of them.  
+All tools, textures, and tutorials used are listed below.    
 
-  <h1>Resources (sites, tools, etc)</h1>
+<!--more-->  
+
+<details class="render-resources">
+  <summary>Resources (sites, tools, etc)</summary>
   <h2>Sites</h2>
 
   - [Poligon](https://www.poliigon.com/)  
