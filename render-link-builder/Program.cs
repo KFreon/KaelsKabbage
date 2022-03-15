@@ -21,7 +21,7 @@ namespace render_link_builder
             var pathToRenderIndex = args[0];
             var contents = await File.ReadAllLinesAsync(pathToRenderIndex);
 
-            var contentsWithoutNextOrPrevious = contents.Where(line => !line.Contains("next_link") && !line.Contains("previous_link"));
+            var contentsWithoutNextOrPrevious = contents.Where(line => !line.Contains("next_prev_links"));
             var headerLinkLines = contentsWithoutNextOrPrevious.Where(line => line.Contains("header_link")).ToArray();
 
             var replacementEntries = headerLinkLines.Select((line, idx) =>
@@ -31,7 +31,6 @@ namespace render_link_builder
 
                 var previousLink = previousLinkEntry == null ? null : $"prev=\"{previousLinkEntry}\"";
                 var nextLink = nextLinkEntry == null ? null : $"next=\"{nextLinkEntry}\"";
-
 
                 var prevNext = $"{{{{% next_prev_links {previousLink} {nextLink} %}}}}";
 

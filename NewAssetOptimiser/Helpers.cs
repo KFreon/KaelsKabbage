@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic;
 
 namespace AssetOptimiser
 {
@@ -23,15 +24,26 @@ namespace AssetOptimiser
         .Select(f => new PictureJob(f.Directory, f.FileName));
     }
 
-    static IEnumerable<PictureJob> GetRenders(string renderPath) {
+    static IEnumerable<PictureJob> GetRenders(string renderPath)
+    {
       var webps = Directory.GetFiles(renderPath, "*.webp", SearchOption.AllDirectories)
-        .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x) });
+        .Select(x => new
+        {
+          Directory = Path.GetDirectoryName(x),
+          FileName = Path.GetFileName(x),
+          RenderName = Path.GetFileNameWithoutExtension(x).Replace("_halfsize", "")  // We can do this because atm, there's always normal and halfsize
+        });
 
       var halfsize = Directory.GetFiles(renderPath, "*_halfsize.webp", SearchOption.AllDirectories)
-        .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x) });
+        .Select(x => new
+        {
+          Directory = Path.GetDirectoryName(x),
+          FileName = Path.GetFileName(x),
+          RenderName = Path.GetFileNameWithoutExtension(x).Replace("_halfsize", "")
+        });
 
       return webps
-        .Where(x => !halfsize.Any(h => h.NoExtension == x.NoExtension))
+        .Where(x => !halfsize.Any(h => h.RenderName == x.RenderName))
         .Select(x => new PictureJob(x.Directory, x.FileName));
     }
 
@@ -71,9 +83,12 @@ namespace AssetOptimiser
         var normalExec = picture.GetExecutionString(webpQuality, false);
         var halfsizeExec = picture.GetExecutionString(webpQuality, true);
 
-        if (picture.RequiresHalfsize) {
+        if (picture.RequiresHalfsize)
+        {
           await StartProcess(cwepPath, picture.Directory, halfsizeExec);
-        } else {
+        }
+        else
+        {
           await StartProcess(cwepPath, picture.Directory, normalExec);
           await StartProcess(cwepPath, picture.Directory, halfsizeExec);
         }
