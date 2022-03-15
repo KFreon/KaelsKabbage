@@ -6,14 +6,20 @@
 
     .slides {
       display: flex;
-
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
+      flex-direction: column;
 
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
 
       .render {
+        width: 80vw;
+        min-height: 100vh;
+
+        .next-prev-links {
+          display: flex;
+          justify-content: space-between;
+        }
+
         .header-link {
           .header-text {
             margin-bottom: 40px;
@@ -71,7 +77,6 @@
     }
 
     .slides > div {
-      scroll-snap-align: start;
       flex-shrink: 0;
       transform-origin: center center;
       transform: scale(1);

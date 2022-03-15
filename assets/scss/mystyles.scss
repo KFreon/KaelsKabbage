@@ -1,6 +1,10 @@
 @import "./carousel.scss";
 @import "./variables.scss";
 
+* {
+  scroll-behavior: smooth;
+}
+
 #main-body.light {
   --main-background: #{$main-background};
   --main-colour: #{$main-colour};
