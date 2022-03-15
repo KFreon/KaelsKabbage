@@ -41,9 +41,13 @@ function toggleTheme() {
 
 function imageClicked(element) {
   const isOpen = element.classList.contains('open');
+  const slidesElement = document.getElementById("slides");
+
   if (isOpen) {
     element.classList.remove('open');
+    slidesElement.classList.remove('open');
   } else {
     element.classList.add('open')
+    slidesElement.classList.add('open')
   }
 }

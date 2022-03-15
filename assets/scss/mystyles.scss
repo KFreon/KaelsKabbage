@@ -457,8 +457,10 @@ blockquote {
     transition: 0.25s all;
 
     &.open {
-      transform-origin: 80% 50%;
-      transform:scale(1.25);
+      .inner {
+        transform-origin: 80% 50%;
+        transform:scale(1.25);
+      }
     }
   }
 

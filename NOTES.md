@@ -1,4 +1,3 @@
 Create halfsize movies.
 
-
-the cool popover thing doesn't work in carousel :(
+fix carousel and tiles for desktop and mobile

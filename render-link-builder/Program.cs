@@ -29,10 +29,13 @@ namespace render_link_builder
                 var previousLinkEntry = idx == 0 ? null : GetLinkFromLine(headerLinkLines[idx - 1]);
                 var nextLinkEntry = idx == headerLinkLines.Length - 1 ? null : GetLinkFromLine(headerLinkLines[idx + 1]);
 
-                var previousLink = previousLinkEntry == null ? null : $"{{{{% previous_link \"{previousLinkEntry}\" %}}}}";
-                var nextLink = nextLinkEntry == null ? null : $"{{{{% next_link \"{nextLinkEntry}\" %}}}}";
+                var previousLink = previousLinkEntry == null ? null : $"prev=\"{previousLinkEntry}\"";
+                var nextLink = nextLinkEntry == null ? null : $"next=\"{nextLinkEntry}\"";
 
-                return new { previousLink, line, nextLink };
+
+                var prevNext = $"{{{{% next_prev_links {previousLink} {nextLink} %}}}}";
+
+                return new { line, prevNext };
             }).ToDictionary(x => x.line);
 
             var newContents = contentsWithoutNextOrPrevious.SelectMany(line =>
@@ -43,7 +46,7 @@ namespace render_link_builder
                 }
 
                 var replacement = replacementEntries[line];
-                return new[] { replacement.previousLink, replacement.line, replacement.nextLink }
+                return new[] { replacement.line, replacement.prevNext }
                     .Where(x => x != null);
             });
 

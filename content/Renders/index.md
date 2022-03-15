@@ -3,13 +3,14 @@ title: "Blender Renders"
 type: "renders"
 ---
 
-I do like a bit of Blender, and I got some wind in my sails after doing the obligatory [BlenderGuru Donut tutorial](https://www.youtube.com/watch?v=TPrnSACiTJ4), so here's some of them.  
-All tools, textures, and tutorials used are listed below.    
+<details class="blender-details">
+<summary>Info</summary>
+<p>
+I do like a bit of Blender, and I got some wind in my sails after doing the obligatory <a href="https://www.youtube.com/watch?v=TPrnSACiTJ4">BlenderGuru Donut tutorial</a>, so here's some of them.  
+All tools, textures, and tutorials used are listed below.   
+</p> 
 
-<!--more-->  
-
-<details class="render-resources">
-  <summary>Resources (sites, tools, etc)</summary>
+  <h1>Resources (sites, tools, etc)</h1>
   <h2>Sites</h2>
 
   - [Poligon](https://www.poliigon.com/)  
@@ -43,7 +44,7 @@ All tools, textures, and tutorials used are listed below.
   rendertime="20 seconds"
   samples="100" >}}
 {{% header_link "Pyrite Ball" %}}
-{{% next_link "Dry Riverbeds" %}}
+{{% next_prev_links next="Dry Riverbeds" %}}
 {{< image path="img/PyriteBall-30mins" alt="Pyrite Ball after 30 minutes for a challenge" >}}
 {{< image path="img/PyriteBall" alt="Final result after a bit more scene work" >}}
 {{< /render_img >}}
@@ -56,9 +57,8 @@ All tools, textures, and tutorials used are listed below.
   engine="Cycles"
   tutorialUrl="https://www.youtube.com/watch?v=Wp_Fhbbfkxw"
   tutorialText="How to make procedural pathways" >}}
-{{% previous_link "Pyrite Ball" %}}
 {{% header_link "Dry Riverbeds" %}}
-{{% next_link "Hexworld" %}}
+{{% next_prev_links prev="Pyrite Ball" next="Hexworld" %}}
 {{< image path="img/GeonodesPaths" alt="Dry riverbeds crossing a field" >}}
 {{< video path="img/GeonodesPathsDevelopment" alt="Progress of construction" >}}
 {{< /render_img >}}

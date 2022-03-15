@@ -1,0 +1,19 @@
+{{ $prev := .Get "prev" | lower | replaceRE "[^0-9a-z]" "-" | replaceRE "-+" "-" -}}
+{{ $next := .Get "next" | lower | replaceRE "[^0-9a-z]" "-" | replaceRE "-+" "-" -}}
+<div class="next-prev-links">
+  {{ if $prev }}
+  <a class="header-link-button left" href="#{{ $prev }}">
+    <span class="arrow-button">&#8592;</span>
+  </a>
+  {{ else }}
+  <div></div>
+  {{ end }}
+
+  {{ if $next }}
+  <a class="header-link-button right" href="#{{ $next }}">
+    <span class="arrow-button">&#8594;</span>
+  </a>
+  {{ else }}
+  <div></div>
+  {{ end }}
+</div>
