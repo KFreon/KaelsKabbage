@@ -1,8 +1,12 @@
 {{ $cssOptions := cond (.Site.IsServer) (dict "enableSourceMap" false) (dict "outputStyle" "compressed") }}
 
-{{ $stylesCSS := resources.Get "assets/scss/mystyles.scss" | toCSS }}
-{{ $mobileCSS := resources.Get "assets/scss/mobile.scss" | toCSS }}
-{{ $darkCSS := resources.Get "assets/scss/dark.scss" | toCSS}}
+{{ $stylesSCSS := resources.Get "assets/scss/mystyles.scss" }}
+{{ $mobileSCSS := resources.Get "assets/scss/mobile.scss" }}
+{{ $darkSCSS := resources.Get "assets/scss/dark.scss"}}
+
+{{ $stylesCSS := $stylesSCSS | toCSS }} 
+{{ $mobileCSS := $mobileSCSS | toCSS }} 
+{{ $darkCSS := $darkSCSS | toCSS }} 
 
 {{ $themeStylesCSS := resources.Get "themes/sp-minimal/static/css/styles.css" }}
 {{ $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" }}
@@ -17,6 +21,6 @@
     <link rel="stylesheet" defer href="{{ .Permalink }}">
 {{ end }}
 {{ else }}
-  {{ $styles := $combined | minify}}
+  {{ $styles := $combined | resources.Concat "css/stupid.css" | minify}} <!-- Hugo types are dumb (cos they're hidden) and I need to coerce it's type to the correct one -->
   <link rel="stylesheet" defer href="{{ $styles.Permalink }}">
 {{ end }}

@@ -26,9 +26,6 @@ All tools, textures, and tutorials used are listed below.
 </details>
 
 <p class="render-toggle-buttons">
-  <button id="render-list-button" onclick="setRenderDisplay('list')">
-    List
-  </button>
   <button id="render-tiles-button" onclick="setRenderDisplay('tiles')">
     Tiles
   </button>

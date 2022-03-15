@@ -1,11 +1,9 @@
 function setRenderDisplay(displayType) {
   // Clear all first
-  document.getElementById("render-list-button").classList.remove("selected");
   document.getElementById("render-tiles-button").classList.remove("selected");
   document.getElementById("render-carousel-button").classList.remove("selected");
 
   document.getElementById("slides").classList.remove("tiles");
-  document.getElementById("slides").classList.remove("slides");
 
   switch (displayType) {
     case 'list':
@@ -20,9 +18,6 @@ function setRenderDisplay(displayType) {
       document.getElementById("slides").classList.add("slides");
       break;
     default:
-      // Tiles by default
-      document.getElementById("render-tiles-button").classList.add("selected");
-      document.getElementById("slides").classList.add("tiles");
       break;
   }
   localStorage.setItem('render-display', displayType);

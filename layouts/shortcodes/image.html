@@ -9,6 +9,7 @@
                 width='{{ with .Get "width" }}{{ . }}{{ end }}' 
                 loading="lazy">
         </picture>
+        <!--Note that anchors don't work for images on refresh for some reason-->
     
     <div class='alt-text-container'>
         <a href="{{ .Get "path" }}.webm">Bigger</a>
