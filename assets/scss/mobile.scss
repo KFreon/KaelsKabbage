@@ -217,4 +217,30 @@
     .header-link-button {
         width: 4rem;
     }
+
+    .render-list {
+        .render-images {
+            .tiles {
+                > div {
+                    width: auto;
+                }
+            }
+
+            .slides {
+                .render {
+                    width: auto;
+
+                    .header-text {
+                        margin-top: 0;
+                        padding-top: 0;
+                    }
+
+                    .image {
+                        transform-origin: 60% 50%;
+
+                    }
+                }
+            }
+        }
+    }
 }

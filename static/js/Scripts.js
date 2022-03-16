@@ -4,11 +4,9 @@ function setRenderDisplay(displayType) {
   document.getElementById("render-carousel-button").classList.remove("selected");
 
   document.getElementById("slides").classList.remove("tiles");
+  document.getElementById("slides").classList.remove("slides");
 
   switch (displayType) {
-    case 'list':
-      document.getElementById("render-list-button").classList.add("selected");
-      break;
     case 'tiles':
       document.getElementById("render-tiles-button").classList.add("selected");
       document.getElementById("slides").classList.add("tiles");
@@ -18,6 +16,8 @@ function setRenderDisplay(displayType) {
       document.getElementById("slides").classList.add("slides");
       break;
     default:
+      document.getElementById("render-carousel-button").classList.add("selected");
+      document.getElementById("slides").classList.add("slides");
       break;
   }
   localStorage.setItem('render-display', displayType);
@@ -40,10 +40,30 @@ function toggleTheme() {
 }
 
 function imageClicked(element) {
-  const isOpen = element.classList.contains('open');
-  if (isOpen) {
-    element.classList.remove('open');
+  const slidesElement = document.getElementById("slides");
+  const img = element.getElementsByClassName('inner')[0];
+  if (slidesElement.className === 'tiles') {
+    const target = img.src;
+    window.location.href = target;
   } else {
-    element.classList.add('open')
+    const isOpen = element.classList.contains('open');
+    if (isOpen) {
+      element.classList.remove('open');
+      img.style = "";
+    } else {
+      const viewWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+      const viewHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
+      const { width: imageWidth, height: imageHeight } = img.getBoundingClientRect();
+
+      const widthDiff = viewWidth - imageWidth;
+      const heightDiff = viewHeight - imageHeight;
+      const scale = widthDiff > heightDiff
+        ? viewHeight / imageHeight
+        : viewWidth / imageWidth;
+
+      img.style = `transform:scale(${scale - 0.05})`;
+      element.classList.add('open')
+    }
   }
 }

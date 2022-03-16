@@ -437,7 +437,8 @@ blockquote {
 
   .header-link {
     .header-text {
-      margin-top: 0;
+      margin-top: -50px;
+      padding-top: 50px;
     }
   }
 
@@ -459,10 +460,10 @@ blockquote {
 
   .image {
     transition: 0.25s all;
+    transform-origin: 80% 50%;
 
     &.open {
       .inner {
-        transform-origin: 80% 50%;
         transform:scale(1.25);
       }
     }
@@ -531,6 +532,30 @@ blockquote {
       flex-flow: row wrap;
 
       .render {
+        transition: transform 0.2s;
+        padding: 1rem;
+
+        .hq-links, .alt-text-container {
+          a{
+            display: none;
+          }
+        }
+
+        &:hover {
+          // transform-origin: 80% 50%;
+          transform:scale(2);
+          z-index: 1;
+          backdrop-filter: blur(30px);
+          box-shadow: 0 0 2px 0 black;
+          border-radius: 1rem;
+
+          .hq-links, .alt-text-container {
+            a{
+              display: flex;
+            }
+          }
+        }
+
         .render-date {
           font-size: 0.5rem;
         }
