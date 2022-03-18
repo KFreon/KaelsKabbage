@@ -9,8 +9,10 @@ using System.Text.RegularExpressions;
 //var allPosts = Directory.GetFiles("../../../../Content/Posts", "index.md", SearchOption.AllDirectories);
 //var renders = "../../../../Content/Renders/index.md";
 
-var allPosts = Directory.GetFiles("../Content/Posts", "index.md", SearchOption.AllDirectories);
-var renders = "../Content/Renders/index.md";
+var basePath = Environment.GetCommandLineArgs()[1];
+var renders = Path.Combine(basePath, "Renders/index.md");
+
+var allPosts = Directory.GetFiles(Path.Combine(basePath, "Posts"), "index.md", SearchOption.AllDirectories);
 
 Func<IEnumerable<string>, string, string> parseFrontMatterEntry = (IEnumerable<string> frontMatter, string key) =>
 {
@@ -67,4 +69,4 @@ var allEntries = postIndexEntries.Concat(renderIndexEntries).Select(x => new
   x.isRender,
 }).ToArray();
 var serialised = "const pagesIndex = " + JsonSerializer.Serialize(allEntries) + ";";
-File.WriteAllText("../static/js/PagesIndex.js", serialised);
+File.WriteAllText(Path.Combine(basePath, "../static/js/PagesIndex.js"), serialised);
