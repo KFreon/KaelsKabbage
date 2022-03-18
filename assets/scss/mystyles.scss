@@ -542,7 +542,6 @@ blockquote {
         }
 
         &:hover {
-          // transform-origin: 80% 50%;
           transform:scale(2);
           z-index: 1;
           backdrop-filter: blur(30px);
@@ -581,6 +580,7 @@ blockquote {
 
 .render-toggle-buttons {
   flex-basis: 100%;
+  margin-bottom: 3rem;
 
   button {
     border: 1px solid var(--lightgrey);

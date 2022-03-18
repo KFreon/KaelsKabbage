@@ -29,6 +29,10 @@
         font-size: 8px;
     }
 
+    .wrapper {
+        padding-right: 0;
+    }
+
     .post-title {
         margin-bottom: unset;
     }
@@ -70,8 +74,9 @@
     section {
         padding: 0;
         margin-left: 10.5rem;
-        width: 75%;
+        width: auto;
         font-size: 1.5rem;
+        margin-right: 1rem;
     }
 
     footer {
@@ -170,6 +175,9 @@
     }
 
     .render {
+        .render-date {
+            font-size: 2rem;
+        }
         .info {
             .description, .details {
                 p {
@@ -224,20 +232,48 @@
                 > div {
                     width: auto;
                 }
+
+                .render {
+                    margin-top: 3rem;
+                    width: 9rem;
+
+                    .image {
+                        transform-origin: 30% 50%;
+                    }
+
+                    .render-date {
+                        display: none;
+                    }
+
+                    &:hover {
+                        transform: none;
+                        z-index: auto;
+                        backdrop-filter: none;
+                        box-shadow: none;
+                        border-radius: none;
+
+                        .hq-links, .alt-text-container {
+                            a {
+                                display: none;
+                            }
+                        }
+                    }
+                }
             }
 
             .slides {
                 .render {
                     width: auto;
+                    min-height: auto;
+                    margin-top: 5rem;
 
                     .header-text {
-                        margin-top: 0;
-                        padding-top: 0;
+                        margin-top: -10px;
+                        padding-top: 10px;
                     }
 
                     .image {
                         transform-origin: 60% 50%;
-
                     }
                 }
             }
