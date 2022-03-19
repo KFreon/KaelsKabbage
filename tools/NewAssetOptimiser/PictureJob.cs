@@ -5,7 +5,6 @@ namespace AssetOptimiser {
     public string Directory {get;}
     public string Filename {get;}
     public string FilenameNoExt => Path.GetFileNameWithoutExtension(Filename);
-    public bool RequiresHalfsize => Directory.Contains("content\\Renders\\img");
 
     public PictureJob(string directory, string filename) {
       Directory = directory;

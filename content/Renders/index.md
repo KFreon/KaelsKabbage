@@ -38,12 +38,38 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="A quick animation with a couple of extra assets!"
+  renderdate="2022-03-19"
+  rendertime="21 minutes"
+  samples="20"
+  credits="Infraspace@https://store.steampowered.com/app/1511460/InfraSpace"
+  frames="180" >}}
+{{% header_link "Infraspace city animated" %}}
+{{% next_prev_links  next="Infraspace city, Day and Night" %}}
+{{< video path="img/Infraspace" alt="Flying out over the city" >}}
+{{< /render_img >}}
+
+{{< render_img
+  description="I've been playing a lot of Infraspace, and I love the Park and Stadium designs (which I've replicated myself here.|I also like the idea of a day night cycle to show off some of the assets."
+  renderdate="2022-03-19"
+  rendertime="10 seconds"
+  samples="20"
+  credits="Infraspace@https://store.steampowered.com/app/1511460/InfraSpace"
+  >}}
+{{% header_link "Infraspace city, Day and Night" %}}
+{{% next_prev_links prev="Infraspace city animated" next="Pyrite Ball" %}}
+{{< image path="img/InfraspaceDaytime" alt="My city in the day" >}}
+{{< image path="img/InfraspaceNighttime" alt="My city in the Night" >}}
+{{< image path="img/InfraspaceCloseup" alt="Closeup of the main assets" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="A Pyrite ball in 30 minutes!"
   renderdate="2022-03-13"
   rendertime="20 seconds"
   samples="100" >}}
 {{% header_link "Pyrite Ball" %}}
-{{% next_prev_links  next="Dry Riverbeds" %}}
+{{% next_prev_links prev="Infraspace city, Day and Night" next="Dry Riverbeds" %}}
 {{< image path="img/PyriteBall-30mins" alt="Pyrite Ball after 30 minutes for a challenge" >}}
 {{< image path="img/PyriteBall" alt="Final result after a bit more scene work" >}}
 {{< /render_img >}}

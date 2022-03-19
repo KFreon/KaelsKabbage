@@ -83,15 +83,8 @@ namespace AssetOptimiser
         var normalExec = picture.GetExecutionString(webpQuality, false);
         var halfsizeExec = picture.GetExecutionString(webpQuality, true);
 
-        if (picture.RequiresHalfsize)
-        {
-          await StartProcess(cwepPath, picture.Directory, halfsizeExec);
-        }
-        else
-        {
-          await StartProcess(cwepPath, picture.Directory, normalExec);
-          await StartProcess(cwepPath, picture.Directory, halfsizeExec);
-        }
+        await StartProcess(cwepPath, picture.Directory, normalExec);
+        await StartProcess(cwepPath, picture.Directory, halfsizeExec);
       }
     }
 
