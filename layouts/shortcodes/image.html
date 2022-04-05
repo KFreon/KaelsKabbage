@@ -1,6 +1,8 @@
 <div class="media image" onclick="imageClicked(this)">
         <picture>
+            {{ if in .Page.Permalink "renders" }}
             <source media="(max-width: 960px)" srcset='{{ .Get "path" }}_halfsize.webp' type="image/webp">
+            {{end}}
             <source srcset='{{ .Get "path" }}.webp' type="image/webp">
             <source srcset='{{ .Get "path" }}.png' type="image/png"> 
             <img class="image inner" 
@@ -12,8 +14,12 @@
         <!--Note that anchors don't work for images on refresh for some reason-->
     
     <div class='alt-text-container'>
-        <a href="{{ .Get "path" }}.webm">Bigger</a>
+        {{ if in .Page.Permalink "renders" }}
+            <a href="{{ .Get "path" }}.webm">Bigger</a>
+        {{end}}
         <span class="alt-text">{{ .Get "alt" }}</span>
-        <a href="{{ .Get  "path" }}.png">PNG</a>
+        {{ if in .Page.Permalink "renders" }}
+            <a href="{{ .Get  "path" }}.png">PNG</a>
+        {{end}}
     </div>
 </div>

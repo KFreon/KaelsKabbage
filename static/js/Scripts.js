@@ -42,7 +42,10 @@ function toggleTheme() {
 function imageClicked(element) {
   const slidesElement = document.getElementById("slides");
   const img = element.getElementsByClassName('inner')[0];
-  if (slidesElement.className === 'tiles') {
+
+  const isRender = !!slidesElement;
+
+  if (slidesElement && slidesElement.className === 'tiles') {
     const target = img.src;
     window.location.href = target;
   } else {
@@ -51,16 +54,19 @@ function imageClicked(element) {
       element.classList.remove('open');
       img.style = "";
     } else {
-      const viewWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-      const viewHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-
-      const { width: imageWidth, height: imageHeight } = img.getBoundingClientRect();
-
-      const widthDiff = viewWidth - imageWidth;
-      const heightDiff = viewHeight - imageHeight;
-      const scale = widthDiff > heightDiff
-        ? viewHeight / imageHeight
-        : viewWidth / imageWidth;
+      let scale = 2;
+      if (isRender) {
+        const viewWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+        const viewHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+  
+        const { width: imageWidth, height: imageHeight } = img.getBoundingClientRect();
+  
+        const widthDiff = viewWidth - imageWidth;
+        const heightDiff = viewHeight - imageHeight;
+        scale = widthDiff > heightDiff
+          ? viewHeight / imageHeight
+          : viewWidth / imageWidth;
+      }
 
       img.style = `transform:scale(${scale - 0.05})`;
       element.classList.add('open')
