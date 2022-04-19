@@ -38,6 +38,16 @@ All tools, textures, and tutorials used are listed below.
 <div class="slides" id='slides'>
 
 {{< render_img
+  description="Hair particles are quite frustrating to control. I don't know enough about it."
+  renderdate="2022-04-19"
+  rendertime="10 seconds"
+  samples="200" >}}
+{{% header_link "Easter Bunny" %}}
+{{% next_prev_links  next="Infraspace city animated" %}}
+{{< image path="img/EasterBunny" alt="Easter bunny render with an 'easter egg' in it :)" >}}
+{{< /render_img >}}
+
+{{< render_img
   description="A quick animation with a couple of extra assets!"
   renderdate="2022-03-19"
   rendertime="21 minutes"
@@ -45,7 +55,7 @@ All tools, textures, and tutorials used are listed below.
   credits="Infraspace@https://store.steampowered.com/app/1511460/InfraSpace"
   frames="180" >}}
 {{% header_link "Infraspace city animated" %}}
-{{% next_prev_links  next="Infraspace city, Day and Night" %}}
+{{% next_prev_links prev="Easter Bunny" next="Infraspace city, Day and Night" %}}
 {{< video path="img/Infraspace" alt="Flying out over the city" >}}
 {{< /render_img >}}
 
