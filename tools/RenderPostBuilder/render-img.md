@@ -1,8 +1,8 @@
 ---
 title: "%title%"
 date: %date%
-slug: "%slug%"
 postcard: "%postcard%"
+slug: "%slug%"
 ---
 
 {{< render_img
