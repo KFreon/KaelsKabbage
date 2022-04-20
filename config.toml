@@ -19,6 +19,7 @@ assetDir = "."
 
 [permalinks]
 posts = "post/:slug"
+renders = "render/:slug"
 
 [params]
   title       = "Kael's Kabbage"
