@@ -15,11 +15,11 @@
     
     <div class='alt-text-container'>
         {{ if in .Page.Permalink "renders" }}
-            <a href="{{ .Get "path" }}.webm">Bigger</a>
+            <a href='{{ .Get "path" }}.webm'>Bigger</a>
         {{end}}
         <span class="alt-text">{{ .Get "alt" }}</span>
         {{ if in .Page.Permalink "renders" }}
-            <a href="{{ .Get  "path" }}.png">PNG</a>
+            <a href='{{ .Get  "path" }}.png'>PNG</a>
         {{end}}
     </div>
 </div>

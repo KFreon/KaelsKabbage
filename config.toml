@@ -37,3 +37,4 @@ posts = "post/:slug"
 
   name = "Kael Larkin"
   pageNotFoundTitle = "Uh oh, that page wasn't found!"
+  kabbage = "https://www.kaels-kabbage.com/img/Cabbage.png"

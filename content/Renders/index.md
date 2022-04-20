@@ -1,6 +1,7 @@
 ---
 title: "Blender Renders"
 type: "renders"
+slug: "renders"
 ---
 
 I do like a bit of Blender, and I got some wind in my sails after doing the obligatory [BlenderGuru Donut tutorial](https://www.youtube.com/watch?v=TPrnSACiTJ4), so here's some of them.  
