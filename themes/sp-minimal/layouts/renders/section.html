@@ -4,13 +4,13 @@
       <div class="render-list" id="render-list">
       {{ .Content }}
 
-      {{ range .Paginator.Pages }}
       <div class="render-images slider" id="render-images">
         <div class="slides" id='slides'>
+          {{ range .Pages }}
           {{ .Content }}
+          {{ end }}
         </div>
       </div>
-      {{ end }}
       </div>
   </section>
 {{ end }}

@@ -1,8 +1,14 @@
 {{ $id := .Get 0 | lower | replaceRE "[^0-9a-z]" "-" | replaceRE "-+" "-" -}}
-<a class="header-link" href="#{{ $id }}">
+<a class="header-link" href="{{ .Page.Permalink}}">
     <h3 class="header-text" id="{{ $id }}">{{ .Get 0 }}</h3>
 </a>
 
 <!-- From this legend
 https://github.com/vonbrownie/circuidipity/blob/master/layouts/shortcodes/note-heading.html
 -->
+
+dont think I need this at all
+currently, it duplicates the header in the full page, and is required for the list Page
+
+
+list page doesn't show images properly cos the paths are wrong (relref or something?)

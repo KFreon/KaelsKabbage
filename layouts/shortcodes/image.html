@@ -1,16 +1,15 @@
+{{ $alt := .Get "alt" }}
+{{ $width := .Get "width" }}
+
+{{ $halfsize := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_halfsize.webp") ""))}}
+
 <div class="media image" onclick="imageClicked(this)">
-        <picture>
-            {{ if in .Page.Permalink "renders" }}
-            <source media="(max-width: 960px)" srcset='{{ .Get "path" }}_halfsize.webp' type="image/webp">
-            {{end}}
-            <source srcset='{{ .Get "path" }}.webp' type="image/webp">
-            <source srcset='{{ .Get "path" }}.png' type="image/png"> 
-            <img class="image inner" 
-                src='{{ .Get "path" }}.png' 
-                alt='{{ with .Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}' 
-                width='{{ with .Get "width" }}{{ . }}{{ end }}' 
-                loading="lazy">
-        </picture>
+    {{ if ne $halfsize nil}}
+    <img src="{{$halfsize}}" />
+    {{ else }}
+    <h1>NOTHING</h1>
+    {{ end }}
+       
         <!--Note that anchors don't work for images on refresh for some reason-->
     
     <div class='alt-text-container'>
