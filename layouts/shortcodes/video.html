@@ -1,8 +1,18 @@
+{{ $vp9 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_VP9.webm") ""))}}
+{{ $mp4 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".mp4") ""))}}
+
+{{ if ne $vp9 nil }}
 <div class="media video" >
-        
+    <video class="inner" autoplay controls muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}'>
+        <!-- <source src='{{ .Get "path" }}_AV1.mp4' type="video/mp4; codecs=av01.0.05M.08">  EDGE tries to load this but fails -->
+        <source src='{{ $vp9.Permalink }}' type="video/webm; codecs=vp9">
+        <source src='{{ $mp4.Permalink }}' type="video/mp4">
+        Video doesn't work :(
+    </video>
     <div class="hq-links">
-        <a href='{{ .Get "path"}}.webm'>Webm</a>
+        <a href='{{ $vp9.Permalink }}'>Webm</a>
         <div class="alt-text">{{ .Get "alt" }}</div>
-        <a href='{{ .Get "path"}}.mp4'>MP4</a>
+        <a href='{{ $mp4.Permalink }}'>MP4</a>
     </div>
 </div>
+{{ end }}

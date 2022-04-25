@@ -1,24 +1,35 @@
-{{ $alt := .Get "alt" }}
-{{ $width := .Get "width" }}
-
 {{ $halfsize := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_halfsize.webp") ""))}}
+{{ $webp := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".webp") ""))}}
+{{ $png := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".png") ""))}}
 
+<!-- Not sure why we need it in here. Dunno what's nil, but something is and I can't find it. -->
+{{ if ne $halfsize nil}}
 <div class="media image" onclick="imageClicked(this)">
-    {{ if ne $halfsize nil}}
-    <img src="{{$halfsize}}" />
-    {{ else }}
-    <h1>NOTHING</h1>
-    {{ end }}
-       
-        <!--Note that anchors don't work for images on refresh for some reason-->
-    
-    <div class='alt-text-container'>
+    <picture>
+        <!-- need .Permalink in srcset so it also works in the list page -->
+        Probably going to need to adjust this to make sure that the list page uses the halfsize links
         {{ if in .Page.Permalink "renders" }}
-            <a href='{{ .Get "path" }}.webm'>Bigger</a>
+        <source media="(max-width: 960px)" srcset='{{ $halfsize.Permalink }}' type="image/webp">
+        {{end}}
+        <source srcset='{{ $webp.Permalink }}' type="image/webp">
+        <source srcset='{{ $png.Permalink }}' type="image/png"> 
+        <img class="image inner" 
+            src='{{ $png }}' 
+            alt='{{ with .Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}' 
+            width='{{ with .Get "width" }}{{ . }}{{ end }}' 
+            loading="lazy">
+    </picture>
+    
+    <!--Note that anchors don't work for images on refresh for some reason-->
+    
+    <!-- <div class='alt-text-container'>
+        {{ if in .Page.Permalink "renders" }}
+        <a href='{{ .Get "path" }}.webm'>Bigger</a>
         {{end}}
         <span class="alt-text">{{ .Get "alt" }}</span>
         {{ if in .Page.Permalink "renders" }}
-            <a href='{{ .Get  "path" }}.png'>PNG</a>
+        <a href='{{ .Get  "path" }}.png'>PNG</a>
         {{end}}
-    </div>
+    </div> -->
 </div>
+{{ end }}
