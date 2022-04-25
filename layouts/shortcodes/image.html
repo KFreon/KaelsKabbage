@@ -3,13 +3,15 @@
 {{ $png := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".png") ""))}}
 
 <!-- Not sure why we need it in here. Dunno what's nil, but something is and I can't find it. -->
-{{ if ne $halfsize nil}}
+{{ if ne $webp nil}}
 <div class="media image" onclick="imageClicked(this)">
     <picture>
         <!-- need .Permalink in srcset so it also works in the list page -->
         Probably going to need to adjust this to make sure that the list page uses the halfsize links
+        {{ if ne $halfsize nil}}
         {{ if in .Page.Permalink "renders" }}
         <source media="(max-width: 960px)" srcset='{{ $halfsize.Permalink }}' type="image/webp">
+        {{end}}
         {{end}}
         <source srcset='{{ $webp.Permalink }}' type="image/webp">
         <source srcset='{{ $png.Permalink }}' type="image/png"> 
