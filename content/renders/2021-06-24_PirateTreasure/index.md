@@ -11,7 +11,6 @@ slug: "pirate-treasure"
   rendertime="80 seconds"
   samples="200"
   >}}
-{{% header_link "Pirate Treasure" %}}
 {{< image path="img/PirateTreasure" alt="Pirates Treasure chest with gold, the typical pirate treasure scene :)" >}}
 {{< /render_img >}}
 

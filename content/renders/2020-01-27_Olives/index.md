@@ -6,7 +6,6 @@ slug: "olives-on-a-plate!"
 ---
 
 {{< render_img description="Olives are my favourite single food. Good inspiration." rendertime="25 seconds" samples="100" renderdate="2020-01-27" >}}
-{{% header_link "Olives on a plate!" %}}
 {{< image path="img/Olives" alt="Olives on a plate!" >}}
 {{< /render_img >}}  
 

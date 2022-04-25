@@ -13,7 +13,6 @@ slug: "mass-relay"
   engine="Cycles"
   frames="1510" 
   renderdate="2020-09-17" >}}
-{{% header_link "Mass Relay" %}}
 {{% video path="img/Relay" width="1280" height="720" alt="Asteroid fields, although unrealistic, feel awesome. As does space magic transportation." %}}  
 {{< /render_img >}}
 

@@ -4,8 +4,6 @@
         <h1 class="post-title">{{ .Title }}</h1>
         <div class="render-date">{{ .Date.Format "2006-01-02" }}</div>
     </div>
-    <div id="render-list" class="render-list">
-        {{ .Content }}
-    </div>
+    {{ .Content }}
 </section>
 {{end}}

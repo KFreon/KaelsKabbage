@@ -27,7 +27,6 @@ foreach (var renderPath in consideredRenders) {
   var populatedItemTemplate = render.ItemTemplate.Replace("%path%", $"img/{render.NameWithoutExtension}");
   var fullTemplate = renderTemplate
     .Replace("%renderdate%", render.CreationDateAsString)
-    .Replace("%headerlink%", render.FormattedName)
     .Replace("%title%", render.FormattedName)
     .Replace("%slug%", render.FormattedName.Replace(" ", "-").ToLower())
     .Replace("%date%", render.CreationDate.ToString("O"))

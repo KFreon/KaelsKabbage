@@ -11,7 +11,6 @@ slug: "crystal-caverns"
   samples="100, 1000 for volume" 
   engine="Cycles" 
   renderdate="2020-10-14" >}}
-{{% header_link "Crystal Caverns" %}}
 {{< image path="img/CrystalCaverns" alt="Glowing crystals took a while, volume took even longer" >}}
 {{< /render_img >}}
 

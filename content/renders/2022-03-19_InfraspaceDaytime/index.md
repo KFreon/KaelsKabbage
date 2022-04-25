@@ -12,7 +12,6 @@ slug: "infraspace-city,-day-and-night"
   samples="20"
   credits="Infraspace@https://store.steampowered.com/app/1511460/InfraSpace"
   >}}
-{{% header_link "Infraspace city, Day and Night" %}}
 {{< image path="img/InfraspaceDaytime" alt="My city in the day" >}}
 {{< image path="img/InfraspaceNighttime" alt="My city in the Night" >}}
 {{< image path="img/InfraspaceCloseup" alt="Closeup of the main assets" >}}

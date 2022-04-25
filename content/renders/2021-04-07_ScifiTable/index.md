@@ -11,7 +11,6 @@ slug: "futuristic-star-trek-style-table"
   rendertime="23 hours" 
   samples="100" 
   frames="1320" >}}
-{{% header_link "Futuristic Star Trek style table" %}}
 {{< video path="img/ScifiTable" alt="Futuristic Touch Table, with some shameless self advertising" >}}
 {{< /render_img >}}
 

@@ -11,7 +11,6 @@ slug: "bathroom-tiles"
   rendertime="30 seconds"
   samples="200"
    >}}
-{{% header_link "Bathroom Tiles" %}}
 {{< image path="img/BathroomTiles" alt="Bathroom scene inspired by my shower" >}}
 {{< /render_img >}}
 

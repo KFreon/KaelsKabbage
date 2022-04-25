@@ -11,7 +11,6 @@ slug: "atlantis-stargate"
   rendertime="50 seconds"
   samples="200"
   engine="Cycles (with denoiser node)" >}}
-{{% header_link "Atlantis Stargate" %}}
 {{< image path="img/AtlantisStargate" alt="Stargate from SG:A with some Wraith Darts incoming" >}}
 {{< /render_img >}}
 

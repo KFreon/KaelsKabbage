@@ -10,7 +10,6 @@ slug: "halloweeeeen"
   rendertime="12 minutes" 
   samples="200"
   renderdate="2020-10-20" >}}
-{{% header_link "Halloweeeeen" %}}
 {{< image path="img/Spooky" alt="Spooooky Pumpkin fun with knife project" >}}
 {{< /render_img >}}
 

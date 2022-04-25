@@ -10,7 +10,6 @@ slug: "floating-rock-platform"
   rendertime="20 minutes" 
   samples="300" 
   renderdate="2021-02-28" >}}
-{{% header_link "Floating Rock Platform" %}}
 {{< image path="img/FloatingRockPlatform" alt="Floating rocks in the glowing mist" >}}
 {{< /render_img >}}
 

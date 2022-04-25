@@ -2,6 +2,10 @@
   margin-bottom: 1rem;
   position: relative;
 
+  .header-link {
+    display: none;
+  }
+
   .header-link-button {
     display: none;
   }
@@ -10,8 +14,8 @@
 
   .header-link {
     .header-text {
-      margin-top: -50px;
-      padding-top: 50px;
+      padding: 0;
+      margin: 0;
     }
   }
 
@@ -85,6 +89,12 @@
     margin-bottom: 2rem;
   }
 
+  .render {
+    .header-link {
+      display: inline;
+    }
+  }
+
   .render-images {
     display: flex;
 
@@ -146,17 +156,10 @@
 
       .render {
         width: 80vw;
-        min-height: 100vh;
 
         .next-prev-links {
           display: flex;
           justify-content: space-between;
-        }
-
-        .header-link {
-          .header-text {
-            margin-bottom: 40px;
-          }
         }
 
         .header-link-button {

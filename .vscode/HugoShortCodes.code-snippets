@@ -60,19 +60,10 @@
         "description": "Video Shortcode"
     },
 
-    "HugoShortcode Header Link": {
-        "prefix": "hheader",
-        "body": [
-            "{{% header_link \"$1\" %}}"
-        ],
-        "description": "Video Shortcode"
-    },
-
     "HugoShortcode Render": {
         "prefix": "hrender",
         "body": [
             "{{< render_img\n\tdescription=\"${1:description1|description2}\"\n\trenderdate=\"${2:date}\"\n\trendertime=\"${3:xx seconds}\"\n\tsamples=\"${4:20}\"\n\tcredits=\"${6:name@link|name@link}\"\n\tengine=\"${7:Cycles}\"\n\tframes=\"${8:framecount}\"\n\ttutorialUrl=\"${9:tutorialUrl}\"\n\ttutorialText=\"${10:tutorial description}\" \n>}}",
-            "{{% header_link \"$11\" %}}",
             "himg$0",
             "{{< /render_img >}}",
         ],

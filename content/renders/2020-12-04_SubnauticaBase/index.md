@@ -10,7 +10,6 @@ slug: "my-subnautica-base"
   rendertime="12 minutes" 
   samples="500" 
   renderdate="2020-12-04" >}}
-{{% header_link "My Subnautica Base" %}}
 {{< image path="img/SubnauticaBase" alt="Right on the edge of the Jellyshroom Caves!" >}}
 {{< /render_img >}}
 

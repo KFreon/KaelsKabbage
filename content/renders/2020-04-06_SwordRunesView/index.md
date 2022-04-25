@@ -11,7 +11,6 @@ slug: "sword-showing-runes"
   samples="64" 
   engine="Eevee" 
   renderdate="2020-04-06" >}}
-{{% header_link "Sword showing runes" %}}
 {{< image path="img/SwordRunesView" alt="Sword showing runes" >}}
 {{< /render_img >}}   
 

@@ -12,7 +12,6 @@ slug: "relaxing-nighttime-writing"
   frames="60"
   samples="200"
   >}}
-{{% header_link "Relaxing Nighttime Writing" %}}
 {{< video path="img/Book" alt="Book with candle, pen, and hot drink!" >}}
 {{< /render_img >}}
 

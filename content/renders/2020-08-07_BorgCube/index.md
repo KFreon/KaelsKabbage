@@ -13,7 +13,6 @@ slug: "borg-cube"
   renderdate="2020-08-07" 
   tutorialUrl="https://www.blendernation.com/2020/04/08/create-a-borg-cube-using-displacements/" 
   tutorialText="By Dikko" >}}
-{{% header_link "Borg Cube" %}}
 {{< image path="img/BorgCube" alt="Borg Cube - you will be assimilated" >}}
 {{< /render_img >}}
 

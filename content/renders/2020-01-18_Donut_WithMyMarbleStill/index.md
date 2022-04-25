@@ -1,8 +1,8 @@
 ---
-title: "Moovin Doonut"
+title: "Doonut"
 date: 2020-01-18
 postcard: "Donut_WithMyMarble_postcard"
-slug: "moovin-doonut"
+slug: "doonut"
 ---
 
 {{< render_img 
@@ -12,6 +12,5 @@ slug: "moovin-doonut"
   renderdate="2020-01-18" 
   tutorialUrl="https://www.youtube.com/watch?v=TPrnSACiTJ4"
   tutorialText="The Infamous BlenderGuru!" >}}
-{{% header_link "Doonut" %}}
 {{< image path="img/Donut_WithMyMarble" alt="Obligatory Donut Render" nospacer="true" >}}  
 {{< /render_img >}} 

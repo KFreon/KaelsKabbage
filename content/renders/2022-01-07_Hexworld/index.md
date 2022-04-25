@@ -13,7 +13,6 @@ slug: "hexworld"
   frames="250"
   tutorialUrl="https://www.youtube.com/watch?v=EboNtLKn_m8"
   tutorialText="Hexagon World with Geometry Nodes Fields - Erindale" >}}
-{{% header_link "Hexworld" %}}
 {{< video path="img/Hexworld" alt="Hexworld from tutorial" >}}
 {{< video path="img/HexworldDemo" alt="Showing all the cool control we have over the Hexworld" >}}
 {{< /render_img >}}

@@ -12,7 +12,6 @@ slug: "prepare-for-exploration!"
   samples="400"
   frames="220"
   >}}
-{{% header_link "Prepare for exploration!" %}}
 {{< video path="img/ShipDock" alt="Orbital platform with a ship in it!" >}}
 {{< /render_img >}}
 

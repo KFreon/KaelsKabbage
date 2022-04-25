@@ -11,7 +11,6 @@ slug: "sword-without-cinematic-compositing"
   samples="64" 
   engine="Eevee" 
   renderdate="2020-04-06" >}}
-{{% header_link "Sword WITHOUT cinematic compositing" %}}
 {{< image path="img/Sword_Original" alt="Sword WITHOUT compositing" >}}
 {{< /render_img >}}
 

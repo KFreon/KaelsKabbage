@@ -13,7 +13,6 @@ slug: "little-wooden-crate"
   tutorialUrl="https://www.youtube.com/watch?v=1PWGCWIG_Sk"
   tutorialText="Draw Curves on Surfaces FAST in Blender 2.81-Quick and Dirty"
    >}}
-{{% header_link "Little Wooden Crate" %}}
 {{< image path="img/LisasWoodenBox" alt="A wooden crate with rope I found while helping my girlfriend move." >}}
 {{< /render_img >}}
 

@@ -12,7 +12,6 @@ slug: "gateways-to-infinity"
   samples="500"
   frames="140"
   >}}
-{{% header_link "Gateways to infinity" %}}
 {{< video path="img/ManyRings" alt="Purple rings off into infinity on a starry night :)" >}}
 {{< /render_img >}}
 

@@ -12,6 +12,5 @@ slug: "%slug%"
   samples=""
   %frames%
   >}}
-  {{% header_link "%headerlink%" %}}
   %CONTENT%
 {{< /render_img >}}

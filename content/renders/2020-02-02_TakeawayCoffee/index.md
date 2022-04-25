@@ -10,7 +10,6 @@ slug: "urban-takeaway-coffee"
   rendertime="15 minutes" 
   samples="500"
   renderdate="2020-02-02" >}}
-{{% header_link "Urban Takeaway Coffee" %}}
 {{< image path="img/TakeawayCoffee" alt="Takeaway coffee up on a wooden table, so relaxing" >}}
 {{< image path="img/TakeawayCoffee_Less_DOF" alt="Less DOF, since I'm pleased with the bridge :)" width="500px" >}}
 {{< /render_img >}}  

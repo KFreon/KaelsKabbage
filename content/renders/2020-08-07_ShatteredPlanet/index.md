@@ -11,7 +11,6 @@ slug: "shattered-world"
   samples="400" 
   engine="Cycles" 
   renderdate="2020-08-07" >}}
-{{% header_link "Shattered World" %}}
 {{< image path="img/ShatteredPlanet" alt="Shattered World with dust cloud" >}}
 {{< /render_img >}}
 

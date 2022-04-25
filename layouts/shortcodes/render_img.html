@@ -1,4 +1,7 @@
 <div class="render">
+    <a class="header-link" href="{{ .Page.Permalink}}">
+        <h3 class="header-text" id="{{ .Page.Title }}">{{ .Page.Title }}</h3>
+    </a>
     {{ .Inner }}
     <div class="info">
         <div class="description">

@@ -10,7 +10,6 @@ slug: "working-on-the-stairs"
   rendertime="13 minutes"
   samples="800" 
   renderdate="2020-11-12" >}}
-{{% header_link "Working on the stairs" %}}
 {{< image path="img/MetalStairs" alt="Such lighting!" >}}
 {{< /render_img >}}
 

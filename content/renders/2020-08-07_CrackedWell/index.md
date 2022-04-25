@@ -11,7 +11,6 @@ slug: "well-and-bucket"
   samples="400" 
   engine="Cycles"
   renderdate="2020-08-07" >}}
-{{% header_link "Well and Bucket" %}}
 {{< image path="img/CrackedWell" alt="Rocky well with a bucket and rope next to it" >}}
 {{< /render_img >}}
 

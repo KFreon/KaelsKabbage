@@ -12,7 +12,6 @@ slug: "the-beast-planet"
   engine="Cycles" 
   frames="600" 
   renderdate="2020-05-13" >}}
-{{% header_link "The Beast Planet" %}}
 {{% video path="img/ShadowRaiders" width="1280" height="720" alt="Shadow Raiders Beast Planet animation" %}}  
 {{< /render_img >}}
 

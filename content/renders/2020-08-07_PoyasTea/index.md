@@ -11,7 +11,6 @@ slug: "tea-and-biscuits"
   samples="300" 
   engine="Cycles" 
   renderdate="2020-08-07" >}}
-{{% header_link "Tea and Biscuits" %}}
 {{< image path="img/PoyasTea" alt="Tea and biscuits scene from a colleagues' photo" >}}
 {{< /render_img >}}
 

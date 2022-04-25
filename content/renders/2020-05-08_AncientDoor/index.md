@@ -12,7 +12,6 @@ slug: "ancient-door"
   engine="Eevee" 
   frames="1100" 
   renderdate="2020-05-08" >}}
-{{% header_link "Ancient Door" %}}
 {{% video path="img/AncientDoor" width="1280" height="720" alt="Old dusty door animation" %}}  
 {{< /render_img >}}
 

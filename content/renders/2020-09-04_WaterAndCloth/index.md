@@ -12,7 +12,6 @@ slug: "university-water"
   engine="Cycles" 
   frames="250" 
   renderdate="2020-09-04" >}}
-{{% header_link "University Water" %}}
 {{% video path="img/WaterAndCloth" width="1280" height="720" alt="Water and cloth sims take ages" %}}  
 {{< /render_img >}}
 

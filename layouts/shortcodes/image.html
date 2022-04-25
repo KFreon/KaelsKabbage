@@ -7,7 +7,6 @@
 <div class="media image" onclick="imageClicked(this)">
     <picture>
         <!-- need .Permalink in srcset so it also works in the list page -->
-        Probably going to need to adjust this to make sure that the list page uses the halfsize links
         {{ if ne $halfsize nil}}
         {{ if in .Page.Permalink "renders" }}
         <source media="(max-width: 960px)" srcset='{{ $halfsize.Permalink }}' type="image/webp">

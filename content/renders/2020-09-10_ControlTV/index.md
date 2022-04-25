@@ -12,7 +12,6 @@ slug: "scp-tv"
   engine="Cycles" 
   frames="500" 
   renderdate="2020-09-10" >}}
-{{% header_link "SCP TV" %}}
 {{% video path="img/ControlTV" width="1280" height="720" alt="Boids make this pretty nice, but they're hard to control" %}}  
 {{< /render_img >}}
 

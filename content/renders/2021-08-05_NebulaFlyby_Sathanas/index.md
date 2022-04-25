@@ -12,7 +12,6 @@ slug: "freespace-inspired-nebula-flyby"
   samples="250"
   credits="Freespace team for models@https://store.steampowered.com/app/273620/Freespace_2/"
   frames="600" >}}
-{{% header_link "Freespace Inspired Nebula Flyby" %}}
 {{< video path="img/NebulaFlyby_Sathanas" alt="Freespace is an excellent game, and inspired this." >}}
 {{< /render_img >}}
 

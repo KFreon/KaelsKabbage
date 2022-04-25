@@ -13,7 +13,6 @@ slug: "sword-from-cg-fasttrack"
   renderdate="2020-04-06" 
   tutorialUrl="https://www.youtube.com/watch?v=zHv4VDoCwYc"
   tutorialText="CG Fasttrack" >}}
-{{% header_link "Sword from CG Fasttrack" %}}
 {{< image path="img/Sword" alt="Sword with cinematic compositing" >}}
 {{< /render_img >}}
 

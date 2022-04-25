@@ -10,7 +10,6 @@ slug: "age-of-empires-mill-comparison"
   renderdate="2021-05-06"
   rendertime="4 minutes"
   samples="150" >}}
-{{% header_link "Age of Empires Mill Comparison" %}}
 {{< image path="img/AOEMill_Comparison" alt="Comparison to reference, Age of Empires Mill" >}}
 {{< /render_img >}}
 

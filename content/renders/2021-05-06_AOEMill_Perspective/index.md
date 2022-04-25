@@ -10,7 +10,6 @@ slug: "age-of-empires-mill-perspective"
   renderdate="2021-05-06"
   rendertime="4 minutes"
   samples="150" >}}
-{{% header_link "Age of Empires Mill Perspective" %}}
 {{< image path="img/AOEMill_Perspective" alt="Better perspective, characters, and doodads" >}}
 {{< /render_img >}}
 

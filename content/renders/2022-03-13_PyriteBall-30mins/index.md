@@ -10,7 +10,6 @@ slug: "pyrite-ball"
   renderdate="2022-03-13"
   rendertime="20 seconds"
   samples="100" >}}
-{{% header_link "Pyrite Ball" %}}
 {{< image path="img/PyriteBall-30mins" alt="Pyrite Ball after 30 minutes for a challenge" >}}
 {{< image path="img/PyriteBall" alt="Final result after a bit more scene work" >}}
 {{< /render_img >}}

@@ -10,7 +10,6 @@ slug: "fixed-olives,-highlighted-differences"
   rendertime="25 seconds"
   samples="100" 
   renderdate="2020-01-31" >}}
-{{% header_link "Fixed olives, highlighted differences" %}}
 {{< image path="img/Olives_Difference" alt="Old olive render vs new bits" >}}
 {{< /render_img >}}  
 

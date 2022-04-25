@@ -11,7 +11,6 @@ slug: "bullets"
   samples="800" 
   engine="Cycles" 
   renderdate="2020-08-07" >}}
-{{% header_link "Bullets" %}}
 {{< image path="img/Bullets" alt="Bullets scattered everywhere on a table" >}}
 {{< /render_img >}}
 

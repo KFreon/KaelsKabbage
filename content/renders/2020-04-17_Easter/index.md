@@ -6,7 +6,6 @@ slug: "happy-easter!"
 ---
 
 {{< render_img description="Eggster!" rendertime="1.5 minutes" samples="128" renderdate="2020-04-17" >}}
-{{% header_link "Happy Easter!" %}}
 {{< image path="img/Easter" alt="Easter Eggs" >}}
 {{< /render_img >}}
 
