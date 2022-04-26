@@ -47,7 +47,19 @@ var targets = parsedRenders.Select(x => new PictureJob(x.DestFolder, x.DestName)
 
 // halfsizes, optimised images
 await AssetOptimiser.Program.ConvertFiles(null, 90, Core.Paths.RendersFolder, targets, null);
+
+// Open them all for us to adjust
+foreach(var item in parsedRenders)
+{
+  Process.Start(Path.Combine(item.DestFolder, "index.md"));
+}
+
 Console.WriteLine($"-*-*FINISHED*-*-");
+
+
+
+
+
 
 
 static void MoveRender(Render render)
