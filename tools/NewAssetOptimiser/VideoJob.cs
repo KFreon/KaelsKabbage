@@ -1,13 +1,10 @@
 ﻿namespace AssetOptimiser
 {
-    static partial class Program
+    public struct VideoJob
     {
-        struct VideoJob
-        {
-            public string FileName { get; set; }
-            public string Directory { get; set; }
-            public Format Format { get; set; }
-            public string DestinationFileName { get; set; }
-        }
+        public string FileName { get; set; }
+        public string Directory { get; set; }
+        public Format Format { get; set; }
+        public string DestinationFileName { get; set; }
     }
 }

@@ -1,86 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AssetOptimiser
 {
-  static partial class Program
+  public static class Program
   {
-    static string ffmpegPath = null;
-    static string cwepPath = null;
-    static Format[] Formats = null;
-
     static async Task Main(string[] args)
     {
       if (!ProcessCmdLineArgs(args, out int? crf, out int webpQuality, out string rootPath))
         return;
 
-      Formats = new[]
-      {
-                // Disabling for now since there's some issues to work out
-                 new Format("AV1", "mp4", "libaom-av1", crf ?? 50, 0, "-row-mt 1 -strict experimental -tile-columns 2 -threads 8 -pix_fmt yuv444p -movflags +faststart"), // yuv444 - can't have 12 bit colour - pngs seem to be 12 bit colour :(
-                new Format("VP9", "webm", "libvpx-vp9", crf ?? 40, 0, "-row-mt 1 -tiles 2x2 -threads 8"),
-                new Format("x264", "mp4", "libx264", crf ?? 30, null, "-row-mt 1 -tiles 2x2 -threads 8 -movflags +faststart"),
-            };
-
-      ffmpegPath = GetFFMpegPath();
-      cwepPath = GetCWebpPath();
-
       Console.WriteLine("Looking for unoptimised assets...");
       Console.WriteLine();
 
-      var normalImages = GetPictures(rootPath);
-      var renders = GetRenders(rootPath + "/Renders/img");
+      var normalImages = Helper.GetPictures(rootPath);
+      var renders = Helper.GetRenders(rootPath + "/Renders/img");
       var pictures = normalImages.Concat(renders);
 
-      var videos = GetVideos(rootPath);
+      var videos = Helper.GetVideos(rootPath);
 
-      if (!pictures.Any() && !videos.Any())
-      {
-        Console.WriteLine("Nothing to convert!");
-        return;
-      }
-
-      var picsText = pictures.Select(p => $"    {Path.Combine(p.Directory.Replace(rootPath, ""), p.Filename)}");
-      var videosText = videos.Select(v => $"    {Path.Combine(v.Directory.Replace(rootPath, ""), v.FileName)}: {v.Format.Name}");
-
-      Console.WriteLine("Preparing to convert the following files:");
-      if (pictures.Any())
-      {
-        Console.WriteLine("Pictures:");
-        foreach (var line in picsText)
-          Console.WriteLine(line);
-
-        Console.WriteLine();
-      }
-
-      if (videos.Any())
-      {
-        Console.WriteLine("Videos (not converting, do that from sources):");
-        foreach (var line in videosText)
-          Console.WriteLine(line);
-
-        Console.WriteLine();
-      }
-
-      if (pictures.Any())
-        await ConvertPictures(pictures, webpQuality);
-      else
-        Console.WriteLine("No images to convert!");
-
-      //if (videos.Any())
-      //    await ConvertVideos(videos);
-      //else
-      //    Console.WriteLine("No videos to convert!");
-
-      Console.WriteLine();
-      Console.WriteLine();
-      Console.WriteLine();
-      Console.WriteLine("~~~~~ Finished optimising assets! ~~~~~");
+      await ConvertFiles(crf, webpQuality, rootPath, pictures, videos);
     }
 
     static bool ProcessCmdLineArgs(string[] args, out int? crf, out int webpQuality, out string rootPath)
@@ -129,6 +71,63 @@ namespace AssetOptimiser
       }
 
       return (null, null);
+    }
+
+    public static async Task ConvertFiles(int? crf, int webpQuality, string rootPath, IEnumerable<PictureJob> pictures, IEnumerable<VideoJob> videos)
+    {
+      Helper.Formats = new[]
+        {
+          // Disabling for now since there's some issues to work out
+          new Format("AV1", "mp4", "libaom-av1", crf ?? 50, 0, "-row-mt 1 -strict experimental -tile-columns 2 -threads 8 -pix_fmt yuv444p -movflags +faststart"), // yuv444 - can't have 12 bit colour - pngs seem to be 12 bit colour :(
+          new Format("VP9", "webm", "libvpx-vp9", crf ?? 40, 0, "-row-mt 1 -tiles 2x2 -threads 8"),
+          new Format("x264", "mp4", "libx264", crf ?? 30, null, "-row-mt 1 -tiles 2x2 -threads 8 -movflags +faststart"),
+        };
+
+      Helper.ffmpegPath = Helper.GetFFMpegPath();
+      Helper.cwepPath = Helper.GetCWebpPath();
+
+      if (!pictures.Any() && !videos.Any())
+      {
+        Console.WriteLine("Nothing to convert!");
+        return;
+      }
+
+      var picsText = pictures.Select(p => $"    {Path.Combine(p.Directory.Replace(rootPath, ""), p.Filename)}");
+      var videosText = videos.Select(v => $"    {Path.Combine(v.Directory.Replace(rootPath, ""), v.FileName)}: {v.Format.Name}");
+
+      Console.WriteLine("Preparing to convert the following files:");
+      if (pictures.Any())
+      {
+        Console.WriteLine("Pictures:");
+        foreach (var line in picsText)
+          Console.WriteLine(line);
+
+        Console.WriteLine();
+      }
+
+      if (videos.Any())
+      {
+        Console.WriteLine("Videos (not converting, do that from sources):");
+        foreach (var line in videosText)
+          Console.WriteLine(line);
+
+        Console.WriteLine();
+      }
+
+      if (pictures.Any())
+        await Helper.ConvertPictures(pictures, webpQuality);
+      else
+        Console.WriteLine("No images to convert!");
+
+      //if (videos.Any())
+      //    await ConvertVideos(videos);
+      //else
+      //    Console.WriteLine("No videos to convert!");
+
+      Console.WriteLine();
+      Console.WriteLine();
+      Console.WriteLine();
+      Console.WriteLine("~~~~~ Finished optimising assets! ~~~~~");
     }
   }
 }

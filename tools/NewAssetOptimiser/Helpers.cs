@@ -5,13 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Microsoft.VisualBasic;
 
 namespace AssetOptimiser
 {
-  static partial class Program
+  public static class Helper
   {
-    static IEnumerable<PictureJob> GetPictures(string rootPath)
+    public static Format[] Formats = null;
+    public static string ffmpegPath = null;
+    public static string cwepPath = null;
+
+    public static IEnumerable<PictureJob> GetPictures(string rootPath)
     {
       var pngs = Directory.GetFiles(rootPath, "*.png", SearchOption.AllDirectories)
         .Select(x => new { Directory = Path.GetDirectoryName(x), FileName = Path.GetFileName(x), NoExtension = Path.GetFileNameWithoutExtension(x) });
@@ -24,7 +27,7 @@ namespace AssetOptimiser
         .Select(f => new PictureJob(f.Directory, f.FileName));
     }
 
-    static IEnumerable<PictureJob> GetRenders(string renderPath)
+    public static IEnumerable<PictureJob> GetRenders(string renderPath)
     {
       var webps = Directory.GetFiles(renderPath, "*.webp", SearchOption.AllDirectories)
         .Select(x => new
@@ -47,7 +50,7 @@ namespace AssetOptimiser
         .Select(x => new PictureJob(x.Directory, x.FileName));
     }
 
-    static IEnumerable<VideoJob> GetVideos(string rootPath)
+    public static IEnumerable<VideoJob> GetVideos(string rootPath)
     {
       bool isUnOptimised(string filename) => !Formats
           .Any(format => !format.HasPostFix ? false : Path.GetFileNameWithoutExtension(filename).EndsWith(format.PostFix));
@@ -75,7 +78,7 @@ namespace AssetOptimiser
           .Where(x => !File.Exists(Path.Combine(x.Directory, x.DestinationFileName)));
     }
 
-    static async Task ConvertPictures(IEnumerable<PictureJob> pictures, int webpQuality)
+    public static async Task ConvertPictures(IEnumerable<PictureJob> pictures, int webpQuality)
     {
       Console.WriteLine($"Converting {pictures.Count()} pictures...");
       foreach (var picture in pictures.DistinctBy(x => x.FilenameNoExt))
@@ -88,7 +91,7 @@ namespace AssetOptimiser
       }
     }
 
-    static async Task ConvertVideos(IEnumerable<VideoJob> jobs)
+    public static async Task ConvertVideos(IEnumerable<VideoJob> jobs)
     {
       Console.WriteLine($"Converting {jobs.Count()} videos...");
       foreach (var job in jobs)
@@ -99,7 +102,7 @@ namespace AssetOptimiser
       }
     }
 
-    static string GetFFMpegPath()
+    public static string GetFFMpegPath()
     {
       var path = Environment.GetEnvironmentVariable("PATH");
       var chocoBits = path.Split(';').Where(x => x.Contains("chocolatey\\bin", StringComparison.OrdinalIgnoreCase)).ToArray();
@@ -123,7 +126,7 @@ namespace AssetOptimiser
     }
 
 
-    static string GetCWebpPath()
+    public static string GetCWebpPath()
     {
       var exePath = Path.GetDirectoryName(System.Reflection
                         .Assembly.GetExecutingAssembly().Location);
@@ -145,7 +148,7 @@ namespace AssetOptimiser
     /// <param name="workingDirectory"></param>
     /// <param name="argument"></param>
     /// <returns></returns>
-    static Task StartProcess(string tool, string workingDirectory, string argument)
+    public static Task StartProcess(string tool, string workingDirectory, string argument)
     {
       Console.WriteLine();
       Console.WriteLine($"Running: {Environment.NewLine}" +

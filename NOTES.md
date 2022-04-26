@@ -1,8 +1,6 @@
 - Investigate Netlify large media and Git LFS so we can just save the full image in repo and dynamically serve it
-- Consolidate all c# tools into one project maybe?
--generate postcards
-  - jpgs for compat?
-- put postcard as top background on posts?
+- Make postcards for actual posts
+  - put postcard as top background on posts?
 - open index.md for new renders
 - mobile view isn't good.
   - Make it fullscreen, maybe top bar or hamburger?

@@ -1,5 +1,8 @@
-﻿var rendersPath = "../../content/Renders";
-var renderDump = $"../../.RENDER_DUMP";
+﻿using AssetOptimiser;
+using System.Diagnostics;
+
+var rendersPath = Core.Paths.RendersFolder;
+var renderDump = Core.Paths.RenderDump;
 
 var renderTemplate = File.ReadAllText("./render-img.md");
 var videoTemplate = File.ReadAllText("./video.md");
@@ -15,10 +18,12 @@ if (numberOfRenders > 0)
 else
   Console.WriteLine("No renders need creating.");
 
+var parsedRenders = new List<Render>();
 foreach (var renderPath in consideredRenders) { 
   var render = new Render(renderPath, rendersPath, imageTemplate, videoTemplate);
   render.AssociatedRenders.AddRange(renders.Where(x => x != renderPath && x.Contains(render.NameWithoutExtension)).Select(x => new Render(x, rendersPath, imageTemplate, videoTemplate)));
 
+  parsedRenders.Add(render);
   Directory.CreateDirectory(render.DestFolder)
     .CreateSubdirectory("img");
 
@@ -34,9 +39,15 @@ foreach (var renderPath in consideredRenders) {
     .Replace("%CONTENT%", populatedItemTemplate);
 
   File.WriteAllText(Path.Combine(render.DestFolder, "index.md"), fullTemplate);
+  await BuildPostCard(render.DestRender);
   Console.WriteLine($"Created: {render.FormattedName}");
 }
 
+var targets = parsedRenders.Select(x => new PictureJob(x.DestFolder, x.DestName));
+
+// halfsizes, optimised images
+await AssetOptimiser.Program.ConvertFiles(null, 90, Core.Paths.RendersFolder, targets, null);
+Console.WriteLine($"-*-*FINISHED*-*-");
 
 
 static void MoveRender(Render render)
@@ -46,5 +57,21 @@ static void MoveRender(Render render)
   foreach (var associated in render.AssociatedRenders)
   {
     File.Move(associated.FullPath, associated.DestRender);
+}
+}
+
+static async Task BuildPostCard(string render)
+{
+  var folder = Path.GetDirectoryName(render);
+  var destName = Path.GetFileNameWithoutExtension(render.Replace("_VP9", "")) + "_postcard.jpg";
+  var destination = Path.Combine(folder, destName);
+
+  if (Path.GetExtension(render) == ".png")
+  {
+      await Process.Start("ffmpeg", $"-i {render} -y -vf scale=275:-1 {destination}").WaitForExitAsync();
+  }
+  else
+  {
+    await Process.Start("ffmpeg", $"-i {render} -y -vframes 1 -vf scale=275:-1 {destination}").WaitForExitAsync();
   }
 }
