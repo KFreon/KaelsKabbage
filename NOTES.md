@@ -2,5 +2,3 @@
 - Make postcards for actual posts
   - put postcard as top background on posts?
 - open index.md for new renders
-- mobile view isn't good.
-  - Make it fullscreen, maybe top bar or hamburger?

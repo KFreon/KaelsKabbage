@@ -27,10 +27,28 @@
 @media print, screen and (max-width: 960px) {
     html {
         font-size: 8px;
-    }
 
-    .wrapper {
-        padding-right: 0;
+        body {
+            .wrapper {
+                padding-right: 0;
+                margin-top: 5.75rem;
+
+                .post-list {
+                    margin-left: 0;
+                    font-size: 2rem;
+
+                    .post-list-item {
+                        .post-summary {
+                            font-size: 2rem;
+
+                            p {
+                                font-size: 2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .post-title {
@@ -38,12 +56,12 @@
     }
 
     p {
-        font-size: 1.5rem;
+        font-size: 2rem;
         overflow-wrap: break-word;
     }
 
     li {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     ul {
@@ -55,7 +73,7 @@
     }
 
     h2 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .site-title {
@@ -63,7 +81,7 @@
     }
 
     .site-subtitle {
-        font-size: 1.4rem;
+        font-size: 2rem;
     }
 
     header {
@@ -73,10 +91,10 @@
 
     section {
         padding: 0;
-        margin-left: 10.5rem;
+        margin-left: 0;
         width: auto;
         font-size: 1.5rem;
-        margin-right: 1rem;
+        width: 100vw;
     }
 
     footer {
@@ -101,14 +119,14 @@
     }
 
     code {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
     }
 
     pre {
         white-space: break-spaces;
         
         code {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
     }
 
@@ -130,7 +148,7 @@
     }
 
     .search-box {
-        font-size: 1.2rem;
+        font-size: 3rem;
     }
 
     .results-list {
@@ -144,11 +162,66 @@
     }
 
     .sidebar {
-        width: 9rem;
+        position: fixed;
+        width: 100vw;
+        height: 5.75rem;
         padding-left: 0.5rem;
+        padding-top: 0;
+        top: 0;
 
         box-shadow: none;
         border-right: 2px solid var(--sidebar-border);
+
+        footer {
+            display: none;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            width: 100vw;
+            align-items: center;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+
+            .profile-picture {
+                width: 30px;
+            }
+
+            .header-menu-container {
+                display: none;
+                position: fixed;
+                top: 6rem;
+                left: 0;
+                backdrop-filter:blur(8px);
+                width: 100vw;
+                height: 100vh;
+
+                &.open {
+                    display: block;
+                }
+
+                .description {
+                    font-size: 2rem;
+                }
+            }
+
+            .site-title {
+                border: none;
+                margin: 0;
+                padding: 0;
+                margin-left: 3rem;
+                font-size: 2.5rem;
+            }
+
+            #hamburger-menu-button {
+                display: block;
+                color: var(--main-colour);
+                background: none;
+                border: none;
+                font-size: 4rem;
+            }
+        }
     }
 
     .description {
@@ -159,17 +232,18 @@
         position: unset;
         right: unset;
         top: unset;
-        width: 8rem;
+        width: auto;
 
         li {
-            font-size: 1rem;
+            font-size: 2rem;
             height: 2.5rem;
+            margin-bottom: 1rem;
         }
     }
 
     .recent-render-container {
         .recent-title {
-            font-size: 1.4rem;
+            font-size: 2rem;
             margin: 0.5rem 0 0.5rem 0;
         }
     }

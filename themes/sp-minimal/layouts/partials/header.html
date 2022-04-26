@@ -1,46 +1,72 @@
 <header class="text-center">
   <a href="{{ $.Site.BaseURL }}">
-    <img async src="{{ $.Site.BaseURL }}img/Cabbage.png" width="75px" class="img-circle profile-picture" alt="Profile Picture of CABBAGE"></a>
+    <img
+      async
+      src="{{ $.Site.BaseURL }}img/Cabbage.png"
+      width="75px"
+      class="img-circle profile-picture"
+      alt="Profile Picture of CABBAGE"
+  /></a>
 
   {{ with .Site.Params.title }}
-    <h1 class="border-bottom add-padding-bottom site-title"><a href="{{ $.Site.BaseURL }}">{{ . | markdownify }}</a></h1>
-  {{ end }}
-	
-  {{ with .Site.Params.subtitle }}
-    <h2 class="text-right add-padding-right site-subtitle">{{ . | markdownify }}</h2>
+  <h1 class="border-bottom add-padding-bottom site-title">
+    <a href="{{ $.Site.BaseURL }}">{{ . | markdownify }}</a>
+  </h1>
   {{ end }}
 
-  {{ with .Site.Params.description }}
+  <div class="header-menu-container">
+    {{ with .Site.Params.subtitle }}
+    <h2 class="text-right add-padding-right site-subtitle">
+      {{ . | markdownify }}
+    </h2>
+    {{ end }} {{ with .Site.Params.description }}
     <p class="description remove-margin-bottom">{{ . | markdownify }}</p>
-  {{ end }}
-  
-  <div class="search-area">
-      <input id="searchbox" placeholder="Search..." type="text" class="search-box" onkeyup="search()" onblur="hideIfNecessary()" onfocus="showIfNecessary()">
-      <ul class="results-list" id="results">
-          
-      </ul>
+    {{ end }}
+
+    <div class="search-area">
+      <input
+        id="searchbox"
+        placeholder="Search..."
+        type="text"
+        class="search-box"
+        onkeyup="search()"
+        onblur="hideIfNecessary()"
+        onfocus="showIfNecessary()"
+      />
+      <ul class="results-list" id="results"></ul>
+    </div>
+
+    <h2 class="recent-posts-title">Recent Posts</h2>
+    <ul class="recent-posts">
+      {{ range first 3 (where .Site.Pages "Type" "post") }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
+      {{ end }}
+    </ul>
+
+    <div class="recent-render-container">
+      <h2 class="recent-title">Recent Render</h2>
+      <a href="{{ $.Site.BaseURL }}/renders">
+        <picture class="recent-render">
+          <source
+            srcset="{{ $.Site.BaseURL }}img/recent-render.webp"
+            type="image/webp"
+          />
+          <source
+            srcset="{{ $.Site.BaseURL }}img/recent-render.png"
+            type="image/png"
+          />
+          <img
+            class="image inner"
+            src="{{ $.Site.BaseURL }}img/recent-render.png"
+            alt="Recent Render"
+            width="275px"
+          />
+        </picture>
+      </a>
+    </div>
   </div>
 
-  <h2 class="recent-posts-title">Recent Posts</h2>
-  <ul class="recent-posts">
-    {{ range first 3 (where .Site.Pages "Type" "post") }}
-    <li>
-      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </li>
-  {{ end }}
-  </ul>
-
-  <div class="recent-render-container">
-    <h2 class="recent-title">Recent Render</h2>
-    <a href="{{ $.Site.BaseURL }}/renders">
-      <picture class="recent-render">
-        <source srcset='{{ $.Site.BaseURL }}img/recent-render.webp' type="image/webp">
-        <source srcset='{{ $.Site.BaseURL }}img/recent-render.png' type="image/png"> 
-        <img class="image inner" src='{{ $.Site.BaseURL }}img/recent-render.png' alt='Recent Render' width='275px'>
-    </picture>
-    </a>
-  </div>
-  
+  <button id="hamburger-menu-button" onclick="toggleHamburger()">☰</button>
 </header>
-
-

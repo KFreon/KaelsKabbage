@@ -57,7 +57,7 @@ static void MoveRender(Render render)
   foreach (var associated in render.AssociatedRenders)
   {
     File.Move(associated.FullPath, associated.DestRender);
-}
+  }
 }
 
 static async Task BuildPostCard(string render)

@@ -73,3 +73,7 @@ function imageClicked(element) {
     }
   }
 }
+
+function toggleHamburger() {
+  document.getElementsByClassName("header-menu-container")[0].classList.toggle("open");
+}
