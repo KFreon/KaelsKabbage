@@ -3,5 +3,6 @@
 -generate postcards
   - jpgs for compat?
 - put postcard as top background on posts?
-open index.md for new renders
-- need arrows in renders to move between them
+- open index.md for new renders
+- mobile view isn't good.
+  - Make it fullscreen, maybe top bar or hamburger?

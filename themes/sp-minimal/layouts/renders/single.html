@@ -5,5 +5,22 @@
         <div class="render-date">{{ .Date.Format "2006-01-02" }}</div>
     </div>
     {{ .Content }}
+    <div class="render-nav-links">
+        {{ if ne .Page.Prev nil }}
+        <span> 
+            &lt;&lt; 
+            <a href="{{ .Prev.RelPermalink }}">{{ .Prev.Title }}</a>
+        </span>
+        {{ end }}
+
+        <span />
+
+        {{ if ne .Page.Next nil }}
+        <span>  
+            <a href="{{ .Next.RelPermalink }}">{{ .Next.Title }}</a>
+            &gt;&gt;
+        </span>
+        {{ end }}
+    </div>
 </section>
 {{end}}
