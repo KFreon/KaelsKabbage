@@ -17,9 +17,6 @@ assetDir = "."
     ordered = false
     startLevel = 1
 
-[permalinks]
-posts = "post/:slug"
-
 [params]
   title       = "Kael's Kabbage"
   subtitle    = "Tech Superfood"
@@ -37,3 +34,4 @@ posts = "post/:slug"
 
   name = "Kael Larkin"
   pageNotFoundTitle = "Uh oh, that page wasn't found!"
+  kabbage = "https://www.kaels-kabbage.com/img/Cabbage.png"

@@ -7,7 +7,7 @@
     <meta name="description" content="{{ if .Summary }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     {{ hugo.Generator }}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta property="og:image" content="{{ .Site.BaseURL }}img/Cabbage.png"/>
+    <meta property="og:image" content='{{ if .Param "postcard"}}{{ .Params.slug | absURL }}/{{ .Param "postcard" }}{{ else }}{{ .Site.Params.Kabbage }} {{ end }}'/>
 
     <link rel="shortcut icon" async href="{{ .Site.BaseURL }}img/Cabbage_Shortcut.png">
     <link rel="stylesheet" async href='https://fonts.googleapis.com/css?family=Fira+Code:normal,ital:400:700&display=swap'>

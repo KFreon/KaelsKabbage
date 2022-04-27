@@ -72,8 +72,8 @@ Now that we've seen the components that can use new shiny things, let's look at 
 | ------ | ----- |
 | Video Codecs  | AV1, h264, VP9 |
 | Image Codecs  | webp , png, jpg  |
-| Video Sources | PNGs from a Blender animation: ~8mb each, 1100 of them. [Result]({{< ref "/Renders/index.md#ancient-door" >}}) |
-| Image Sources | [The Floating Rock render PNG]({{< ref "/Renders/index.md#floating-rocks" >}}) and [Sword]({{< ref "/Renders/index.md#sword-from-cg-fasttrack" >}}) |
+| Video Sources | PNGs from a Blender animation: ~8mb each, 1100 of them. [Result]({{< ref "/renders/2020-05-08_AncientDoor/index.md" >}}) |
+| Image Sources | [The Floating Rock render PNG]({{< ref "/renders/2020-01-18_FloatingRocks/index.md" >}}) and [Sword]({{< ref "/renders/2020-04-06_Sword/index.md" >}}) |
 | Tools  | [FFMpeg](https://www.ffmpeg.org/) and the [Webp](https://developers.google.com/speed/webp) tools from google because they're common, simple, and reasonably well documented. |
 
 Edit: Using  FFMpeg 4.2.1  

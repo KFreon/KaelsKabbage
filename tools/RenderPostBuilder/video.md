@@ -1,0 +1,1 @@
+{{< video path="%path%" alt="" >}}  

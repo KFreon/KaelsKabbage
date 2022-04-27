@@ -1,8 +1,35 @@
 {{ define "main" }}
+{{ $prev := .CurrentSection.Pages.Prev .}}
+{{ $next := .CurrentSection.Pages.Next .}}
 <section>
-    <h1 class="post-title">{{ .Title }}</h1>
-    <div id="render-list" class="render-list">
-        {{ .Content }}
+    <div style="display: flex; justify-content: space-between;">
+        <h1 class="post-title">{{ .Title }}</h1>
+        <div class="render-date">{{ .Date.Format "2006-01-02" }}</div>
+    </div>
+    {{ .Content }}
+    <div class="render-nav-links">
+        {{ if ne $prev nil }}
+        <a href="{{ $prev.RelPermalink }}" class="prev"> 
+            <span class="label">&lt;&lt; Older</span>
+            <span class="item">{{ $prev.Title }}</span>
+        </a>
+        {{else}}
+        <span class="spacer"></span>
+        {{ end }}
+
+        <span class="current">
+            <span class="label">Current</span>
+            <span class="item">{{ .Page.Title }}</span>
+        </span>
+
+        {{ if ne $next nil }}
+        <a href="{{ $next.RelPermalink }}" class="next">  
+            <span class="label">Newer &gt;&gt;</span>
+            <span class="item">{{ $next.Title }}</span>
+        </a>
+        {{else}}
+        <span class="spacer"></span>
+        {{ end }}
     </div>
 </section>
 {{end}}

@@ -1,5 +1,9 @@
-<div class="render">
-    <div class="render-date">{{ .Get "renderdate" }}</div>
+<div class="render-container">
+    <div class="render" onclick="imageContainerClicked('{{ .Page.Permalink }}')">
+    <a class="header-link" href="{{ .Page.Permalink}}">
+        <h3 class="header-text" id="{{ .Page.Title }}">{{ .Page.Title }}</h3>
+        <span class="header-date">{{ .Page.Date.Format "2006-01-02"  }}</span>
+    </a>
     {{ .Inner }}
     <div class="info">
         <div class="description">
@@ -49,4 +53,5 @@
             {{ end }}
         </div>
     </div>
+</div>
 </div>

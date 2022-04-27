@@ -13,7 +13,7 @@ namespace AssetOptimiser {
 
     public string GetExecutionString(int webpQuality, bool makeHalfsize) {
       var newPath = $"{FilenameNoExt}{(makeHalfsize ? "_halfsize" : "")}.webp";
-      return $"{Filename} -o {newPath} {(makeHalfsize ? " -resize 900 0" : "")} -mt -m 6 -pass 10 -q {webpQuality}";
+      return $"{Filename} -o {newPath} {(makeHalfsize ? " -resize 450 0" : "")} -mt -m 6 -pass 10 -q {webpQuality}";
     }
   }
 }

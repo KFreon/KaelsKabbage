@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <section style='width: 100%'>
+    <h1>Blender Renders</h1>
+      <div class="render-list" id="render-list">
+      {{ .Content }}
+
+      <div class="render-images slider" id="render-images">
+        <div class="slides" id='slides'>
+          {{ range .Pages }}
+          {{ .Content }}
+          {{ end }}
+        </div>
+      </div>
+      </div>
+  </section>
+{{ end }}

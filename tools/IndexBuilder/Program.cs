@@ -10,9 +10,8 @@ using System.Text.RegularExpressions;
 //var renders = "../../../../Content/Renders/index.md";
 
 var basePath = Environment.GetCommandLineArgs()[1];
-var renders = Path.Combine(basePath, "Renders/index.md");
-
-var allPosts = Directory.GetFiles(Path.Combine(basePath, "Posts"), "index.md", SearchOption.AllDirectories);
+var posts = Directory.GetFiles(Path.Combine(basePath, "posts"), "index.md", SearchOption.AllDirectories);
+var renders = Directory.GetFiles(Core.Paths.RendersFolder, "index.md", SearchOption.AllDirectories);
 
 Func<IEnumerable<string>, string, string> parseFrontMatterEntry = (IEnumerable<string> frontMatter, string key) =>
 {
@@ -23,21 +22,26 @@ Func<IEnumerable<string>, string, string> parseFrontMatterEntry = (IEnumerable<s
         return entry[1].Replace("\"", "").Trim();
 };
 
-var postIndexEntries = allPosts
-  .Select(filePath => File.ReadAllLines(filePath))
-  .Select(lines =>
-    lines// FrontMatter
+var postIndexEntries = posts.Concat(renders)
+  .Select(filePath => new { IsRender = filePath.Contains("renders", StringComparison.OrdinalIgnoreCase), Lines = File.ReadAllLines(filePath) })
+  .Select(item =>
+    new
+    {
+      IsRender = item.IsRender,
+      FrontMatter = item.Lines
     .Skip(1)
-    .Take(7))
-  .Select(frontMatter =>
+    .Take(7)
+    })
+  .Select(item =>
   {
-      bool.TryParse(parseFrontMatterEntry(frontMatter, "draft"), out var draft);
+      bool.TryParse(parseFrontMatterEntry(item.FrontMatter, "draft"), out var draft);
       return new
       {
-          title = parseFrontMatterEntry(frontMatter, "title"),
+          title = parseFrontMatterEntry(item.FrontMatter, "title"),
           draft = draft,
-          slug = parseFrontMatterEntry(frontMatter, "slug"),
-          tags = parseFrontMatterEntry(frontMatter, "tags")
+          slug = parseFrontMatterEntry(item.FrontMatter, "slug"),
+          isRender = item.IsRender,
+          tags = parseFrontMatterEntry(item.FrontMatter, "tags")
         ?.Replace("[", "").Replace("]", "")
         .Split(',')
         .Select(x => x.Trim())
@@ -48,25 +52,15 @@ var postIndexEntries = allPosts
   .Select(post => new
   {
       post.title,
-      href = "/post/" + Regex.Replace(post.slug.ToLowerInvariant(), "[^0-9a-z]", "-"),
-      isRender = false
+      href = $"{(post.isRender ? "/renders/" : "/posts/")}{Regex.Replace(post.slug.ToLowerInvariant(), "[^0-9a-z]", "-")}".Replace("--", "-"),  // Occasionally, there were doubles that needed removal.
+      post.isRender
   });
 
-var renderIndexEntries = File.ReadAllLines(renders)
-  .Where(line => line.StartsWith("{{% header_link"))
-  .Select(line => line.Split('"')[1])
-  .Select(x => new
-  {
-      title = x,
-      href = "/renders/#" + Regex.Replace(x.ToLowerInvariant(), "[^0-9a-z]", "-"),
-      isRender = true
-  });
-
-var allEntries = postIndexEntries.Concat(renderIndexEntries).Select(x => new 
+var allEntries = postIndexEntries.Select(x => new 
 {
   x.title,
-  href = x.href.Replace("--", "-"),  // Occasionally, there were doubles that needed removal.
-  x.isRender,
+  x.href,
+  x.isRender
 }).ToArray();
 var serialised = "const pagesIndex = " + JsonSerializer.Serialize(allEntries) + ";";
 File.WriteAllText(Path.Combine(basePath, "../static/js/PagesIndex.js"), serialised);

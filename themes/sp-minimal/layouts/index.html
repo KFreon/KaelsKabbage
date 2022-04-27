@@ -1,15 +1,5 @@
 {{ define "main" }}
-{{ if eq .Site.Params.renderType "single" }}
-  {{ range .Data.Pages }}
-    {{ if eq .Type "onepage" }}
-      <section>
-      {{ .Content }}
-      </section> 
-    {{ end }}
-  {{ end }}
-{{ else }}
-  <section class="post-list">
-    {{ partial "post-list" . }}
-  </section>
-{{ end }}
+<section class="post-list">
+  {{ partial "post-list" . }}
+</section>
 {{end}}

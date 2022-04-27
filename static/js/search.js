@@ -40,9 +40,13 @@ function renderResults() {
 
     // Only show the ten first results
     searchResults.slice(0, 4).forEach(function(result) {
-        const text = `${result.isRender ? '🖼' : ''} ${result.title}`;
+        const text = result.title;
         const node = document.createElement("li");
         node.classList.add('search-result');
+
+        if (result.isRender) {
+            node.classList.add('is-render');
+        }
 
         const link = document.createElement('a');
         link.href = result.href;
