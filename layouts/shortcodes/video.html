@@ -1,14 +1,25 @@
+{{ $halfsize := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_halfsize.webm") ""))}}
 {{ $vp9 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_VP9.webm") ""))}}
 {{ $mp4 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".mp4") ""))}}
 
 {{ if ne $vp9 nil }}
 <div class="media video" >
-    <video class="inner" autoplay controls muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}'>
-        <!-- <source src='{{ .Get "path" }}_AV1.mp4' type="video/mp4; codecs=av01.0.05M.08">  EDGE tries to load this but fails -->
-        <source src='{{ $vp9.Permalink }}' type="video/webm; codecs=vp9">
-        <source src='{{ $mp4.Permalink }}' type="video/mp4">
+    {{ if in .Page.Permalink "renders" }}
+    {{ if ne $halfsize nil}}
+    <video style="max-width: 100%" autoplay muted loop playsinline class="inner halfsize-frame lazy">
+        <source data-src="{{ $halfsize.Permalink }}" type="video/webm; codecs=vp9">
         Video doesn't work :(
     </video>
+    {{end}}
+    {{end}}
+
+    <video class="inner picture-frame lazy" autoplay muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}'>
+        <!-- <source src='{{ .Get "path" }}_AV1.mp4' type="video/mp4; codecs=av01.0.05M.08">  EDGE tries to load this but fails -->
+        <source data-src='{{ $vp9.Permalink }}' type="video/webm; codecs=vp9">
+        <source data-src='{{ $mp4.Permalink }}' type="video/mp4">
+        Video doesn't work :(
+    </video>
+
     <div class="hq-links">
         <a href='{{ $vp9.Permalink }}'>Webm</a>
         <div class="alt-text">{{ .Get "alt" }}</div>

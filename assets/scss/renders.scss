@@ -11,10 +11,6 @@
   align-items: center;
   cursor: pointer;
 
-  * {
-    pointer-events: none;
-  }
-
   .halfsize-frame, .picture-frame {
     display: none;
   }
@@ -106,6 +102,10 @@
   }
 
   .render {
+    * {
+      pointer-events: none;
+    }
+    
     .header-link {
       display: inline;
     }

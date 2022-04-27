@@ -87,18 +87,53 @@ function toggleHamburger() {
 // The reason it has to be a timer instead of just normal CSS is that it still renders some of them.
 // I think it's a timing thing where the default visibility is being fetched before it knows the element isn't visible.
 setTimeout(() => {
+
+  // Note this is also videos
   const images = document.getElementsByClassName('picture-frame');
   const halfsize = document.getElementsByClassName('halfsize-frame');
   const renderList = document.getElementsByClassName("render-list");
   const isRenderList = renderList && renderList.length > 0;
+  const isMobile = document.documentElement.clientWidth <= 960;
+
   for(let image of images) {
-    image.style.display = isRenderList ? 'none' : 'block';
+    image.style.display = isRenderList || isMobile ? 'none' : 'block';
   };
   for(let half of halfsize) {
-    half.style.display = isRenderList ? 'block' : 'none';
+    half.style.display = isRenderList || isMobile ? 'block' : 'none';
   };
 }, 100);
 
 function imageContainerClicked(url) {
   location.href = url;
 }
+
+function setupLazyVideos() {
+  document.addEventListener("DOMContentLoaded", function() {
+    let lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
+  
+    if ("IntersectionObserver" in window) {
+      let lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(video) {
+          if (video.isIntersecting) {
+            for (let source in video.target.children) {
+              let videoSource = video.target.children[source];
+              if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                videoSource.src = videoSource.dataset.src;
+              }
+            }
+
+            video.target.load();
+            video.target.classList.remove("lazy");
+            lazyVideoObserver.unobserve(video.target);
+          }
+        });
+      });
+  
+      lazyVideos.forEach(function(lazyVideo) {
+        lazyVideoObserver.observe(lazyVideo);
+      });
+    }
+  });
+}
+
+setupLazyVideos();
