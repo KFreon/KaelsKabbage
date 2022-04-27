@@ -367,6 +367,15 @@
                     margin-top: 3rem;
                     width: 9rem;
 
+                    .header-link {
+                        flex-direction: column-reverse;
+
+                        .header-date {
+                            font-size: 1rem;
+                            font-style: italic;
+                        }
+                    }
+
                     .image {
                         transform-origin: 30% 50%;
                     }

@@ -154,7 +154,15 @@
     }
 
     .header-link {
-      display: inline;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .header-date {
+        font-size: 0.6rem;
+        min-width: 3.5rem;
+        color: var(--main-colour);
+      }
     }
   }
 

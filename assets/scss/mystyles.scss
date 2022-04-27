@@ -374,8 +374,14 @@ blockquote {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 40px;
 
     &.is-render {
+      a {
+        height: unset;
+        padding: 0;
+      }
+
       &::before {
         content: '';
         background: url("/img/BlenderIcon.png");
