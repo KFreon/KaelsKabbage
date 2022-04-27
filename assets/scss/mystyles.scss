@@ -1,6 +1,14 @@
 @import "./variables.scss";
 @import "./renders.scss";
 
+@font-face {
+  font-family: 'Fira Code';
+  src: url('/fonts/FiraCode-Regular.woff2') format('woff2'),
+    url("/fonts/FiraCode-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
 * {
   scroll-behavior: smooth;
 }
@@ -238,7 +246,6 @@ small {
 code {
   font-family: "Fira Code";
   font-size: 1rem;
-  font-display: swap;
 }
 
 // Inline stuff
