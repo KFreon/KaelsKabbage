@@ -4,9 +4,11 @@ using System.Diagnostics;
 var rendersPath = Core.Paths.RendersFolder;
 var renderDump = Core.Paths.RenderDump;
 
-var renderTemplate = File.ReadAllText("./render-img.md");
-var videoTemplate = File.ReadAllText("./video.md");
-var imageTemplate = File.ReadAllText("./image.md");
+var basePath = Path.Combine(Core.Paths.ToolsPath, "RenderPostBuilder");
+
+var renderTemplate = File.ReadAllText(Path.Combine(basePath, "./render-img.md"));
+var videoTemplate = File.ReadAllText(Path.Combine(basePath, "./video.md"));
+var imageTemplate = File.ReadAllText(Path.Combine(basePath, "./image.md"));
 var renders = Directory.EnumerateFiles(renderDump);
 var consideredRenders = renders.Where(x => x.EndsWith(".png") || x.EndsWith(".mp4"));  // Only use the raw files, we'll collect the rest later
 
@@ -24,7 +26,7 @@ foreach (var renderPath in consideredRenders) {
   render.AssociatedRenders.AddRange(renders.Where(x => x != renderPath && x.Contains(render.NameWithoutExtension)).Select(x => new Render(x, rendersPath, imageTemplate, videoTemplate)));
 
   parsedRenders.Add(render);
-  Directory.CreateDirectory(render.DestFolder)
+  Directory.CreateDirectory(render.DestFolderRoot)
     .CreateSubdirectory("img");
 
   MoveRender(render);
@@ -34,24 +36,28 @@ foreach (var renderPath in consideredRenders) {
     .Replace("%renderdate%", render.CreationDateAsString)
     .Replace("%title%", render.FormattedName)
     .Replace("%slug%", render.FormattedName.Replace(" ", "-").ToLower())
+    .Replace("%postcard%", render.FormattedName + "_postcard")
     .Replace("%date%", render.CreationDate.ToString("O"))
     .Replace("%frames%", render.IsVideo ? "frames=\"\"" : "")
     .Replace("%CONTENT%", populatedItemTemplate);
 
-  File.WriteAllText(Path.Combine(render.DestFolder, "index.md"), fullTemplate);
+  File.WriteAllText(Path.Combine(render.DestFolderRoot, "index.md"), fullTemplate);
   await BuildPostCard(render.DestRender);
   Console.WriteLine($"Created: {render.FormattedName}");
 }
 
-var targets = parsedRenders.Select(x => new PictureJob(x.DestFolder, x.DestName));
+var targets = parsedRenders.Select(x => new PictureJob(x.DestFolderImg, x.DestName));
 
 // halfsizes, optimised images
-await AssetOptimiser.Program.ConvertFiles(null, 90, Core.Paths.RendersFolder, targets, null);
+await AssetOptimiser.Program.ConvertFiles(null, 90, Core.Paths.RendersFolder, targets, Array.Empty<VideoJob>());
 
 // Open them all for us to adjust
 foreach(var item in parsedRenders)
 {
-  Process.Start(Path.Combine(item.DestFolder, "index.md"));
+  var psi = new ProcessStartInfo();
+  psi.FileName = Path.Combine(item.DestFolderRoot, "index.md");
+  psi.UseShellExecute = true;
+  Process.Start(psi);
 }
 
 Console.WriteLine($"-*-*FINISHED*-*-");

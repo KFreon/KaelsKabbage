@@ -6,16 +6,15 @@ using System.Linq;
 // Below paths for VS
 //var renders = "../../../../Content/Renders/index.md";
 
-var renders = Path.Combine(Core.Paths.RendersFolder, "Renders/index.md");
 var destinationName = Path.Combine(Core.Paths.BasePath, "static/img/recent-render");
 var destination = $"{destinationName}.png";
 
-var latestRenderPath = File.ReadAllLines(renders)
-    .First(x => x.StartsWith("{{< image") || x.StartsWith("{{< video"))
-    .Split('"')[1];
+var renders = Directory.EnumerateFiles(Core.Paths.RendersFolder, "index.md", SearchOption.AllDirectories);
 
-var latestImage = Path.Combine(Core.Paths.RendersFolder, latestRenderPath + ".png");
-var latestVideo = Path.Combine(Core.Paths.RendersFolder, latestRenderPath + "_VP9.webm");
+var latestRenderPath = renders.OrderByDescending(x => x).FirstOrDefault();
+
+var latestImage = Directory.EnumerateFiles(Path.Combine(Path.GetDirectoryName(latestRenderPath), "img"), "*.png").FirstOrDefault();
+var latestVideo = Directory.EnumerateFiles(Path.Combine(Path.GetDirectoryName(latestRenderPath), "img"), "*_VP9.webm").FirstOrDefault();
 
 if (File.Exists(latestImage)) {
     await Process.Start("ffmpeg", $"-i {latestImage} -y -vf scale=275:-1 {destination}").WaitForExitAsync();
@@ -25,7 +24,7 @@ if (File.Exists(latestImage)) {
 
 // Convert to webp as well
 await Process.Start(
-        Path.Combine(Core.Paths.RendersFolder, "tools/NewAssetOptimiser/Webp/cwebp.exe"), 
+        Path.Combine(Core.Paths.ToolsPath, "Webp/cwebp.exe"), 
         $"-q 75 {destination} -o {destinationName}.webp"
     ).WaitForExitAsync();
 

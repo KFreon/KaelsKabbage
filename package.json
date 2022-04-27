@@ -4,13 +4,13 @@
   "description": "",
   "scripts": {
     "build-index": "dotnet run --project tools/IndexBuilder/IndexBuilder.csproj --configuration Release ./content",
-    "build": "npm-run-all build-index optimise-assets update-latest-render update-carousel-links",
+    "build": "npm-run-all build-index optimise-assets update-latest-render",
     "new": "hugo new --kind post-bundle",
     "start": "hugo server -D --poll 2000ms",
     "start-prod": "hugo server --poll 2000ms",
-    "update-carousel-links": "dotnet run --project tools/render-link-builder/render-link-builder.csproj --configuration Release ./content/Renders/index.md",
     "optimise-assets": "dotnet run --project tools/NewAssetOptimiser/NewAssetOptimiser.csproj --configuration Release ./content",
-    "update-latest-render": "dotnet run --project tools/SetLatestRender/SetLatestRender.csproj ./content"
+    "update-latest-render": "dotnet run --project tools/SetLatestRender/SetLatestRender.csproj ./content",
+    "add-new-render": "dotnet run --project tools/RenderPostBuilder/RenderPostBuilder.csproj"
   },
   "author": "",
   "license": "ISC",

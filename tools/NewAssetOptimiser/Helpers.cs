@@ -106,10 +106,6 @@ namespace AssetOptimiser
     {
       var path = Environment.GetEnvironmentVariable("PATH");
       var chocoBits = path.Split(';').Where(x => x.Contains("chocolatey\\bin", StringComparison.OrdinalIgnoreCase)).ToArray();
-      foreach (var bit in chocoBits)
-      {
-        Console.WriteLine(bit);
-      }
 
       var chocolateyBinPath = chocoBits.Single();
       var ffmpegPath = "";
@@ -128,12 +124,7 @@ namespace AssetOptimiser
 
     public static string GetCWebpPath()
     {
-      var exePath = Path.GetDirectoryName(System.Reflection
-                        .Assembly.GetExecutingAssembly().Location);
-      Regex appPathMatcher = new Regex(@"(?<!fil)[A-Za-z]:\\+[\S\s]*?(?=\\+bin)");
-      var appRoot = appPathMatcher.Match(exePath).Value;
-
-      var cwebp = Path.Combine(appRoot, "Webp", "cwebp.exe");
+      var cwebp = Path.Combine(Core.Paths.ToolsPath, "Webp", "cwebp.exe");
       if (!File.Exists(cwebp))
         throw new FileNotFoundException("Webp converter not found at: " + cwebp);
 

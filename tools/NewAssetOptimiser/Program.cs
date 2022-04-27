@@ -17,7 +17,7 @@ namespace AssetOptimiser
       Console.WriteLine();
 
       var normalImages = Helper.GetPictures(rootPath);
-      var renders = Helper.GetRenders(rootPath + "/Renders/img");
+      var renders = Helper.GetRenders(rootPath + "/Renders");
       var pictures = normalImages.Concat(renders);
 
       var videos = Helper.GetVideos(rootPath);

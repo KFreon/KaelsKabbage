@@ -9,8 +9,9 @@ internal class Render {
   public string CreationDateAsString => CreationDate.ToString("yyyy-MM-dd");
   public List<Render> AssociatedRenders { get; } = new List<Render>();
   public string ItemTemplate { get; set; }
-  public string DestFolder { get; }
-  public string DestRender => Path.Combine(DestFolder, "img", DestName);
+  public string DestFolderRoot { get; }
+  public string DestFolderImg => Path.Combine(DestFolderRoot, "img");
+  public string DestRender => Path.Combine(DestFolderImg, DestName);
   public string DestName { get; }
   public bool IsVideo { get; }
 
@@ -23,7 +24,7 @@ internal class Render {
     
     var directoryName = $"{CreationDateAsString}_{NameWithoutExtension}"
       .Replace("/", "-");
-    DestFolder = Path.Combine(rendersPath, directoryName);
+    DestFolderRoot = Path.Combine(rendersPath, directoryName);
     DestName = NameWithoutExtension.Replace("\\", "/") + $"{Extension}";
 
     if (fullPath.EndsWith(".png"))
