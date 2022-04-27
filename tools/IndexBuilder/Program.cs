@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 
 var basePath = Environment.GetCommandLineArgs()[1];
 var posts = Directory.GetFiles(Path.Combine(basePath, "posts"), "index.md", SearchOption.AllDirectories);
-var renders = Directory.GetFiles(Path.Combine(basePath, "renders"), "index.md", SearchOption.AllDirectories);
+var renders = Directory.GetFiles(Core.Paths.RendersFolder, "index.md", SearchOption.AllDirectories);
 
 Func<IEnumerable<string>, string, string> parseFrontMatterEntry = (IEnumerable<string> frontMatter, string key) =>
 {
@@ -23,7 +23,7 @@ Func<IEnumerable<string>, string, string> parseFrontMatterEntry = (IEnumerable<s
 };
 
 var postIndexEntries = posts.Concat(renders)
-  .Select(filePath => new { IsRender = filePath.Contains("/renders/"), Lines = File.ReadAllLines(filePath) })
+  .Select(filePath => new { IsRender = filePath.Contains("renders", StringComparison.OrdinalIgnoreCase), Lines = File.ReadAllLines(filePath) })
   .Select(item =>
     new
     {
@@ -52,13 +52,15 @@ var postIndexEntries = posts.Concat(renders)
   .Select(post => new
   {
       post.title,
-      href = (post.isRender ? "/posts/" : "/renders/") + Regex.Replace(post.slug.ToLowerInvariant(), "[^0-9a-z]", "-"),
+      href = $"{(post.isRender ? "/renders/" : "/posts/")}{Regex.Replace(post.slug.ToLowerInvariant(), "[^0-9a-z]", "-")}".Replace("--", "-"),  // Occasionally, there were doubles that needed removal.
+      post.isRender
   });
 
 var allEntries = postIndexEntries.Select(x => new 
 {
   x.title,
-  href = x.href.Replace("--", "-"),  // Occasionally, there were doubles that needed removal.
+  x.href,
+  x.isRender
 }).ToArray();
 var serialised = "const pagesIndex = " + JsonSerializer.Serialize(allEntries) + ";";
 File.WriteAllText(Path.Combine(basePath, "../static/js/PagesIndex.js"), serialised);

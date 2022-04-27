@@ -165,12 +165,13 @@
 
         .search-result {
             font-size: 1.7rem;
+            height: 6rem;
         }
     }
 
     .sidebar {
         position: fixed;
-        width: 98vw;
+        width: 100vw;
         height: 5.75rem;
         padding-left: 0.5rem;
         padding-top: 0;
@@ -226,6 +227,7 @@
 
                 .description {
                     font-size: 2rem;
+                    text-align: center;
                 }
             }
 
@@ -242,6 +244,7 @@
                 background: none;
                 border: none;
                 font-size: 4rem;
+                cursor: pointer;
             }
         }
     }
@@ -260,6 +263,7 @@
             font-size: 2rem;
             height: 2.5rem;
             margin-bottom: 1rem;
+            text-align: center;
         }
     }
 
