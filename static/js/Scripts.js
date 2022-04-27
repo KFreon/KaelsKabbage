@@ -79,12 +79,17 @@ function toggleHamburger() {
 }
 
 // this is so dumb but I can't figure out a better way
-// Basically
+// I want to show halfsize on the list page, but it just displays the content of the subpages.
+// There doesn't seem to be a media query that can work on the calculated width of the resulting image.
+// i.e. If the image is going to be small, use the small image. I can't figure out how to know that in advance.
+// It can know what the viewport size is, but not the resulting image.
+// So I've created two elements, and toggle between them here.
+// The reason it has to be a timer instead of just normal CSS is that it still renders some of them.
+// I think it's a timing thing where the default visibility is being fetched before it knows the element isn't visible.
 setTimeout(() => {
   const images = document.getElementsByClassName('picture-frame');
   const halfsize = document.getElementsByClassName('halfsize-frame');
   const renderList = document.getElementsByClassName("render-list");
-  console.log('thing', renderList)
   const isRenderList = renderList && renderList.length > 0;
   for(let image of images) {
     image.style.display = isRenderList ? 'none' : 'block';
@@ -93,3 +98,7 @@ setTimeout(() => {
     half.style.display = isRenderList ? 'block' : 'none';
   };
 }, 100);
+
+function imageContainerClicked(url) {
+  location.href = url;
+}
