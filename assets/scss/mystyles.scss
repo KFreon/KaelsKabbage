@@ -7,10 +7,16 @@
     url("/fonts/FiraCode-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 * {
   scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 #main-body.light {
@@ -83,6 +89,11 @@ header {
 
   #hamburger-menu-button {
     display: none;
+  }
+
+  .profile-picture {
+    width: 30%;
+    height: auto;
   }
 }
 

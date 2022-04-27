@@ -8,7 +8,7 @@
     <!-- need another halfsize img here so we can force it on the render list page -->
     {{ if in .Page.Permalink "renders" }}
     {{ if ne $halfsize nil}}
-    <img class="halfsize-frame" src="{{ $halfsize.Permalink }}" type="image/webp" loading="lazy">
+    <img class="halfsize-frame" src="{{ $halfsize.Permalink }}" width="{{ $halfsize.Width }}" height="{{ $halfsize.Height }}" type="image/webp" loading="lazy">
     {{end}}
     {{end}}
 
@@ -24,6 +24,8 @@
         <img class="image inner" 
             src='{{ $png.Permalink }}' 
             alt='{{ with .Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}' 
+            width="{{ $png.Width }}" 
+            height="{{ $png.Height }}"
             loading="lazy">
     </picture>
     

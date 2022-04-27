@@ -13,7 +13,7 @@
     {{end}}
     {{end}}
 
-    <video class="inner picture-frame lazy" autoplay muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}'>
+    <video class="inner picture-frame lazy" autoplay muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}' height='{{ .Get "height" }}'>
         <!-- <source src='{{ .Get "path" }}_AV1.mp4' type="video/mp4; codecs=av01.0.05M.08">  EDGE tries to load this but fails -->
         <source data-src='{{ $vp9.Permalink }}' type="video/webm; codecs=vp9">
         <source data-src='{{ $mp4.Permalink }}' type="video/mp4">
@@ -21,9 +21,13 @@
     </video>
 
     <div class="hq-links">
+        {{ if in .Page.Permalink "renders" }}
         <a href='{{ $vp9.Permalink }}'>Webm</a>
+        {{ end }}
         <div class="alt-text">{{ .Get "alt" }}</div>
+        {{ if in .Page.Permalink "renders" }}
         <a href='{{ $mp4.Permalink }}'>MP4</a>
+        {{ end }}
     </div>
 </div>
 {{ end }}
