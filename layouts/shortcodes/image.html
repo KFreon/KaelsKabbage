@@ -5,32 +5,36 @@
 <!-- Not sure why we need it in here. Dunno what's nil, but something is and I can't find it. -->
 {{ if ne $webp nil}}
 <div class="media image" onclick="imageClicked(this)">
-    <picture>
+    <!-- need another halfsize img here so we can force it on the render list page -->
+    {{ if ne $halfsize nil}}
+    <img class="halfsize-frame" src="{{ $halfsize.Permalink }}" type="image/webp" loading="lazy">
+    {{end}}
+
+    <picture class="picture-frame">
         <!-- need .Permalink in srcset so it also works in the list page -->
         {{ if ne $halfsize nil}}
         {{ if in .Page.Permalink "renders" }}
-        <source media="(max-width: 960px)" srcset='{{ $halfsize.Permalink }}' type="image/webp">
+        <source srcset='{{ $halfsize.Permalink }}' media="(max-width: 960px)" type="image/webp">
         {{end}}
         {{end}}
         <source srcset='{{ $webp.Permalink }}' type="image/webp">
         <source srcset='{{ $png.Permalink }}' type="image/png"> 
         <img class="image inner" 
-            src='{{ $png }}' 
+            src='{{ $png.Permalink }}' 
             alt='{{ with .Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}' 
-            width='{{ with .Get "width" }}{{ . }}{{ end }}' 
             loading="lazy">
     </picture>
     
     <!--Note that anchors don't work for images on refresh for some reason-->
     
-    <!-- <div class='alt-text-container'>
+    <div class='alt-text-container'>
         {{ if in .Page.Permalink "renders" }}
-        <a href='{{ .Get "path" }}.webm'>Bigger</a>
+        <a href='{{ $webp.Permalink }}'>Bigger</a>
         {{end}}
         <span class="alt-text">{{ .Get "alt" }}</span>
         {{ if in .Page.Permalink "renders" }}
-        <a href='{{ .Get  "path" }}.png'>PNG</a>
+        <a href='{{ $png.Permalink }}'>PNG</a>
         {{end}}
-    </div> -->
+    </div>
 </div>
 {{ end }}

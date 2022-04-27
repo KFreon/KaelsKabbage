@@ -1,4 +1,4 @@
 - Investigate Netlify large media and Git LFS so we can just save the full image in repo and dynamically serve it
 - Make postcards for actual posts
   - put postcard as top background on posts?
-- render list isn't flash, default tiles mebe?
+- image click -> grow isn't good

@@ -77,3 +77,19 @@ function imageClicked(element) {
 function toggleHamburger() {
   document.getElementsByClassName("header-menu-container")[0].classList.toggle("open");
 }
+
+// this is so dumb but I can't figure out a better way
+// Basically
+setTimeout(() => {
+  const images = document.getElementsByClassName('picture-frame');
+  const halfsize = document.getElementsByClassName('halfsize-frame');
+  const renderList = document.getElementsByClassName("render-list");
+  console.log('thing', renderList)
+  const isRenderList = renderList && renderList.length > 0;
+  for(let image of images) {
+    image.style.display = isRenderList ? 'none' : 'block';
+  };
+  for(let half of halfsize) {
+    half.style.display = isRenderList ? 'block' : 'none';
+  };
+}, 100);

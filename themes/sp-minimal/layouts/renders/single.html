@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{ $prev := .CurrentSection.Pages.Prev .}}
+{{ $next := .CurrentSection.Pages.Next .}}
 <section>
     <div style="display: flex; justify-content: space-between;">
         <h1 class="post-title">{{ .Title }}</h1>
@@ -6,18 +8,18 @@
     </div>
     {{ .Content }}
     <div class="render-nav-links">
-        {{ if ne .Page.Prev nil }}
+        {{ if ne $prev nil }}
         <span> 
             &lt;&lt; 
-            <a href="{{ .Prev.RelPermalink }}">{{ .Prev.Title }}</a>
+            <a href="{{ $prev.RelPermalink }}">{{ $prev.Title }}</a>
         </span>
         {{ end }}
 
         <span />
 
-        {{ if ne .Page.Next nil }}
+        {{ if ne $next nil }}
         <span>  
-            <a href="{{ .Next.RelPermalink }}">{{ .Next.Title }}</a>
+            <a href="{{ $next.RelPermalink }}">{{ $next.Title }}</a>
             &gt;&gt;
         </span>
         {{ end }}
