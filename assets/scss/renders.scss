@@ -3,8 +3,8 @@
   display: flex;
   justify-content: space-between;
   bottom: 0;
-  left: 300px;
-  width: calc(100vw - 300px);
+  left: 290px;
+  width: calc(100vw - 290px);
   height: 5rem;
   margin: 0;
   padding: 0;
@@ -16,6 +16,10 @@
     display: flex;
     flex-direction: column;
     width: 32vw;
+  }
+
+  .prev {
+    margin-left: 15px;
   }
 
   .current {

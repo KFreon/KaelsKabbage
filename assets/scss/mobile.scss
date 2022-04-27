@@ -277,6 +277,14 @@
     .render-nav-links {
         left: 0;
         width: 100vw;
+
+        .prev {
+            margin: unset;
+        }
+    }
+
+    .render-date {
+        width: 9rem;
     }
 
     .render {
