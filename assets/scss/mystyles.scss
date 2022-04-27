@@ -27,6 +27,7 @@
   --search-result-background: #{rgba($lightgreen, 0.1)};
   --search-result-border: #{rgba($lightgrey, 0.3)};
   --sidebar-border: #{darken($main-background, 20%)};
+  --blur-colour: 200%;
 }
 
 p {
@@ -185,6 +186,10 @@ small {
 
   &.video {
     margin-bottom: 2rem;
+  }
+
+  video {
+    margin: auto;
   }
 
   .inner {

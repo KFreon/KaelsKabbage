@@ -52,11 +52,11 @@
     }
 
     .post-title {
-        margin-bottom: unset;
+        margin-bottom: 1rem;
     }
 
     p {
-        font-size: 2rem;
+        font-size: 1.75rem;
         overflow-wrap: break-word;
     }
 
@@ -72,12 +72,14 @@
         margin: 0;
     }
 
-    h2 {
-        font-size: 2.5rem;
+    h1 {
+        margin: 0;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
     }
 
-    .site-title {
-        margin: 0 0 0.5rem 0;
+    h2 {
+        font-size: 2.5rem;
     }
 
     .site-subtitle {
@@ -94,7 +96,12 @@
         margin-left: 0;
         width: auto;
         font-size: 1.5rem;
-        width: 100vw;
+        width: 98vw;
+        margin: auto;
+
+        time {
+            font-size: 1.2rem;
+        }
     }
 
     footer {
@@ -163,42 +170,58 @@
 
     .sidebar {
         position: fixed;
-        width: 100vw;
+        width: 98vw;
         height: 5.75rem;
         padding-left: 0.5rem;
         padding-top: 0;
         top: 0;
-
-        box-shadow: none;
+        box-shadow: 0 0 5px var(--sidebar-border);
         border-right: 2px solid var(--sidebar-border);
 
         footer {
-            display: none;
+            width: 98vw;
+            opacity: 0;
+            transition: all 0.2s;
+            pointer-events: none;
+
+            .light-dark-button {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            &.open {
+                pointer-events: all;
+                opacity: 100%;
+            }
         }
 
         header {
             display: flex;
             justify-content: space-between;
-            width: 100vw;
+            width: 98vw;
             align-items: center;
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
 
             .profile-picture {
-                width: 30px;
+                width: 40px;
             }
 
             .header-menu-container {
-                display: none;
+                display: block;
                 position: fixed;
                 top: 6rem;
                 left: 0;
-                backdrop-filter:blur(10px);
+                backdrop-filter: blur(6px) brightness(var(--blur-colour));
                 width: 100vw;
                 height: 100vh;
+                opacity: 0;
+                transition: all 0.2s;
+                pointer-events: none;
 
                 &.open {
-                    display: block;
+                    pointer-events: all;
+                    opacity: 100%;
                 }
 
                 .description {
@@ -210,7 +233,6 @@
                 border: none;
                 margin: 0;
                 padding: 0;
-                margin-left: 3rem;
                 font-size: 2.5rem;
             }
 

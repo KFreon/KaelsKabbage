@@ -9,19 +9,26 @@
     {{ .Content }}
     <div class="render-nav-links">
         {{ if ne $prev nil }}
-        <span> 
-            &lt;&lt; 
-            <a href="{{ $prev.RelPermalink }}">{{ $prev.Title }}</a>
-        </span>
+        <a href="{{ $prev.RelPermalink }}" class="prev"> 
+            <span class="label">&lt;&lt; Older</span>
+            <span class="item">{{ $prev.Title }}</span>
+        </a>
+        {{else}}
+        <span class="spacer"></span>
         {{ end }}
 
-        <span />
+        <span class="current">
+            <span class="label">Current</span>
+            <span class="item">{{ .Page.Title }}</span>
+        </span>
 
         {{ if ne $next nil }}
-        <span>  
-            <a href="{{ $next.RelPermalink }}">{{ $next.Title }}</a>
-            &gt;&gt;
-        </span>
+        <a href="{{ $next.RelPermalink }}" class="next">  
+            <span class="label">Newer &gt;&gt;</span>
+            <span class="item">{{ $next.Title }}</span>
+        </a>
+        {{else}}
+        <span class="spacer"></span>
         {{ end }}
     </div>
 </section>

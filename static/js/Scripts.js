@@ -41,6 +41,8 @@ function toggleTheme() {
 
 function toggleHamburger() {
   document.getElementsByClassName("header-menu-container")[0].classList.toggle("open");
+  
+  document.getElementsByTagName("footer")[0].classList.toggle("open");
 }
 
 // this is so dumb but I can't figure out a better way
@@ -59,12 +61,13 @@ setTimeout(() => {
   const renderList = document.getElementsByClassName("render-list");
   const isRenderList = renderList && renderList.length > 0;
   const isMobile = document.documentElement.clientWidth <= 960;
+  const isRender = document.getElementsByClassName("render").length > 0;
 
   for(let image of images) {
-    image.style.display = isRenderList || isMobile ? 'none' : 'block';
+    image.style.display = isRenderList || (isMobile && isRender) ? 'none' : 'block';
   };
   for(let half of halfsize) {
-    half.style.display = isRenderList || isMobile ? 'block' : 'none';
+    half.style.display = isRenderList || (isMobile && isRender) ? 'block' : 'none';
   };
 }, 100);
 
