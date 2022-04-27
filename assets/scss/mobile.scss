@@ -26,7 +26,7 @@
 
 @media print, screen and (max-width: 960px) {
     html {
-        font-size: 8px;
+        font-size: 9px;
 
         body {
             .wrapper {
@@ -193,7 +193,7 @@
                 position: fixed;
                 top: 6rem;
                 left: 0;
-                backdrop-filter:blur(8px);
+                backdrop-filter:blur(10px);
                 width: 100vw;
                 height: 100vh;
 
@@ -253,11 +253,28 @@
             font-size: 2rem;
         }
         .info {
+            align-self: flex-start;
+            
             .description, .details {
                 p {
-                    font-size: 1.2rem;
+                    font-size: 1.5rem;
                     margin: 0;
                     margin-bottom: 0.5rem;
+                }
+            }
+
+            .description {
+                margin-bottom: 2rem;
+            }
+
+            .credits {
+                .title {
+                    font-size: 1.2rem;
+                }
+
+                .link {
+                    font-style: italic;
+                    font-size: 1.1rem;
                 }
             }
 

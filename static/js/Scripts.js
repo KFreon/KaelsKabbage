@@ -17,7 +17,7 @@ function setRenderDisplay(displayType) {
       break;
     default:
       document.getElementById("render-carousel-button").classList.add("selected");
-      document.getElementById("slides").classList.add("slides");
+      document.getElementById("slides").classList.add("tiles");
       break;
   }
   localStorage.setItem('render-display', displayType);
@@ -37,41 +37,6 @@ function toggleTheme() {
 
   localStorage.setItem('theme', newTheme);
   setTheme(newTheme);
-}
-
-function imageClicked(element) {
-  const slidesElement = document.getElementById("slides");
-  const img = element.getElementsByClassName('inner')[0];
-
-  const isRender = !!slidesElement;
-
-  if (slidesElement && slidesElement.className === 'tiles') {
-    const target = img.src;
-    window.location.href = target;
-  } else {
-    const isOpen = element.classList.contains('open');
-    if (isOpen) {
-      element.classList.remove('open');
-      img.style = "";
-    } else {
-      let scale = 2;
-      if (isRender) {
-        const viewWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-        const viewHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-  
-        const { width: imageWidth, height: imageHeight } = img.getBoundingClientRect();
-  
-        const widthDiff = viewWidth - imageWidth;
-        const heightDiff = viewHeight - imageHeight;
-        scale = widthDiff > heightDiff
-          ? viewHeight / imageHeight
-          : viewWidth / imageWidth;
-      }
-
-      img.style = `transform:scale(${scale - 0.05})`;
-      element.classList.add('open')
-    }
-  }
 }
 
 function toggleHamburger() {
@@ -104,7 +69,12 @@ setTimeout(() => {
 }, 100);
 
 function imageContainerClicked(url) {
-  location.href = url;
+  // Ignore if not in a render list
+  const renderList = document.getElementsByClassName("render-list");
+  const isRenderList = renderList && renderList.length > 0;
+  if (isRenderList)  {
+    location.href = url;
+  }
 }
 
 function setupLazyVideos() {

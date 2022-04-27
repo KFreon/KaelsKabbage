@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
 
   .halfsize-frame, .picture-frame {
     display: none;
@@ -59,12 +58,14 @@
   }
 
   .info {
-    p {
+    > p {
       font-size: 0.8rem;
     }
 
     .description {
+      font-size: 2rem;
       margin: 0;
+      margin-bottom: 1rem;
 
       p {
         margin: 0;
@@ -72,15 +73,20 @@
     }
 
     .credits {
+      display: flex;
+      align-items: center;
+
       * {
         display: block;
       }
 
       .title {
         font-size: 1rem;
+        font-weight: bold;
       }
 
       .link {
+        margin-left: 1rem;
         font-size: 0.75rem;
       }
     }
@@ -102,10 +108,12 @@
   }
 
   .render {
+    cursor: pointer;
+
     * {
       pointer-events: none;
     }
-    
+
     .header-link {
       display: inline;
     }
