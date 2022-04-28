@@ -39,6 +39,8 @@ foreach (var renderPath in consideredRenders) {
     .Replace("%postcard%", render.FormattedName + "_postcard")
     .Replace("%date%", render.CreationDate.ToString("O"))
     .Replace("%frames%", render.IsVideo ? "frames=\"\"" : "")
+    .Replace("%height%", render.Height)
+    .Replace("%width%", render.Width)
     .Replace("%CONTENT%", populatedItemTemplate);
 
   File.WriteAllText(Path.Combine(render.DestFolderRoot, "index.md"), fullTemplate);

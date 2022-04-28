@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Microsoft.WindowsAPICodePack.Shell;
+using System.Text.RegularExpressions;
 
 internal class Render {
   public string FullPath { get; set; }
@@ -14,6 +15,8 @@ internal class Render {
   public string DestRender => Path.Combine(DestFolderImg, DestName);
   public string DestName { get; }
   public bool IsVideo { get; }
+  public bool Height { get; }
+  public bool Width { get; }
 
   public Render(string fullPath, string rendersPath, string imageTemplate, string videoTemplate)
   {
@@ -21,6 +24,11 @@ internal class Render {
     NameWithoutExtension = Path.GetFileNameWithoutExtension(FullPath);
     Extension = Path.GetExtension(FullPath);
     CreationDate = File.GetLastWriteTime(FullPath);
+
+    var shell = new ShellFile(fullPath);
+    var height = shell.Properties.GetProperty("height");
+    var width = shell.Properties.GetProperty("width");
+    loldoesthiswork
     
     var directoryName = $"{CreationDateAsString}_{NameWithoutExtension}"
       .Replace("/", "-");
