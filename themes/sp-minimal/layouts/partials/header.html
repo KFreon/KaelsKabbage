@@ -48,7 +48,8 @@
 
     <div class="recent-render-container">
       <h2 class="recent-title">Recent Render</h2>
-      <a href="{{ $.Site.BaseURL }}/renders">
+      {{ $section := sort (where .Site.RegularPages "Section" "renders") "Date" "desc" }}
+      <a href="{{ (index $section 0).Permalink }}">
         <picture class="recent-render">
           <source
             srcset="{{ $.Site.BaseURL }}img/recent-render.webp"

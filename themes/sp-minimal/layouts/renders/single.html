@@ -18,8 +18,7 @@
         {{ end }}
 
         <span class="current">
-            <span class="label">Current</span>
-            <span class="item">{{ .Page.Title }}</span>
+            <a href="{{ $.Site.BaseURL }}/renders" class="label">All Renders</span>
         </span>
 
         {{ if ne $next nil }}
