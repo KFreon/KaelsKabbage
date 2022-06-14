@@ -7,7 +7,6 @@ slug: "%slug%"
 
 {{< render_img
   description=""
-  renderdate="%renderdate%"
   rendertime=""
   samples=""
   %frames%

@@ -7,7 +7,6 @@ slug: "knurled-glass"
 
 {{< render_img
   description="I wanted to play with the new shadow caustics but I didn't get enough time, so for now, a fancy glass will do!"
-  renderdate="2022-06-14"
   rendertime="10 seconds"
   samples="200"
 >}}
