@@ -6,6 +6,7 @@
     "build-index": "dotnet run --project tools/IndexBuilder/IndexBuilder.csproj --configuration Release ./content",
     "build": "npm-run-all build-index optimise-assets update-latest-render",
     "new": "hugo new --kind post-bundle",
+    "new-render": "hugo new --kind render-bundle",
     "start": "hugo server -D --poll 2000ms",
     "start-prod": "hugo server --poll 2000ms",
     "optimise-assets": "dotnet run --project tools/NewAssetOptimiser/NewAssetOptimiser.csproj --configuration Release ./content",

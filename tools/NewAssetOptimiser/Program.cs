@@ -119,10 +119,12 @@ namespace AssetOptimiser
       else
         Console.WriteLine("No images to convert!");
 
-      //if (videos.Any())
-      //    await ConvertVideos(videos);
-      //else
-      //    Console.WriteLine("No videos to convert!");
+      if (videos.Any()) {
+        await Helper.ConvertVideos(videos);
+        await Helper.BuildVideoPostCards(videos);
+      }
+      else
+         Console.WriteLine("No videos to convert!");
 
       Console.WriteLine();
       Console.WriteLine();

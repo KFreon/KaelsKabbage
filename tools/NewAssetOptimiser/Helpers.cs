@@ -57,7 +57,6 @@ namespace AssetOptimiser
 
       string formatDestinationFilename(string fullpath, Format format) => $"{Path.GetFileNameWithoutExtension(fullpath)}{format.PostFix}.{format.Extension}";
 
-
       var allVideos = Directory.GetFiles(rootPath, "*.avi", SearchOption.AllDirectories)
           .Concat(Directory.GetFiles(rootPath, "*.mp4", SearchOption.AllDirectories))
           .Concat(Directory.GetFiles(rootPath, "*.webm", SearchOption.AllDirectories));
@@ -72,9 +71,9 @@ namespace AssetOptimiser
             DestinationFileName = formatDestinationFilename(video, f),
           }));
 
-
       return jobs
           .Where(j => !allVideos.Contains(Path.Join(j.Directory, j.DestinationFileName)))
+          .Where(x => !x.FileName.Contains("_halfsize"))
           .Where(x => !File.Exists(Path.Combine(x.Directory, x.DestinationFileName)));
     }
 
@@ -83,11 +82,13 @@ namespace AssetOptimiser
       Console.WriteLine($"Converting {pictures.Count()} pictures...");
       foreach (var picture in pictures.DistinctBy(x => x.FilenameNoExt))
       {
-        var normalExec = picture.GetExecutionString(webpQuality, false);
-        var halfsizeExec = picture.GetExecutionString(webpQuality, true);
+        var normalExec = picture.GetWebpExecutionString(webpQuality, false);
+        var halfsizeExec = picture.GetWebpExecutionString(webpQuality, true);
+        var postcardExec = picture.GetJpegExecutionString(webpQuality);
 
         await StartProcess(cwepPath, picture.Directory, normalExec);
         await StartProcess(cwepPath, picture.Directory, halfsizeExec);
+        await StartProcess(ffmpegPath, picture.Directory, postcardExec);
       }
     }
 
@@ -96,9 +97,18 @@ namespace AssetOptimiser
       Console.WriteLine($"Converting {jobs.Count()} videos...");
       foreach (var job in jobs)
       {
-        var bitrate = job.Format.Bitrate.HasValue ? $"-b:v {job.Format.Bitrate}" : "";
-        var arg = $"-i {job.FileName} -c:v {job.Format.Encoder} -crf {job.Format.CRF} {bitrate} {job.Format.AdditionalArguments} {job.DestinationFileName}";
-        await StartProcess(ffmpegPath, job.Directory, arg);
+        var compressedExec = job.GetCompressedVideoExecutionString();
+        // Not doing this auto for now.
+        // await StartProcess(ffmpegPath, job.Directory, compressedExec);
+      }
+    }
+
+    public static async Task BuildVideoPostCards(IEnumerable<VideoJob> jobs) {
+      Console.WriteLine($"Building Postcards for videos...");
+      foreach (var job in jobs.Where(x => !File.Exists(Path.Combine(x.Directory, x.PostcardDestination))))
+      {
+        var postcardExec = job.GetPostcardExecutionString();
+        await StartProcess(ffmpegPath, job.Directory, postcardExec);
       }
     }
 

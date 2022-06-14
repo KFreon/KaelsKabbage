@@ -11,9 +11,14 @@ namespace AssetOptimiser {
       Filename = filename;
     }
 
-    public string GetExecutionString(int webpQuality, bool makeHalfsize) {
+    public string GetWebpExecutionString(int webpQuality, bool makeHalfsize) {
       var newPath = $"{FilenameNoExt}{(makeHalfsize ? "_halfsize" : "")}.webp";
       return $"{Filename} -o {newPath} {(makeHalfsize ? " -resize 450 0" : "")} -mt -m 6 -pass 10 -q {webpQuality}";
+    }
+
+    public string GetJpegExecutionString(int quality) {
+      var newPath = $"{FilenameNoExt}_postcard.jpg";
+      return $"-i {Filename} -y -vf scale=275:-1 {newPath}";
     }
   }
 }
