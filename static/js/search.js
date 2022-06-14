@@ -26,7 +26,7 @@ function search() {
     }
 
     const query = searchInputElement.value.toUpperCase();
-    searchResults = pagesIndex.filter(x => x.title.toUpperCase().includes(query));
+    searchResults = pagesIndex.filter(x => x.title.toUpperCase().includes(query) || (x.tags || []).some(t => t.toUpperCase().includes(query)));
     renderResults();
 }
 

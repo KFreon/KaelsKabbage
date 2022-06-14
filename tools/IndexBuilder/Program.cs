@@ -52,6 +52,7 @@ var postIndexEntries = posts.Concat(renders)
   .Select(post => new
   {
       post.title,
+      post.tags,
       href = $"{(post.isRender ? "/renders/" : "/posts/")}{Regex.Replace(post.slug.ToLowerInvariant(), "[^0-9a-z]", "-")}".Replace("--", "-"),  // Occasionally, there were doubles that needed removal.
       post.isRender
   });
@@ -60,7 +61,11 @@ var allEntries = postIndexEntries.Select(x => new
 {
   x.title,
   x.href,
-  x.isRender
+  x.isRender,
+  x.tags
 }).ToArray();
-var serialised = "const pagesIndex = " + JsonSerializer.Serialize(allEntries) + ";";
+
+var serialiserOptions = new JsonSerializerOptions();
+serialiserOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+var serialised = "const pagesIndex = " + JsonSerializer.Serialize(allEntries, options: serialiserOptions) + ";";
 File.WriteAllText(Path.Combine(basePath, "../static/js/PagesIndex.js"), serialised);
