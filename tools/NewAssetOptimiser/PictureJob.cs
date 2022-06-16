@@ -1,24 +1,27 @@
 using System.IO;
 
-namespace AssetOptimiser {
-  public class PictureJob {
-    public string Directory {get;}
-    public string Filename {get;}
-    public string FilenameNoExt => Path.GetFileNameWithoutExtension(Filename);
+namespace AssetOptimiser
+{
+    public class PictureJob : JobBase
+    {
+        public string RootFilename => FilenameNoExt.Replace("_halfsize", "");
+        public string FullWebpPath => Path.Combine(Directory, RootFilename + ".webp");
+        public string HalfWebpPath => Path.Combine(Directory, RootFilename + "_halfsize.webp");
+        public string PostcardPath => Path.Combine(Directory, RootFilename + "_postcard.jpg");
 
-    public PictureJob(string directory, string filename) {
-      Directory = directory;
-      Filename = filename;
-    }
+        public PictureJob(string filename, string directory, bool isRender) : base(filename, directory, isRender)
+        {
+        }
 
-    public string GetWebpExecutionString(int webpQuality, bool makeHalfsize) {
-      var newPath = $"{FilenameNoExt}{(makeHalfsize ? "_halfsize" : "")}.webp";
-      return $"{Filename} -o {newPath} {(makeHalfsize ? " -resize 450 0" : "")} -mt -m 6 -pass 10 -q {webpQuality}";
-    }
+        public string GetWebpExecutionString(int webpQuality, bool makeHalfsize)
+        {
+            var newPath = makeHalfsize ? HalfWebpPath : FullWebpPath;
+            return $"{FileName} -o {Path.GetFileName(newPath)} {(makeHalfsize ? " -resize 450 0" : "")} -mt -m 6 -pass 10 -q {webpQuality}";
+        }
 
-    public string GetJpegExecutionString(int quality) {
-      var newPath = $"{FilenameNoExt}_postcard.jpg";
-      return $"-i {Filename} -y -vf scale=275:-1 {newPath}";
+        public string GetJpegExecutionString(int quality)
+        {
+            return $"-i {FileName} -y -vf scale=275:-1 {Path.GetFileName(PostcardPath)}";
+        }
     }
-  }
 }

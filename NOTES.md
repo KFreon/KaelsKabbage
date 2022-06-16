@@ -3,3 +3,8 @@
   - put postcard as top background on posts?
   AV1?
   https://www.meziantou.net/using-av1-video-codec-to-reduce-web-page-size.htm
+  IT WAORSK!!!! 
+  Needs `choco install ffmpeg-full` to get the svtav1
+  something like `ffmpeg -i .\input.mp4 -qp 30 -c:v libsvtav1 -preset 3 output.mp4`
+  Note that current fmfpeg builds 5.0.x don't support CRF or newer `-svtav1-params` functions so need `qp` to standin for CRF.
+  Preset controls the rest of it

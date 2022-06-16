@@ -11,8 +11,7 @@ namespace AssetOptimiser
         public int? Bitrate { get; }
         public string AdditionalArguments { get; }
         public string Extension { get; }
-        public string PostFix => Name=="x264" ? "" : $"_{Name}";
-        public bool HasPostFix => !string.IsNullOrEmpty(PostFix);
+        public string Postfix => $"_{Name}";
 
         public Format(string name, string extension, string encoder, int crf, int? bitrate, string additionalArguments)
         {

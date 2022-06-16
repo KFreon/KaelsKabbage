@@ -1,24 +1,33 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace AssetOptimiser
 {
-    public struct VideoJob
+    public class VideoJob : JobBase
     {
-        public string FileName { get; set; }
-        public string Directory { get; set; }
-        public Format Format { get; set; }
-        public string DestinationFileName { get; set; }
-        public string FilenameNoExt => Path.GetFileNameWithoutExtension(FileName);
-        public string PostcardDestination => $"{FilenameNoExt}_postcard.jpg";
+        
+        public Format Format { get; }
+        public string RootFilename => FilenameNoExt.Replace("_halfsize", "").Replace(Format.Postfix, "");
+        public string FormattedPath => Path.Combine(Directory, RootFilename + $"{Format.Postfix}.{Format.Extension}");
+        public string PostcardPath => Path.Combine(Directory, RootFilename + "_postcard.jpg");
+
+        public VideoJob(string filePath, Format format, bool isRender) 
+            : base(Path.GetFileName(filePath), Path.GetDirectoryName(filePath), isRender)
+        {
+            Format = format;
+        }
 
         public string GetCompressedVideoExecutionString() {
-            var bitrate = Format.Bitrate.HasValue ? $"-b:v {Format.Bitrate}" : "";
-            var arg = $"-i {FileName} -c:v {Format.Encoder} -crf {Format.CRF} {bitrate} {Format.AdditionalArguments} {DestinationFileName}";
-            return arg;
+            return Format.Name switch
+            {
+                "AV1" => $"-i {FileName} -qp 45 -c:v {Format.Encoder} -preset 3 {Path.GetFileName(FormattedPath)}",
+                "VP9" => $"-i {FileName} -c:v {Format.Encoder} -crf {Format.CRF} {Format.Bitrate} {Format.AdditionalArguments} {Path.GetFileName(FormattedPath)}",
+                _ => throw new ArgumentException("Unknown format")
+            };
         }
 
         public string GetPostcardExecutionString() {
-        return $"-i {FileName} -y -vframes 1 -vf scale=275:-1 {PostcardDestination}";
+            return $"-i {FileName} -y -vframes 1 -vf scale=275:-1 {Path.GetFileName(PostcardPath)}";
         }
     }
 }

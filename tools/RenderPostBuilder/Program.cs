@@ -48,7 +48,7 @@ foreach (var renderPath in consideredRenders) {
   Console.WriteLine($"Created: {render.FormattedName}");
 }
 
-var targets = parsedRenders.Select(x => new PictureJob(x.DestFolderImg, x.DestName));
+var targets = parsedRenders.Select(x => new PictureJob(x.DestName, x.DestFolderImg));
 
 // halfsizes, optimised images
 await AssetOptimiser.Program.ConvertFiles(null, 90, Core.Paths.RendersFolder, targets, Array.Empty<VideoJob>());

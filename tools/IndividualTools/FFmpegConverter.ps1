@@ -40,8 +40,8 @@ if ($help) {
 	Exit
 }
 
-$encoder = if ($vp9 -or $video) {"libvpx-vp9"} elseif ($av1) {"libaom-av1"} else {"libx264"}
-$outputName = if ($vp9) {"${output}_VP9.webm"} elseif ($av1) {"$output.AV1.mp4"} elseif($video) {"${output}_halfsize.mp4"} else {"$output.mp4"}
+$encoder = if ($vp9 -or $video) {"libvpx-vp9"} elseif ($av1) {"libsvtav1"} else {"libx264"}
+$outputName = if ($vp9) {"${output}_VP9.webm"} elseif ($av1) {"$output_AV1.mp4"} elseif($video) {"${output}_halfsize.mp4"} else {"$output.mp4"}
 $scaleExpression = if ($halfsize) {"-vf scale=-1:720:flags=lanczos"} elseif($smaller) {"-vf scale=-1:250:flags=lanczos"}
 $start = if ($start -ne 0) {"-start_number $start"} else {""}
 $ext = if ($webp) {"webp"} else {"png"}
@@ -61,7 +61,7 @@ elseif ($vp9)
 } 
 elseif ($av1) 
 {
-  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $scaleExpression -c:v $encoder -b:v 0 -crf $crf -pix_fmt $pixfmt -threads 8 -row-mt 1 -tiles 2x2 $extras $outputName" -Wait -NoNewWindow
+  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $scaleExpression -c:v $encoder -qp $crf $extras $outputName" -Wait -NoNewWindow
 } 
 else 
 {
