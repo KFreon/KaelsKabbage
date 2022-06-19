@@ -8,3 +8,7 @@
   something like `ffmpeg -i .\input.mp4 -qp 30 -c:v libsvtav1 -preset 3 output.mp4`
   Note that current fmfpeg builds 5.0.x don't support CRF or newer `-svtav1-params` functions so need `qp` to standin for CRF.
   Preset controls the rest of it
+
+
+  MOBILE site?
+  themes don't work, or is it just my phone?
