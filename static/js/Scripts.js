@@ -69,7 +69,12 @@ setTimeout(() => {
   for(let half of halfsize) {
     half.style.display = isRenderList || (isMobile && isRender) ? 'block' : 'none';
   };
-}, 100);
+
+
+  check this without the AV1 extension
+  const video = document.getElementsByTagName("video");
+  console.log(video)
+}, 1000);
 
 function imageContainerClicked(url) {
   // Ignore if not in a render list

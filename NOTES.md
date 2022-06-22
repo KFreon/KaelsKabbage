@@ -12,3 +12,15 @@
 
   MOBILE site?
   themes don't work, or is it just my phone?
+
+
+
+  What I use:
+  - onenote/obsidian
+  - azure data studio
+  - gitkraken
+  - slack/teams
+  - edge
+  - hugo/netlify
+  - VS/VSCode
+  - PC specs?

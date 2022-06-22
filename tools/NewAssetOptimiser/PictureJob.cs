@@ -16,7 +16,7 @@ namespace AssetOptimiser
         public string GetWebpExecutionString(int webpQuality, bool makeHalfsize)
         {
             var newPath = makeHalfsize ? HalfWebpPath : FullWebpPath;
-            return $"{FileName} -o {Path.GetFileName(newPath)} {(makeHalfsize ? " -resize 450 0" : "")} -mt -m 6 -pass 10 -q {webpQuality}";
+            return $"{FileName} -o {Path.GetFileName(newPath)} {(makeHalfsize ? " -resize 0 250" : "")} -mt -m 6 -pass 10 -q {webpQuality}";
         }
 
         public string GetJpegExecutionString(int quality)

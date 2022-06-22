@@ -19,8 +19,9 @@ namespace AssetOptimiser
 
         public string GetCompressedVideoExecutionString() {
             return Format.Name switch
-            {SCALE
-                "AV1" => $"-i {FileName} -qp 45 -c:v {Format.Encoder} -SCALE -preset 3 {Path.GetFileName(FormattedPath)}",
+            {
+                // -vf scale=-1:250:flags=lanczos
+                "AV1" => $"-i {FileName} -qp 63 -c:v {Format.Encoder} -preset 3 {Path.GetFileName(FormattedPath)}",
                 "VP9" => $"-i {FileName} -c:v {Format.Encoder} -crf {Format.CRF} {Format.Bitrate} {Format.AdditionalArguments} {Path.GetFileName(FormattedPath)}",
                 _ => throw new ArgumentException("Unknown format")
             };
