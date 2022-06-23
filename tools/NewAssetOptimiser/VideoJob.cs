@@ -19,7 +19,7 @@ namespace AssetOptimiser
         public string FormattedPath(Size size)
         {
             var sizeString = size.ToString().ToLower();
-            var sizeStringInterpolated = size == Size.Normal ? "" : $"_{sizeString}_";
+            var sizeStringInterpolated = size == Size.Normal ? "" : $"_{sizeString}";
             return Path.Combine(Directory, RootFilename + sizeStringInterpolated + $"{Format.Postfix}.{Format.Extension}");
         }
 
@@ -30,7 +30,7 @@ namespace AssetOptimiser
         }
 
         public string GetCompressedVideoExecutionString(Size size) {
-            var scale = size == Size.Normal ? "" : $"-vf scale=-1:{(size == Size.Halfsize ? "720" : "360")}:flags=lanczos";
+            var scale = size == Size.Normal ? "" : $"-vf scale=-1:h={(size == Size.Halfsize ? "ih/2" : "ih/4")}:flags=lanczos";
             return Format.Name switch
             {
                 // -vf scale=-1:250:flags=lanczos
