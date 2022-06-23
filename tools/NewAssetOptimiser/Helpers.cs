@@ -36,6 +36,7 @@ namespace AssetOptimiser
             Directory.GetFiles(rootPath, "*.mp4", SearchOption.AllDirectories)
                 .Where(x => !x.Contains("_av1", StringComparison.OrdinalIgnoreCase))
                 .Where(x => !x.Contains("_halfsize"))
+                .Where(x => !x.Contains("_quartersize"))
                 .SelectMany(video => VideoFormats.Select(f => new VideoJob(video, f, isRender)));
 
         public static async Task ConvertPictures(IEnumerable<PictureJob> pictures, int webpQuality)
@@ -72,14 +73,30 @@ namespace AssetOptimiser
             Console.WriteLine($"Converting videos...");
             foreach (var job in jobs)
             {
-                var compressedExec = job.GetCompressedVideoExecutionString();
+                var normal = job.GetCompressedVideoExecutionString(Size.Normal);
+                var half = job.GetCompressedVideoExecutionString(Size.Halfsize);
+                var quarter = job.GetCompressedVideoExecutionString(Size.Quartersize);
                 var postcardExec = job.GetPostcardExecutionString();
-
-                if (!File.Exists(job.FormattedPath))
+                
+                if (!File.Exists(job.FormattedPath(Size.Normal)))
                 {
                     // Not doing AV1 conversions from mp4, do it from source instead
                     // Keeping this so I can regenerate when necessary if I don't have the source anymore
-                    await StartProcess(ffmpegPath, job.Directory, compressedExec);
+                    await StartProcess(ffmpegPath, job.Directory, normal);
+                }
+
+                if (!File.Exists(job.FormattedPath(Size.Halfsize)))
+                {
+                    // Not doing AV1 conversions from mp4, do it from source instead
+                    // Keeping this so I can regenerate when necessary if I don't have the source anymore
+                    await StartProcess(ffmpegPath, job.Directory, half);
+                }
+
+                if (!File.Exists(job.FormattedPath(Size.Quartersize)))
+                {
+                    // Not doing AV1 conversions from mp4, do it from source instead
+                    // Keeping this so I can regenerate when necessary if I don't have the source anymore
+                    await StartProcess(ffmpegPath, job.Directory, quarter);
                 }
 
                 if (job.IsRender && !File.Exists(job.PostcardPath))

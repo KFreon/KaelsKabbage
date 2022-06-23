@@ -41,8 +41,8 @@ if ($help) {
 }
 
 $encoder = if ($vp9 -or $video) {"libvpx-vp9"} elseif ($av1) {"libsvtav1"} else {"libx264"}
-$outputName = if ($vp9) {"${output}_VP9.webm"} elseif ($av1) {"$output_AV1.mp4"} elseif($video) {"${output}_halfsize.mp4"} else {"$output.mp4"}
-$scaleExpression = if ($halfsize) {"-vf scale=-1:720:flags=lanczos"} elseif($smaller) {"-vf scale=-1:250:flags=lanczos"}
+$outputName = if ($vp9) {"${output}_VP9.webm"} elseif ($av1) {"${output}_AV1.mp4"} elseif($video) {"${output}_halfsize.mp4"} else {"$output.mp4"}
+$scaleExpression = if ($halfsize) {"-vf scale=-1:720:flags=lanczos"} elseif($smaller) {"-vf scale=-1:360:flags=lanczos"}
 $start = if ($start -ne 0) {"-start_number $start"} else {""}
 $ext = if ($webp) {"webp"} else {"png"}
 
@@ -61,7 +61,7 @@ elseif ($vp9)
 } 
 elseif ($av1) 
 {
-  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $scaleExpression -c:v $encoder -qp $crf $extras $outputName" -Wait -NoNewWindow
+  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $scaleExpression -c:v $encoder -qp $crf -preset 3 $extras $outputName" -Wait -NoNewWindow
 } 
 else 
 {

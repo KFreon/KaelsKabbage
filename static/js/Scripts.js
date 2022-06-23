@@ -70,8 +70,6 @@ setTimeout(() => {
     half.style.display = isRenderList || (isMobile && isRender) ? 'block' : 'none';
   };
 
-
-  check this without the AV1 extension
   const video = document.getElementsByTagName("video");
   console.log(video)
 }, 1000);

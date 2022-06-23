@@ -1,26 +1,28 @@
-{{ $quarterSize := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_halfsize.webm") "")) }}
 {{ $vp9 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_VP9.webm") "")) }}
+{{ $vp9half := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "halfsize_VP9.webm") "")) }}
+{{ $vp9quarter := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "quartersize_VP9.webm") "")) }}
+
 {{ $av1 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_AV1.mp4") "")) }}
+{{ $av1half := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "halfsize_AV1.mp4") "")) }}
+{{ $av1quarter := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "quartersize_AV1.mp4") "")) }}
+
 {{ $mp4 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".mp4") "")) }}
 
-
-add quartersize av1 as well?
-will have to remove the av1 source for Edge OR detect if the extension is installed
-
-
+Are these arrays we can get? Or am I going to list out every single one...
+is this seriously the way I have ot do it? Can the Size query on the source tag not do it?
 {{ if ne $vp9 nil }}
 <div class="media video" >
     {{ if in .Page.Permalink "renders" }}
     {{ if ne $quarterSize nil}}
-    <!-- note: "halfsize" videos are actually quartersized -->
     <video style="max-width: 100%" autoplay muted loop playsinline class="inner halfsize-frame lazy">
-        <source data-src="{{ $quarterSize.Permalink }}" type="video/webm; codecs=vp9">
+        <source data-src="{{ $av1quartersize.Permalink }}" type="video/mp4; codecs=av01.0.05M.08">
+        <source data-src="{{ $vp9quarterSize.Permalink }}" type="video/webm; codecs=vp9">
         Video doesn't work :(
     </video>
     {{end}}
     {{end}}
 
-    <video id="ohyeah" class="inner picture-frame lazy" autoplay muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}' height='{{ .Get "height" }}'>
+    <video class="inner picture-frame lazy" autoplay muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}' height='{{ .Get "height" }}'>
         <source data-src='{{ $av1.Permalink }}' type="video/mp4; codecs=av01.0.05M.08">
         <source data-src='{{ $vp9.Permalink }}' type="video/webm; codecs=vp9">
         <source data-src='{{ $mp4.Permalink }}' type="video/mp4">
