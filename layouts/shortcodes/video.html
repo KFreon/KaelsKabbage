@@ -1,24 +1,37 @@
-{{ $halfsize := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_halfsize.webm") ""))}}
-{{ $vp9 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_VP9.webm") ""))}}
-{{ $mp4 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".mp4") ""))}}
+{{ $vp9 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_VP9.webm") "")) }}
+{{ $vp9half := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_halfsize_VP9.webm") "")) }}
+{{ $vp9quarter := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_quartersize_VP9.webm") "")) }}
 
-{{ if ne $vp9 nil }}
+{{ $av1 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_AV1.mp4") "")) }}
+{{ $av1half := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_halfsize_AV1.mp4") "")) }}
+{{ $av1quarter := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_quartersize_AV1.mp4") "")) }}
+
+{{ $mp4 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".mp4") "")) }}
+
 <div class="media video" >
-    {{ if in .Page.Permalink "renders" }}
-    {{ if ne $halfsize nil}}
-    <video style="max-width: 100%" autoplay muted loop playsinline class="inner halfsize-frame lazy">
-        <source data-src="{{ $halfsize.Permalink }}" type="video/webm; codecs=vp9">
+    <!-- Turns out this is the way it has to be. Media/sizes not supported in video tags. -->
+    <video class="inner quartersize-frame media-frame lazy" autoplay muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}' height='{{ .Get "height" }}'>
+        <source data-src='{{ $av1quarter.Permalink }}' type="video/mp4; codecs=av01.0.05M.08">
+        <source data-src='{{ $vp9quarter.Permalink }}' type="video/webm; codecs=vp9">
+        <source data-src='{{ $mp4.Permalink }}' type="video/mp4">
         Video doesn't work :(
     </video>
-    {{end}}
-    {{end}}
 
-    <video class="inner picture-frame lazy" autoplay muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}' height='{{ .Get "height" }}'>
-        <!-- <source src='{{ .Get "path" }}_AV1.mp4' type="video/mp4; codecs=av01.0.05M.08">  EDGE tries to load this but fails -->
+    <video class="inner halfsize-frame media-frame lazy" autoplay muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}' height='{{ .Get "height" }}'>
+        <source data-src='{{ $av1half.Permalink }}' type="video/mp4; codecs=av01.0.05M.08">
+        <source data-src='{{ $vp9half.Permalink }}' type="video/webm; codecs=vp9">
+        <source data-src='{{ $mp4.Permalink }}' type="video/mp4">
+        Video doesn't work :(
+    </video>
+
+    <video class="inner fullsize-frame media-frame lazy" autoplay muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}' height='{{ .Get "height" }}'>
+        <source data-src='{{ $av1.Permalink }}' type="video/mp4; codecs=av01.0.05M.08">
         <source data-src='{{ $vp9.Permalink }}' type="video/webm; codecs=vp9">
         <source data-src='{{ $mp4.Permalink }}' type="video/mp4">
         Video doesn't work :(
     </video>
+
+    <span id="edge-av1-message">AV1 support in Edge requires a <a href="https://apps.microsoft.com/store/detail/av1-video-extension/9MVZQVXJBQ9V?hl=en-us&gl=US">Microsoft Store Extension</a>.</span>
 
     <div class="hq-links">
         {{ if in .Page.Permalink "renders" }}
@@ -30,4 +43,3 @@
         {{ end }}
     </div>
 </div>
-{{ end }}

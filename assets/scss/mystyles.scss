@@ -211,6 +211,11 @@ small {
     margin: auto;
   }
 
+  #edge-av1-message {
+    display: none;
+    margin: auto;
+  }
+
   .inner {
     border-radius: 5px;
     transition: all 0.3s;
@@ -627,4 +632,8 @@ body {
   &::-webkit-scrollbar-track {
     background: transparent;
   }
+}
+
+.halfsize-frame, .quartersize-frame, .fullsize-frame, .picture-frame {
+  display: none;
 }
