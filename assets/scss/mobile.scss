@@ -281,6 +281,10 @@
         .prev {
             margin: unset;
         }
+
+        .next {
+            margin: 0;
+        }
     }
 
     .render-date {
@@ -363,6 +367,10 @@
                     width: auto;
                 }
 
+                .render-container {
+                    margin: 0;
+                }
+
                 .render {
                     margin-top: 3rem;
                     width: 9rem;
@@ -401,6 +409,10 @@
             }
 
             .slides {
+                .render-container {
+                    margin-left: 4px;
+                    margin-right: 4px;
+                }
                 .render {
                     width: auto;
                     min-height: auto;

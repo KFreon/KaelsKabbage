@@ -3,21 +3,19 @@
 {{ $png := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".png") ""))}}
 
 <!-- Not sure why we need it in here. Dunno what's nil, but something is and I can't find it. -->
-{{ if ne $webp nil}}
 <div class="media image">
     <!-- need another halfsize img here so we can force it on the render list page -->
+    <!-- NOTE: There's currently no quartersize images so just duplicate the halfsize -->
     {{ if in .Page.Permalink "renders" }}
-    {{ if ne $halfsize nil}}
-    <img class="halfsize-frame" src="{{ $halfsize.Permalink }}" width="{{ $halfsize.Width }}" height="{{ $halfsize.Height }}" type="image/webp" loading="lazy">
-    {{end}}
+    <img class="halfsize-frame media-frame" src="{{ $halfsize.Permalink }}" width="{{ $halfsize.Width }}" height="{{ $halfsize.Height }}" type="image/webp" loading="lazy">
+
+    <img class="quartersize-frame media-frame" src="{{ $halfsize.Permalink }}" width="{{ $halfsize.Width }}" height="{{ $halfsize.Height }}" type="image/webp" loading="lazy">
     {{end}}
 
     <picture class="media-frame">
         <!-- need .Permalink in srcset so it also works in the list page -->
-        {{ if ne $halfsize nil}}
         {{ if in .Page.Permalink "renders" }}
         <source srcset='{{ $halfsize.Permalink }}' media="(max-width: 960px)" type="image/webp">
-        {{end}}
         {{end}}
         <source srcset='{{ $webp.Permalink }}' type="image/webp">
         <source srcset='{{ $png.Permalink }}' type="image/png"> 
@@ -41,4 +39,3 @@
         {{end}}
     </div>
 </div>
-{{ end }}

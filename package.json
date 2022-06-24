@@ -10,8 +10,7 @@
     "start": "hugo server -D --poll 2000ms",
     "start-prod": "hugo server --poll 2000ms",
     "optimise-assets": "dotnet run --project tools/NewAssetOptimiser/NewAssetOptimiser.csproj --configuration Release ./content",
-    "update-latest-render": "dotnet run --project tools/SetLatestRender/SetLatestRender.csproj ./content",
-    "add-new-render": "dotnet run --project tools/RenderPostBuilder/RenderPostBuilder.csproj"
+    "update-latest-render": "dotnet run --project tools/SetLatestRender/SetLatestRender.csproj ./content"
   },
   "author": "",
   "license": "ISC",

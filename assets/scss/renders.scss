@@ -35,6 +35,7 @@
 
   .next {
     text-align: right;
+    margin-right: 5px;
   }
 }
 
@@ -97,6 +98,7 @@
       font-size: 2rem;
       margin: 0;
       margin-bottom: 1rem;
+      text-align: center;
 
       p {
         margin: 0;
@@ -125,6 +127,7 @@
     .details {
       margin-top: 0.5rem;
       display: flex;
+      justify-content: space-evenly;
 
       p {
         margin-right: 2rem;
