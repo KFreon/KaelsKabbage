@@ -1,25 +1,14 @@
 {{ $vp9 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_VP9.webm") "")) }}
-{{ $vp9half := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "halfsize_VP9.webm") "")) }}
-{{ $vp9quarter := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "quartersize_VP9.webm") "")) }}
+{{ $vp9half := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_halfsize_VP9.webm") "")) }}
+{{ $vp9quarter := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_quartersize_VP9.webm") "")) }}
 
 {{ $av1 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_AV1.mp4") "")) }}
-{{ $av1half := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "halfsize_AV1.mp4") "")) }}
-{{ $av1quarter := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "quartersize_AV1.mp4") "")) }}
+{{ $av1half := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_halfsize_AV1.mp4") "")) }}
+{{ $av1quarter := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_quartersize_AV1.mp4") "")) }}
 
 {{ $mp4 := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".mp4") "")) }}
 
-Are these arrays we can get? Or am I going to list out every single one...
-is this seriously the way I have ot do it? Can the Size query on the source tag not do it?
-{{ if ne $vp9 nil }}
 <div class="media video" >
-    {{ if and (and (in .Page.Permalink "renders") (ne $vp9quarter nil)) (ne $av1quarter nil) }}
-    <video style="max-width: 100%" autoplay muted loop playsinline class="inner halfsize-frame lazy">
-        <source data-src="{{ $av1quarter.Permalink }}" type="video/mp4; codecs=av01.0.05M.08">
-        <source data-src="{{ $vp9quarter.Permalink }}" type="video/webm; codecs=vp9">
-        Video doesn't work :(
-    </video>
-    {{end}}
-
     <video class="inner picture-frame lazy" autoplay muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}' height='{{ .Get "height" }}'>
         <source data-src='{{ $av1half.Permalink }}' type="video/mp4; codecs=av01.0.05M.08">
         <source data-src='{{ $vp9half.Permalink }}' type="video/webm; codecs=vp9">
@@ -41,4 +30,3 @@ is this seriously the way I have ot do it? Can the Size query on the source tag 
         {{ end }}
     </div>
 </div>
-{{ end }}

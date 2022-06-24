@@ -68,11 +68,12 @@ setTimeout(() => {
   };
   for(let half of halfsize) {
     half.style.display = isRenderList || (isMobile && isRender) ? 'block' : 'none';
-  };
-
-  handleEdgeAV1Support();
-  
+  };  
 }, 100);
+
+setTimeout(() => {
+  handleEdgeAV1Support();
+}, 1000);
 
 function removeAV1VideoSource() {
   for (let element of document.querySelectorAll("video>source[type*='av01.']")) {
@@ -83,7 +84,7 @@ function removeAV1VideoSource() {
 
     // force reload the video, so the browser loads the new sources
     parentElement.load();
-}
+  }
 }
 
 // Edge doesn't support AV1 natively
@@ -95,9 +96,12 @@ function handleEdgeAV1Support() {
     return;
   }
 
-  const video = document.getElementsByTagName("video");
-  const edgeSupportsAV1 = video.webkitDecodedFrameCount > 0;
-  if (!edgeSupportsAV1) {
+  const videos = document.getElementsByTagName("video");
+  const video = videos && videos[0];
+  const edgeSupportsAV1 = video && video.webkitDecodedFrameCount > 0;
+
+  if (video && !edgeSupportsAV1) {
+    console.warn('edge: av1 not supported')
     removeAV1VideoSource();
 
     // Display edge message
