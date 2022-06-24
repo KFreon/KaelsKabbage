@@ -12,22 +12,24 @@ Are these arrays we can get? Or am I going to list out every single one...
 is this seriously the way I have ot do it? Can the Size query on the source tag not do it?
 {{ if ne $vp9 nil }}
 <div class="media video" >
-    {{ if in .Page.Permalink "renders" }}
-    {{ if ne $quarterSize nil}}
+    {{ if and (and (in .Page.Permalink "renders") (ne $vp9quarter nil)) (ne $av1quarter nil) }}
     <video style="max-width: 100%" autoplay muted loop playsinline class="inner halfsize-frame lazy">
-        <source data-src="{{ $av1quartersize.Permalink }}" type="video/mp4; codecs=av01.0.05M.08">
-        <source data-src="{{ $vp9quarterSize.Permalink }}" type="video/webm; codecs=vp9">
+        <source data-src="{{ $av1quarter.Permalink }}" type="video/mp4; codecs=av01.0.05M.08">
+        <source data-src="{{ $vp9quarter.Permalink }}" type="video/webm; codecs=vp9">
         Video doesn't work :(
     </video>
     {{end}}
-    {{end}}
 
     <video class="inner picture-frame lazy" autoplay muted loop playsinline style="max-width: 100%" width='{{ .Get "width" }}' height='{{ .Get "height" }}'>
+        <source data-src='{{ $av1half.Permalink }}' type="video/mp4; codecs=av01.0.05M.08">
+        <source data-src='{{ $vp9half.Permalink }}' type="video/webm; codecs=vp9">
         <source data-src='{{ $av1.Permalink }}' type="video/mp4; codecs=av01.0.05M.08">
         <source data-src='{{ $vp9.Permalink }}' type="video/webm; codecs=vp9">
         <source data-src='{{ $mp4.Permalink }}' type="video/mp4">
         Video doesn't work :(
     </video>
+
+    <span id="edge-av1-message">AV1 support in Edge requires a <a href="https://apps.microsoft.com/store/detail/av1-video-extension/9MVZQVXJBQ9V?hl=en-us&gl=US">Microsoft Store Extension</a>.</span>
 
     <div class="hq-links">
         {{ if in .Page.Permalink "renders" }}

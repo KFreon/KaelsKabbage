@@ -70,9 +70,40 @@ setTimeout(() => {
     half.style.display = isRenderList || (isMobile && isRender) ? 'block' : 'none';
   };
 
+  handleEdgeAV1Support();
+  
+}, 100);
+
+function removeAV1VideoSource() {
+  for (let element of document.querySelectorAll("video>source[type*='av01.']")) {
+    let parentElement = element.parentElement;
+
+    // Remove the <source> element
+    element.remove();
+
+    // force reload the video, so the browser loads the new sources
+    parentElement.load();
+}
+}
+
+// Edge doesn't support AV1 natively
+// If the extension is installed, use it.
+// If not, remove it
+function handleEdgeAV1Support() {
+  const isEdge = navigator.userAgentData?.brands?.some(b => b.brand === 'Microsoft Edge');
+  if (!isEdge) {
+    return;
+  }
+
   const video = document.getElementsByTagName("video");
-  console.log(video)
-}, 1000);
+  const edgeSupportsAV1 = video.webkitDecodedFrameCount > 0;
+  if (!edgeSupportsAV1) {
+    removeAV1VideoSource();
+
+    // Display edge message
+    document.getElementById("edge-av1-message").style.display = "block";
+  }
+}
 
 function imageContainerClicked(url) {
   // Ignore if not in a render list
