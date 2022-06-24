@@ -5,6 +5,10 @@
 - collapsible code blocks
 - check header sizes and readability on mobile
 - better tags view and navigation from click
+- iOS menu doesn't work :(
+  - ALSO Firefox mobile
+  - these two also don't show videos?
+
 
   What I use:
   - onenote/obsidian

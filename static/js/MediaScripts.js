@@ -56,7 +56,11 @@ function removeAV1VideoSource() {
 // If the extension is installed, use it.
 // If not, remove it
 function handleEdgeAV1Support() {
-  const isEdge = navigator.userAgentData?.brands?.some(b => b.brand === 'Microsoft Edge');
+  let isEdge = false;
+  if (navigator.userAgentData) {
+    isEdge = navigator.userAgentData?.brands?.some(b => b.brand === 'Microsoft Edge');
+  }
+
   if (!isEdge) {
     return;
   }
