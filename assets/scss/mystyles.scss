@@ -213,7 +213,7 @@ small {
 
   #edge-av1-message {
     display: none;
-    margin-left: auto;
+    margin: auto;
   }
 
   .inner {
@@ -632,4 +632,8 @@ body {
   &::-webkit-scrollbar-track {
     background: transparent;
   }
+}
+
+.halfsize-frame, .quartersize-frame, .fullsize-frame, .picture-frame {
+  display: none;
 }

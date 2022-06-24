@@ -10,12 +10,6 @@
   Preset controls the rest of it
 
 
-Default video size should be HALFSIZE.
-Bigger link goes to fullsizes
-QUartersize shows on small screens and tile view
-
-
-
   MOBILE site?
   themes don't work, or is it just my phone?
   works fine on the emulator - Caching maybe?
