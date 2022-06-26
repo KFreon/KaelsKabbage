@@ -8,6 +8,9 @@
 - iOS menu doesn't work :(
   - ALSO Firefox mobile
   - these two also don't show videos?
+- VIDEOS - looks like they need to be yuv420p
+---- Update my other posts to indicate this
+- Edge/chrome support it on mobile, but not FF or safari or the inbuild players
 
 
   What I use:
