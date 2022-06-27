@@ -186,6 +186,7 @@
           transform:scale(2);
           z-index: 1;
           backdrop-filter: blur(30px);
+          -webkit-backdrop-filter: blur(30px);
           box-shadow: 0 0 2px 0 black;
           border-radius: 1rem;
         }

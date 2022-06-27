@@ -214,6 +214,7 @@
                 top: 6rem;
                 left: 0;
                 backdrop-filter: blur(30px) brightness(var(--blur-colour));
+                -webkit-backdrop-filter: blur(30px) brightness(var(--blur-colour));
                 width: 100vw;
                 height: 100vh;
                 opacity: 0;
@@ -396,6 +397,7 @@
                         transform: none;
                         z-index: auto;
                         backdrop-filter: none;
+                        -webkit-backdrop-filter: none;
                         box-shadow: none;
                         border-radius: none;
 
