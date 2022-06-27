@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Core;
 
 namespace AssetOptimiser
 {
@@ -23,7 +23,7 @@ namespace AssetOptimiser
                 new Format("VP9", "webm", "libvpx-vp9", crf ?? 40, 0, "-row-mt 1 -tiles 2x2 -threads 8"),
             };
 
-            ffmpegPath = GetFFMpegPath();
+            ffmpegPath = Paths.GetFFMpegPath();
             cwepPath = GetCWebpPath();
         }
 
@@ -50,19 +50,19 @@ namespace AssetOptimiser
 
                 if (!File.Exists(picture.FullWebpPath))
                 {
-                    await StartProcess(cwepPath, picture.Directory, normalExec);
+                    await FFMpegProcessor.StartProcess(cwepPath, picture.Directory, normalExec);
                 }
 
                 if (picture.IsRender)
                 {
                     if (!File.Exists(picture.HalfWebpPath))
                     {
-                        await StartProcess(cwepPath, picture.Directory, halfsizeExec);
+                        await FFMpegProcessor.StartProcess(cwepPath, picture.Directory, halfsizeExec);
                     }
 
                     if (!File.Exists(picture.PostcardPath))
                     {
-                        await StartProcess(ffmpegPath, picture.Directory, postcardExec);
+                        await FFMpegProcessor.StartProcess(ffmpegPath, picture.Directory, postcardExec);
                     }
                 }
             }
@@ -82,47 +82,28 @@ namespace AssetOptimiser
                 {
                     // Not doing AV1 conversions from mp4, do it from source instead
                     // Keeping this so I can regenerate when necessary if I don't have the source anymore
-                    await StartProcess(ffmpegPath, job.Directory, normal);
+                    await FFMpegProcessor.StartProcess(ffmpegPath, job.Directory, normal);
                 }
 
                 if (!File.Exists(job.FormattedPath(Size.Halfsize)))
                 {
                     // Not doing AV1 conversions from mp4, do it from source instead
                     // Keeping this so I can regenerate when necessary if I don't have the source anymore
-                    await StartProcess(ffmpegPath, job.Directory, half);
+                    await FFMpegProcessor.StartProcess(ffmpegPath, job.Directory, half);
                 }
 
                 if (!File.Exists(job.FormattedPath(Size.Quartersize)))
                 {
                     // Not doing AV1 conversions from mp4, do it from source instead
                     // Keeping this so I can regenerate when necessary if I don't have the source anymore
-                    await StartProcess(ffmpegPath, job.Directory, quarter);
+                    await FFMpegProcessor.StartProcess(ffmpegPath, job.Directory, quarter);
                 }
 
                 if (job.IsRender && !File.Exists(job.PostcardPath))
                 {
-                    await StartProcess(ffmpegPath, job.Directory, postcardExec);
+                    await FFMpegProcessor.StartProcess(ffmpegPath, job.Directory, postcardExec);
                 }
             }
-        }
-
-        public static string GetFFMpegPath()
-        {
-            var path = Environment.GetEnvironmentVariable("PATH");
-            var chocoBits = path.Split(';').Where(x => x.Contains("chocolatey\\bin", StringComparison.OrdinalIgnoreCase)).ToArray();
-
-            var chocolateyBinPath = chocoBits.Single();
-            var ffmpegPath = "";
-            if (Directory.Exists(chocolateyBinPath))
-            {
-                ffmpegPath = Path.Combine(chocolateyBinPath, "ffmpeg.exe");
-                if (!File.Exists(ffmpegPath))
-                    throw new FileNotFoundException("ffmpeg is not installed at: " + ffmpegPath);
-            }
-            else
-                throw new DirectoryNotFoundException("Choco directory not found on PATH");
-
-            return ffmpegPath;
         }
 
         public static string GetCWebpPath()
@@ -132,62 +113,6 @@ namespace AssetOptimiser
                 throw new FileNotFoundException("Webp converter not found at: " + cwebp);
 
             return cwebp;
-        }
-
-
-        /// <summary>
-        /// NOT MULTITHREADED
-        /// </summary>
-        /// <param name="tool"></param>
-        /// <param name="workingDirectory"></param>
-        /// <param name="argument"></param>
-        /// <returns></returns>
-        public static Task StartProcess(string tool, string workingDirectory, string argument)
-        {
-            Console.WriteLine();
-            Console.WriteLine($"Running: {Environment.NewLine}" +
-                $"Tool: {Path.GetFileNameWithoutExtension(tool)} {Environment.NewLine}" +
-                $"WorkingDir: {workingDirectory} {Environment.NewLine}" +
-                $"Args: {argument}");
-
-            var psi = new ProcessStartInfo(tool);
-            psi.WorkingDirectory = workingDirectory;
-            psi.CreateNoWindow = true;
-            psi.RedirectStandardError = true;
-            psi.RedirectStandardOutput = true;
-            psi.UseShellExecute = false;
-
-            psi.Arguments = argument;
-            var process = new Process()
-            {
-                StartInfo = psi,
-                EnableRaisingEvents = true
-            };
-            process.OutputDataReceived += (sender, data) => Console.Write(data.Data);
-            process.ErrorDataReceived += FFMpegOutputWriter;
-            var tcs = new TaskCompletionSource<int>();
-            process.Exited += (sender, args) =>
-            {
-                tcs.SetResult(process.ExitCode);
-                process.Dispose();
-            };
-
-            process.Start();
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
-            return tcs.Task;
-        }
-
-        private static void FFMpegOutputWriter(object sender, DataReceivedEventArgs e)
-        {
-            if (e?.Data == null)
-                return;
-
-            if (e.Data.StartsWith("frame="))
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
-
-            Console.WriteLine(e.Data);
-            Console.Out.Flush();
         }
     }
 }
