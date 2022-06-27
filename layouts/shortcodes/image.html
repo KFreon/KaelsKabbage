@@ -4,19 +4,36 @@
 
 <!-- Not sure why we need it in here. Dunno what's nil, but something is and I can't find it. -->
 <div class="media image">
-    <!-- need another halfsize img here so we can force it on the render list page -->
-    <!-- NOTE: There's currently no quartersize images so just duplicate the halfsize -->
-    {{ if in .Page.Permalink "renders" }}
-    <img class="halfsize-frame media-frame" src="{{ $halfsize.Permalink }}" width="{{ $halfsize.Width }}" height="{{ $halfsize.Height }}" type="image/webp" loading="lazy">
-
-    <img class="quartersize-frame media-frame" src="{{ $halfsize.Permalink }}" width="{{ $halfsize.Width }}" height="{{ $halfsize.Height }}" type="image/webp" loading="lazy">
-    {{end}}
-
-    <picture class="media-frame">
+    <picture class="quartersize-frame media-frame">
         <!-- need .Permalink in srcset so it also works in the list page -->
-        {{ if in .Page.Permalink "renders" }}
-        <source srcset='{{ $halfsize.Permalink }}' media="(max-width: 960px)" type="image/webp">
-        {{end}}
+        <!-- NOTE: There's currently no quartersize images so just duplicate the halfsize -->
+        <!-- This disgusts me, but I can't see a way besides shortcodes to reuse this in other places. -->
+        {{ if ne $halfsize nil }}<source srcset='{{ $halfsize.Permalink }}' media="(max-width: 960px)" type="image/webp">{{end}}
+        <source srcset='{{ $webp.Permalink }}' type="image/webp">
+        <source srcset='{{ $png.Permalink }}' type="image/png"> 
+        <img class="image inner" 
+            src='{{ $png.Permalink }}' 
+            alt='{{ with .Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}' 
+            width="{{ $png.Width }}" 
+            height="{{ $png.Height }}"
+            loading="lazy">
+    </picture>
+
+    <picture class="halfsize-frame media-frame">
+        <!-- need .Permalink in srcset so it also works in the list page -->
+        {{ if ne $halfsize nil }}<source srcset='{{ $halfsize.Permalink }}' media="(max-width: 960px)" type="image/webp">{{end}}
+        <source srcset='{{ $webp.Permalink }}' type="image/webp">
+        <source srcset='{{ $png.Permalink }}' type="image/png"> 
+        <img class="image inner" 
+            src='{{ $png.Permalink }}' 
+            alt='{{ with .Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}' 
+            width="{{ $png.Width }}" 
+            height="{{ $png.Height }}"
+            loading="lazy">
+    </picture>
+
+    <picture class="fullsize-frame media-frame">
+        <!-- need .Permalink in srcset so it also works in the list page -->
         <source srcset='{{ $webp.Permalink }}' type="image/webp">
         <source srcset='{{ $png.Permalink }}' type="image/png"> 
         <img class="image inner" 

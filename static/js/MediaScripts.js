@@ -17,8 +17,6 @@ setTimeout(() => {
   const showHalfsize = document.documentElement.clientWidth <= 1200;
   const showQuartersize = document.documentElement.clientWidth <= 800;
 
-  console.log('half', showHalfsize, 'quarter', showQuartersize)
-
   // normal, half, quarter
   let mediaSizeType = showQuartersize ? 'quarter' : showHalfsize ? 'half' : 'normal';
   if (isRenderList) {
