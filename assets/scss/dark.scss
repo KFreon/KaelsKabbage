@@ -2,6 +2,7 @@
 
 #main-body.dark {
   --main-background: #{darken($main-colour, 20%)};
+  --transparentish-main-background: #{transparentize(darken($main-colour, 20%), 0.1)};
   --main-colour: #{darken($main-background, 10%)};
   --lightened-black: #{invert($lightened-black, 100%)};
   --very-light-black: #{invert($very-light-black, 100%)};

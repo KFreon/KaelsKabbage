@@ -215,6 +215,11 @@
                 left: 0;
                 backdrop-filter: blur(30px) brightness(var(--blur-colour));
                 -webkit-backdrop-filter: blur(30px) brightness(var(--blur-colour));
+
+                @supports not (backdrop-filter: blur(10px)) {
+                    background-color: var(--transparentish-main-background);
+                }
+
                 width: 100vw;
                 height: 100vh;
                 opacity: 0;

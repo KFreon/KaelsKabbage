@@ -21,6 +21,7 @@ img {
 
 #main-body.light {
   --main-background: #{$main-background};
+  --transparentish-main-background: #{transparentize($main-background, 0.1)};
   --main-colour: #{$main-colour};
   --lightened-black: #{$lightened-black};
   --very-light-black: #{$very-light-black};
