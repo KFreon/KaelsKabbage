@@ -13,6 +13,17 @@ Lets take a look into some video and image codecs and how the new shiny ones can
 
 <!--more-->  
 
+# EDIT 28-06-22: AV1 is actually viable now!  
+As of FFMpeg v5, the SVT-AV1 encoder is available and is fast.  
+It's slower than the others, but it gives smaller sizes for similar quality.  
+
+``` bash
+ffmpeg -i input.mp4 -b:v 0 -c:v libsvtav1 -qp 50 -preset 3 out_AV1.mp4
+```
+
+> -qp is what CRF is currently called, and will become CRF in FFMpeg 5.1
+> Preset default is 13, and is SUPER fast, but poor quality. Lower numbers = slower, but look better
+
 # EDIT 11-9-20: AV1 is faster now!  
 It feels like many changes have been made, and FFMpeg 4.3.1 now makes AV1's faster than before (subjectively at least).  
 Still takes a while, but not a crushingly long time.  
