@@ -1,0 +1,10 @@
+<details class="default-codeblock" open>
+  <summary>
+    <p class="codeblock-summary">{{ if isset .Attributes "title" }} {{ .Attributes.title }} {{ else }} {{ "Expand/Collapse" }} {{ end }} <span>{{ .Type }}</span></p>
+  </summary>
+  {{ highlight .Inner .Type }}
+</details>
+
+<div class="raw-codeblock">
+  {{ highlight .Inner .Type }}
+</div>

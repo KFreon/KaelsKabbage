@@ -1,3 +1,8 @@
-<div class='split-code-container {{ .Get 0 }}'>
-    {{ .Inner }}
+<div class={{ .Get "side" }}>
+  <details class="split-codeblock" open>
+      <summary>
+          <p class="codeblock-summary">{{ .Get "title" }}</p>
+      </summary>
+      {{ .Inner }}
+  </details>
 </div>

@@ -242,51 +242,7 @@ small {
   display: flex;
 }
 
-.split-code-container {
-  display: flex;
-  justify-content: space-around;
 
-  &.left-align {
-    justify-content: unset;
-
-    .left {
-      margin-right: 3rem;
-    }
-  }
-
-  .left,
-  .right {
-    max-width: 49%;
-  }
-}
-
-code {
-  font-family: "Fira Code";
-  font-size: 1rem;
-}
-
-// Inline stuff
-p,
-li,
-section {
-  > code {
-    background-color: var(--very-light-black);
-    color: var(--lightened-black);
-    padding: 0.1rem 0.5rem;
-    border-radius: 5px;
-  }
-}
-
-// Code blocks
-pre {
-  overflow-x: auto;
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
-  line-height: 1;
-  > code {
-    font-size: 0.8rem;
-  }
-}
 
 .pagination {
   display: flex;

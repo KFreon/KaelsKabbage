@@ -1,0 +1,85 @@
+@import "./variables.scss";
+
+.default-codeblock {
+  display: block;
+}
+
+.raw-codeblock {
+  display: none;
+}
+
+.default-codeblock, .split-codeblock {
+  summary {
+    border-radius: 10px 10px 0 0;
+    background-color: var(--main-colour);
+    color: var(--main-background);
+    padding-left: 1rem;
+    cursor: pointer;
+
+    .codeblock-summary {
+      margin: 0;
+      display: inline-flex;
+      justify-content: space-between;
+      width: 96%;
+      padding: 0.5rem;
+    }
+  }
+
+  .highlight {
+    margin-top: -1.5rem;
+  }
+}
+
+.split-code-container {
+  display: flex;
+  justify-content: space-around;
+
+  &.left-align {
+    justify-content: unset;
+
+    .left {
+      margin-right: 3rem;
+    }
+  }
+
+  .left,
+  .right {
+    max-width: 49%;
+
+    .default-codeblock {
+      display: none;
+    }
+
+    .raw-codeblock {
+      display: block;
+    }
+  }
+}
+
+code {
+  font-family: "Fira Code";
+  font-size: 1rem;
+}
+
+// Inline stuff
+p,
+li,
+section {
+  > code {
+    background-color: var(--very-light-black);
+    color: var(--lightened-black);
+    padding: 0.1rem 0.5rem;
+    border-radius: 5px;
+  }
+}
+
+// Code blocks
+pre {
+  overflow-x: auto;
+  border-radius: 0 0 10px 10px;
+  padding: 0.5rem 1rem;
+  line-height: 1;
+  > code {
+    font-size: 0.8rem;
+  }
+}

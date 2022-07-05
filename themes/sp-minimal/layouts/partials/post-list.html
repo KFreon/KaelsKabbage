@@ -1,7 +1,4 @@
-<!-- ByDate wasn't working on the paginator :( -->
-{{ $paginator := .Paginate (where $.Site.Pages "Type" "post") }}
-<div class="pagination"> {{ template "_internal/pagination.html" . }} </div>
-{{ range sort $paginator.Pages "Date" }}
+{{ range sort (where .Pages "Type" "post") "Date" }}
 <div class="post-list-item">
     <p class="remove-margin-bottom">
         <small>
