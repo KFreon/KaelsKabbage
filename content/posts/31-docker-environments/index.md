@@ -200,8 +200,8 @@ The folder of your choice
 
 Edit the VS Dockerfile and `DockerFile_API` as below.  
 
-{{< split >}}
-{{% splitLeft title="DockerFile_API" %}}
+{{< splitter >}}
+{{% split side=left title="DockerFile_API" %}}
 ``` docker 
 # This is the Dockerfile we use during the main stack build.
 # NOT used for F5 in Visual Studio, that's in ./DockerTest
@@ -230,8 +230,8 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "DockerTest.dll"]
 ```
-{{% /splitLeft %}}  
-{{% splitRight title="Visual Studio Dockerfile" %}}  
+{{% /split %}}  
+{{% split side=right title="Visual Studio Dockerfile" %}}  
 ``` docker 
 # Can't really add/change anything here, it won't matter (Fast mode ignores everything outside base)
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
@@ -241,8 +241,8 @@ EXPOSE 443
 EXPOSE 442
 EXPOSE 5555
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 > Note the default MS dockerfile has lots of caching and [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) for performance  
 
@@ -252,8 +252,8 @@ I'll refer to running the Visual Studio Dockerfile as the "F5 container" through
 
 Let's add EFCore and create a simple endpoint that returns the first row from the database container.  
 
-{{< split >}}
-{{% splitLeft title="Program.cs" %}}
+{{< splitter >}}
+{{% split side=left title="Program.cs" %}}
 ``` cs
 using Microsoft.EntityFrameworkCore;
 
@@ -275,8 +275,8 @@ app.MapGet("/api/items", (HttpContext context) =>
 app.Run();
 
 ```
-{{% /splitLeft %}}
-{{% splitRight title="YoloDbContext.cs" %}}
+{{% /split %}}
+{{% split side=right title="YoloDbContext.cs" %}}
 ``` cs
 using Microsoft.EntityFrameworkCore;
 
@@ -294,8 +294,8 @@ public class YoloDbContext : DbContext
     public DbSet<Item> Yolo { get; set; }
 }
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 ### Caveats!  
 With this split setup, the F5 version builds on the host and is copied into the container due to Fast Mode.  
@@ -451,14 +451,14 @@ You can visit `http://localhost:3000` and see the page with "Learn React from me
 
 We've got it all running! If you open Docker Desktop, you can see the containers all listed there.  
 
-{{< split >}}
-{{< splitLeft title="Running in stack" >}}
+{{< splitter >}}
+{{< split side=left title="Running in stack" >}}
 {{< image path="img/YoloSwagginsInDockerDesktop" alt="Final setup in Docker Desktop" >}}
-{{< /splitLeft >}}
-{{< splitRight title="Debugging with Visual Studio F5" >}}
+{{< /split >}}
+{{< split side=right title="Debugging with Visual Studio F5" >}}
 {{< image path="img/DockerSplitStack" alt="Final setup in Docker Desktop running through VS" >}}
-{{< /splitRight >}}
-{{< /split >}}  
+{{< /split >}}
+{{< /splitter >}}  
 
 
 It's running in Docker, and here's where I found that this is where many of the other blog posts and articles finished.  
@@ -557,8 +557,8 @@ Let's see what we can do about that.
 ## Working with a dev-only NodeJS Docker container  
 I'll adjust `Dockerfile_UI` and `docker-compose.yaml` to add a new definition:  
 
-{{< split >}}
-{{% splitLeft title="DockerFile_UI" %}}
+{{< splitter >}}
+{{% split side=left title="DockerFile_UI" %}}
 ``` docker  
 # Rest of the file from before
 
@@ -568,8 +568,8 @@ FROM node:14-alpine AS nodeexec
 ENV NODE_ENV=development
 WORKDIR /app
 ```  
-{{% /splitLeft %}}
-{{% splitRight title="docker-compose-yaml" %}}
+{{% /split %}}
+{{% split side=right title="docker-compose-yaml" %}}
 ``` yml
 # Allow us to execute node/npm commands without having node installed
 # This is where you change npm packages (e.g.) with "docker compose run --rm nodeexec npm install cordova"
@@ -583,8 +583,8 @@ nodeexec:
   volumes: 
     - ./UI:/app
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 This creates a container that is basically just Node (14 in this case) and nothing else.  
 Now we can run `docker compose run --rm nodeexec npm install cordova` which runs the command in the container, which has access to the source code by volume mounts in docker compose.  
@@ -644,8 +644,8 @@ Looots of stack overflow
 # Convenience: Final Dockerfiles side by side with relevant docker compose sections  
 ## Database  
 
-{{< split >}}
-{{% splitLeft title="Dockerfile_SQL" %}}
+{{< splitter >}}
+{{% split side=left title="Dockerfile_SQL" %}}
 ``` docker
 FROM mcr.microsoft.com/mssql/server:2019-latest
 
@@ -661,8 +661,8 @@ USER mssql
 
 CMD /bin/bash ./entrypoint.sh
 ```
-{{% /splitLeft %}}
-{{% splitRight title="UI Compose service" %}}
+{{% /split %}}
+{{% split side=right title="UI Compose service" %}}
 ``` yml
 # Database Container spec.
 sql:
@@ -677,13 +677,13 @@ sql:
   ports:
     - 1633:1433 # Map 1433 from inside the container to 1633 host to avoid port conflict with local install
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 ## API  
 
-{{< split >}}
-{{% splitLeft title="Dockerfile_API" %}}
+{{< splitter >}}
+{{% split side=left title="Dockerfile_API" %}}
 ``` docker
 # This is the Dockerfile we use during the main stack build.
 # NOT used for F5 in Visual Studio, that's in ./DockerTest
@@ -712,8 +712,8 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "DockerTest.dll"]
 ```
-{{% /splitLeft %}}
-{{% splitRight title="Api Compose Service" %}}
+{{% /split %}}
+{{% split side=right title="Api Compose Service" %}}
 ``` yml
 # API container spec.
 api:
@@ -726,13 +726,13 @@ api:
     ASPNETCORE_ENVIRONMENT: Development
     ASPNETCORE_URLS: http://+:5555
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 ## UI and nodeexec  
 
-{{< split >}}
-{{% splitLeft title="Dockerfile_UI" %}}
+{{< splitter >}}
+{{% split side=left title="Dockerfile_UI" %}}
 ``` docker
 FROM node:14-alpine AS development 
 
@@ -751,8 +751,8 @@ FROM node:14-alpine AS nodeexec
 ENV NODE_ENV=development
 WORKDIR /app
 ```
-{{% /splitLeft %}}
-{{% splitRight title="UI Compose Service" %}}
+{{% /split %}}
+{{% split side=right title="UI Compose Service" %}}
 ``` yml
 # UI Container spec. note that 'ui' is the name of the container internally (also 'container_name')
 ui:
@@ -782,5 +782,5 @@ build:
 volumes: 
   - ./UI:/app
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  

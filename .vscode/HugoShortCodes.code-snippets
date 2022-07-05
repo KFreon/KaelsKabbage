@@ -27,28 +27,28 @@
     "HugoShortcode Split Image": {
         "prefix": "hsplitimg",
         "body": [
-            "{{< split >}}",
-            "{{< splitLeft title=\"$1\" >}}",
+            "{{< splitter >}}",
+            "{{< split side=left title=\"$1\" >}}",
             "himg$0",
-            "{{< /splitLeft >}}",
-            "{{< splitRight title=\"$2\" >}}",
+            "{{< /split >}}",
+            "{{< split side=right title=\"$2\" >}}",
             "himg",
-            "{{< /splitRight >}}",
-            "{{< /split >}}  "
+            "{{< /split >}}",
+            "{{< /splitter >}}  "
         ]
     },
 
     "HugoShortcode Split Code": {
         "prefix": "hsplitcode",
         "body": [
-            "{{< split >}}",
-            "{{% splitLeft title=\"$1\" %}}",
+            "{{< splitter >}}",
+            "{{% split side=left title=\"$1\" %}}",
             "$0",
-            "{{% /splitLeft %}}",
-            "{{% splitRight title=\"$2\" %}}",
+            "{{% /split %}}",
+            "{{% split side=right title=\"$2\" %}}",
             "",
-            "{{% /splitRight %}}",
-            "{{< /split >}}  "
+            "{{% /split %}}",
+            "{{< /splitter >}}  "
         ]
     },
 

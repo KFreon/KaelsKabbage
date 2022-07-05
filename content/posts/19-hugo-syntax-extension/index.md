@@ -22,8 +22,8 @@ I don't use them so I'm not fussed, but I'm also not sure how I'd detect the sho
 
 The new area of the `.tmLanguages.json` is below.  
 
-{{< split >}}
-{{% splitLeft title="Before" %}}
+{{< splitter >}}
+{{% split side=left title="Before" %}}
 ```json
 "patterns": [{
     "match": "(\\w+)\\s([a-zA-Z]+)=\\\"(\\S+)\\\"\\s*(?:([a-zA-Z]+)=\\\"([^\"]+)\\\")*",
@@ -47,8 +47,8 @@ The new area of the `.tmLanguages.json` is below.
     }
 },
 ```
-{{% /splitLeft %}}
-{{% splitRight title="After" %}}
+{{% /split %}}
+{{% split side=right title="After" %}}
 ```json
 "patterns": [{
     "EXPLANATION": "Matches the shortcode name (at least). Matches single words, optionally with / at the start.",
@@ -81,5 +81,5 @@ The new area of the `.tmLanguages.json` is below.
     }
 }
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  

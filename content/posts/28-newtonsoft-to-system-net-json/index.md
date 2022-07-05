@@ -46,8 +46,8 @@ Another sticking point was our use of `JsonProperty(Required)` on some of our at
 The docs [call this out](https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to?pivots=dotnet-5-0#required-properties) and provide a workaround, however I struggled a little with their examples, as it didn't really feel nice or practical to do it that way.  
 Eventually, I settled on a method of generating custom converters for any types with `Required` properties at startup via generics and DI (Autofac in this case):    
 
-{{< split >}}
-{{% splitLeft title="DI Registration" %}}
+{{< splitter >}}
+{{% split side=left title="DI Registration" %}}
 ``` csharp
 public static class JsonSerializerOptionsExtensions
 {
@@ -85,8 +85,8 @@ public static class JsonSerializerOptionsExtensions
   }
 }
 ```
-{{% /splitLeft %}}
-{{% splitRight title="Custom Converter" %}}
+{{% /split %}}
+{{% split side=right title="Custom Converter" %}}
 ``` csharp
 public class SystemJsonRequiredAttribute : Attribute
 {
@@ -147,8 +147,8 @@ public class SystemJsonPropertyRequiredConverter<T> : JsonConverter<T> where T :
   }
 }
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 # JObject/JsonDocument Property Access differences  
 In Newtonsoft, you can do:  
@@ -309,8 +309,8 @@ CreatedOn = 01/01/0001 00:00:00;
 In order to get those parameters set, you can put a `[JsonInclude]` attribute on the properties.  
 Another option is to add a base constructor and use that, which would require `[JsonConstructor]` attribute as well.  
 
-{{< split >}}
-{{% splitLeft title="JsonInclude Example" %}}
+{{< splitter >}}
+{{% split side=left title="JsonInclude Example" %}}
 ```csharp  
 public abstract class AggregateRoot 
 {
@@ -327,8 +327,8 @@ public abstract class AggregateRoot
   }
 }
 ```
-{{% /splitLeft %}}
-{{% splitRight title="JsonConstructor Example" %}}
+{{% /split %}}
+{{% split side=right title="JsonConstructor Example" %}}
 ``` csharp  
 public abstract class AggregateRoot 
 {
@@ -366,8 +366,8 @@ public class SomeAggregate : AggregateRoot
   }
 }
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 # Other Little Things      
 - [NodaTime](https://nodatime.org/) required a System.Text.Json version of their serialisation helper [Nuget package](https://www.nuget.org/packages/NodaTime.Serialization.SystemTextJson).  

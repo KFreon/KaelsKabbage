@@ -33,8 +33,8 @@ Easy as that!
 There were also some simple changes to Program.cs and Startup.cs (in my case, YMMV).  
 **Program.cs**   
 
-{{< split >}}
-{{% splitLeft title="Original" %}}
+{{< splitter >}}
+{{% split side=left title="Original" %}}
 ```go
 var webHostBuilder = WebHost.CreateDefaultBuilder(args)
   .ConfigureAppConfiguration(builder => additionalConfig.Invoke(builder))
@@ -43,8 +43,8 @@ var webHostBuilder = WebHost.CreateDefaultBuilder(args)
   .UseStartup<TStartup>()
   .UseSerilog();
 ```
-{{% /splitLeft %}}
-{{% splitRight title="Dotnetcore3" %}}
+{{% /split %}}
+{{% split side=right title="Dotnetcore3" %}}
 ```go
 var webHostBuilder = Host.CreateDefaultBuilder(args)
   .UseServiceProviderFactory(new AutofacServiceProviderFactory())
@@ -56,24 +56,24 @@ var webHostBuilder = Host.CreateDefaultBuilder(args)
           .UseStartup<TStartup>();
   });
 ```
-{{% /splitRight %}}
-{{< /split >}}     
+{{% /split %}}
+{{< /splitter >}}     
 Note the different method of registering Autofac.  
 
 **Startup.cs**  
 In `ConfigureServices`, `UseMvc` changed to `AddControllers`. As I understand it, there can be a few ways to configure that method, but in my case that's all I needed (basic endpoint configuration)  
 `Configure` was getting an `IHostingEnvironment`, that's now `IWebHostEnvironment`.  
 Also:  
-{{< split >}}
-{{% splitLeft title="Original" %}}
+{{< splitter >}}
+{{% split side=left title="Original" %}}
 ```go
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseMiddleware<LoggingMiddleware>();
 app.UseMvc();
 ```
-{{% /splitLeft %}}
-{{% splitRight title="Dotnetcore3" %}}
+{{% /split %}}
+{{% split side=right title="Dotnetcore3" %}}
 ```go
 app.UseRouting();
 app.UseAuthentication();
@@ -81,18 +81,18 @@ app.UseMiddleware<LoggingMiddleware>();
 app.UseAuthorization();  <-- Added
 app.UseEndpoints(endpoints => endpoints.MapControllers());  <-- instead of UseMvc
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 Test config needed adjusting: 
-{{< split >}}
-{{% splitLeft title="Original" %}}
+{{< splitter >}}
+{{% split side=left title="Original" %}}
 ```cs
 Server = new TestServer(Program
   .GetWebHostBuilder<TestServerStartup<TestUserIdentity>>(appRootPath, null, TestConfiguration.AddTestConfig));
 ```
-{{% /splitLeft %}}
-{{% splitRight title="Dotnetcore3" %}}
+{{% /split %}}
+{{% split side=right title="Dotnetcore3" %}}
 ```cs
 var server = await Program
   .GetWebHostBuilder<TestServerStartup<TestUserIdentity>>(appRootPath, null, TestConfiguration.AddTestConfig)
@@ -100,8 +100,8 @@ var server = await Program
 
 Server = server.GetTestServer();
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 In the tests, we would resolve services with `Server.Host.Services.GetService`, which now drops the `Host` to just `Server.Services.GetService`  
 

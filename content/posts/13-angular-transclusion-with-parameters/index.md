@@ -18,8 +18,8 @@ Were it so easy...
 *Solution*: Use `ng-template` with `ng-container *ngTemplateOutlet` with a `context: { $implicit: variable-name }` property.  
 
 # The problem  
-{{< split >}}
-{{% splitLeft title="Html" %}}
+{{< splitter >}}
+{{% split side=left title="Html" %}}
 ``` html
 <div>
     <h1>Super cool page title</h1>
@@ -33,8 +33,8 @@ Were it so easy...
     </div>
 </div>
 ```  
-{{% /splitLeft %}}
-{{% splitRight title="Typescript" %}}
+{{% /split %}}
+{{% split side=right title="Typescript" %}}
 ``` ts
 import { Component, OnInit } from '@angular/core';
 
@@ -62,8 +62,8 @@ export class OriginalComponent implements OnInit {
     }
 }
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 I wanted to extract the two `*ngFor` divs into their own component for reuse in another part of the codebase.   
 I wanted to be able to do something like:   
@@ -137,8 +137,8 @@ I had a hard time putting this succinctly, so let's start with the finished sour
 
 ## Extracted component   
 
-{{< split >}}
-{{% splitLeft title="Html" %}}
+{{< splitter >}}
+{{% split side=left title="Html" %}}
 ``` html
 <div *ngFor="let holiday of holidays">
     <div *ngFor="let location of holiday.locations">
@@ -146,8 +146,8 @@ I had a hard time putting this succinctly, so let's start with the finished sour
     </div>
 </div>
 ```
-{{% /splitLeft %}}
-{{% splitRight title="Typescript" %}}
+{{% /split %}}
+{{% split side=right title="Typescript" %}}
 ``` ts
 import { Component, OnInit, Input, ContentChild, TemplateRef } from '@angular/core';
 import { Holiday } from '../original/original.component';
@@ -171,15 +171,15 @@ export class ExtractedComponent implements OnInit {
     }
 }
 ```
-{{% /splitRight %}}
 {{% /split %}}
+{{% /splitter %}}
 
 <br/>  
 
 ## Refactored component  
 
-{{< split >}}
-{{% splitLeft title="Html" %}}
+{{< splitter >}}
+{{% split side=left title="Html" %}}
 ``` html
 <div>
     <h1>Super cool page title</h1>
@@ -193,8 +193,8 @@ export class ExtractedComponent implements OnInit {
     </app-extracted>
 </div>
 ```
-{{% /splitLeft %}}
-{{% splitRight title="Typescript" %}}
+{{% /split %}}
+{{% split side=right title="Typescript" %}}
 ``` ts
 import { Component, OnInit } from '@angular/core';
 
@@ -223,8 +223,8 @@ export class RefactoredComponent implements OnInit {
 }
 
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 **EDIT:** Note that for reduced black box magic, you can specify the template directly instead of with `@ContentChild`.  
 See below. `@ContentChild` replaced in the Typescript with `@Input()` and the html altered slightly to give the template an id with `#template` and the `app-extracted` component takes the template as a variable directly.  

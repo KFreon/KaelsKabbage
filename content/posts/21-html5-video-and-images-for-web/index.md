@@ -104,22 +104,22 @@ It's USUALLY a fair bit smaller than a jpg with better quality.
 I say usually because sometimes it can be larger, but generally it's smaller. 
 
 ### Results    
-{{% split "left-align" %}}
-{{% splitLeft title="Floating Rock" %}}
+{{% splitter "left-align" %}}
+{{% split side=left title="Floating Rock" %}}
 | Format | Size (kb) |
 | ------ | ---- |
 | png    | 3599 |
 | jpg    | 558  |
 | webp   | 311  |
-{{% /splitLeft %}}
-{{% splitRight title="Sword" %}}
+{{% /split %}}
+{{% split side=right title="Sword" %}}
 | Format | Size (kb) |
 | ------ | ---- |
 | png    | 8022 |
 | jpg    | 209  |
 | webp   | 87   |
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 ### Command Line  
 ```bash

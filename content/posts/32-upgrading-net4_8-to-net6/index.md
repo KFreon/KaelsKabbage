@@ -72,8 +72,8 @@ services.AddAuthentication(config => config.DefaultScheme = "myscheme").AddCooki
 but no, that's not how it works.  
 I ended up reusing the original handler, changing some types (mostly service resolution), I ended up with this:
 
-{{< split >}}
-{{% splitLeft title="Original" %}}
+{{< splitter >}}
+{{% split side=left title="Original" %}}
 ```c#
 public class MyAuthHandler : IAuthenticationHandler
 {
@@ -147,8 +147,8 @@ public static class AuthConfig
     }
 }
 ```
-{{% /splitLeft %}}
-{{% splitRight title="net 6" %}}
+{{% /split %}}
+{{% split side=right title="net 6" %}}
 ```c#
 public class MyAuthSchemeOptions : AuthenticationSchemeOptions
 {
@@ -184,8 +184,8 @@ public class MyAuthHandler : AuthenticationHandler<MyAuthSchemeOptions>
     }
 }
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 ### The Big Mad
 I have a primary authorisation policy, and a couple of others for single endpoint policies for third parties.  
@@ -243,22 +243,22 @@ host.Run();
 The Release Pipeline also required changes from Topshelf installs to:
 
 
-{{< split >}}
-{{% splitLeft title="Uninstall Old Service" %}}
+{{< splitter >}}
+{{% split side=left title="Uninstall Old Service" %}}
 ``` bash
 sc stop "$(Application)"
 timeout /t 5 /nobreak > NUL
 sc delete "$(Application)"
 ```
-{{% /splitLeft %}}
-{{% splitRight title="Install New Service" %}}
+{{% /split %}}
+{{% split side=right title="Install New Service" %}}
 ``` bash
 sc create "$(Application)" binPath=$(BackgroundServicePath)/BackgroundTasks.exe
 sc config "$(Application)" start=auto obj=$(ServerAdminUsername) password=$(ServerAdminPassword)
 sc start "$(Application)"
 ```
-{{% /splitRight %}}
-{{< /split >}}  
+{{% /split %}}
+{{< /splitter >}}  
 
 
 # Conclusion

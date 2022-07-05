@@ -22,6 +22,10 @@
       justify-content: space-between;
       width: 96%;
       padding: 0.5rem;
+
+      .code-type {
+        color: var(--grey);
+      }
     }
   }
 
@@ -44,7 +48,7 @@
 
   .left,
   .right {
-    max-width: 49%;
+    width: 49%;
 
     .default-codeblock {
       display: none;
@@ -52,6 +56,10 @@
 
     .raw-codeblock {
       display: block;
+    }
+
+    .codeblock-summary {
+      width: 40%;
     }
   }
 }

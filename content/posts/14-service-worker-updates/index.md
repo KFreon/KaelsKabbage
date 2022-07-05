@@ -66,8 +66,8 @@ It's the external bit that runs outside your webpage.
 
 The below is from the generated files from create-react-app (using Workbox)
 
-{{< split >}}
-{{% splitLeft title="sw.ts" %}}
+{{< splitter >}}
+{{% split side=left title="sw.ts" %}}
 ``` js
 workbox.precaching.precacheAndRoute(['/index.html'], {});
 
@@ -97,8 +97,8 @@ workbox.routing.registerRoute(
   'POST'
 );
 ```
-{{% /splitLeft %}}
-{{% splitRight title="serviceWorker.ts" %}}
+{{% /split %}}
+{{% split side=right title="serviceWorker.ts" %}}
 ``` js
 window.addEventListener('load', () => {
     const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
@@ -173,8 +173,8 @@ function registerValidSW(swUrl: string, config?: Config) {
     });
 }
 ```
-{{% /splitRight %}}
 {{% /split %}}
+{{% /splitter %}}
 
 
 Quick explanations are the best explanations:  
@@ -216,8 +216,8 @@ Service workers can be communicated to and from the parent website via messages/
 In the service worker file (sw.ts) we register a event handler to listen for messages, specifically `skipWaiting`.   
 We also pass it the route listener from that posts the `skipWaiting` message when the route matches.  
 
-{{< split >}}
-{{% splitLeft title="sw.ts" %}}
+{{< splitter >}}
+{{% split side=left title="sw.ts" %}}
 ```js
 // This runs in the service worker. We listen for the 'skipWaiting'.
 // SkipWaiting means "kick the current worker out and have this one take over"
@@ -228,8 +228,8 @@ self.addEventListener('message', (event: ExtendableMessageEvent) => {
   }
 });
 ```
-{{% /splitLeft %}}
-{{% splitRight title="serviceWorker.ts" %}}
+{{% /split %}}
+{{% split side=right title="serviceWorker.ts" %}}
 ```js
 // When a new service worker is ready to be installed, wait until we're on the login page
 // Setup a refresh for when the new service worker takes over to refresh the page for new content
@@ -245,8 +245,8 @@ function onUpdate(registration: ServiceWorkerRegistration, store: IRootStoreMode
   } , { path: '/home', exact: true });
 }
 ```
-{{% /splitRight  %}}
-{{% /split %}}
+{{% /split  %}}
+{{% /splitter %}}
 
 > NOTE that the page is refreshed on service worker update. This is to ensure that stylesheets and html changes are immediately visible (cached items will be revalidated on registration of the service worker in this case)
 
