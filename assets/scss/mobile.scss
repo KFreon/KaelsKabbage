@@ -130,8 +130,6 @@
     }
 
     pre {
-        white-space: break-spaces;
-        
         code {
             font-size: 1.5rem;
         }
@@ -358,7 +356,7 @@
         flex-direction: column;
 
         .left, .right {
-            max-width: 90%;
+            max-width: 100%;
         }
     }
     

@@ -3,13 +3,9 @@
   - put postcard as top background on posts?
 - Somehow auto generate the slug, postcard text, title (auto remove date)
 - Clean up c# projects and stylesheets and shortcodes
-- collapsible code blocks
-  - Needs some work, it kinda works, but now there's loads of code with the splitter.
-  - Maybe I can remove the splitter, and just use this now?
 - check header sizes and readability on mobile
 - better tags view and navigation from click
 - LOSE GA for netlify analytics?
-- Disable pagination
 - RSS?
 
   What I use:

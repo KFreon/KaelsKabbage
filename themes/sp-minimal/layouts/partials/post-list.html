@@ -1,4 +1,4 @@
-{{ range sort (where .Pages "Type" "post") "Date" }}
+{{ range sort (where $.Site.Pages "Type" "post") "Date" }}
 <div class="post-list-item">
     <p class="remove-margin-bottom">
         <small>

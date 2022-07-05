@@ -158,7 +158,7 @@
       width: 100%;
 
       .header-date {
-        font-size: 0.6rem;
+        font-size: 1rem;
         min-width: 3.5rem;
         color: var(--main-colour);
       }
@@ -191,8 +191,10 @@
           border-radius: 1rem;
         }
 
-        .render-date {
-          font-size: 0.5rem;
+        .header-link {
+          .header-date {
+            font-size: 0.5rem;
+          }
         }
       }
 

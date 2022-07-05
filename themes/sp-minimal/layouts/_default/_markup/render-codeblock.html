@@ -1,7 +1,7 @@
 <details class="default-codeblock" open>
   <summary>
     <p class="codeblock-summary">
-      {{ if isset .Attributes "title" }} {{ .Attributes.title }} {{ else }} {{ "Expand/Collapse" }} {{ end }} 
+      {{ if isset .Attributes "title" }} {{ .Attributes.title }} {{ else }}  <span class="default-title">Expand/Collapse</span>  {{ end }} 
       <span class="code-type">{{ .Type }}</span>
     </p>
   </summary>

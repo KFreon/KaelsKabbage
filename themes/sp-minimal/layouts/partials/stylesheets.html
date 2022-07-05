@@ -1,22 +1,23 @@
 {{ $cssOptions := cond (.Site.IsServer) (dict "enableSourceMap" false) (dict "outputStyle" "compressed") }}
 
-{{ $stylesSCSS := resources.Get "assets/scss/mystyles.scss" }}
-{{ $mobileSCSS := resources.Get "assets/scss/mobile.scss" }}
-{{ $darkSCSS := resources.Get "assets/scss/dark.scss"}}
-{{ $code := resources.Get "assets/scss/code.scss"}}
-
-{{ $stylesCSS := $stylesSCSS | toCSS }} 
-{{ $mobileCSS := $mobileSCSS | toCSS }} 
-{{ $darkCSS := $darkSCSS | toCSS }} 
-{{ $code := $code | toCSS }} 
+{{ $stylesCSS := resources.Get "assets/scss/mystyles.scss" | toCSS }}
+{{ $mobileCSS := resources.Get "assets/scss/mobile.scss" | toCSS }}
+{{ $darkCSS := resources.Get "assets/scss/dark.scss" | toCSS}}
+{{ $code := resources.Get "assets/scss/code.scss" | toCSS}}
 
 {{ $themeStylesCSS := resources.Get "themes/sp-minimal/static/css/styles.css" }}
 {{ $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" }}
 {{ $minimalSimpleCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal-simple.css" }}
 
-{{ $combined := cond (eq .Site.Params.themeStyle "simple") 
-  (slice $themeStylesCSS $minimalStylesCSS $minimalSimpleCSS $stylesCSS $mobileCSS $darkCSS $code) 
-  (slice $themeStylesCSS $minimalStylesCSS $stylesCSS $mobileCSS $darkCSS $code) }}
+{{ $firstSheets := slice $themeStylesCSS $minimalStylesCSS $minimalSimpleCSS $stylesCSS $code }}
+
+
+
+
+
+<!-- These need to be last -->
+{{ $lastSheets := slice $mobileCSS $darkCSS }}
+{{ $combined := union $firstSheets $lastSheets }}
 
 {{ if .Site.IsServer }}
 {{ range $combined }}
