@@ -11,8 +11,8 @@
 .default-codeblock, .split-codeblock {
   summary {
     border-radius: 10px 10px 0 0;
-    background-color: var(--main-colour);
-    color: var(--main-background);
+    background-color: var(--codeblock-header-background);
+    color: var(--codeblock-header-text);
     padding-left: 1rem;
     cursor: pointer;
 

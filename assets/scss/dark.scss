@@ -24,4 +24,6 @@
   --search-result-border: #{lighten($main-colour, 15%)};
   --sidebar-border: #{darken($main-colour, 25%)};
   --blur-colour: 30%;
+  --codeblock-header-background: #{darken($main-colour, 0%)};
+  --codeblock-header-text: $main-background;
 }

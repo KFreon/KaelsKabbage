@@ -43,6 +43,8 @@ img {
   --search-result-border: #{rgba($lightgrey, 0.3)};
   --sidebar-border: #{darken($main-background, 20%)};
   --blur-colour: 150%;
+  --codeblock-header-background: var(--main-colour);
+  --codeblock-header-text: var(--main-background);
 }
 
 p {
