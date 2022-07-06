@@ -3,7 +3,6 @@
   - put postcard as top background on posts?
 - Somehow auto generate the slug, postcard text, title (auto remove date)
 - Clean up c# projects and stylesheets and shortcodes
-- check header sizes and readability on mobile
 - better tags view and navigation from click
 - LOSE GA for netlify analytics?
 - RSS?

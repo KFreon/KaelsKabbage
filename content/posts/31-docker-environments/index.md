@@ -91,8 +91,7 @@ Let's start with the bottom layer of the app.
 
 Inside the SQL folder, create `DockerFile_SQL` with the following contents:  
 
-**DockerFile_SQL**
-``` docker  
+``` docker  {title="DockerFile_SQL"}
 FROM mcr.microsoft.com/mssql/server:2019-latest
 
 WORKDIR /app
@@ -112,14 +111,12 @@ I want the dev experience to be as frictionless as I can, so let's get a setup s
 SQL Server doesn't allow this implicitly, so we're going to have a custom entrypoint called `entrypoint.sh`.  
 This script starts sqlserver, but also starts another script which initialises our database.  
 
-**entrypoint.sh**
-``` bash  
+``` bash {title=entrypoint.sh}
 # Run Microsoft SQl Server and initialization script (at the same time)
 /app/initialise-sql.sh & /opt/mssql/bin/sqlservr
 ```  
 
-**initialise-sql.sh**
-``` bash  
+``` bash {title=initialise-sql.sh}
 # Sql Server container can take some time to start up. 
 # This may need to be tweaked per machine, e.g. I can set this to 10s and it's fine
 sleep 30s
@@ -135,8 +132,7 @@ The container starts SQL server, waits for it to get set up, then runs a sql scr
 
 {{< image path="img/SQLSAPasswordInDocker" alt="SA password exposed as an environment variable in Docker Desktop" >}}
 
-**InitialSQL.sql**  
-``` sql
+``` sql {title=InitialSQL.sql}
 -- Basic DB setup script for testing
 
 -- This script runs every container start, BUT the data isn't destroyed when the container is stopped, only when it's removed.
@@ -180,7 +176,7 @@ This leaves us with a folder and .sln inside the Api folder, which is important 
 
 Create `DockerFile_API` in the project folder directory (as below)  
 
-**Current structure**  
+**Current structure**
 ```
 The folder of your choice
 ├── UI  
@@ -329,7 +325,7 @@ I also set `httpPort` to 5555 in `launchsettings.json` so I can access it extern
 I'm going to use [Create-React-App](https://reactjs.org/docs/create-a-new-react-app.html) to spin up a quick React project to play with.   
 
 Once it's all setup, let's create `DockerFile_UI`:  
-```docker
+```docker {title="DockerFile_UI"}
 FROM node:14-alpine AS development 
 
 WORKDIR /app
@@ -345,7 +341,7 @@ CMD ["npm", "start"]
 The [layers caching](https://dzone.com/articles/docker-layers-explained) comment highlights that the container won't do `npm ci` or any of the other steps unless `package.json` or `package-lock.json` changes, keeping our builds nice and fast!  
 
 For this basic example, let's edit `App.js` and call the Api endpoint and display the data from the database.  
-``` jsx
+``` jsx {title="App.js"}
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
@@ -388,8 +384,7 @@ In `package.json`, add `"proxy": "http://api:5555"`, as we set our api container
 All those Dockerfiles are great, and you could tweak them to run together as they are, but let's get them all chummy and more easily controlled.  
 Create `docker-compose.yaml` in the root (as per the [project structure]({{< relref "#project-structure" >}})):   
 
-**docker-compose.yaml**  
-``` yml 
+``` yml  {title="docker-compose.yaml"}
 version: '3.9'
 
 services:
@@ -602,8 +597,7 @@ We can get a shell into the container by running `docker compose run nodeexec sh
 
 I've added a script for non-docker users to get up and running quickly, which runs the database and UI, then gives you a shell into the UI as you would normally have when working with CRA.  
 
-**start-dev-environment.sh**
-``` bash
+``` bash {title="start-dev-environment.sh"}
 docker compose up -d ui sql
 docker compose run --rm nodeexec sh
 ```  
