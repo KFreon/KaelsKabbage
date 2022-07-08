@@ -113,5 +113,3 @@ function setupLazyVideos() {
     }
   });
 }
-
-setupLazyVideos();

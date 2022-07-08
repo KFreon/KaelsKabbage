@@ -2,7 +2,7 @@
 <section>
     <ul class="tag-list">
         {{ range $key, $taxonomy := .Site.Taxonomies.tags }}
-        <li class="tag">
+        <li class="tag" id="{{$key}}">
             <h1 class="tag-header">{{ humanize $key }}</h1>
             <ul>
                 {{ range $taxonomy.Pages }}

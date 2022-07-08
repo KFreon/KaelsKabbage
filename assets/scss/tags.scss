@@ -17,6 +17,10 @@
     margin: 1rem;
     padding: 1rem;
 
+    &.highlighted-tag {
+      box-shadow: 0 0 5px 2px var(--green);
+    }
+
     .tag-header {
       text-align: center;
       font-size: 2rem;

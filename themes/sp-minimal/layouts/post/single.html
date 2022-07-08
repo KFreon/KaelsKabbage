@@ -15,7 +15,7 @@
         <p class="categories">
             <small>
                 Tags: {{ range .Params.tags }}
-                <a class="category" href="{{ $.Site.BaseURL }}tags/{{ . | urlize | lower }}">{{ . }}</a>
+                <a class="category" href="{{ $.Site.BaseURL }}tags?{{ . | urlize | lower }}">{{ . }}</a>
                 {{ end }}
             </small>
         </p>
