@@ -4,14 +4,14 @@
 
     <title>{{ .Title }} - {{ .Site.Params.title }}</title>
     <meta name="author" content="{{ with .Site.Params.name }}{{ . }}{{ end }}">
+
+    PROBABLY NOT RIGHT FOR RENDERS
     <meta name="description" content="{{ if .Summary }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     {{ hugo.Generator }}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta property="og:image" content='{{ if .Param "postcard"}}{{ .Params.slug | absURL }}/{{ .Param "postcard" }}{{ else }}{{ .Site.Params.Kabbage }} {{ end }}'/>
 
     <link rel="shortcut icon" async href="{{ .Site.BaseURL }}img/Cabbage_Shortcut.png">
-
-    {{- partial "twitter.html" . -}}
 
     {{ "<!-- Stylesheets -->" | safeHTML }}
 
