@@ -1,0 +1,10 @@
+.header-menu-container {
+  > * {
+    display: block;
+  }
+
+  > a {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+}

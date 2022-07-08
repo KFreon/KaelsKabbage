@@ -145,9 +145,10 @@
 
     .tag-list {
         display: block;
+        padding: 0;
 
         .tag {
-            width: 100%;
+            width: unset;
             
             .tag-header {
                 font-size: 3rem;

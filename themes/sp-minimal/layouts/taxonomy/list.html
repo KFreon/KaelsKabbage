@@ -2,14 +2,14 @@
 <section>
     <ul class="tag-list">
         {{ range $key, $taxonomy := .Site.Taxonomies.tags }}
-        <div class="tag">
-            <li class="tag-header">{{ humanize $key }}</li>
+        <li class="tag">
+            <h1 class="tag-header">{{ humanize $key }}</h1>
             <ul>
                 {{ range $taxonomy.Pages }}
                 <li hugo-nav="{{ .RelPermalink}}"><a href="{{ .Permalink}}">{{ .LinkTitle }}</a></li>
                 {{ end }}
             </ul>
-        </div>
+        </li>
         {{ end }}
     </ul>
 </section>

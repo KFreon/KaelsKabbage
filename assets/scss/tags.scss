@@ -1,0 +1,27 @@
+@import "./variables.scss";
+
+.tags {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  .tag {
+    display: block;
+    width: 20%;
+    box-shadow: 0 0 5px 0 var(--lightgrey);
+    border-radius: 0.5rem;
+    margin: 1rem;
+    padding: 1rem;
+
+    .tag-header {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      list-style-type: none;
+    }
+  }
+}
