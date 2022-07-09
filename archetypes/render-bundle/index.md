@@ -1,8 +1,8 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "REPLACE_TITLE"
 date: {{ .Date }}
-postcard: ""
-slug: ""
+postcard: "{{ replace (title (after 11 .Name)) "-" "" }}_postcard"
+slug: "{{ lower (after 11 .Name) }}"
 ---
 
 hrender

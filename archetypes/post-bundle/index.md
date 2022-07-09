@@ -1,9 +1,9 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "REPLACE_TITLE"
 date: {{ .Date }}
 draft: true
 type: "post"
-slug: "{{ after 11 .Name }}"
+slug: "{{ lower (after 11 .Name) }}"
 tags: []
 ---
 
