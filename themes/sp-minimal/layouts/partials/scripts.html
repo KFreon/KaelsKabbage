@@ -3,9 +3,10 @@
 {{ $scripts := resources.Get "static/js/Scripts.js" }}
 {{ $mediaScripts := resources.Get "static/js/MediaScripts.js" }}
 {{ $stateful := resources.Get "static/js/StatefulScripts.js" }}
+{{ $serviceWorker := resources.Get "static/js/RegisterServiceWorker.js" }}
 
 {{ $executed := resources.Get "static/js/ExecutedScripts.js" }}
-{{ $combined := slice $pagesIndex $search $scripts $mediaScripts $stateful $executed | resources.Concat "js/bundle.js" | minify }}
+{{ $combined := slice $pagesIndex $search $scripts $mediaScripts $stateful $serviceWorker $executed | resources.Concat "js/bundle.js" | minify }}
 
 <script type="text/javascript" defer src="{{ $combined.Permalink }}"></script>
 
