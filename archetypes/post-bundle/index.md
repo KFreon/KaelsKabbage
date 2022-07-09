@@ -3,7 +3,7 @@ title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 draft: true
 type: "post"
-slug: "{{ .Name }}"
+slug: "{{ after 11 .Name }}"
 tags: []
 ---
 

@@ -1,7 +1,6 @@
 - Make postcards for actual posts
   - put postcard as top background on posts?
 - Somehow auto generate the slug, postcard text, title (auto remove date)
-- Clean up c# projects and stylesheets and shortcodes
 - LOSE GA for netlify analytics?
   - Server side, so accurate analytics, and GA is slow and being made illegal...
 - service worker? 
