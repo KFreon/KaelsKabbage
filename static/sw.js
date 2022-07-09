@@ -53,7 +53,10 @@ self.addEventListener("fetch", (event) => {
     caches.open(cacheName).then((cache) => 
       cache.match(event.request).then((cachedResponse) => {
         const fetchedResponse = fetch(event.request).then((networkResponse) => {
-          cache.put(event.request, networkResponse.clone());
+          // Can't cache partial responses 206 (i.e. lazy videos)
+          if ([200, 304].includes(networkResponse.status)) {
+            cache.put(event.request, networkResponse.clone());
+          }
 
           return networkResponse;
         });
