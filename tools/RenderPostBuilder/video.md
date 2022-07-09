@@ -1,1 +1,0 @@
-{{< video path="%path%" alt="" width="%width%" height="%height%" >}}  
