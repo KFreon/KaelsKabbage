@@ -14,6 +14,7 @@ const formatted = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
 
 const formattedName = postName
   .replace(/:/g, "-")
+  .replace(/,/g, "")
   .replace(/\s/g, "-")
   .replace(/--/g, "-")
   .toLowerCase()
