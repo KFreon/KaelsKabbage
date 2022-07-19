@@ -10,3 +10,12 @@
   - hugo/netlify
   - VS/VSCode
   - PC specs?
+  - ditto
+  - postman/Thunderclient (in vscode)
+  - WIndows terminal
+  - ffmpeg
+  - WSL
+  - Microsoft Todo
+  - Android
+  - Everything
+  - Powertoys (Window manager, power rename, Alt + space)
