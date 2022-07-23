@@ -9,18 +9,19 @@
 
 
 
-const shellCacheName = "KabbageShell";
+const cacheName = "KabbageCache";
+const offlinePageUrl = "offline/index.html";
+
 const shellFiles = [
-  "index.html", "404.html", 
+  "index.html", "404.html",
   "fonts/FiraCode-Regular.woff", "fonts/FiraCode-Regular.woff2", 
   "img/BlenderIcon.png", "img/Cabbage.png", "img/Cabbage_Shortcut.png"];
-const cacheName = "KabbageCache";
 
 self.addEventListener("install", function(event) {
   // Perform install steps
   console.log("SW Install");
   event.waitUntil(
-    caches.open(shellCacheName).then(function(cache) {
+    caches.open(cacheName).then(function(cache) {
       console.log("SW Caching app shell");
       return cache.addAll(shellFiles);
     })
@@ -32,7 +33,7 @@ self.addEventListener("activate", function(event) {
   event.waitUntil(
     caches.keys().then(function(keyList) {
       return Promise.all(keyList.map(function(key) {
-        if (key !== shellCacheName) {
+        if (key !== cacheName) {
           console.log("SW Removing old cache shell", key);
           return caches.delete(key);
         }
@@ -49,19 +50,35 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  event.respondWith(
-    caches.open(cacheName).then((cache) => 
-      cache.match(event.request).then((cachedResponse) => {
-        const fetchedResponse = fetch(event.request).then((networkResponse) => {
-          // Can't cache partial responses 206 (i.e. lazy videos)
-          if ([200, 304].includes(networkResponse.status)) {
-            cache.put(event.request, networkResponse.clone());
-          }
+  // Offline based on: https://googlechrome.github.io/samples/service-worker/custom-offline-page/
+  event.respondWith((async() => {
+    const cache = await caches.open(cacheName);
+    const cachedResponse = await cache.match(event.request);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
 
-          return networkResponse;
-        });
+    try {
+      const networkResponse = await fetch(event.request);
 
-        return cachedResponse || fetchedResponse;
-      }))
-  );
-});
+      // Can't cache partial responses 206 (i.e. lazy videos)
+      if ([200, 304].includes(networkResponse.status)) {
+        cache.put(event.request, networkResponse.clone());
+      }
+
+      return networkResponse;
+    }
+    catch{
+      const offlinePage = await cache.match(offlinePageUrl);
+
+      // There's an issue atm where you're not allowed to redirect unexpectedly, so we need to build a new response without redirect flag.
+      // https://stackoverflow.com/questions/45434470/only-in-chrome-service-worker-a-redirected-response-was-used-for-a-reque
+
+      return new Response(offlinePage.body, {
+        headers: offlinePage.headers,
+        status: offlinePage.status,
+        statusText: offlinePage.statusText,
+      });
+    }
+  })())
+})
