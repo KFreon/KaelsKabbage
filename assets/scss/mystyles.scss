@@ -87,7 +87,7 @@ header {
 
   .description {
     font-size: 1rem;
-    text-align: right;
+    text-align: center;
   }
 
   #hamburger-menu-button {
@@ -575,4 +575,13 @@ body {
 
 .halfsize-frame, .quartersize-frame, .fullsize-frame, .media-frame {
   display: none;
+}
+
+details {
+  &.boxed {
+    border: 1px solid var(--lightgrey);
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+  }
 }

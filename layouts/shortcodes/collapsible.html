@@ -1,0 +1,4 @@
+<details class='{{ with .Get "isBox" }}{{ "boxed" }}{{ end }}'>
+  <summary>{{ (.Get "title") | markdownify }}</summary>
+  {{.Inner | markdownify }}
+</details>
