@@ -54,31 +54,36 @@ self.addEventListener("fetch", (event) => {
   event.respondWith((async() => {
     const cache = await caches.open(cacheName);
     const cachedResponse = await cache.match(event.request);
-    if (cachedResponse) {
+    const promise = getNetworkResponse(cache, event);
+    if (!cachedResponse) {
+      return await promise;
+    } else {
       return cachedResponse;
-    }
-
-    try {
-      const networkResponse = await fetch(event.request);
-
-      // Can't cache partial responses 206 (i.e. lazy videos)
-      if ([200, 304].includes(networkResponse.status)) {
-        cache.put(event.request, networkResponse.clone());
-      }
-
-      return networkResponse;
-    }
-    catch{
-      const offlinePage = await cache.match(offlinePageUrl);
-
-      // There's an issue atm where you're not allowed to redirect unexpectedly, so we need to build a new response without redirect flag.
-      // https://stackoverflow.com/questions/45434470/only-in-chrome-service-worker-a-redirected-response-was-used-for-a-reque
-
-      return new Response(offlinePage.body, {
-        headers: offlinePage.headers,
-        status: offlinePage.status,
-        statusText: offlinePage.statusText,
-      });
-    }
+    }    
   })())
 })
+
+getNetworkResponse = async (cache, ev) => {
+  try {
+    const networkResponse = await fetch(ev.request);
+
+    // Can't cache partial responses 206 (i.e. lazy videos)
+    if ([200, 304].includes(networkResponse.status)) {
+      cache.put(ev.request, networkResponse.clone());
+    }
+
+    return networkResponse;
+  }
+  catch{
+    const offlinePage = await cache.match(offlinePageUrl);
+
+    // There's an issue atm where you're not allowed to redirect unexpectedly, so we need to build a new response without redirect flag.
+    // https://stackoverflow.com/questions/45434470/only-in-chrome-service-worker-a-redirected-response-was-used-for-a-reque
+
+    return new Response(offlinePage.body, {
+      headers: offlinePage.headers,
+      status: offlinePage.status,
+      statusText: offlinePage.statusText,
+    });
+  }
+}
