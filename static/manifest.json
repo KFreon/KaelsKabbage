@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "Kaels-Kabbage",
+  "short_name": "Kaels-Kabbage",
+  "start_url": "."
+}
