@@ -2,5 +2,11 @@
   "$schema": "https://json.schemastore.org/web-manifest-combined.json",
   "name": "Kaels-Kabbage",
   "short_name": "Kaels-Kabbage",
-  "start_url": "."
+  "start_url": ".",
+  "display": "standalone",
+  "icons": [{
+    "src": "cabbage.png",
+    "sizes": "any",
+    "type": "image/png"
+  }]
 }
