@@ -1,6 +1,6 @@
 ---
 title: "Managed Services Handovers: the Good, the Bad, and the rest"
-date: 2022-07-24T19:04:45+10:00
+date: 2022-07-24T10:04:45+10:00
 type: "post"
 slug: "managed-services-handovers-the-good-the-bad-and-the-rest"
 tags: []
