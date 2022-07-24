@@ -5,7 +5,7 @@
   "start_url": ".",
   "display": "standalone",
   "icons": [{
-    "src": "cabbage.png",
+    "src": "img/Cabbage.png",
     "sizes": "any",
     "type": "image/png"
   }]
