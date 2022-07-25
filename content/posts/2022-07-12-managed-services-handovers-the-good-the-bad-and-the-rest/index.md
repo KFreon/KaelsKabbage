@@ -12,7 +12,7 @@ What do we want? What makes us sad?
 
 <!--more-->  
 
-Often, discussions on Managed Services vs Professional Services tend to focus on greenfields vs brown, handling multiple clients in a week, working with an unfamiliar codebase, etc.
+Discussions on Managed Services vs Professional Services tend to focus on greenfields vs brown, handling multiple clients in a week, working with an unfamiliar codebase, etc.
 But what can PS do to make our lives easier in MS during the project or during handover?
 What docs/info do we want? What do we NOT want to see?  
 
@@ -68,7 +68,7 @@ I don't expect to be able to replace the notes, I just hope to reduce mental loa
 - Good as reference when viewing code, allowing mapping between infrastructure and code to logical business processes
 - Good quick reference for how the client names things and how WE think they're connected
 
-### **Be explicit about versions**  
+### **Explicit versions**  
 - Node versions, cli versions, etc
 - Having it in the build script is better than nothing, but if you have a readme, put all the local tech requirements at the top so they can be assumed installed for the remainder of the readme
 
