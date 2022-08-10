@@ -1,46 +1,44 @@
 ---
 title: "What I Use"
 date: 2022-08-08T15:45:12+10:00
-draft: true
 type: "post"
 slug: "what-i-use"
 tags: []
 ---
 
-I've recently mentioned `Win + V` or other clipboard history tools and people are always surprised it exists.  
-So, here's a list of things I use, both tools and basic tips, from what I think is most useful descending.
+I recently mentioned `Win + V` in some internal channels and people are always surprised it exists.  
+So, here's a list of things, both tools and basic tips, from what I think is most useful descending.
 
 <!--more-->  
 
 # [Ditto](https://ditto-cp.sourceforge.io/)
-- Clipboard history tool.  
-- Provides access to historical copy/cut and paste it.  
-- Many other features.  
+- Clipboard history tool  
+- Provides access to historical copy/cut and paste it  
+- Many other features  
 - Alternative: `Win + V` on Windows, [Copyclip for MacOS (I'm told)](https://apps.apple.com/au/app/copyclip-clipboard-history/id595191960?mt=12)
 
-This is the nicest UI while staying out of the way.
-Many other tools like [Shapeshifter](https://shapeshifter.app/), [ClipX](https://bluemars.org/clipx/), etc do similar, but have more obtrusive UI to me.
+Many other tools like [Shapeshifter](https://shapeshifter.app/), [ClipX](https://bluemars.org/clipx/), etc do similar, but have more obtrusive UI.
 
 # [Everything](https://www.voidtools.com/support/everything/)
 - Windows Search tool
 - Similar to normal Windows Search, but actually works
 
-Does exactly what it says on the tin. Finds things, always, fast, no fuss.
+Finds files, always, fast, no fuss.
 
 # [Gitkraken](https://www.gitkraken.com/)
-- Visual Git client.  
-- Comparative to SouceTree, Github Desktop, Git Extensions, etc.
+- Visual Git client  
+- Comparative to SouceTree, Github Desktop, Git Extensions, etc
 - PAID for company
 
-Which git client is always a good discussion.
-I like this one because I really need to be able to see the git tree/history to understand what's happened previously, especially when I can pick a specific branch to view it's history in isolation.  
+"Which git client do you use" is always a good discussion.  
+I like this one because it clearly shows the git tree/history and can pick a specific branch to view it's history in isolation.  
 
 # [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver16) 
 - Nice modern database query tool
 - Not fully featured like SSMS
 - Built on VSCode's Monaco, so has extensions
 
-Way nicer and faster than SSMS, but doesn't have most of the features. 
+Way nicer and faster than SSMS, but doesn't have most of the features.  
 Extensions can provide some of the more common features such as [bacpac](https://docs.microsoft.com/en-us/sql/azure-data-studio/extensions/sql-server-dacpac-extension?view=sql-server-ver16)  
 > It comes with SSMS anyway, so if you have one, you probably have the other!
 
@@ -77,19 +75,20 @@ As above, some handy little tools that expand on Windows functionality.
 # [Microsoft Todo](https://to-do.microsoft.com/)
 - Todo app
 
-Nice simple todo app.
-Has substeps, so you can have "make cake" and list the ingredients under that.
-Has Android app (probably iOS too)
+Nice simple todo app.  
+Has substeps, so you can have "make cake" and list the ingredients under that.  
+Has mobile apps.
 
 # Really useful keyboard shortcuts
-- `Ctrl + backspace/del`: Delete word
+- `Ctrl + backspace/del`: Delete word  
+- `Ctrl + arrow`: Jump to start/end of word
 - `Ctrl + +/-`: Zoom BUT also back and forward in VS editor history
   - `Alt + arrow`: VSCode history
-
 
 # Other much more common things
 - **Slack/Teams:** Internal chats and company chats
 - **Microsoft Edge:** Feels nice, built in, better than Chrome. Don't hate FF, just never got into it
 - **Hugo/Netlify:** Static site builder for blog, hosted on Netlify. Simple and cheap.
 - **Visual Studio/VSCode:** Backend/Fronend dev. Haven't gotten into Jetbrains stuff.  
-- **ffmpeg:** Video conversion tool. Industry standard, text based. 
+- **ffmpeg:** Video conversion tool. Industry standard, text based.  
+- Some Visual Studio and VSCode [tips and tricks]({{< ref "/posts//15-vs-vscode-tips-and-tricks/index.md" >}}) I've written about before
