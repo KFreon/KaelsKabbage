@@ -2,4 +2,4 @@
   - put postcard as top background on posts?
 
 
-recent renders x3?
+recent renders (three previews instead of 1)?
