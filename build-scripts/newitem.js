@@ -34,4 +34,6 @@ exec(execString, () => {
   const newContent = content.replace("REPLACE_TITLE", postName)
 
   writeFileSync(filename, newContent)
+
+  exec('start ' + filename)
 })
