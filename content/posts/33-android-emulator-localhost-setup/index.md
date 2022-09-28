@@ -28,3 +28,7 @@ Here's the process I found after much Stack overflow (but essentially [this one]
   > EDIT: May not need to copy, might be able to just set it to `":<port>:"` (no stars)
 - Open VS AS ADMIN (or you'll get "can't connect to IIS server")
 - Confirm by visiting that address in emulator browser
+
+**EDIT: Sept 2022**  
+This tends to fail to run on PC restart (`unable to parse hostname`)  
+Changing back to `localhost` and running, then stopping and making it `*` again works...Weird, but fine.  
