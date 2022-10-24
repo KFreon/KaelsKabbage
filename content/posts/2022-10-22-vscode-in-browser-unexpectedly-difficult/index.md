@@ -1,6 +1,6 @@
 ---
 title: "VSCode in Browser: Unexpectedly difficult"
-date: 2022-10-224T13:52:39+10:00
+date: 2022-10-24T13:52:39+10:00
 type: "post"
 slug: "vscode-in-browser-unexpectedly-difficult"
 tags: ["vscode", "azure"]
