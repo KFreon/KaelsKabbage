@@ -40,8 +40,14 @@ if ($help) {
 	Exit
 }
 
+$sizeName = if ($halfsize) {"_halfsize"}
+  elseif ($smaller) {"_quartersize"}
+  else {""}
 $encoder = if ($vp9 -or $video) {"libvpx-vp9"} elseif ($av1) {"libsvtav1"} else {"libx264"}
-$outputName = if ($vp9) {"${output}_VP9.webm"} elseif ($av1) {"${output}_AV1.mp4"} elseif($video) {"${output}_halfsize.mp4"} else {"$output.mp4"}
+$outputName = if ($vp9) {"${output}_VP9.webm"} 
+  elseif ($av1) {"${output}${sizeName}_AV1.mp4"} 
+  elseif($video) {"${output}${sizeName}_halfsize.mp4"} 
+  else {"${output}${sizeName}.mp4"}
 $scaleExpression = if ($halfsize) {"-vf scale=-1:720:flags=lanczos"} elseif($smaller) {"-vf scale=-1:360:flags=lanczos"}
 $start = if ($start -ne 0) {"-start_number $start"} else {""}
 $ext = if ($webp) {"webp"} else {"png"}
