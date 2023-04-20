@@ -116,3 +116,10 @@ public class AppState
 ```
 {{% /split %}}
 {{< /splitter >}}  
+
+
+# Edit 20-04-2023  
+Some missing pieces to the above, and some new things I'm using:  
+- To create the `AppState`, call the `Refresh` method from the `Index.razor` or `_host.cshtml` or somewhere high level via the `OnInitializingAsync`.  
+- `NavLink` to easily create an `a` tag to Razor pages
+  - `<NavLink href="my-@page-path">Go to the page</NavLink>`   
