@@ -3,8 +3,12 @@ title: "Nextcloud: LAN only"
 date: 2023-04-04T13:39:36+10:00
 type: "post"
 slug: "nextcloud-lan-only"
-tags: ["cloud"]
+tags: ["nextcloud"]
 ---
+
+EDIT: May 2023. I'm admitting defeat here. I got to the point where I was pulling the docker images and editing them to work locally and I realised it's just ridiculous.  
+I'm frustrated it's this difficult.  
+Still, I also realised that I wanted an offsite backup anyway, so [here's the new plan.]({{< ref "/posts/2023-05-16-nextcloud-vps/index.md" >}})
 
 A few times during debugging sessions, some of my colleagues have brought up this fairly cool looking notes app.  
 It turns out to be far more than a notes app, and is in fact, an entire personal cloud called [Nextcloud](https://nextcloud.com/).  
