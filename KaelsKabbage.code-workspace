@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"path-autocomplete.pathMappings": {
+			"/": "${folder}/content"
+		}
+	}
+}
