@@ -1,8 +1,8 @@
 ---
-title: "What does a non-toy MAUI app look like?"
+title: "What does a production MAUI app look like?"
 date: 2023-06-10T12:39:04+10:00
 type: "post"
-slug: "non-toy-maui"
+slug: "production-maui-app"
 tags: ["maui"]
 ---
 
