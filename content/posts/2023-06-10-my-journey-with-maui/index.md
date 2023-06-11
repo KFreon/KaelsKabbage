@@ -265,6 +265,32 @@ public class DesignRepo : IDesignTimeDbContextFactory<Repo>
 
 > I feel like I could put the DB classes in the same project as the entry project, but I haven't tested that.  
 
+EFCore needs a connection string, which we usually get from `appsettings.json`.  
+We can do that!  
+
+# Configuration through `appsettings.json`  
+While this is similar to aspnetcore, there's a bit of extra setup here and requires some nuget packages:  
+- Microsoft.Extensions.Configuration.Binder  
+- Microsoft.Extensions.Configuration.Json  
+
+```cs
+// I've set the appsettings.json as an EmbeddedResource
+// So we need to get it's path with assembly
+var ass = Assembly.GetExecutingAssembly();
+var debugSettings = ass.GetManifestResourceStream("MAUIExampleWithEFCore.appsettings.json");
+
+// Add appsettings.json file
+var configRoot = new ConfigurationBuilder()
+    .AddJsonStream(debugSettings)
+    .Build();
+
+// Bind to Config class
+var config = new Config();
+configRoot.Bind(config);
+
+services.AddSingleton<Config>(config);
+```
+
 # Custom views/controls  
 It wasn't long before I wanted to encapsulate some view components for reuse.  
 This is especially true for xaml compared to html as it feels more verbose.  
