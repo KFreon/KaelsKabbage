@@ -7,7 +7,17 @@
     {{ hugo.Generator }}
     <meta name="description" content={{ if eq .Type "post" }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta property="og:image" content='{{ if .Param "postcard"}}{{.Site.BaseURL}}renders/{{ .Params.slug }}/img/{{ .Param "postcard" }}.jpg{{ else }}{{ .Site.Params.Kabbage }} {{ end }}'/>
+    <meta property="og:image" content='{{ if .Param "postcard"}}
+    {{.Site.BaseURL}}
+    {{if eq (.Param "type") "post" }}
+    {{"posts"}}
+    {{ else }}
+    {{ "renders" }}
+    {{ end }}
+    /{{ .Params.slug }}/img/{{ .Param "postcard" }}.jpg
+    {{ else }}
+    {{ .Site.Params.Kabbage }}
+    {{ end }}'/>
 
     <link rel="shortcut icon" async href="{{ .Site.BaseURL }}img/Cabbage_Shortcut.png">
     <link rel="manifest" href="manifest.json">

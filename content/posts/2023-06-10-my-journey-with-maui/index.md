@@ -3,6 +3,7 @@ title: "What does a production MAUI app look like?"
 date: 2023-06-10T12:39:04+10:00
 type: "post"
 slug: "production-maui-app"
+postcard: "MAUI_postcard"
 tags: ["maui"]
 ---
 
