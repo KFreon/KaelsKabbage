@@ -19,6 +19,13 @@ img {
   height: auto;
 }
 
+p {
+  > img {
+    margin: auto;
+    display: block;
+  }
+}
+
 #main-body.light {
   --main-background: #{$main-background};
   --transparentish-main-background: #{transparentize($main-background, 0.1)};
