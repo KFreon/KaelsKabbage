@@ -13,6 +13,9 @@ Here's a few tips and tricks and common patterns for a MAUI app that I found use
 
 <!--more-->  
 
+> EDIT: I've been informed that there's a thing called [Community MVVM Toolkit](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/) that takes care of a lot of things regarding observability.
+> Probably use that instead of all the `INotifyPropertyChanged` etc here.
+
 I'm not going to claim these are the only methods of getting good outcomes, or that I've even measured the outcomes...  
 But I've applied some common design patterns to this app and gotten a result I like.  
 
@@ -595,5 +598,6 @@ MainThread.InvokeOnMainThreadAsync(async() => await DoSomething());
 - Scrolling
   - I had difficulties getting scrolling working, perhaps because it was in a Popup.
   - `CollectionView` with an `ItemTemplate` set tended to work better than just a `ScrollView`
+- `CollectionView` cannot contain `ViewCell`. It fails cryptically with "Specified cast is not found". Use `ListView` instead.
 
 You can see the full solution [on Github](https://github.com/KFreon/MAUIExampleWithEFCore) for more context and information.
