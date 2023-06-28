@@ -1,13 +1,23 @@
 ﻿using System.Diagnostics;
+using System.Text;
 
 namespace Core
 {
     public static class FFMpegProcessor
     {
-        public static Task StartProcess(string tool, string workingDirectory, string argument)
+        public static Task StartProcess(string tool, string workingDirectory, string argument, StringBuilder? stdOut = null)
         {
-            Console.WriteLine();
-            Console.WriteLine($"Running: {Environment.NewLine}" +
+            void writer(string? str)
+            {
+                if (stdOut == null)
+                    Console.WriteLine(str);
+                else
+                    stdOut.AppendLine(str);
+            }
+
+
+            writer("");
+            writer($"Running: {Environment.NewLine}" +
                 $"Tool: {Path.GetFileNameWithoutExtension(tool)} {Environment.NewLine}" +
                 $"WorkingDir: {workingDirectory} {Environment.NewLine}" +
                 $"Args: {argument}");
@@ -25,8 +35,11 @@ namespace Core
                 StartInfo = psi,
                 EnableRaisingEvents = true
             };
-            process.OutputDataReceived += (sender, data) => Console.Write(data.Data);
-            process.ErrorDataReceived += FFMpegOutputWriter;
+            process.OutputDataReceived += (sender, data) => writer(data.Data);
+
+            if (stdOut == null)
+                process.ErrorDataReceived += (o, e) => FFMpegOutputWriter(e, writer);
+
             var tcs = new TaskCompletionSource<int>();
             process.Exited += (sender, args) =>
             {
@@ -40,7 +53,7 @@ namespace Core
             return tcs.Task;
         }
 
-        private static void FFMpegOutputWriter(object sender, DataReceivedEventArgs e)
+        private static void FFMpegOutputWriter(DataReceivedEventArgs e, Action<string?> writer)
         {
             if (e?.Data == null)
                 return;
@@ -48,7 +61,7 @@ namespace Core
             if (e.Data.StartsWith("frame="))
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
 
-            Console.WriteLine(e.Data);
+            writer(e.Data);
             Console.Out.Flush();
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Core;
 
@@ -13,6 +14,7 @@ namespace AssetOptimiser
     {
         public static Format[] VideoFormats { get; private set; }
         public static string ffmpegPath { get; private set; }
+        public static string ffprobePath => ffmpegPath?.Replace("ffmpeg.exe", "ffprobe.exe", StringComparison.InvariantCultureIgnoreCase);
         public static string cwepPath { get; private set; }
 
         public static void Init(int? crf)
@@ -23,23 +25,29 @@ namespace AssetOptimiser
                 new Format("VP9", "webm", "libvpx-vp9", crf ?? 40, 0, "-row-mt 1 -tiles 2x2 -threads 8"),
             };
 
+            Console.WriteLine("INITIALISING");
+
             ffmpegPath = Paths.GetFFMpegPath();
             cwepPath = GetCWebpPath();
         }
 
-        public static IEnumerable<PictureJob> GetPictures(string rootPath, bool isRender) => 
+        public static List<PictureJob> GetPictures(string rootPath, bool isRender) =>
             Directory.EnumerateFiles(rootPath, "*.png", SearchOption.AllDirectories)
                 .Select(x => new ConversionItem(Path.GetDirectoryName(x), Path.GetFileName(x), Path.GetFileNameWithoutExtension(x)))
-                .Select(f => new PictureJob(f.FileName, f.Directory, isRender));
+                .Select(f => new PictureJob(f.FileName, f.Directory, isRender))
+                .ToList();
 
-        public static IEnumerable<VideoJob> GetVideos(string rootPath, bool isRender) =>
-            Directory.GetFiles(rootPath, "*.mp4", SearchOption.AllDirectories)
+        public static List<VideoJob> GetVideos(string rootPath, bool isRender)
+        {
+            return Directory.GetFiles(rootPath, "*.mp4", SearchOption.AllDirectories)
                 .Where(x => !x.Contains("_av1", StringComparison.OrdinalIgnoreCase))
                 .Where(x => !x.Contains("_halfsize"))
                 .Where(x => !x.Contains("_quartersize"))
-                .SelectMany(video => VideoFormats.Select(f => new VideoJob(video, f, isRender)));
+                .SelectMany(video => VideoFormats.Select(f => new VideoJob(video, f, isRender))).ToList();
+        }
 
-        public static async Task ConvertPictures(IEnumerable<PictureJob> pictures, int webpQuality)
+
+        public static async Task ConvertPictures(List<PictureJob> pictures, int webpQuality)
         {
             Console.WriteLine($"Converting pictures...");
             foreach (var picture in pictures.DistinctBy(x => x.RootFilename))
@@ -68,7 +76,37 @@ namespace AssetOptimiser
             }
         }
 
-        public static async Task ConvertVideos(IEnumerable<VideoJob> jobs)
+        public static async Task<List<string>> ValidateVideos(List<VideoJob> jobs)
+        {
+            // Use FFProbe to double check that the main video format is yuv420p
+            // This format seems to be the only one supported by all browsers
+            // yuv444p isn't supported on Safari, it seems
+
+            // Also need to make sure it's not h/x265 which I get sometimes out of screenToGif
+
+            Console.WriteLine("Validating video formats...");
+
+            var videosWithFormatIssues = new List<string>();
+
+            foreach (var job in jobs)
+            {
+                var output = new StringBuilder();
+                await FFMpegProcessor.StartProcess(ffprobePath, job.Directory, $"-i {job.FileName} -show_streams", output);
+
+                // output has a load of info, but we're only looking for pix_fmt
+                var lines = output.ToString().Split(Environment.NewLine).Select(x => x.Split('='));
+                var pixelFormat = lines.FirstOrDefault(x => x[0] == "pix_fmt");
+                var codec = lines.FirstOrDefault(x => x[0] == "codec_name");
+                if (pixelFormat?.Any() == true && pixelFormat[1] != "yuv420p")
+                    videosWithFormatIssues.Add($"{job.FileName} - {pixelFormat[1]}");
+                else if (codec?.Any() == true && codec[1] == "hevc")
+                    videosWithFormatIssues.Add($"{job.FileName} - hevc");
+            }
+
+            return videosWithFormatIssues;
+        }
+
+        public static async Task ConvertVideos(List<VideoJob> jobs)
         {
             Console.WriteLine($"Converting videos...");
             foreach (var job in jobs)
@@ -77,7 +115,7 @@ namespace AssetOptimiser
                 var half = job.GetCompressedVideoExecutionString(Size.Halfsize);
                 var quarter = job.GetCompressedVideoExecutionString(Size.Quartersize);
                 var postcardExec = job.GetPostcardExecutionString();
-                
+
                 if (!File.Exists(job.FormattedPath(Size.Normal)))
                 {
                     // Not doing AV1 conversions from mp4, do it from source instead
