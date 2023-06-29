@@ -13,7 +13,7 @@
         {
             get
             {
-                if (Paths.ffmpegPath?.Length == 0)
+                if (Paths.ffmpegPath?.Length != 0)
                 {
                     return Paths.ffmpegPath;
                 }
@@ -42,7 +42,7 @@
         {
             get
             {
-                if (cwebpPath?.Length == 0)
+                if (cwebpPath?.Length != 0)
                 {
                     return cwebpPath;
                 }
@@ -56,6 +56,6 @@
             }
         }
 
-        public static string FFProbePath => ffmpegPath.Replace("ffmpeg.exe", "ffprobe.exe", StringComparison.InvariantCultureIgnoreCase);
+        public static string FFProbePath => FFMpegPath.Replace("ffmpeg.exe", "ffprobe.exe", StringComparison.InvariantCultureIgnoreCase);
     }
 }

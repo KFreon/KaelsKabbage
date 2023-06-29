@@ -9,6 +9,7 @@ using Core;
 //var allPosts = Directory.GetFiles("../../../../Content/Posts", "index.md", SearchOption.AllDirectories);
 //var renders = "../../../../Content/Renders/index.md";
 
+var basePath = Environment.GetCommandLineArgs()[1];
 var posts = Directory.GetFiles(Paths.PostsFolder, "index.md", SearchOption.AllDirectories);
 var renders = Directory.GetFiles(Paths.RendersFolder, "index.md", SearchOption.AllDirectories);
 
@@ -68,4 +69,4 @@ var allEntries = postIndexEntries.Select(x => new
 var serialiserOptions = new JsonSerializerOptions();
 serialiserOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
 var serialised = "const pagesIndex = " + JsonSerializer.Serialize(allEntries, options: serialiserOptions) + ";";
-File.WriteAllText(Path.Combine(Paths.BasePath, "../static/js/PagesIndex.js"), serialised);
+File.WriteAllText(Path.Combine(basePath, "../static/js/PagesIndex.js"), serialised);

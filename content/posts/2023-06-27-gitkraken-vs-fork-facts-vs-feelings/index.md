@@ -89,8 +89,8 @@ Let's take a bit of a look at some facts.
 
 
 ## Diff  
-- Gitkraken has some basic syntax highlighting and shows the entire file if desired
-- Fork has none, and I can't see a way to make it show the file (with all the diff stuff still highlighted)  
+- Gitkraken has some basic syntax highlighting and shows the entire file by default (I think)
+- Fork can show the entire file if requested (not default)
 - Both have image support  
 
 {{< splitter >}}
