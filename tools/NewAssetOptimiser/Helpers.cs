@@ -13,9 +13,6 @@ namespace AssetOptimiser
     public static class ConvertHelper
     {
         public static Format[] VideoFormats { get; private set; }
-        public static string ffmpegPath { get; private set; }
-        public static string ffprobePath => ffmpegPath?.Replace("ffmpeg.exe", "ffprobe.exe", StringComparison.InvariantCultureIgnoreCase);
-        public static string cwepPath { get; private set; }
 
         public static void Init(int? crf)
         {
@@ -24,11 +21,6 @@ namespace AssetOptimiser
                 new Format("AV1", "mp4", "libsvtav1", crf ?? 50, 0, "-movflags +faststart"),
                 new Format("VP9", "webm", "libvpx-vp9", crf ?? 40, 0, "-row-mt 1 -tiles 2x2 -threads 8"),
             };
-
-            Console.WriteLine("INITIALISING");
-
-            ffmpegPath = Paths.GetFFMpegPath();
-            cwepPath = GetCWebpPath();
         }
 
         public static List<PictureJob> GetPictures(string rootPath, bool isRender) =>
@@ -58,19 +50,19 @@ namespace AssetOptimiser
 
                 if (!File.Exists(picture.FullWebpPath))
                 {
-                    await FFMpegProcessor.StartProcess(cwepPath, picture.Directory, normalExec);
+                    await FFMpegProcessor.StartProcess(Paths.CwebpPath, picture.Directory, normalExec);
                 }
 
                 if (picture.IsRender)
                 {
                     if (!File.Exists(picture.HalfWebpPath))
                     {
-                        await FFMpegProcessor.StartProcess(cwepPath, picture.Directory, halfsizeExec);
+                        await FFMpegProcessor.StartProcess(Paths.CwebpPath, picture.Directory, halfsizeExec);
                     }
 
                     if (!File.Exists(picture.PostcardPath))
                     {
-                        await FFMpegProcessor.StartProcess(ffmpegPath, picture.Directory, postcardExec);
+                        await FFMpegProcessor.StartProcess(Paths.FFMpegPath, picture.Directory, postcardExec);
                     }
                 }
             }
@@ -91,7 +83,7 @@ namespace AssetOptimiser
             foreach (var job in jobs)
             {
                 var output = new StringBuilder();
-                await FFMpegProcessor.StartProcess(ffprobePath, job.Directory, $"-i {job.FileName} -show_streams", output);
+                await FFMpegProcessor.StartProcess(Paths.FFProbePath, job.Directory, $"-i {job.FileName} -show_streams", output);
 
                 // output has a load of info, but we're only looking for pix_fmt
                 var lines = output.ToString().Split(Environment.NewLine).Select(x => x.Split('='));
@@ -120,37 +112,28 @@ namespace AssetOptimiser
                 {
                     // Not doing AV1 conversions from mp4, do it from source instead
                     // Keeping this so I can regenerate when necessary if I don't have the source anymore
-                    await FFMpegProcessor.StartProcess(ffmpegPath, job.Directory, normal);
+                    await FFMpegProcessor.StartProcess(Paths.FFMpegPath, job.Directory, normal);
                 }
 
                 if (!File.Exists(job.FormattedPath(Size.Halfsize)))
                 {
                     // Not doing AV1 conversions from mp4, do it from source instead
                     // Keeping this so I can regenerate when necessary if I don't have the source anymore
-                    await FFMpegProcessor.StartProcess(ffmpegPath, job.Directory, half);
+                    await FFMpegProcessor.StartProcess(Paths.FFMpegPath, job.Directory, half);
                 }
 
                 if (!File.Exists(job.FormattedPath(Size.Quartersize)))
                 {
                     // Not doing AV1 conversions from mp4, do it from source instead
                     // Keeping this so I can regenerate when necessary if I don't have the source anymore
-                    await FFMpegProcessor.StartProcess(ffmpegPath, job.Directory, quarter);
+                    await FFMpegProcessor.StartProcess(Paths.FFMpegPath, job.Directory, quarter);
                 }
 
                 if (job.IsRender && !File.Exists(job.PostcardPath))
                 {
-                    await FFMpegProcessor.StartProcess(ffmpegPath, job.Directory, postcardExec);
+                    await FFMpegProcessor.StartProcess(Paths.FFMpegPath, job.Directory, postcardExec);
                 }
             }
-        }
-
-        public static string GetCWebpPath()
-        {
-            var cwebp = Path.Combine(Core.Paths.ToolsPath, "Webp", "cwebp.exe");
-            if (!File.Exists(cwebp))
-                throw new FileNotFoundException("Webp converter not found at: " + cwebp);
-
-            return cwebp;
         }
     }
 }

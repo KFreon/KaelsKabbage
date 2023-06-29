@@ -32,7 +32,7 @@ namespace AssetOptimiser
 
         static (int? CRF, int? webpQuality) ProcessArg(string arg)
         {
-            var isCRF = arg.ToLower().Contains("crf");
+            var isCRF = arg.Contains("crf", StringComparison.OrdinalIgnoreCase);
             if (isCRF)
             {
                 if (!int.TryParse(arg.Replace("--crf=", ""), out int crf))
@@ -41,7 +41,7 @@ namespace AssetOptimiser
                 return (crf, null);
             }
 
-            var isQ = arg.ToLower().Contains("webpq");
+            var isQ = arg.Contains("webpq", StringComparison.OrdinalIgnoreCase);
             if (isQ)
             {
                 if (!int.TryParse(arg.Replace("--webpq=", ""), out int webpQ))
