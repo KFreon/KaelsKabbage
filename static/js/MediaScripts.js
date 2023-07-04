@@ -113,3 +113,55 @@ function setupLazyVideos() {
     }
   });
 }
+
+function zoomImage(e) {
+  const {x, y, width, height, top} = e.getBoundingClientRect();
+  const left = x;
+
+  const viewWidth = window.innerWidth;
+  const viewHeight = window.innerHeight;
+  
+  const imageCenterWidth = width / 2
+  const viewCenterWidth = viewWidth / 2
+  const imageAbsoluteCenterWidth = imageCenterWidth + left;
+  const widthDiff = viewCenterWidth - imageAbsoluteCenterWidth;
+
+  const imageCenterHeight = height / 2
+  const viewCenterHeight = viewHeight / 2
+  const imageAbsoluteCenterHeight = imageCenterHeight + top - 50;  // top buffer
+  const heightDiff = viewCenterHeight - imageAbsoluteCenterHeight;
+
+  const xscale = viewWidth / width;
+  const yscale = viewHeight / height;
+  const scale = Math.min(xscale, yscale);
+
+  const widthDiffScaled = widthDiff / scale
+  const heightDiffScaled = heightDiff / scale
+
+  const originalStyle = {
+    transform: 'scale(1) translate(0px)',
+    zIndex: e.metaZ,
+    boxShadow: '',
+    background: 'transparent'
+  }
+
+  const zoomedStyle = {
+    transform: `scale(${scale} translate(${widthDiffScaled}px, ${heightDiffScaled}px)`,
+    zIndex: 9999,
+    boxShadow: '0 0 10px 10px black',
+    background: 'black'
+  }
+
+  // z-index chained after transforms finished?
+
+  // Set saved zIndex if required
+  if (e.style.zIndex != maxZIndex) {
+    e.metaZ = e.style.zIndex;
+  }
+
+  if (!e.style.transform || e.style.transform === originalTransform) {
+    e.style = {...e.style, ...zoomedStyle}
+  } else {
+    e.style = {...e.style, ...originalStyle}
+  }
+}

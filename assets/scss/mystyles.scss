@@ -584,6 +584,12 @@ body {
   display: none;
 }
 
+.image {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  position: relative;
+}
+
 details {
   &.boxed {
     border: 1px solid var(--lightgrey);

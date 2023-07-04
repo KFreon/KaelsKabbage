@@ -72,6 +72,14 @@
   }
 }
 
+.split-codeblock {
+  > div {
+    h2 {
+      margin-top: 0;
+    }
+  }
+}
+
 code {
   font-family: "Fira Code";
   font-size: 1rem;

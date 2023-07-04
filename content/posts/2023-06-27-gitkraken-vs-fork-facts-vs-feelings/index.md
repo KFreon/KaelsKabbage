@@ -13,17 +13,16 @@ I started with Gitkraken, moved to Fork because it was cheaper and I wanted to t
 
 <!--more-->  
 
-{{< splitter >}}
-{{< split side=left title="[Fork](https://git-fork.com/)" >}}
-{{< image path="img/ForkUI" alt="Fork is a fairly simple UI, nothing flashy" >}}
-{{< /split >}}
-{{< split side=right title="[Gitkraken](https://www.gitkraken.com/)" >}}
-{{< image path="img/GitkrakenUI" alt="Gitkraken's UI is possibly simpler, but has some fancier looks" >}}
-{{< /split >}}
-{{< /splitter >}} 
+
+# Facts Overview   
 
 {{< splitter >}}
-{{% split side=left title="[Fork](https://git-fork.com/)" %}}
+{{< split side=left title="Fork" >}}
+{{< image path="img/ForkUI" alt="Fork is a fairly simple UI, nothing flashy" >}}  
+
+<!-- silly fix for markdown rendering inside other shortcodes -->
+{{< simplemarkdown >}}  
+
 ## Facts
 - $50 one-off
 - Windows, Mac
@@ -38,8 +37,14 @@ I started with Gitkraken, moved to Fork because it was cheaper and I wanted to t
 ## Cons
 - Not super flashy
 - Can't set defaults for things like pull rebase, force push, etc
-{{% /split %}}
-{{% split side=right title="[Gitkraken](https://www.gitkraken.com/)" %}}
+{{< /simplemarkdown >}}
+
+{{< /split >}}
+{{< split side=right title="Gitkraken" >}}
+{{< image path="img/GitkrakenUI" alt="Gitkraken's UI is possibly simpler, but has some fancier looks" >}}
+
+<!-- silly fix for markdown rendering inside other shortcodes -->
+{{< simplemarkdown >}}
 ## Facts
 - $60/month  
 - Windows, Mac, Linux
@@ -54,93 +59,116 @@ I started with Gitkraken, moved to Fork because it was cheaper and I wanted to t
 - Slower than Fork
 - No GCM ☹️
 - Yearly subscription instead of one-off payment  
-{{% /split %}}
-{{< /splitter >}}  
+{{< /simplemarkdown >}}
+
+{{< /split >}}
+{{< /splitter >}} 
+
+# Feeling Overview  
 
 The differences aren't significant between Gitkraken and Fork, but something FEELS different.  
-Even now writing this, I don't know whether which one feels better... It's almost a mix of both.  
+I don't know whether I can put words to it, but that's what I'm going to try.  
 
 I don't know whether I'll come out of this with a recommendation either way, but definitely both are great.  
 
-Let's take a bit of a look at some facts.  
-> **Disclaimer**
-> Gitkraken was my first real git client
-> Fork is my current client
+Let's take a closer look at some facts.  
+> **Disclaimer**  
+> *Gitkraken* was my first real git client  
+> *Fork* is my current client
 
 # Facts  
-## Performance
-- Fork is faster
-- Gitkraken doesn't feel too slow though
 
-## General Usage
-- Gitkraken has some sensible defaults and allows overriding most of them
-  - e.g. Pull is a single button click (or right click on branch) and rebases by default  
-- Fork is closer to actual Git and asks questions
-  - e.g. Pull button brings up a modal asking what remote, whether to rebase etc
-- Push is another example. If upstream is ahead of local:
-  - Gitkraken will try, then ask whether you want to force push
-  - Fork will fail with the git output, and you should have ticked "Force Push" when pushing  
-- Git Graph is fairly similar
-  - Gitkraken has branches/tags pulled out on the left, hides commit time a bit  
-  - Fork inlines the branch/tag with the commit message and explictly shows SHA and commit time
-- Both have some kind of profile support, separating the git credentials and behaviours
-- Both have tab support across the top  
-- Both have commit/graph filtering based on branch or search text  
+| **Facts** | Fork | Gitkraken |
+|----|----|----|
+| Performance | 🏎️ | 🚗 (not *slow* just not as fast) |
+| Sensible defaults | More like Git, asks questions | Sensible defaults |
+| *e.g. Pulling* | Modal with options like "Force" | Single button, rebase by default (I think) |
+| *e.g. Pushing with upstream changes* | Fails with Git output, needed to tick box in modal | Fails but asks if you want to Force Push |
+| Graph | Inlines branch/tag with commit message, shows SHA and commit time | Branch/tag pulls out to left, hides commit time a little |
+| Profiles (separate creds and behaviour) | Yes | Yes |
+| Tabs support | Across top | Across top |
+| Search/filtering | Yes | Yes |
 
 
 ## Diff  
-- Gitkraken has some basic syntax highlighting and shows the entire file by default (I think)
-- Fork can show the entire file if requested (not default)
-- Both have image support  
+They both have similar features, although I'd say Gitkrakens is slightly better, better syntax highlighting, better support for entire file view, etc.  
 
 {{< splitter >}}
 {{< split side=left title="Fork Diff" >}}
-{{< image path="img/ForkDiff" alt="Fork has a clean simple diff in the Git vein, nothing flashy" >}}
+{{< video path="img/ForkDiff" alt="Fork has a clean simple diff in the Git vein, nothing flashy" >}}
 {{< /split >}}
 {{< split side=right title="Gitkraken Diff" >}}
-{{< image path="img/GitkrakenDiff" alt="Gitkrakens diff has some syntax highlighting, but s" >}}
+{{< image path="img/GitkrakenDiff" alt="Gitkrakens diff has some syntax highlighting!" >}}
 {{< /split >}}
 {{< /splitter >}}  
 
-## Working with Commits and branches
-- Gitkraken can reword commits just by clicking the commit message
-- Fork requires interactive rebase
-- Fork can do `Ctrl + Enter` in the commit message to commit staged and `Ctrl + Shift + Enter` to commit and push  
-- Fork has `Ctrl + B` on a branch to create a new branch  
-- Fork stash asks for name when stashing and add asks if you want to delete it when applying
-- Gitkraken just one-button does stash and pop, and requires manual renaming and applying without deleting  
-- Neither support [git worktrees](https://git-scm.com/docs/git-worktree)  
+## Commits and branches  
+| **Commits and branches** | Fork | Gitkraken |
+|---|---|---|
+| Rebase features | Good keyboard shortcuts | Easy reword, drop, reorder, etc |
+| | `Ctrl + Enter` to commit staged, `Ctrl + Shift + Enter` to commit and push | |
+| Create branch | `Ctrl + B` on a branch | Right click --> Create |
+| Stashing | Asks for name and asks if you want to delete when applying | One click stash/pop, requires manual rename and manual apply only |
+| Worktrees | No ☹️ | No ☹️ |
 
 ## Integrations  
-- Fork uses the Git Credential Manager, sharing credentials with most other git tools  
-- Gitkraken does not support GCM and uses it's own mechanisms (oauth, PAT, etc)  
-- Fork can get information about Github PR's, nothing from Azure Devops  
-- Gitkraken has a bunch of full integrations, exposing PR's, Issues, and a load of other things
+| **Integrations** | Fork | Gitkraken |
+|---|---|---|
+| Git Credential Manager | Yes 😀 | No 😭 oauth, PAT's, etc |
+| Github | Shows some info about PR's, etc | Extensive integrations (issues, PR's, etc) |
+| Azure | No | Yes |
+| Other | No? | Yes, many more integrations |
 
 ## Other features
-- Gitkraken has it's own Workspaces feature allowing a custom board and whatnot for teams, etc
-- Gitkraken has a custom terminal with additional git features  
-- Fork allows opening the system default terminal
-- Fork has a button that allows opening any detected sln in Visual Studio, the whole repo in VSCode, and the Azure Devops url in the default browser
+### Gitkraken
+- Has it's own Workspaces feature allowing a custom board and whatnot for teams, etc
+- Has a custom terminal with additional git features  
+
+### Fork
+- Allows opening the system default terminal
+- Has a button that allows opening any detected sln in Visual Studio, the whole repo in VSCode, and the Azure Devops url in the default browser
+
+---
 
 # Feelings  
-It kinda feels like I was leaning towards Gitkraken up there, and to some extent, I am.  
+Sometimes it doesn't matter what the tool does, it's more about how it feels.  
+Reading all the above "facts", it feels like I'm leaning towards Gitkraken, and to some extent I am.  
 It's defaults fit my workflow quite well, and SOMETHING about it just feels a bit nicer.  
 Perhaps it's the fact that the defaults and flows mean I get less prompts, and if I set something that ISN'T a default, it's NOT remembered.  
-That sounds bad, but recently in Fork, I ticked "Remove stash after applying" and moved on, but it was remembered the next time, which I didn't want.  
-That said...Gitkraken auto-deletes it, so I don't know what to make of it.  
 
-Two massive, almost overwhelmingly superior, features Fork has are:
+That sounds like the correct behaviour, but recently in Fork I ticked "Remove stash after applying" and moved on, but it was remembered the next time which I didn't want.  
+That said...Gitkraken auto-deletes it...  
+
+The UI differences are there but they're not significant, and yet I **feel** like Gitkraken is a bit nicer. Crisper.  
+Perhaps it's just bias.  
+
+Gitkraken is leaning into some distinguishing features like it's Terminal, Workspaces, and other integrations which is nice BUT I don't care as much about that as I do some other things like:  
 - Performance  
 - GCM support  
 
-While Gitkraken isn't really slow, but it's slower than Fork.  
-Gitkraken's auth flow is just a barrier too far.  
-Fork just pops the standard Git auth window. Gitkraken DOES have something similar, but it's not working as expected for me, and I used to use PAT's, but they only live for 90 days for each organisation (90 days is an org restriction, and I work across multiple Azure orgs and tenants)  
+Fork is massively almost overwhelmingly superior in both of these aspects.  
+Integrations are great, but it doesn't feel worth juggling PAT's to make it work.  
+To be fair, Gitkraken isn't really slow, it's slower than Fork.  
+
+> Another disclaimer  
+> I did have some issues with Gitkakens one-button oauth solution and submitted a bug.  
+> It's just not something they're focussing on at this stage (I have a slightly unusual setup)  
 
 # Conclusion?  
-Before I started this post, I was feeling like Gitkraken probably fit my workflow better, but had the massive auth hole holding it back.  
-After writing all this, I think that's cemented for me.  
+**TL;DR FACTS**  
+- Fork = Great  
+- Gitkraken = Great  
+- Fork is faster and supports GCM
+- Gitkraken has vastly superior integrations  
 
-Being able to do something weird like drop or reorder a single commit without fussing with a rebase, or quickly reword the commit message is just...nice.  
+**TL;DR FEELINGS**  
+- GCM is too good to give up  
+- Performance is a pretty nice feature  
+- Juggling commits is better in Gitkraken  
+- Integrations are getter in Gitkraken
+- BUT...  
+  - I don't think it's a good enough trade-off yet  
 
+e.g. Being able to do something weird like drop or reorder a single commit without fussing with a rebase, or quickly reword the commit message is just...nice.  
+
+Clearly I'm still conflicted about this, as such, I'm going to use the easiest one which is Fork for now.  

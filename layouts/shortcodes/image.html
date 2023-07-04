@@ -3,7 +3,7 @@
 {{ $png := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".png") ""))}}
 
 <!-- Not sure why we need it in here. Dunno what's nil, but something is and I can't find it. -->
-<div class="media image">
+<div class="media image" onclick="zoomImage(this)">
     <picture class="quartersize-frame media-frame">
         <!-- need .Permalink in srcset so it also works in the list page -->
         <!-- NOTE: There's currently no quartersize images so just duplicate the halfsize -->
