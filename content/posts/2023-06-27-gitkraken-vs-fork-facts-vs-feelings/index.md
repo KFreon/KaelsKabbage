@@ -55,7 +55,7 @@ They're both great either way.
 [Gitkraken](https://www.gitkraken.com/)  
 
 ## Facts
-- $60/month  
+- $60/year  
 - Windows, Mac, Linux
 
 ## Pros
