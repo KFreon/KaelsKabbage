@@ -27,7 +27,8 @@ They're both great either way.
 <!-- silly fix for markdown rendering inside other shortcodes -->
 {{< simplemarkdown >}}  
 
-[Gitkraken](https://www.gitkraken.com/)  
+[Fork](https://git-fork.com/)
+
 ## Facts
 - $50 one-off
 - Windows, Mac
@@ -51,7 +52,7 @@ They're both great either way.
 <!-- silly fix for markdown rendering inside other shortcodes -->
 {{< simplemarkdown >}}
 
-[Fork](https://git-fork.com/)
+[Gitkraken](https://www.gitkraken.com/)  
 
 ## Facts
 - $60/month  
