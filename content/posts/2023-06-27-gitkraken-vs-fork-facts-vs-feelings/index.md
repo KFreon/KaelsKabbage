@@ -1,7 +1,6 @@
 ---
 title: "Gitkraken vs Fork: Facts vs Feelings"
 date: 2023-06-27T08:55:10+10:00
-draft: true
 type: "post"
 slug: "gitkraken-vs-fork-facts-vs-feelings"
 tags: ["git", "gitkraken", "fork"]
@@ -13,8 +12,13 @@ I started with Gitkraken, moved to Fork because it was cheaper and I wanted to t
 
 <!--more-->  
 
+The differences aren't significant between Gitkraken and Fork, but something FEELS different.  
+I don't know whether I can put words to it, but that's what I'm going to try.  
+They're both great either way.  
 
-# Facts Overview   
+{{< toc levels=2 >}}
+
+# The Facts   
 
 {{< splitter >}}
 {{< split side=left title="Fork" >}}
@@ -23,6 +27,7 @@ I started with Gitkraken, moved to Fork because it was cheaper and I wanted to t
 <!-- silly fix for markdown rendering inside other shortcodes -->
 {{< simplemarkdown >}}  
 
+[Gitkraken](https://www.gitkraken.com/)  
 ## Facts
 - $50 one-off
 - Windows, Mac
@@ -45,6 +50,9 @@ I started with Gitkraken, moved to Fork because it was cheaper and I wanted to t
 
 <!-- silly fix for markdown rendering inside other shortcodes -->
 {{< simplemarkdown >}}
+
+[Fork](https://git-fork.com/)
+
 ## Facts
 - $60/month  
 - Windows, Mac, Linux
@@ -64,23 +72,14 @@ I started with Gitkraken, moved to Fork because it was cheaper and I wanted to t
 {{< /split >}}
 {{< /splitter >}} 
 
-# Feeling Overview  
-
-The differences aren't significant between Gitkraken and Fork, but something FEELS different.  
-I don't know whether I can put words to it, but that's what I'm going to try.  
-
-I don't know whether I'll come out of this with a recommendation either way, but definitely both are great.  
-
 Let's take a closer look at some facts.  
 > **Disclaimer**  
 > *Gitkraken* was my first real git client  
 > *Fork* is my current client
 
-# Facts  
-
-| **Facts** | Fork | Gitkraken |
+|  | Fork | Gitkraken |
 |----|----|----|
-| Performance | 🏎️ | 🚗 (not *slow* just not as fast) |
+| Performance | <font size=10>🏎️</font> | <font size=10>🚗</font> (not *slow* just not as fast) |
 | Sensible defaults | More like Git, asks questions | Sensible defaults |
 | *e.g. Pulling* | Modal with options like "Force" | Single button, rebase by default (I think) |
 | *e.g. Pushing with upstream changes* | Fails with Git output, needed to tick box in modal | Fails but asks if you want to Force Push |
@@ -103,7 +102,7 @@ They both have similar features, although I'd say Gitkrakens is slightly better,
 {{< /splitter >}}  
 
 ## Commits and branches  
-| **Commits and branches** | Fork | Gitkraken |
+| | Fork | Gitkraken |
 |---|---|---|
 | Rebase features | Good keyboard shortcuts | Easy reword, drop, reorder, etc |
 | | `Ctrl + Enter` to commit staged, `Ctrl + Shift + Enter` to commit and push | |
@@ -112,26 +111,35 @@ They both have similar features, although I'd say Gitkrakens is slightly better,
 | Worktrees | No ☹️ | No ☹️ |
 
 ## Integrations  
-| **Integrations** | Fork | Gitkraken |
+| | Fork | Gitkraken |
 |---|---|---|
 | Git Credential Manager | Yes 😀 | No 😭 oauth, PAT's, etc |
 | Github | Shows some info about PR's, etc | Extensive integrations (issues, PR's, etc) |
 | Azure | No | Yes |
 | Other | No? | Yes, many more integrations |
 
-## Other features
-### Gitkraken
-- Has it's own Workspaces feature allowing a custom board and whatnot for teams, etc
-- Has a custom terminal with additional git features  
+## Other features  
 
-### Fork
+{{< splitter >}}
+{{% split side=left title="Fork" nocollapse="true" %}}  
+
 - Allows opening the system default terminal
 - Has a button that allows opening any detected sln in Visual Studio, the whole repo in VSCode, and the Azure Devops url in the default browser
 
+{{% /split %}}
+{{% split side=right title="Gitkraken" nocollapse="true" %}}
+
+- Has it's own Workspaces feature allowing a custom board and whatnot for teams, etc
+- Has a custom terminal with additional git features  
+
+{{% /split %}}
+{{< /splitter >}}  
+
 ---
 
-# Feelings  
+# The Feels  
 Sometimes it doesn't matter what the tool does, it's more about how it feels.  
+
 Reading all the above "facts", it feels like I'm leaning towards Gitkraken, and to some extent I am.  
 It's defaults fit my workflow quite well, and SOMETHING about it just feels a bit nicer.  
 Perhaps it's the fact that the defaults and flows mean I get less prompts, and if I set something that ISN'T a default, it's NOT remembered.  
@@ -155,6 +163,7 @@ To be fair, Gitkraken isn't really slow, it's slower than Fork.
 > It's just not something they're focussing on at this stage (I have a slightly unusual setup)  
 
 # Conclusion?  
+
 **TL;DR FACTS**  
 - Fork = Great  
 - Gitkraken = Great  

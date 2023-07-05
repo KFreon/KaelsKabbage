@@ -78,17 +78,6 @@
     }
   }
 
-  .image {
-    transition: 0.25s all;
-    transform-origin: 80% 50%;
-
-    &.open {
-      .inner {
-        transform:scale(1.25);
-      }
-    }
-  }
-
   .info {
     > p {
       font-size: 0.8rem;

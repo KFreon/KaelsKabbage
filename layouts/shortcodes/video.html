@@ -10,7 +10,7 @@
 
 {{ $width := default "unset" (.Get "width") }}
 
-<div class="media video">
+<div class="media video" onclick="zoomImage(this)">
     <!-- Turns out this is the way it has to be. Media/sizes not supported in video tags. -->
 
     <!-- These errors are too bad, but we need it this way. -->

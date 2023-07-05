@@ -116,7 +116,6 @@ table {
 
       &:first-child {
         font-weight: bold;
-        white-space: nowrap;
       }
     }
   }
@@ -584,7 +583,7 @@ body {
   display: none;
 }
 
-.image {
+.media {
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   position: relative;

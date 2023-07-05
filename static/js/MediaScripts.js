@@ -121,19 +121,22 @@ function zoomImage(e) {
   const viewWidth = window.innerWidth;
   const viewHeight = window.innerHeight;
   
-  const imageCenterWidth = width / 2
-  const viewCenterWidth = viewWidth / 2
-  const imageAbsoluteCenterWidth = imageCenterWidth + left;
-  const widthDiff = viewCenterWidth - imageAbsoluteCenterWidth;
+  const imageCenterRelX = width / 2
+  const viewCenterX = viewWidth / 2
+  const imageAbsoluteCenterWidth = imageCenterRelX + left;
+  const widthDiff = viewCenterX - imageAbsoluteCenterWidth;
 
-  const imageCenterHeight = height / 2
-  const viewCenterHeight = viewHeight / 2
-  const imageAbsoluteCenterHeight = imageCenterHeight + top - 50;  // top buffer
-  const heightDiff = viewCenterHeight - imageAbsoluteCenterHeight;
+  const imageCenterRelY = height / 2
+  const viewCenterY = viewHeight / 2
+  const imageAbsoluteCenterHeight = imageCenterRelY + top - 50;  // top buffer
+  const heightDiff = viewCenterY - imageAbsoluteCenterHeight;
 
   const xscale = viewWidth / width;
   const yscale = viewHeight / height;
-  const scale = Math.min(xscale, yscale);
+
+
+  // Renders scale is too big somehow...
+  const scale = Math.min(xscale, yscale) - .1;
 
   const widthDiffScaled = widthDiff / scale
   const heightDiffScaled = heightDiff / scale
@@ -146,22 +149,19 @@ function zoomImage(e) {
   }
 
   const zoomedStyle = {
-    transform: `scale(${scale} translate(${widthDiffScaled}px, ${heightDiffScaled}px)`,
+    transform: `scale(${scale}) translate(${widthDiffScaled}px, ${heightDiffScaled}px)`,
     zIndex: 9999,
-    boxShadow: '0 0 10px 10px black',
+    boxShadow: '0 0 40px 50px black',
     background: 'black'
   }
 
-  // z-index chained after transforms finished?
-
   // Set saved zIndex if required
-  if (e.style.zIndex != maxZIndex) {
+  if (e.style.zIndex != zoomedStyle.zIndex) {
     e.metaZ = e.style.zIndex;
   }
 
-  if (!e.style.transform || e.style.transform === originalTransform) {
-    e.style = {...e.style, ...zoomedStyle}
-  } else {
-    e.style = {...e.style, ...originalStyle}
-  }
+  const targetStyle = (!e.style.transform || e.style.transform === originalStyle.transform) ? zoomedStyle : originalStyle;
+
+  // Can't do spread for some reason :(
+  Object.assign(e.style, targetStyle);
 }
