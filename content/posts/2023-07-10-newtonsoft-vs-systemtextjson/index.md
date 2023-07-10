@@ -148,22 +148,33 @@ public class JsonDeserialisationTests
 {{% /split %}}
 {{< /splitter >}}  
 
+## Source generated System.Text.Json!!  
+I've just learned that System.Text.Json has [Source Generation](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation-modes?pivots=dotnet-7-0) to improve performance!  
+It requires some setup, but it was just following the docs up there.  
+
 # Results  
 And drumroll 🥁🥁🥁  
 ## Serialisation Benchmark  
-|                  Method |     Mean |    Error |   StdDev | Ratio |      Gen0 |     Gen1 |     Gen2 | Allocated | Alloc Ratio |
-|------------------------ |---------:|---------:|---------:|------:|----------:|---------:|---------:|----------:|------------:|
-| SystemTextJsonSerialise | 10.84 ms | 0.064 ms | 0.054 ms |  0.45 |  265.6250 | 265.6250 | 265.6250 |   7.44 MB |        0.43 |
-|     NewtonsoftSerialise | 24.05 ms | 0.433 ms | 0.384 ms |  1.00 | 1062.5000 | 968.7500 | 250.0000 |  17.24 MB |        1.00 |
+|                            Method |      Mean |     Error |    StdDev |    Median | Ratio |      Gen0 |      Gen1 |     Gen2 | Allocated | Alloc Ratio |
+|---------------------------------- |----------:|----------:|----------:|----------:|------:|----------:|----------:|---------:|----------:|------------:|
+|           SystemTextJsonSerialise | 12.306 ms | 0.2318 ms | 0.6266 ms | 12.093 ms |  0.40 |  296.8750 |  234.3750 | 234.3750 |   8.69 MB |        0.45 |
+| SystemTextJsonSerialise_SourceGen |  9.052 ms | 0.1591 ms | 0.1893 ms |  8.999 ms |  0.27 |  265.6250 |  265.6250 | 265.6250 |   7.44 MB |        0.38 |
+|               NewtonsoftSerialise | 33.071 ms | 0.5385 ms | 0.4774 ms | 33.225 ms |  1.00 | 1250.0000 | 1125.0000 | 312.5000 |  19.46 MB |        1.00 |
+
 
 ## Deserialisation Benchmark  
-|                    Method |     Mean |    Error |   StdDev | Ratio | RatioSD |      Gen0 |      Gen1 |     Gen2 | Allocated | Alloc Ratio |
-|-------------------------- |---------:|---------:|---------:|------:|--------:|----------:|----------:|---------:|----------:|------------:|
-| SystemTextJsonDeserialise | 47.82 ms | 0.942 ms | 1.548 ms |  0.58 |    0.03 | 1083.3333 |  750.0000 | 250.0000 |  17.82 MB |        0.61 |
-|     NewtonsoftDeserialise | 82.80 ms | 1.655 ms | 3.067 ms |  1.00 |    0.00 | 2714.2857 | 1142.8571 | 285.7143 |  29.26 MB |        1.00 |
+|                              Method |     Mean |    Error |   StdDev | Ratio | RatioSD |      Gen0 |      Gen1 |     Gen2 | Allocated | Alloc Ratio |
+|------------------------------------ |---------:|---------:|---------:|------:|--------:|----------:|----------:|---------:|----------:|------------:|
+|           SystemTextJsonDeserialise | 46.99 ms | 0.929 ms | 2.171 ms |  0.61 |    0.04 | 1000.0000 |  666.6667 | 250.0000 |  16.68 MB |        0.57 |
+| SystemTextJsonDeserialise_SourceGen | 45.60 ms | 0.904 ms | 1.268 ms |  0.59 |    0.02 | 1000.0000 |  666.6667 | 250.0000 |  16.67 MB |        0.57 |
+|               NewtonsoftDeserialise | 77.68 ms | 1.551 ms | 2.414 ms |  1.00 |    0.00 | 2714.2857 | 1142.8571 | 285.7143 |  29.26 MB |        1.00 |
+
 
 # Conclusions  
 The benchmarks are pretty clear: System.Text.Json is faster and more memory efficient.  
 This does come with the caveat that it's also a needy little thing as well, and I had a lot of converters and reworking constructors as per my other post on [Migrating Newtonsoft to System.Text.Json]({{< ref "/posts/28-newtonsoft-to-system-net-json/index.md">}})  
+
+The source generated version is even faster to serialise, but essentially the same to deserialise.  
+I might be using it wrong though.  
 
 I won't be rushing out to move all the things away from Newtonsoft, but I won't be reaching for it either.  
