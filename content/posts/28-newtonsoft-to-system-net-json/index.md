@@ -3,7 +3,7 @@ title: "Migrating Newtonsoft to System.Text.Json"
 date: 2021-08-02T16:13:30+10:00
 type: "post"
 slug: "migrating-newtonsoft-to-system-text-json"
-tags: ["net5"]
+tags: ["net5", "json"]
 ---
 
 [System.Text.Json](https://devblogs.microsoft.com/dotnet/try-the-new-system-text-json-apis/) was released with dotnetcore 3 in 2019, and has been improved in NET 5.  
