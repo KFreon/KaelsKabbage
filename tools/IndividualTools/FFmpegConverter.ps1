@@ -9,7 +9,7 @@ param(
   [string]$fps=30,
   [string]$output="Output",
   [string]$bv=0,
-  [string]$pixfmt="yuv444p",
+  [string]$pixfmt="yuv420p",
   [string]$extras="",
   [switch]$help=$False,
   [string]$start=0,
