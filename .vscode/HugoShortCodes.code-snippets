@@ -64,7 +64,7 @@
         "prefix": "hrender",
         "body": [
             "{{< render_img\n\tdescription=\"${1:description1|description2}\"\n\trendertime=\"${3:xx seconds}\"\n\tsamples=\"${4:20}\"\n\tcredits=\"${6:name@link|name@link}\"\n\tengine=\"${7:Cycles}\"\n\tframes=\"${8:framecount}\"\n\ttutorialUrl=\"${9:tutorialUrl}\"\n\ttutorialText=\"${10:tutorial description}\" \n>}}",
-            "himg$0",
+            "himg\nhvideo$0",
             "{{< /render_img >}}",
         ],
         "description": "Render Shortcode"
