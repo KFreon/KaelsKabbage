@@ -267,7 +267,8 @@ public class DesignRepo : IDesignTimeDbContextFactory<Repo>
   
 - Generate migrations with `dotnet ef migrations add <migration name> --project MAUI/MAUI.csproj --startup-project DBEntry/DBEntry.csproj`
 
-> I feel like I could put the DB classes in the same project as the entry project, but I haven't tested that.  
+> ~~I feel like I could put the DB classes in the same project as the entry project, but I haven't tested that.~~
+> NO you can't do this, at least in my setup. Attempting it gives something like "'project' is a non-selfcontained executable and cannot be referenced from a self contained executable"
 
 EFCore needs a connection string, which we usually get from `appsettings.json`.  
 We can do that!  
