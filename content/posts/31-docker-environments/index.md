@@ -15,7 +15,7 @@ I succeeded! Kinda...
 {{% toc levels="two" %}}  
 
 ----------   
-I had to do a [LOT of reading]({{< relref "#readings" >}}) for this, and the final code solution is [here](https://github.com/kael-larkin/DockerisationExperiment) on [Github](https://github.com/kael-larkin/DockerisationExperiment).  
+I had to do a [LOT of reading]({{< relref "#readings" >}}) for this, and the final code solution is [here](https://github.com/kfreon/DockerisationExperiment) on [Github](https://github.com/kfreon/DockerisationExperiment).  
 
 This is a POC! I'm not saying this is how to do it and it's the best way to do it.  
 This is the way I did it, and it seems to work, but I'm sure there are better ways.  
@@ -507,7 +507,7 @@ This way, the proxy address in the UI is the same for the F5 AND stack container
 
 ### Revisiting!!  
 I did manage to get Docker Compose working from Visual Studio, but it felt flakey and seems to have the same caveats as the way I've done it in this post.  
-Feel free to [take  a look](https://github.com/kael-larkin/DockerisationExperiment/tree/visual-studio-compose) but I won't bother including it here.  
+Feel free to [take  a look](https://github.com/kfreon/DockerisationExperiment/tree/visual-studio-compose) but I won't bother including it here.  
 
 ## Do I need NodeJS installed on WSL?  
 > As alluded to earlier, I broke my Node install...  
@@ -633,7 +633,7 @@ https://medium.com/geekculture/getting-started-with-docker-in-your-react-js-appl
 Looots of stack overflow  
 
 # Github
-[Code](https://github.com/kael-larkin/DockerisationExperiment)  
+[Code](https://github.com/kfreon/DockerisationExperiment)  
 
 # Convenience: Final Dockerfiles side by side with relevant docker compose sections  
 ## Database  

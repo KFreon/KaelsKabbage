@@ -104,7 +104,7 @@ Multiple capture groups are also possible to style different parts of the syntax
 In the end, I came up with some syntax highlighting rules for Hugo Shortcodes, specifically my shortcodes and style thereof, so there's no guarantee that it'll work for anyone elses, but perhaps it'll help someone out.  
 
 [Extension repository](https://dev.azure.com/kaellarkin/_git/Hugo-Shortcode-Syntax-Highlighting) (not currently published)  
-**EDIT (1-2-2020):** Repository has [changed](https://github.com/kael-larkin/hugo-vscode-shortcode-syntax-highlighting) and it is now [published](https://marketplace.visualstudio.com/items?itemName=kaellarkin.hugo-shortcode-syntax
+**EDIT (1-2-2020):** Repository has [changed](https://github.com/kfreon/hugo-vscode-shortcode-syntax-highlighting) and it is now [published](https://marketplace.visualstudio.com/items?itemName=kaellarkin.hugo-shortcode-syntax
 ). For more info, see [The Revisit](/post/hugo-syntax-extension-revisited).  
 
 EDIT  

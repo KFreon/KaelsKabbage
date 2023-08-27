@@ -165,5 +165,5 @@ The above comparison is only the top Mediatr query being cached. Once more of th
 If not, it's been a fun ride!  
 
 ### Full example solution  
-[Github](https://github.com/kael-larkin/Mediator-Caching)  
+[Github](https://github.com/kfreon/Mediator-Caching)  
 [7z](./MediatorCaching_Example.7z)
