@@ -11,11 +11,10 @@
 {{ $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" }}
 {{ $minimalSimpleCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal-simple.css" }}
 
-{{ $firstSheets := slice $themeStylesCSS $minimalStylesCSS $minimalSimpleCSS $stylesCSS $code $tags $header }}
+{{ $prism := resources.Get "assets/css/prism.css" }}
+{{ $prismOverrides := resources.Get "assets/css/prism-overrides.css" }}
 
-
-
-
+{{ $firstSheets := slice $themeStylesCSS $minimalStylesCSS $minimalSimpleCSS $stylesCSS $code $tags $header $prism $prismOverrides }}
 
 <!-- These need to be last -->
 {{ $lastSheets := slice $mobileCSS $darkCSS }}
@@ -26,6 +25,8 @@
     <link rel="stylesheet" defer href="{{ .Permalink }}">
 {{ end }}
 {{ else }}
-  {{ $styles := $combined | resources.Concat "css/stupid.css" | minify}} <!-- Hugo types are dumb (cos they're hidden) and I need to coerce it's type to the correct one -->
-  <link rel="stylesheet" defer href="{{ $styles.Permalink }}">
+{{ range $combined }}
+  {{ $style := . | minify}} <!-- Hugo types are dumb (cos they're hidden) and I need to coerce it's type to the correct one -->
+  <link rel="stylesheet" defer href="{{ $style.Permalink }}">
+{{ end }}
 {{ end }}

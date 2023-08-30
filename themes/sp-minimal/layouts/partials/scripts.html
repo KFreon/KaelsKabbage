@@ -1,14 +1,15 @@
-{{ $search := resources.Get "static/js/search.js" }}
-{{ $pagesIndex := resources.Get "static/js/PagesIndex.js" }}
-{{ $scripts := resources.Get "static/js/Scripts.js" }}
-{{ $mediaScripts := resources.Get "static/js/MediaScripts.js" }}
-{{ $stateful := resources.Get "static/js/StatefulScripts.js" }}
-{{ $serviceWorker := resources.Get "static/js/RegisterServiceWorker.js" }}
+{{ $IsServer := .Site.IsServer }}
+{{ with resources.Match "assets/scripts/*" }}
+{{ range sort . }}
+{{ if $IsServer }}
+<script type="text/javascript" defer src="{{ .Permalink  }}"></script>
+{{ else }}
+{{ $minified := . | minify }}
+<script type="text/javascript" defer src="{{ $minified.Permalink  }}"></script>
+{{ end }}
+{{ end }}
+{{ end }}
 
-{{ $executed := resources.Get "static/js/ExecutedScripts.js" }}
-{{ $combined := slice $pagesIndex $search $scripts $mediaScripts $stateful $serviceWorker $executed | resources.Concat "js/bundle.js" | minify }}
-
-<script type="text/javascript" defer src="{{ $combined.Permalink }}"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-122097969-1"></script>

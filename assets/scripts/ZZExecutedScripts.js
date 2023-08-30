@@ -1,3 +1,4 @@
+// MUST be Loaded last
 setupLazyVideos();
 getTagFromQueryString()
 
