@@ -13,7 +13,7 @@ Why?
 
 <!--more-->  
 
-<div style="margin: auto;width:20%;">
+<div style="margin: auto;width:20%;min-width:40rem;">
 	<div class="tenor-gif-embed" data-postid="15779151" data-share-method="host" data-aspect-ratio="1.33333" data-width="100%"><a href="https://tenor.com/view/sheldon-oh-frickity-frack-not-this-again-gif-15779151">Sheldon Oh GIF</a>from <a href="https://tenor.com/search/sheldon-gifs">Sheldon GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 </div>
 
