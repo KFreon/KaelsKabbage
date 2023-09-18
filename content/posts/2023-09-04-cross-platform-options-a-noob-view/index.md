@@ -1,10 +1,10 @@
 ---
-title: "Cross platform options: A noobs exploration"
+title: "Cross platform options: A very shallow exploration"
 date: 2023-09-04T14:25:01+10:00
-draft: true
 type: "post"
-slug: "cross-platform-options-a-noobs-exploration"
-tags: ["maui", "flutter", "blazor"]
+draft: true
+slug: "cross-platform-options-a-very-shallow-exploration"
+tags: ["maui", "flutter", "blazor", "svelte", "capacitor"]
 ---
 
 You're starting a new app, which cross platform mobile framework should you choose?  
@@ -19,10 +19,15 @@ As devs, we tend to want one codebase to rule them all, instead of one for web, 
 
 Which inevitably leads us...here.  
 
+{{< image path="img/Architect" alt="The matrix was written in Javascript all along!" >}}
+
 The contenders I've decided to run with are:  
 - Flutter, Google's shiny cross platform framework using Dart.  
 - MAUI, Microsoft's shiny new cross plat- wait...that's just Xamarin Forms in a trenchcoat!  
-- Ionic/Capacitor, the new Cordova  
+- Capacitor, the new Cordova  
+
+{{< toc levels=2 >}}
+
 
 # Setup  
 I'm using the tools current at the time of publishing, and I'll be creating a silly app that uses some basic controls like popups, inputs, database, etc.  
@@ -32,23 +37,16 @@ I'm using the tools current at the time of publishing, and I'll be creating a si
   - Dart SDK 3.0.6  
 - Node 18.16.0  
 - SQlite database (separate for each project)  
-
-# Cordova, the fallen hero  
-I didn't even try Cordova for this, as I've had a growing number of issues in all my Cordova projects, as have my colleagues.  
-Flakey builds, unmaintained but critical plugins (push plugin, looking at you), confusing chains of plugins, confusing and inconsistent configuration.  
-I still have several Cordova projects, and I'm annoyed every time I have to touch it.  
-
-# Ionic/Capacitor, the new Cordova  
-Here we can use familiar web frameworks and tooling and only have to worry about the cross platform part when we want to.  
+- Svelte 4.0.5
 
 # Flutter
 Dart is an interesting language, felt like SwiftUI (even though Dart was first)  
 Flutter + Dart does things like Widgets, Futures, strong typing with `late` to escape, await/async, etc.  
 It's composition-based such that components are wrapped rather than adding attributes to them.  
 
-SCREENSHOT of the final product?
+You might also notice as we progress that I put the most work into this one, and progressively less the longer I went on 😀
 
-SPLIT VIEW?
+{{< video path="img/Demo_Flutter" alt="Flutter is interesting and looks pretty nice" >}}
 
 ## Things I like  
 - Default styles are nice and modern  
@@ -138,7 +136,9 @@ Widget build(BuildContext context) {
 ```  
 
 Padding wrapping sizing wrapping columns...  
-I find it very difficult to read and understand, but I'm just a noob and need to git gud.   
+I find it very difficult to read and understand, but I just need to git gud.   
+
+{{< image path="img/GitGud" alt="Git gud scrub" >}}
 
 ## Overall thoughts as a C# and web dev
 I don't think I like it, but it feels like my own bias/thought patterns make me not like it, not that it's actually a bad experience.  
@@ -150,6 +150,8 @@ However, it seems easy enough to learn if required and well tooled, leading to a
 Calling it Xamarin Forms is perhaps a bit harsh, it seems quite a bit of rework/fixing has gone into it, but it really is just Xamarin Forms++.  
 I will say that while that's true, the experience feels better to me than XF did.  
 I've written about [MAUI before]({{< ref "/posts/2023-06-10-my-journey-with-maui/index.md" >}}) and it was...fine.  It's fairly middle-of-the-road, decent but not amazing.  
+
+{{< video path="img/Demo_MAUI" alt="Microsoft is pushing MAUI, and it turns out to be ok" >}}
 
 ## Things I like  
 - C#! Yay!  
@@ -189,6 +191,8 @@ That shell is very thin and I didn't need to consider it with my silly app.
 
 I've written about [Blazor]({{< ref "/posts/2022-08-09-another-go-at-blazor/index.md" >}}) before as well, and it was above average.  
 
+{{< video path="img/Demo_MAUIBlazor" alt="Blazor can be wrapped in MAUI?? Yes! It can!" >}}
+
 ## Things I like  
 - Hot reload is pretty good (remember to tick "Reload on file save"!)  
 - All the good Blazor things  
@@ -203,7 +207,56 @@ I've written about [Blazor]({{< ref "/posts/2022-08-09-another-go-at-blazor/inde
   - Rebuild x2 and it seems to work  
 
 
-# Recommendation for new project  
+# Cordova, the fallen hero  
+I didn't even try Cordova for this, as I've had a growing number of issues in all my Cordova projects, as have my colleagues.  
+Flakey builds, unmaintained but critical plugins (push plugin, looking at you), confusing chains of plugins, confusing and inconsistent configuration.  
+I still have several Cordova projects, and I'm annoyed every time I have to touch it.  
+It was good while it lasted 😭  
+
+# Svelte + Capacitor, the new Cordova  
+[Capacitor](https://capacitorjs.com/) allows us to use familiar web frameworks and tooling and only have to worry about the cross platform part when we want to.  
+I decided to try out [Svelte](https://svelte.dev/) which has been on my radar for a while.  
+
+{{< video path="img/Demo_SvelteCapacitor" alt="Svelte and Capacitor make a nice combo" >}}
+
+## Svelte  
+Svelte comes in two pieces, Svelte and SvelteKit, both of which are used here.  
+I'd describe it as HTML++, as it augments the existing HTML markup with some useful additions, like loops, variables, etc.  
+Its syntax and behaviours are familiar to a web dev and it's additions to the HTML markup are clear and fairly simple to understand (mostly).  
+SvelteKit is the building side of the fence and has many adapters enabling various different approaches (nodejs, static pages, etc)   
+
+## Capacitor  
+Capacitor was reasonably simple to setup.  
+The instructions on the website are all I needed to get going.  
+SvelteKit has an [adapter](https://kit.svelte.dev/docs/adapter-static) which can render to static pages, as long as there's no server-side stuff, so I moved that to a quick backend in C#.  
+From there, it's `cap add android`, `cap sync`, `cap open android`.  
+The only catch is adding the required plugins, which I found was fine here, but was a more significant piece of work when migrating existing projects.  
+
+## Things I like  
+- SvelteKit uses directory routing, where each directory has a page in it that responds to the route.  
+- Vite hot reload is amazing as usual  
+- It feels like HTML++, and so is very accessible to existing web developers  
+- Capacitor is easier than Cordova  
+- Native projects!  
+
+## Things I don't like  
+- Things it adds to HTML are good, but sometimes undiscoverable  
+  - e.g. `bind:...` are a bit confusing
+- Some magic like server-side `data` variable  
+
+> I had trouble getting Typescript working, likely just me though
+
+
+## Overall thoughts as a C# and web dev  
+This is an excellent option, as you get it all with some limitations.  
+My silly toy project didn't run into any issues, but I can imagine scenarios where using device features becomes a bit painful, but for that, you have full access to the native projects as required so perhaps not even an issue.  
+The other really nice thing about this approach is the flexibility to use almost any web framework/libraries you want.  
+It's especially great when you're just wrapping a website for the appstores. 
+
+# Recommendation for a new project  
 If you're a C# dev, MAUI or Blazor/MAUI is a decent choice.  
-If you're a web dev, Ionic/Capacitor is probably a good choice.  
+If you're a web dev OR wrapping an existing website, `Web framework of choice` + Capacitor is a good choice.  
 If you're a fan of new shiny things, Flutter might be the one for you.  
+
+This is hardly an exhaustive list, or even a deep investigation into the options presented.  
+However, I think there's some learnings here despite the toy examples.  
