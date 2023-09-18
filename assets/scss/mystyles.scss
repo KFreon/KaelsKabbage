@@ -377,12 +377,14 @@ blockquote {
   }
 }
 
-.post-title {
-  margin-top: unset;
+.post-summary {
+  > p {
+    margin-bottom: 0;
+  }
 }
 
-.post-summary {
-  margin-bottom: 2rem;
+.post-title {
+  margin-top: unset;
 }
 
 .sidebar {
@@ -485,7 +487,7 @@ blockquote {
   .post-list-item {
     box-shadow: 0 0 1px 0 gray;
     border-radius: 0.5rem;
-    padding: 0.5rem;
+    padding: 1rem 1.5rem;
     margin: 0.5rem;
   }
 }
