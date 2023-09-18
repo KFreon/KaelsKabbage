@@ -69,4 +69,4 @@ var allEntries = postIndexEntries.Select(x => new
 var serialiserOptions = new JsonSerializerOptions();
 serialiserOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
 var serialised = "const pagesIndex = " + JsonSerializer.Serialize(allEntries, options: serialiserOptions) + ";";
-File.WriteAllText(Path.Combine(basePath, "../static/js/PagesIndex.js"), serialised);
+File.WriteAllText(Path.Combine(basePath, "../assets/scripts/PagesIndex.js"), serialised);

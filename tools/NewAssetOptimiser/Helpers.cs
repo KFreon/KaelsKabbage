@@ -25,6 +25,7 @@ namespace AssetOptimiser
 
         public static List<PictureJob> GetPictures(string rootPath, bool isRender) =>
             Directory.EnumerateFiles(rootPath, "*.png", SearchOption.AllDirectories)
+                .Concat(Directory.EnumerateFiles(rootPath, "*.jpg", SearchOption.AllDirectories).Where(x => !x.Contains("postcard", StringComparison.InvariantCultureIgnoreCase)))
                 .Select(x => new ConversionItem(Path.GetDirectoryName(x), Path.GetFileName(x), Path.GetFileNameWithoutExtension(x)))
                 .Select(f => new PictureJob(f.FileName, f.Directory, isRender))
                 .ToList();
