@@ -2,7 +2,6 @@
 title: "Cross platform options: A very shallow exploration"
 date: 2023-09-04T14:25:01+10:00
 type: "post"
-draft: true
 slug: "cross-platform-options-a-very-shallow-exploration"
 tags: ["maui", "flutter", "blazor", "svelte", "capacitor"]
 ---
@@ -26,6 +25,8 @@ The contenders I've decided to run with are:
 - MAUI, Microsoft's shiny new cross plat- wait...that's just Xamarin Forms in a trenchcoat!  
 - Capacitor, the new Cordova  
 
+> I know there's more, but these are my choices.  
+
 {{< toc levels=2 >}}
 
 
@@ -44,7 +45,7 @@ Dart is an interesting language, felt like SwiftUI (even though Dart was first)
 Flutter + Dart does things like Widgets, Futures, strong typing with `late` to escape, await/async, etc.  
 It's composition-based such that components are wrapped rather than adding attributes to them.  
 
-You might also notice as we progress that I put the most work into this one, and progressively less the longer I went on 😀
+> You might also notice that the app quality gets progressively worse as I get bored ☹️
 
 {{< video path="img/Demo_Flutter" alt="Flutter is interesting and looks pretty nice" >}}
 
@@ -136,7 +137,7 @@ Widget build(BuildContext context) {
 ```  
 
 Padding wrapping sizing wrapping columns...  
-I find it very difficult to read and understand, but I just need to git gud.   
+I find it very difficult to read and understand, but perhaps I just need to git gud.   
 
 {{< image path="img/GitGud" alt="Git gud scrub" >}}
 
@@ -177,7 +178,8 @@ I've written about [MAUI before]({{< ref "/posts/2023-06-10-my-journey-with-maui
   - Design tools can't target MAUI project
   - MAUI project can't reference executable project
   - Executable project required for migrations
-  - So three projects required. MAUI, DB, DB migrations target
+  - So three projects required. MAUI, DB, DB migrations target  
+> See [the code](#github-links) for my solution to this. 
 
 ## Overall thoughts as a C# and web dev
 It's easy to pick up and run with, but does follow the usual dotnet kind of thing where everything is achievable, but sometimes feels more verbose than necessary.  
@@ -187,9 +189,9 @@ A definite recommend, which is interesting considering Xamarin Forms would be an
 Blazor can be cross platform? Apparently yes!  
 Feels pretty nice too, considering it's just Blazor with a MAUI shell.  
 That shell is very thin and I didn't need to consider it with my silly app.  
-> Perhaps using things like camera or biometrics would require touching it?  
+> Perhaps using things like camera or biometrics would require additional work?  
 
-I've written about [Blazor]({{< ref "/posts/2022-08-09-another-go-at-blazor/index.md" >}}) before as well, and it was above average.  
+I've written about [Blazor]({{< ref "/posts/2022-08-09-another-go-at-blazor/index.md" >}}) before as well, and I found it to be above average.  
 
 {{< video path="img/Demo_MAUIBlazor" alt="Blazor can be wrapped in MAUI?? Yes! It can!" >}}
 
@@ -258,5 +260,23 @@ If you're a C# dev, MAUI or Blazor/MAUI is a decent choice.
 If you're a web dev OR wrapping an existing website, `Web framework of choice` + Capacitor is a good choice.  
 If you're a fan of new shiny things, Flutter might be the one for you.  
 
+# Other conclusions and thoughts  
 This is hardly an exhaustive list, or even a deep investigation into the options presented.  
 However, I think there's some learnings here despite the toy examples.  
+The time implementing each was about even, although it's hard to measure considering I was doing significant learning every step of the way.  
+My original intent was to compare the picking up experiences of each approach, but I'm not sure I got a good measure of that.  
+My gut says they're all on a pretty even level for onboarding.  
+
+There's much more for me to learn on the mobile journey, however I know that I'm working with Capacitor and MAUI right now.  
+It's likely most of my powers will go into those two for the time being.  
+
+
+
+# Github links  
+It's all awful code.  
+I'm sorry, I started lazy and only got lazier.  
+
+[Flutter](https://github.com/KFreon/flutter_demo)  
+[MAUI](https://github.com/KFreon/MAUI_CoolDudes)  
+[MAUI + Blazor](https://github.com/KFreon/MAUIBlazorHybrid_CoolDudes)  
+[Svelte](https://github.com/KFreon/SvelteCoolDudes)  
