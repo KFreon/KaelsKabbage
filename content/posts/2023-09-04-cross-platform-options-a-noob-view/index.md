@@ -31,7 +31,7 @@ The contenders I've decided to run with are:
 
 
 # Setup  
-I'm using the tools current at the time of publishing, and I'll be creating a silly app that uses some basic controls like popups, inputs, database, etc.  
+I'll be creating a silly app that uses some basic app elements like popups, inputs, database/other persistence, etc.  
 
 - NET 8 preview  
 - Flutter 3.10.6
@@ -41,11 +41,10 @@ I'm using the tools current at the time of publishing, and I'll be creating a si
 - Svelte 4.0.5
 
 # Flutter
-Dart is an interesting language, felt like SwiftUI (even though Dart was first)  
-Flutter + Dart does things like Widgets, Futures, strong typing with `late` to escape, await/async, etc.  
-It's composition-based such that components are wrapped rather than adding attributes to them.  
-
-> You might also notice that the app quality gets progressively worse as I get bored ☹️
+I'm going to be mixing Flutter in with Dart as I'm not 100% where the boundaries are.  
+Dart is an interesting language, and reminds me of SwiftUI (even though Dart was first)  
+Flutter + Dart does things like Futures, strong typing with `late` to escape, await/async, etc, and is built up with Widgets.    
+Widgets are composed together such that components are wrapped rather than adding attributes to them, i.e. to add padding, you wrap your widget in a `<Padding>` widget.    
 
 {{< video path="img/Demo_Flutter" alt="Flutter is interesting and looks pretty nice" >}}
 
@@ -142,14 +141,15 @@ I find it very difficult to read and understand, but perhaps I just need to git 
 {{< image path="img/GitGud" alt="Git gud scrub" >}}
 
 ## Overall thoughts as a C# and web dev
-I don't think I like it, but it feels like my own bias/thought patterns make me not like it, not that it's actually a bad experience.  
-Composition especially just doesn't click for me.  
-However, it seems easy enough to learn if required and well tooled, leading to a general recommendation.  
+I don't really like it, but that feels like my own bias/thought patterns, not that it's actually a bad experience.  
+Composition especially just doesn't click for me, however it seems easy enough to learn if required and well tooled, leading to a general recommendation.  
 
+> You might notice that the app quality gets progressively worse as I get bored ☹️  
+> I tried to maintain some quality, but time is not my friend.  
 
 # MAUI  
-Calling it Xamarin Forms is perhaps a bit harsh, it seems quite a bit of rework/fixing has gone into it, but it really is just Xamarin Forms++.  
-I will say that while that's true, the experience feels better to me than XF did.  
+Calling MAUI Xamarin Forms is perhaps a bit harsh, as it seems quite a bit of rework/fixing has gone into it, but it really is just Xamarin Forms++.  
+While that's true, the experience feels better to me than XF did.  
 I've written about [MAUI before]({{< ref "/posts/2023-06-10-my-journey-with-maui/index.md" >}}) and it was...fine.  It's fairly middle-of-the-road, decent but not amazing.  
 
 {{< video path="img/Demo_MAUI" alt="Microsoft is pushing MAUI, and it turns out to be ok" >}}
@@ -182,14 +182,14 @@ I've written about [MAUI before]({{< ref "/posts/2023-06-10-my-journey-with-maui
 > See [the code](#github-links) for my solution to this. 
 
 ## Overall thoughts as a C# and web dev
-It's easy to pick up and run with, but does follow the usual dotnet kind of thing where everything is achievable, but sometimes feels more verbose than necessary.  
+It's easy to pick up and run with, but does have the usual dotnet feeling where everything is achievable, but suffers from verbosity and multiple, similar, valid approaches.  
 A definite recommend, which is interesting considering Xamarin Forms would be an avoid.  
 
 # MAUI Blazor Hybrid??
-Blazor can be cross platform? Apparently yes!  
+Blazor can be cross platform? [Apparently yes!](https://learn.microsoft.com/en-us/aspnet/core/blazor/hybrid/tutorials/maui?view=aspnetcore-7.0)  
 Feels pretty nice too, considering it's just Blazor with a MAUI shell.  
-That shell is very thin and I didn't need to consider it with my silly app.  
-> Perhaps using things like camera or biometrics would require additional work?  
+That shell is very thin and I didn't need to consider it at all with my silly app.  
+> Perhaps using things like camera or biometrics would require digging into the MAUI side?  
 
 I've written about [Blazor]({{< ref "/posts/2022-08-09-another-go-at-blazor/index.md" >}}) before as well, and I found it to be above average.  
 
@@ -210,13 +210,13 @@ I've written about [Blazor]({{< ref "/posts/2022-08-09-another-go-at-blazor/inde
 
 
 # Cordova, the fallen hero  
-I didn't even try Cordova for this, as I've had a growing number of issues in all my Cordova projects, as have my colleagues.  
-Flakey builds, unmaintained but critical plugins (push plugin, looking at you), confusing chains of plugins, confusing and inconsistent configuration.  
+I didn't even try Cordova for this, as I've had a growing number of issues in all my Cordova projects.  
+Flakey builds, critical but unmaintained plugins (push plugin, looking at you), confusing chains of plugins, confusing and inconsistent configuration.  
 I still have several Cordova projects, and I'm annoyed every time I have to touch it.  
 It was good while it lasted 😭  
 
 # Svelte + Capacitor, the new Cordova  
-[Capacitor](https://capacitorjs.com/) allows us to use familiar web frameworks and tooling and only have to worry about the cross platform part when we want to.  
+[Capacitor](https://capacitorjs.com/) is the new Cordova and allows us to use familiar web frameworks and tooling and only have to worry about the cross platform part when we want to.  
 I decided to try out [Svelte](https://svelte.dev/) which has been on my radar for a while.  
 
 {{< video path="img/Demo_SvelteCapacitor" alt="Svelte and Capacitor make a nice combo" >}}
@@ -246,12 +246,13 @@ The only catch is adding the required plugins, which I found was fine here, but 
   - e.g. `bind:...` are a bit confusing
 - Some magic like server-side `data` variable  
 
-> I had trouble getting Typescript working, likely just me though
+> I had trouble getting Typescript working, but I think it was just the way I set it up.  
 
 
 ## Overall thoughts as a C# and web dev  
 This is an excellent option, as you get it all with some limitations.  
-My silly toy project didn't run into any issues, but I can imagine scenarios where using device features becomes a bit painful, but for that, you have full access to the native projects as required so perhaps not even an issue.  
+My silly toy project didn't run into any issues, but I can imagine scenarios where using device features becomes a bit painful.
+That said, you have full access to the native projects as required.  
 The other really nice thing about this approach is the flexibility to use almost any web framework/libraries you want.  
 It's especially great when you're just wrapping a website for the appstores. 
 
@@ -269,7 +270,6 @@ My gut says they're all on a pretty even level for onboarding.
 
 There's much more for me to learn on the mobile journey, however I know that I'm working with Capacitor and MAUI right now.  
 It's likely most of my powers will go into those two for the time being.  
-
 
 
 # Github links  
