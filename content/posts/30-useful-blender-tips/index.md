@@ -42,3 +42,7 @@ The below nodes plug into the Offset socket of the "Set Position" node.
 
 # Quick procedural wood setup  
 No example, but just a noise texture with some distortion stretched on one axis, include bump map, usually based on the same noise texture.  
+
+
+# Geometry nodes: Look at  
+{{< image path="img/LookAt" alt="Have all instances look into the middle" >}}
