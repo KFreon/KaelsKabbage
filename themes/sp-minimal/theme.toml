@@ -3,7 +3,7 @@ license = "MIT"
 licenselink = "https://github.com/eueung/hugo-sp-minimal/blob/master/LICENSE.md"
 description = "Another Minimalist Theme for Hugo"
 homepage = "https://github.com/eueung/hugo-sp-minimal"
-tags = ["google analytics", "disqus", "blog", "minimal", "custom themes", "single page"]
+tags = ["disqus", "blog", "minimal", "custom themes", "single page"]
 features = ["single page", "two styles" ]
 min_version = 0.17
 
