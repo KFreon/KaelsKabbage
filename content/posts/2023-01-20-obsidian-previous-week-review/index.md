@@ -12,6 +12,8 @@ Here's how I did it.
 
 <!--more-->  
 
+EDIT 24-11-23: What I had wasn't working for me, so I've [tweaked it](#summary-view-v3).
+
 My primary use of Obsidian is taking notes through the week. In general, I do work for different customers each day of the week, and I find that I've forgotten what I was doing last week, OR I did some work for that client on a different day than normal.  
 I thought it'd be nice to have some way of summarising the last week of work to remind me.  
 
@@ -40,7 +42,7 @@ That's not quite what I want.
 I had to delve into JS to achieve what I wanted here, as I couldn't find another way of extracting and comparing the dates with the start of their weeks, etc
 
 ```js
-//```dataviewjs
+//dataviewjs
 let fileDate = dv.date(dv.current().file.name.split(" ")[0])
 let startOfWeek = fileDate?.startOf('week')
 let fileTags = dv.current().file.tags
@@ -56,8 +58,49 @@ let mySource = dv.pages().filter(x => {
 }).map(x => [x.file.link, x.file.tags])
 
 dv.table(['File', 'Tags'], mySource)
-//```
 ```
 
 # The Result
 {{< image path="img/ObsidianDataviewV2" alt="Looks pretty shiny to me!" >}}
+
+---
+
+# Summary View V3  
+The above ended up not being as useful to me as I thought.  
+It made it difficult to figure out what changes were actually present for the tags.  
+It showed me what files had the tags in it, but not exposing the content.  
+
+Now, I've tweaked it so it now shows the tags first, then the sections of their files related to the tags (because they're a level 1 heading)  
+
+Let's see if this one works better 😎
+
+```js
+//dataviewjs
+let fileDate = dv.date(dv.current().file.name.split(" ")[0])
+let startOfWeek = fileDate?.startOf('week')
+let fileTags = dv.current().file.tags
+
+let matchingFiles = dv.pages().filter(x => {
+  const d = dv.date(x.file.name.split(" ")[0])
+  if (!d || x.file.name === dv.current().file.name) return false
+  const dStartOfWeek =  d.startOf('week')
+  const diff = startOfWeek - dStartOfWeek
+  const withinDateRange = diff >= 0 && diff <= dv.duration('7 days')
+  const hasMatchingTags = x.file.tags.some(t => fileTags.includes(t))
+  return withinDateRange && hasMatchingTags
+})
+
+const flattened = matchingFiles.flatMap(x => x.file.tags.filter(t => fileTags.includes(t)).map(t => ({tag: t, link: {...x.file.link, subpath: t}})))
+const grouped = flattened.groupBy(x => x.tag)
+const filesAndTags = grouped.map(x => {
+	const sorted = x.rows.sort(t => t.link.path)
+	const cleanLinks = sorted.map(t => ({ subpath: t.link.subpath, path: t.link.path.replace('Work Tracking/', '').replace('.md', '') }))
+	const strings = cleanLinks.map(t => `[[${t.path}${t.subpath}]]`)
+	return [x.key, strings]
+})
+
+dv.table(['Tag', 'Files'], filesAndTags)
+```
+
+## Result  
+{{< image path="img/ObsidianDataviewV3" alt="Maybe I'll use this more than before." >}}
