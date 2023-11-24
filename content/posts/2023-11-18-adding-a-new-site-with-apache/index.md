@@ -6,7 +6,7 @@ slug: "adding-a-new-site-with-apache"
 tags: ["apache", "selfhosted", "homelab"]
 ---
 
-A while back, I started playing with [Nextcloud](https://nextcloud.com/) and wrote a bit [about it](http://localhost:1313/posts/nextcloud-journey-so-far/) noting that I wondered if I'd use it.  
+A while back, I started playing with [Nextcloud](https://nextcloud.com/) and wrote a bit [about it]({{< ref "/posts/2023-05-16-nextcloud-vps/index.md" >}}) noting that I wondered if I'd use it.  
 Well I haven't really, but as many have mentioned to me, the whole self-hosting thing is addictive!  
 So...I've been playing with [Jellyfin](https://jellyfin.org/), [Plausible](https://plausible.io/), and [VSCode/Coder](https://github.com/coder/code-server) but I keep forgetting how to set them up.  
 So far, they've all been similar in their configuration and setup with my existing reverse proxy [Apache2](https://httpd.apache.org/).  
@@ -17,6 +17,8 @@ I'm going to quickly document the setup here for future reference.
 I definitely don't know much about Linux, Apache, or reverse proxies whatnot, so this approach could be full of holes. 
 
 > Use at own risk!
+
+{{< image path="img/I-Have-No-Idea-What-I-Am-Doing-Dog" alt="I have little idea what I'm doing" >}}
 
 # Process
 ```bash
