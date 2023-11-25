@@ -18,8 +18,8 @@ namespace AssetOptimiser
         {
             VideoFormats = new[]
             {
-                new Format("AV1", "mp4", "libsvtav1", crf ?? 50, 0, "-movflags +faststart"),
-                new Format("VP9", "webm", "libvpx-vp9", crf ?? 40, 0, "-row-mt 1 -tiles 2x2 -threads 8"),
+                new Format("AV1", "mp4", "libsvtav1", crf ?? 45, 0, "-movflags +faststart"),
+                new Format("VP9", "webm", "libvpx-vp9", crf ?? 35, 0, "-row-mt 1 -tiles 2x2 -threads 8"),
             };
         }
 
@@ -101,7 +101,7 @@ namespace AssetOptimiser
 
         public static async Task ConvertVideos(List<VideoJob> jobs)
         {
-            Console.WriteLine($"Converting videos...");
+            Console.WriteLine($"Converting videos..." + jobs.Count);
             foreach (var job in jobs)
             {
                 var normal = job.GetCompressedVideoExecutionString(Size.Normal);

@@ -34,8 +34,8 @@ namespace AssetOptimiser
             return Format.Name switch
             {
                 // -vf scale=-1:250:flags=lanczos
-                "AV1" => $"-i {FileName} -qp {Format.CRF} -c:v {Format.Encoder} {scale} -preset 3 {Path.GetFileName(FormattedPath(size))}",
-                "VP9" => $"-i {FileName} -c:v {Format.Encoder} -crf {Format.CRF} -b:v {Format.Bitrate} {Format.AdditionalArguments} {Path.GetFileName(FormattedPath(size))}",
+                "AV1" => $"-i {FileName} -pix_fmt yuv420p -qp {Format.CRF} -c:v {Format.Encoder} {scale} -preset 3 {Path.GetFileName(FormattedPath(size))}",
+                "VP9" => $"-i {FileName} -pix_fmt yuv420p -c:v {Format.Encoder} -crf {Format.CRF} -b:v {Format.Bitrate} {Format.AdditionalArguments} {Path.GetFileName(FormattedPath(size))}",
                 _ => throw new ArgumentException("Unknown format")
             };
         }

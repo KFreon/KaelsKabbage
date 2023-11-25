@@ -13,6 +13,8 @@ namespace AssetOptimiser
             if (!CommandLineHelper.ProcessCmdLineArgs(args, out int? crf, out int webpQuality, out string rootPath))
                 return;
 
+            Console.WriteLine($"CRF: {crf}");
+            Console.WriteLine($"Webp: {webpQuality}");
             Console.WriteLine("Looking for unoptimised assets...");
             Console.WriteLine();
 
@@ -50,8 +52,8 @@ namespace AssetOptimiser
                 var invalid = await ValidateVideoFormats(videos);
                 if (invalid)
                     Console.WriteLine("****INVALID VIDEOS****");
-                else
-                    await ConvertHelper.ConvertVideos(videos);
+                
+                await ConvertHelper.ConvertVideos(videos);
             }
             else
             {
