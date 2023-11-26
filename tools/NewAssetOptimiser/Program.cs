@@ -22,14 +22,15 @@ namespace AssetOptimiser
 #if DEBUG
             Core.Paths.BasePath = Path.GetDirectoryName(rootPath);
 #endif
-            ConvertHelper.Init(crf);
 
-            var normalImages = ConvertHelper.GetPictures(rootPath, false);
-            var renderImages = ConvertHelper.GetPictures(rootPath + "/Renders", true);
+            var pictureService = new PictureService(webpQuality);
+            var normalImages = pictureService.GetPictures(rootPath, false);
+            var renderImages = pictureService.GetPictures(rootPath + "/Renders", true);
             var pictures = normalImages.Concat(renderImages).ToList();
 
-            var normalVideos = ConvertHelper.GetVideos(rootPath, false);
-            var renderVideos = ConvertHelper.GetVideos(rootPath + "/Renders", true).DistinctBy(x => x.FileName).ToList();
+            var videoService = new VideoService(crf);
+            var normalVideos = videoService.GetVideos(rootPath, false);
+            var renderVideos = videoService.GetVideos(rootPath + "/Renders", true).DistinctBy(x => x.FileName).ToList();
             var videos = normalVideos.Concat(renderVideos).ToList();
 
             if (!pictures.Any() && !videos.Any())
@@ -37,23 +38,27 @@ namespace AssetOptimiser
                 Console.WriteLine("Nothing to convert!");
                 return;
             }
-            await ConvertPictures(webpQuality, pictures);
-            await ConvertVideos(videos);
+            await ConvertPictures(pictureService, pictures);
+            await ConvertVideos(videoService, videos);
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("~~~~~ Finished optimising assets! ~~~~~");
         }
 
-        private static async Task ConvertVideos(List<VideoJob> videos)
+        private static async Task ConvertVideos(VideoService videoService, List<VideoJob> videos)
         {
             if (videos.Any())
             {
-                var invalid = await ValidateVideoFormats(videos);
-                if (invalid)
-                    Console.WriteLine("****INVALID VIDEOS****");
-                
-                await ConvertHelper.ConvertVideos(videos);
+                var videosWithFormatIssues = await videoService.ValidateVideos(videos);
+                if (videosWithFormatIssues.Any())
+                {
+                    Console.WriteLine("**INVALID FORMAT** We want yuv420p and NOT h/x265");
+                    foreach (var video in videosWithFormatIssues)
+                        Console.WriteLine(video);
+                }
+
+                await videoService.ConvertVideos(videos);
             }
             else
             {
@@ -61,25 +66,10 @@ namespace AssetOptimiser
             }
         }
 
-        private static async Task<bool> ValidateVideoFormats(List<VideoJob> videos)
-        {
-            var videosWithFormatIssues = await ConvertHelper.ValidateVideos(videos);
-            if (videosWithFormatIssues.Any())
-            {
-                Console.WriteLine("**INVALID FORMAT** We want yuv420p and NOT h/x265");
-                foreach (var video in videosWithFormatIssues)
-                {
-                    Console.WriteLine(video);
-                }
-            }
-
-            return videosWithFormatIssues.Any();
-        }
-
-        private static async Task ConvertPictures(int webpQuality, List<PictureJob> pictures)
+        private static async Task ConvertPictures(PictureService service, List<PictureJob> pictures)
         {
             if (pictures.Any())
-                await ConvertHelper.ConvertPictures(pictures, webpQuality);
+                await service.ConvertPictures(pictures);
             else
                 Console.WriteLine("No images to convert!");
         }

@@ -8,13 +8,11 @@ using Core;
 
 namespace AssetOptimiser
 {
-    record ConversionItem(string Directory, string FileName, string WithoutExtension, string RenderName = null);
-
-    public static class ConvertHelper
+    public class VideoService 
     {
         public static Format[] VideoFormats { get; private set; }
 
-        public static void Init(int? crf)
+        public VideoService(int? crf) 
         {
             VideoFormats = new[]
             {
@@ -23,14 +21,7 @@ namespace AssetOptimiser
             };
         }
 
-        public static List<PictureJob> GetPictures(string rootPath, bool isRender) =>
-            Directory.EnumerateFiles(rootPath, "*.png", SearchOption.AllDirectories)
-                .Concat(Directory.EnumerateFiles(rootPath, "*.jpg", SearchOption.AllDirectories).Where(x => !x.Contains("postcard", StringComparison.InvariantCultureIgnoreCase)))
-                .Select(x => new ConversionItem(Path.GetDirectoryName(x), Path.GetFileName(x), Path.GetFileNameWithoutExtension(x)))
-                .Select(f => new PictureJob(f.FileName, f.Directory, isRender))
-                .ToList();
-
-        public static List<VideoJob> GetVideos(string rootPath, bool isRender)
+        public List<VideoJob> GetVideos(string rootPath, bool isRender)
         {
             return Directory.GetFiles(rootPath, "*.mp4", SearchOption.AllDirectories)
                 .Where(x => !x.Contains("_av1", StringComparison.OrdinalIgnoreCase))
@@ -39,37 +30,7 @@ namespace AssetOptimiser
                 .SelectMany(video => VideoFormats.Select(f => new VideoJob(video, f, isRender))).ToList();
         }
 
-
-        public static async Task ConvertPictures(List<PictureJob> pictures, int webpQuality)
-        {
-            Console.WriteLine($"Converting pictures...");
-            foreach (var picture in pictures.DistinctBy(x => x.RootFilename))
-            {
-                var normalExec = picture.GetWebpExecutionString(webpQuality, false);
-                var halfsizeExec = picture.GetWebpExecutionString(webpQuality, true);
-                var postcardExec = picture.GetJpegExecutionString(webpQuality);
-
-                if (!File.Exists(picture.FullWebpPath))
-                {
-                    await FFMpegProcessor.StartProcess(Paths.CwebpPath, picture.Directory, normalExec);
-                }
-
-                if (picture.IsRender)
-                {
-                    if (!File.Exists(picture.HalfWebpPath))
-                    {
-                        await FFMpegProcessor.StartProcess(Paths.CwebpPath, picture.Directory, halfsizeExec);
-                    }
-
-                    if (!File.Exists(picture.PostcardPath))
-                    {
-                        await FFMpegProcessor.StartProcess(Paths.FFMpegPath, picture.Directory, postcardExec);
-                    }
-                }
-            }
-        }
-
-        public static async Task<List<string>> ValidateVideos(List<VideoJob> jobs)
+        public async Task<List<string>> ValidateVideos(List<VideoJob> jobs)
         {
             // Use FFProbe to double check that the main video format is yuv420p
             // This format seems to be the only one supported by all browsers
@@ -99,9 +60,9 @@ namespace AssetOptimiser
             return videosWithFormatIssues;
         }
 
-        public static async Task ConvertVideos(List<VideoJob> jobs)
+        public async Task ConvertVideos(List<VideoJob> jobs)
         {
-            Console.WriteLine($"Converting videos..." + jobs.Count);
+            Console.WriteLine($"Converting videos...");
             foreach (var job in jobs)
             {
                 var normal = job.GetCompressedVideoExecutionString(Size.Normal);
