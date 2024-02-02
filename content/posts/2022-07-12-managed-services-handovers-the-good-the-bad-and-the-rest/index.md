@@ -3,7 +3,7 @@ title: "Managed Services Handovers: the Good, the Bad, and the rest"
 date: 2022-07-24T10:04:45+10:00
 type: "post"
 slug: "managed-services-handovers-the-good-the-bad-and-the-rest"
-tags: []
+tags: ["managed-services"]
 ---
 
 I work in Managed Services, and we often get handover from the Professional Services when they roll off a project.  
