@@ -7,32 +7,30 @@ slug: "three-stages-of-working-on-a-managed-services-project"
 tags: ["managed-services"]
 ---
 
-I've been working in Managed Services/Sustained Engineering/etc for over five years now, and I've noticed a pattern with these kinds of projects, or perhaps more accurately, the way they have to be run.  
+I've been working in Managed Services/Sustained Engineering/etc for over five years now and I've noticed a pattern with our type of projects, or perhaps more accurately, the way they have to be run.  
 
 <!--more-->  
 
-Managed Services is about working on and managing an ongoing client and codebase.  
-It's in Production and has users and may have been running for a while, which means there are expectations on the turnaround time of tasks, stability of the solution, and communication styles. 
-
-> COMMS STLYES LIKE client demands things instead of requesting. New devs will just placate and do whatever they need to.
-Stage 2+ devs will have more weight and evidence to manage the situation.
+# What is Managed Services?  
+For who don't know, or just to get on the same page, Managed Services is where we provide ongoing support to for a client + codebase combination, usually limited hours and cost.  
+These projects are in Production and don't usually have particular time pressures or requirements, just ongoing fixes and minor features.   
+As it's been in Production with users and may have been running for a while, there are often expectations on the turnaround time of tasks, stability of the solution, and communication styles the client is used to. 
 
 As such, I believe there are three stages to working on a Managed Services project as an individual.  
 
-# Stage 1
-> The overwhelming stage.  
-
+# Stage 1: The overwhelming stage  
 This is where you get a codebase and client, and you often know little about either, even after a [handover]({{< ref "/posts/2022-07-12-managed-services-handovers-the-good-the-bad-and-the-rest/index.md" >}})  
 Broadly, you don't know where anything is, how anything works, or why anything is there.  
 This tends to mean simple things like text changes or colours are fine, but anything requiring understanding is difficult and time consuming.  
+I mentioned above about communication styles, and I think it's a really important part to think about.  
+> Some clients REALLY don't like their devs changing and will make your life even more difficult in this period.  
+> You'll often hear "go ask `<previous dev>`" or "look, I just need this now, make it happen"  
+> I get where they're coming from, but a good [handover]({{< ref "/posts/2022-07-12-managed-services-handovers-the-good-the-bad-and-the-rest/index.md" >}}) can help, and aside from that, devs change sometimes ¯\\_(ツ)_/¯.  
 
-# Stage 2
-> This is the comfort stage.  
-
+# Stage 2: The comfort stage  
 You're now familiar with the codebase, the client, and their business (and how the solution fits within it)  
-Generally investigations are still required for most things, but you've heard of most of it and can talk to the client reasonably about the processes and potential solutions.
-
-> This is the largest and longest lasting stage
+Generally investigations are still required for most things, but you've heard of most of it and can talk to the client reasonably about the processes and potential solutions.  ¯\\_(ツ)_/¯
+Fortunately, this is the largest and longest lasting stage
 
 # Stage 3
 > This is the other overwhelming stage.  
