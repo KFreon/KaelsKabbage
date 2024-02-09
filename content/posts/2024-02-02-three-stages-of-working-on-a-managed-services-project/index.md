@@ -7,59 +7,70 @@ slug: "three-stages-of-working-on-a-managed-services-project"
 tags: ["managed-services"]
 ---
 
+NOT DOING THIS RIGHT NOW, just feels weird.
+I'm kinda complaining about how bad I am at my job.
+
+
+
 I've been working in Managed Services/Sustained Engineering/etc for over five years now and I've noticed a pattern with our type of projects, or perhaps more accurately, the way they have to be run.  
+The overwhelming stage, the comfort stage, and the paralysed stage.  
 
 <!--more-->  
 
 # What is Managed Services?  
 For who don't know, or just to get on the same page, Managed Services is where we provide ongoing support to for a client + codebase combination, usually limited hours and cost.  
-These projects are in Production and don't usually have particular time pressures or requirements, just ongoing fixes and minor features.   
+These projects are in Production and we provide ongoing maintenance, bugfixes, and small features.   
 As it's been in Production with users and may have been running for a while, there are often expectations on the turnaround time of tasks, stability of the solution, and communication styles the client is used to. 
+Each client tends to get a day or two a week during normal operations, which means limited time to handle comms, do coding, and attend meetings.  
 
-As such, I believe there are three stages to working on a Managed Services project as an individual.  
+As such, I believe there are three stages to working on a Managed Services project as an individual. 
+
+> This is 1000% an opinion piece, and it feels like I'm telling on myself a bit as well...  
 
 # Stage 1: The overwhelming stage  
-This is where you get a codebase and client, and you often know little about either, even after a [handover]({{< ref "/posts/2022-07-12-managed-services-handovers-the-good-the-bad-and-the-rest/index.md" >}})  
+You've been given a codebase and client, and you often know little about either, even after a [handover]({{< ref "/posts/2022-07-12-managed-services-handovers-the-good-the-bad-and-the-rest/index.md" >}})  
 Broadly, you don't know where anything is, how anything works, or why anything is there.  
+
 This tends to mean simple things like text changes or colours are fine, but anything requiring understanding is difficult and time consuming.  
-I mentioned above about communication styles, and I think it's a really important part to think about.  
+I mentioned communication styles above and I think it's a really important part to think about.  
+
 > Some clients REALLY don't like their devs changing and will make your life even more difficult in this period.  
 > You'll often hear "go ask `<previous dev>`" or "look, I just need this now, make it happen"  
 > I get where they're coming from, but a good [handover]({{< ref "/posts/2022-07-12-managed-services-handovers-the-good-the-bad-and-the-rest/index.md" >}}) can help, and aside from that, devs change sometimes ¯\\_(ツ)_/¯.  
 
 # Stage 2: The comfort stage  
 You're now familiar with the codebase, the client, and their business (and how the solution fits within it)  
-Generally investigations are still required for most things, but you've heard of most of it and can talk to the client reasonably about the processes and potential solutions.  ¯\\_(ツ)_/¯
-Fortunately, this is the largest and longest lasting stage
+Generally investigations are still required for most things, but you've heard of most of it and can talk to the client reasonably about the processes and potential solutions.  
 
-# Stage 3
-> This is the other overwhelming stage.  
+> Fortunately, this is the largest and longest lasting stage
 
-You know too much about the codebase, but at the same time not enough.
-The client asks you to make a logic change here, but you know that part is POSSIBLY linked with a few others.
+# Stage 3: The paralysed stage  
+
+You know too much about the codebase, but at the same time not enough and lack the time to investigate.  
+The client asks you to make a logic change here, but you know that part is PROBABLY linked with a few others.
 You make changes knowing you'll have to come back to it later, littering the codebase with `//TODOs`.  
+
 You're paralysed by knowledge, but lack the time to progress to full understanding.  
-One or two days a week isn't enough time for that, you forget, you confuse different clients/codebases, etc.
-This is an indication you need to think about stopping to write/update some documentation and consider moving on. 
+One or two days a week gets you context switching frequently and you forget things and confuse different clients, codebases, etc.
+This is an indication you need to think about stopping to write/update some documentation and consider moving on or taking a longer break. 
 
 # Wait...what was that last one?  
-It was surprising to me as I figured the more you knew about the project, the better, however I realised that I was making (or not making) some decisions based on what I knew (or thought I knew) that was only in my head.
-Things like third party integrations or database changes or other upgrades/tech changes.
-I knew about tech debt that I wanted to update, but that had to happen before this other integration to be smooth.
-And if I did that, we'd probably have to change the auth as well, etc.
+I was surprised to find that the more I knew about the codebase, the less confident I was in making changes and the more frustrated I'd get about how tangled things were getting.  
+That says something about my coding and management style perhaps, but I found that the time and context switching pressures tended towards less maintainable code and thus I'd take a long time to make decisions, which tended to make the time pressures worse.  
 
-If I didn't know about that tech debt (or were more able to see it objectively due to less investment in the project) perhaps I'd just make the change now in the best way I could.
-Then later on, when the time was allocated for technical upgrades or whatnot, THEN handle those tech debt issues I was thinking about.
+For example, I was working on a third party integration which required full stack changes.  
+I had a big list of things that needed updating in all the sections I was touching, but I knew that if I did them, it'd triple the work time and require full regression.  
+If I was still in Stage 2, I could perhaps have just make the change now in the best way I could, but I have trouble getting the tech debt out of my head.  
 
-It sounds like I'm advocating to just YOLO changes, don't bother understanding how they affect other things, but it's more that with limited time comes limited ability to make changes.
-Make the smallest changes possible to resolve the issue.
-Making small changes is hard when you think you know it'll impact or otherwise affect other things.
+It sounds like I'm advocating to just YOLO changes without bothering to understand how they affect other areas of the code, but it's more that with limited time comes limited ability to hold all the context in your head, and that eventually you end up with too much context and not enough space to work.
+
 Some examples:
 - **Code duplication**: If it's once or twice, don't fuss too much about it, just do it and fix it if it becomes a problem later
-- **Different styles of doing X** (like background workers or PDF generation etc): Contriversial option but if you don't really understand how to setup X the way the previous person did it, but you know how to do it another way, I say do it. Especially if yours is based on newer tech or information.
-- **Dependencies**: You might remember that three years ago the third party was really slow to respond to requests, so in your current work, you spend time adding all this caching and whatnot to ameliorate that when that might not be the case anymore, or just might not be needed for this change.
+- **Different styles of doing X** (like background workers or PDF generation etc): Controversial option but if you don't really understand how to setup X the way the previous person did it, but you know how to do it another way, I say do it. Especially if yours is based on newer tech or information.
+- **Dependencies**: You might remember that three years ago the third party was really slow to respond to requests, so in your current work, you spend time adding all this caching and whatnot to ameliorate that when that might not be a valid concern anymore.
 
-# Tips for prolonging Stage 2 OR reducing the effect of Stage 3
+# What can I do?  
+
 - Update documentation regularly
 	- When something comes up from the client and you have to consider it, it's probably worth writing down somewhere
 - Keep good notes (personal and on tickets/sharepoint/wherever)
