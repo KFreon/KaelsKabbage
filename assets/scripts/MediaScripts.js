@@ -157,7 +157,9 @@ function zoomImage(e) {
 
   // Set saved zIndex if required
   if (e.style.zIndex != zoomedStyle.zIndex) {
-    e.metaZ = e.style.zIndex;
+    // Note if we leave it as undefined or 0 (auto) then the sidebar is automatically on top
+    // And the shrink animation is weird
+    e.metaZ = e.style.zIndex || 1
   }
 
   const targetStyle = (!e.style.transform || e.style.transform === originalStyle.transform) ? zoomedStyle : originalStyle;
