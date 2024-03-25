@@ -25,13 +25,17 @@ Many other tools like [Shapeshifter](https://shapeshifter.app/), [ClipX](https:/
 
 Finds files, always, fast, no fuss.
 
-# [Gitkraken](https://www.gitkraken.com/)
-- Visual Git client  
-- Comparative to SouceTree, Github Desktop, Git Extensions, etc
-- PAID for company
+~~# [Gitkraken](https://www.gitkraken.com/)~~
+~~- Visual Git client  ~~
+~~- Comparative to SouceTree, Github Desktop, Git Extensions, etc~~
+~~- PAID for company~~
 
-"Which git client do you use" is always a good discussion.  
-I like this one because it clearly shows the git tree/history and can pick a specific branch to view it's history in isolation.  
+~~"Which git client do you use" is always a good discussion.  ~~
+~~I like this one because it clearly shows the git tree/history and can pick a specific branch to view it's history in isolation.  ~~
+
+# [Fork](https://git-fork.com/)  
+I've switched to Fork from Gitkraken because it's WAY faster, and the pricing model isn't a subscription.  
+Pretty much everything from above is also present here, although I will say it's probably less intuitive to use.  
 
 # [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver16) 
 - Nice modern database query tool
