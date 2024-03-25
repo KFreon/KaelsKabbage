@@ -1,5 +1,5 @@
 <div>
-    <h2>Contents</h2>
+    <h2>{{ if .Get "title" }}{{ .Get "title" }}{{ else }}Contents{{ end }}</h2>
     <div class='table-of-contents {{ if .Get "levels" }}{{ .Get "levels" }}{{ else }}one{{ end }}'>
         {{ .Page.TableOfContents }}
     </div>
