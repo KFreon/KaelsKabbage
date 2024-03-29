@@ -128,6 +128,9 @@
 
 .render-container {
   margin-bottom: 5rem;
+  height: 90vh;
+  scroll-snap-stop: always;
+  scroll-snap-align: start;
 }
 
 .render-list {
@@ -210,6 +213,8 @@
 
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
+      scroll-snap-type: both mandatory;
+      overflow: auto;
 
       .render {
         width: 80vw;
