@@ -12,7 +12,7 @@ The theme I was (still am) using didn't have great support for some of the markd
 
 <!--more-->  
 
-**EDIT (1-2-2020):** I rewrote the syntax highlighting bits at the bottom. See [the revisit](/post/hugo-syntax-extension-revisited) for the updated syntaxes.  
+**EDIT (1-2-2020):** I rewrote the syntax highlighting bits at the bottom. See [the revisit]({{% ref "/posts/19-hugo-syntax-extension" %}}) for the updated syntaxes.  
 **EDIT:** After this, I realised my shortcodes were a bit annoying to type, so I made some snippets for them (at the end of the page)
 
 This ended up working fine, things displayed how I wanted them and all was right, except when I went back to posts and had a look.  
@@ -105,7 +105,7 @@ In the end, I came up with some syntax highlighting rules for Hugo Shortcodes, s
 
 [Extension repository](https://dev.azure.com/kaellarkin/_git/Hugo-Shortcode-Syntax-Highlighting) (not currently published)  
 **EDIT (1-2-2020):** Repository has [changed](https://github.com/kfreon/hugo-vscode-shortcode-syntax-highlighting) and it is now [published](https://marketplace.visualstudio.com/items?itemName=kaellarkin.hugo-shortcode-syntax
-). For more info, see [The Revisit](/post/hugo-syntax-extension-revisited).  
+). For more info, see [The Revisit]({{% ref "/posts/19-hugo-syntax-extension" %}}).  
 
 EDIT  
 <details>

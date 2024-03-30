@@ -10,7 +10,7 @@ Hugo Shortcode Syntax Highlighter [VSCode extension](https://marketplace.visuals
 
 <!--more-->  
 
-I recently got a new laptop and realised that I didn't have the [extension](/post/vscode-hugo-markdown-syntax-enhancements) I'd half-heartedly made last year.  
+I recently got a new laptop and realised that I didn't have the [extension]({{% ref "/posts/12-vscode-hugo-markdown-syntax-enhancements" %}}) I'd half-heartedly made last year.  
 When I did go back and get it, I realised it was pretty weak and flimsy in it's syntax highlighting.  
 Most notably, I added a new shortcode with more parameters than two and the extension wouldn't highlight more than two...  
 
