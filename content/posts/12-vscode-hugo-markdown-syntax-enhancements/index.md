@@ -66,8 +66,10 @@ The first few should be self explanatory and not relevant ($schema, name), then 
 **Patterns** and optionally **Repository** are the next interesting sections.  
 Patterns is the set of rules and Repository is a way to make things more readable. It's like refactoring large functions into smaller ones. Repository stores named rules that can be based on each other, reference each other, etc. They're then included in the patterns section.  
 
-#### Example
-```json
+#### Example  
+
+```json  
+
 "patterns": [
     {
         "include": "#strings"
@@ -129,7 +131,8 @@ EDIT
 </details>
 
 <details>
-<summary>Final syntax highlighting (tmLanguage)</summary>
+<summary>Final syntax highlighting (tmLanguage)</summary>  
+
 ```json
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
