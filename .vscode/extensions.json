@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "ionutvmi.path-autocomplete",
-    "kaellarkin.hugo-shortcode-syntax"
+    "kaellarkin.hugo-shortcode-syntax",
+    "kaellarkin.hugo-tags-helper"
   ]
 }
