@@ -13,25 +13,12 @@
         {
             get
             {
-                if (Paths.ffmpegPath?.Length != 0)
+                if (Paths.ffmpegPath != null && Paths.ffmpegPath.Length != 0)
                 {
                     return Paths.ffmpegPath;
                 }
 
-                var path = Environment.GetEnvironmentVariable("PATH");
-                var chocoBits = path.Split(';').Where(x => x.Contains("chocolatey\\bin", StringComparison.OrdinalIgnoreCase)).ToArray();
-
-                var chocolateyBinPath = chocoBits.Single();
-                var ffmpegPath = "";
-                if (Directory.Exists(chocolateyBinPath))
-                {
-                    ffmpegPath = Path.Combine(chocolateyBinPath, "ffmpeg.exe");
-                    if (!File.Exists(ffmpegPath))
-                        throw new FileNotFoundException("ffmpeg is not installed at: " + ffmpegPath);
-                }
-                else
-                    throw new DirectoryNotFoundException("Choco directory not found on PATH");
-
+                var ffmpegPath = FindFFMpeg();
                 Paths.ffmpegPath = ffmpegPath;
                 return ffmpegPath;
             }
@@ -57,5 +44,50 @@
         }
 
         public static string FFProbePath => FFMpegPath.Replace("ffmpeg.exe", "ffprobe.exe", StringComparison.InvariantCultureIgnoreCase);
+        
+        private static string? FindFFMpeg() {
+            if (LookForFFMPegOnChoco(out var chocoFFMpeg)) {
+                return chocoFFMpeg;
+            }
+
+            if (LookForFFMPegOnWinget(out var wingetFFMpeg)) {
+                return wingetFFMpeg;
+            }
+
+            return null;
+        }
+
+        private static bool LookForFFMPegOnWinget(out string ffmpegPath) {
+            var localAppData = Environment.GetEnvironmentVariable("LOCALAPPDATA");
+            var defaultWingetDirectory = Path.Combine(localAppData!, "Microsoft", "WinGet", "Packages");
+            if (!string.IsNullOrEmpty(defaultWingetDirectory) && Directory.Exists(defaultWingetDirectory)) {
+                var candidates = Directory.GetFiles(defaultWingetDirectory, "ffmpeg.exe", SearchOption.AllDirectories);
+                var first = candidates.FirstOrDefault();
+                if (!string.IsNullOrEmpty(first)) {
+                    ffmpegPath = first;
+                    return true;
+                }
+            }
+
+            ffmpegPath = string.Empty;
+            return false;
+        }
+
+        private static bool LookForFFMPegOnChoco(out string ffmpegPath) {
+            ffmpegPath = string.Empty;
+            var path = Environment.GetEnvironmentVariable("PATH");
+            var chocoBits = path!.Split(';').Where(x => x.Contains("chocolatey\\bin", StringComparison.OrdinalIgnoreCase)).ToArray();
+            var chocolateyBinPath = chocoBits.SingleOrDefault();
+            if (string.IsNullOrEmpty(chocolateyBinPath) || !Directory.Exists(chocolateyBinPath)) {
+                return false;
+            }
+
+            var temp = Path.Combine(chocolateyBinPath, "ffmpeg.exe");
+            if (File.Exists(temp))
+                ffmpegPath = temp;
+
+            var isFound = !string.IsNullOrEmpty(ffmpegPath);
+            return isFound;
+        }
     }
 }
