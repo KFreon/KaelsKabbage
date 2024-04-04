@@ -25,7 +25,7 @@ Many other tools like [Shapeshifter](https://shapeshifter.app/), [ClipX](https:/
 
 Finds files, always, fast, no fuss.
 
-# [~~Gitkraken~~](https://www.gitkraken.com/)  
+# ~~[Gitkraken](https://www.gitkraken.com/)~~  
 - ~~Visual Git client~~  
 - ~~Comparative to SouceTree, Github Desktop, Git Extensions, etc~~  
 - ~~PAID for company~~  
