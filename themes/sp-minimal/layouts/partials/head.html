@@ -5,7 +5,7 @@
     <title>{{ .Title }} - {{ .Site.Params.title }}</title>
     <meta name="author" content="{{ with .Site.Params.name }}{{ . }}{{ end }}">
     {{ hugo.Generator }}
-    <meta name="description" content={{ if eq .Type "post" }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}>
+    <meta name="description" content='{{ if eq .Type "post" }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta property="og:image" content='{{ if .Param "postcard"}}{{.Site.BaseURL}}{{if eq (.Param "type") "post" }}{{"posts"}}{{ else }}{{ "renders" }}{{ end }}/{{ .Params.slug }}/img/{{ .Param "postcard" }}.jpg{{ else }}{{ .Site.Params.Kabbage }}{{ end }}'/>
 

@@ -25,12 +25,12 @@ namespace AssetOptimiser
 
             var pictureService = new PictureService(webpQuality);
             var normalImages = pictureService.GetPictures(rootPath, false);
-            var renderImages = pictureService.GetPictures(rootPath + "/Renders", true);
+            var renderImages = pictureService.GetPictures(rootPath + "/renders", true);
             var pictures = normalImages.Concat(renderImages).ToList();
 
             var videoService = new VideoService(crf);
             var normalVideos = videoService.GetVideos(rootPath, false);
-            var renderVideos = videoService.GetVideos(rootPath + "/Renders", true).DistinctBy(x => x.FileName).ToList();
+            var renderVideos = videoService.GetVideos(rootPath + "/renders", true).DistinctBy(x => x.FileName).ToList();
             var videos = normalVideos.Concat(renderVideos).ToList();
 
             if (!pictures.Any() && !videos.Any())

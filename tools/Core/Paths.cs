@@ -3,8 +3,8 @@
     public static class Paths
     {
         public static string BasePath { get; set; } = Path.Combine(Directory.GetCurrentDirectory());
-        public static string ToolsPath => Path.Combine(BasePath, "Tools");
-        public static string RendersFolder => Path.Combine(BasePath, "content/Renders");
+        public static string ToolsPath => Path.Combine(BasePath, "tools");
+        public static string RendersFolder => Path.Combine(BasePath, "content/renders");
         public static string PostsFolder => Path.Combine(BasePath, "content/posts");
         public static string RenderDump => Path.Combine(BasePath, ".RENDER_DUMP");
 
@@ -54,12 +54,30 @@
                 return wingetFFMpeg;
             }
 
+            if (LookForFFMPegOnLinux(out var linuxFFMpeg)) {
+                return linuxFFMpeg;
+            }
+
             return null;
         }
 
+        private static bool LookForFFMPegOnLinux(out string ffmpegPath) {
+            ffmpegPath = string.Empty;
+            var testPath = "/usr/bin/ffmpeg";
+            if (File.Exists(testPath)) {
+                ffmpegPath = testPath;
+                return true;
+            }
+            return false;
+        }
+
         private static bool LookForFFMPegOnWinget(out string ffmpegPath) {
+            ffmpegPath = string.Empty;
             var localAppData = Environment.GetEnvironmentVariable("LOCALAPPDATA");
-            var defaultWingetDirectory = Path.Combine(localAppData!, "Microsoft", "WinGet", "Packages");
+            
+            if (localAppData == null) return false;
+
+            var defaultWingetDirectory = Path.Combine(localAppData, "Microsoft", "WinGet", "Packages");
             if (!string.IsNullOrEmpty(defaultWingetDirectory) && Directory.Exists(defaultWingetDirectory)) {
                 var candidates = Directory.GetFiles(defaultWingetDirectory, "ffmpeg.exe", SearchOption.AllDirectories);
                 var first = candidates.FirstOrDefault();
@@ -69,7 +87,6 @@
                 }
             }
 
-            ffmpegPath = string.Empty;
             return false;
         }
 
