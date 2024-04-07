@@ -9,7 +9,7 @@ tags: ["sql", "perf"]
 Databases are magic black boxes that we developers use all the time, but rarely really understand.  
 Sure, we *could* understand them, but:  
 
-![Ain't nobody got time for that!](http://www.quickmeme.com/img/94/94d74643939cd685a54ae8065ce91cd3f66a8aa727239585983bd879b07b2793.jpg)
+{{< image path="img/AintNobodyGotTimeFoDat" alt="Ain't nobody got time for that!" >}}
 
 So what can we mere lazy mortals do when SQL Server databases misbehave?  
 
