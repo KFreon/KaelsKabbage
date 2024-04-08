@@ -3,7 +3,7 @@
 #main-body.dark {
   --main-background: #{darken($main-background, 95%)};
   --transparentish-main-background: #{transparentize(darken($main-background, 95%), 0.1)};
-  --main-colour: #{lighten($main-colour, 75%)};
+  --main-colour: #{transparentize(lighten($main-colour, 75%), 0.1)};
   --lightened-black: #{invert($lightened-black, 100%)};
   --very-light-black: #{invert($very-light-black, 100%)};
   --slategray: #{invert($slategray, 100%)};
@@ -13,6 +13,7 @@
   --lightgrey: #{invert($lightgrey, 100%)};
   --lightgreen: #{$lightgreen};
   --darkgreen: #{$darkgreen};
+  --link: rgb(97, 218, 255);
 
   --strong-colour: greenyellow;
   --h1-colour: #{lighten($main-colour, 80%)};
@@ -26,4 +27,11 @@
   --blur-colour: 30%;
   --codeblock-header-background: #{darken($main-colour, 0%)};
   --codeblock-header-text: $main-background;
+}
+
+a {
+  &:hover {
+    text-shadow: 0 0 5px lighten($link, 20%);
+
+  }
 }

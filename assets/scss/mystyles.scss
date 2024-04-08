@@ -39,6 +39,7 @@ p {
   --lightgrey: #{$lightgrey};
   --lightgreen: #{$lightgreen};
   --darkgreen: #{$darkgreen};
+  --link: #{$link};
 
   --strong-colour: #{darken($main-colour, 10%)};
   --h1-colour: #{darken($main-colour, 40%)};
@@ -65,11 +66,18 @@ li {
 h1 {
   font-weight: bold;
   color: var(--h1-colour);
+  font-size: 2em;
 }
 
 h2 {
-  font-size: 1.3em;
+  font-size: 1.75em;
+  font-weight: bold;
   color: var(--h2-colour);
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 1.4em;
 }
 
 h3,
@@ -462,6 +470,16 @@ blockquote {
       height: unset;
       color: var(--green);
     }
+  }
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: all 0.2s;
+
+  &:hover {
+    text-shadow: 0 0 5px darken($link, 20%);
   }
 }
 

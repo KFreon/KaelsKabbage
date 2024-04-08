@@ -35,15 +35,6 @@ h3, h4, h5, h6 {
   font-weight: 500;
 }
 
-a {
-  color:#39c;
-  text-decoration:none;
-}
-
-a:hover {
-  color:#069;
-}
-
 a small {
   color:#777;
   margin-top:-0.3em;

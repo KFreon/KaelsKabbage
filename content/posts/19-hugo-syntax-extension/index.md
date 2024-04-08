@@ -8,6 +8,8 @@ tags: ["vscode", "markdown"]
 
 Hugo Shortcode Syntax Highlighter [VSCode extension](https://marketplace.visualstudio.com/items?itemName=kaellarkin.hugo-shortcode-syntax) is live!
 
+More improvements in [April 2024](#april-2024-updates)
+
 <!--more-->  
 
 I recently got a new laptop and realised that I didn't have the [extension]({{% ref "/posts/12-vscode-hugo-markdown-syntax-enhancements" %}}) I'd half-heartedly made last year.  
@@ -83,3 +85,9 @@ The new area of the `.tmLanguages.json` is below.
 ```
 {{% /split %}}
 {{< /splitter >}}  
+
+
+# April 2024 updates  
+I recently added support in v2 to suggest user created shortcodes, as well as F12 drilldown to the shortcode in question.  
+
+I also made another very simple [related extension](https://marketplace.visualstudio.com/items?itemName=kaellarkin.hugo-tags-helper) for suggesting tags in frontmatter.  
