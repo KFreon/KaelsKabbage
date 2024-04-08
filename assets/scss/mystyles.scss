@@ -628,3 +628,17 @@ details {
     cursor: pointer;
   }
 }
+
+.nav-links {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-bottom: 1rem;
+
+  .prev-post, .next-post {
+    display: grid;
+
+    > .item {
+      font-size: 0.75rem;
+    }
+  }
+}
