@@ -1,18 +1,37 @@
-// Use my image?
-// Do image processing in hugo instead of mine?
-
 {{- $u := urls.Parse .Destination -}}
-{{- $src := $u.String -}}
+{{- $desc := .Text -}}
+{{- $title := .Title -}}
+{{- $pagePermalink := .Page.Permalink -}}
 {{- if not $u.IsAbs -}}
   {{- with or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
-    {{- $src = .RelPermalink -}}
-  {{- end -}}
-{{- end -}}
-{{- $attributes := merge .Attributes (dict "alt" .Text "src" $src "title" .Title) -}}
-<img
-  {{- range $k, $v := $attributes -}}
-    {{- if $v -}}
-      {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
+    {{- $png := . -}}
+    {{- $webp := .Process "webp q90" -}}
+
+<div class="media image" onclick="zoomImage(this)">
+  <picture class="fullsize-frame media-frame">
+      <source srcset='{{ $webp.Permalink }}' type="image/webp">
+      <source srcset='{{ $png.Permalink }}' type="image/png"> 
+      {{- with $png -}}
+      <img class="image inner" 
+          src="{{ .Permalink }}"  
+          width="{{ .Width }}" 
+          height="{{ .Height }}"
+          alt="{{ $desc }}"
+          loading="lazy" />
+      {{- end -}}  
+  </picture>
+
+  <div class='alt-text-container'>
+    {{- if in $pagePermalink "renders" -}}
+    <a href='{{ $webp.Permalink }}'>Bigger</a>
     {{- end -}}
-  {{- end -}}>
-{{- /**/ -}}
+    <span class="alt-text">{{ $desc }}</span>
+    {{- if in $pagePermalink "renders" -}}
+    <a href='{{ $png.Permalink }}'>PNG</a>
+    {{- end -}}
+  </div>
+</div>
+  {{- end -}}
+{{- else -}}
+  <img src="{{ $u.String }}" />
+{{- end -}}
