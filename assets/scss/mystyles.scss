@@ -650,3 +650,15 @@ details {
     justify-self: end;
   }
 }
+
+.my-header {
+  a {
+    color: transparentize($color: $link, $amount: 0.75);
+  }
+
+  &:hover {
+    a {
+      color: var(--link);
+    }
+  }
+}
