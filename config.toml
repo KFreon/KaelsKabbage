@@ -22,7 +22,7 @@ assetDir = "."
   description = "Cabbage is awful, but this blog isn't :)"
   copyright   = "Kael Larkin 2018"
   authorImage = "Cabbage.png"
-  email       = "kael.larkin@readify.net"
+  email       = "kael.larkin@outlook.com"
 
   #"single" or "multi"
   renderType = "multi"

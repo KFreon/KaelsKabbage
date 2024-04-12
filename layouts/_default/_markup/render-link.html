@@ -1,9 +1,16 @@
 {{- $u := urls.Parse .Destination -}}
-<a href="{{ .Destination | safeURL }}"
-  {{- with .Title }} title="{{ . }}"{{ end -}}
-  {{- if $u.IsAbs }} rel="external" target="_blank" {{ end -}}
->
-  {{- with .Text | safeHTML }}{{ . }}{{ end -}}
-</a>
+{{- .Page.Scratch.Set "href" .Destination -}}
+
+{{ if and (not $u.IsAbs) (hasPrefix .Destination "/") }}
+{{.Page.Scratch.Set "href" (ref .Page (replace .Destination "/content/" "/"))}}
+{{end}}
+
+<a href="{{ .Page.Scratch.Get "href" | safeURL }}"
+    {{- with .Title }} title="{{ . }}"{{ end -}}
+    {{- if $u.IsAbs }} rel="external" target="_blank" {{ end -}}
+  >
+    {{- with .Text | safeHTML }}{{ . }}{{ end -}}
+  </a>
+
 {{- /* chomp trailing newline */ -}}
 
