@@ -17,13 +17,17 @@ setTimeout(() => {
   const showHalfsize = document.documentElement.clientWidth <= 1200;
   const showQuartersize = document.documentElement.clientWidth <= 800;
 
+  
   // normal, half, quarter
   let mediaSizeType = showQuartersize ? 'quarter' : showHalfsize ? 'half' : 'normal';
   if (isRenderList) {
     mediaSizeType = 'quarter';
   }
 
-  setMediaSizeDisplayVisibility(media, mediaSizeType === 'normal')
+  // TODO: Add other sizes instead.
+  const anyOtherSizes = halfsize.length > 0 || quartersize.length > 0;
+
+  setMediaSizeDisplayVisibility(media, mediaSizeType === 'normal' || !anyOtherSizes)
   setMediaSizeDisplayVisibility(halfsize, mediaSizeType === 'half')
   setMediaSizeDisplayVisibility(quartersize, mediaSizeType === 'quarter')
 }, 100);
