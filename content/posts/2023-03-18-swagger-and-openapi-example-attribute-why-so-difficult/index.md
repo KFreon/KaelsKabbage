@@ -50,10 +50,10 @@ It formats quite strangely for me as well, but I'm sure that can be fixed as wel
 
 {{< splitter >}}
 {{< split side=left title="Class level Example" >}}
-{{< image path="img/OpenApiExample_Class" alt="Class level OpenAPI example, which is too complex for me" >}}
+![Class level OpenAPI example, which is too complex for me](img/OpenApiExample_Class.png)
 {{< /split >}}
 {{< split side=right title="Property level Example" >}}
-{{< image path="img/OpenApiExample_Property" alt="Property level example, which is what I want" >}}
+![Property level example, which is what I want](img/OpenApiExample_Property.png)
 {{< /split >}}
 {{< /splitter >}}  
 

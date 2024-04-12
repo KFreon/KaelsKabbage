@@ -51,7 +51,7 @@ It was causing all sorts of problems, like the `docker` command not working, alo
 Ensure your default WSL2 distro is set to something proper (Ubuntu for me).
 You can check with `wsl --list`, and set it with `wsl -s Ubuntu` (for example)  
 
-{{< image path="img/WSL2DefaultDistro" alt="My WSL2 Distros" >}}  
+![My WSL2 Distros](img/WSL2DefaultDistro.png)  
 
 ### File watching issues in WSL  
 File watching across the Windows/WSL file system boundary is currently [not working correctly](https://github.com/microsoft/WSL/issues/4739).  
@@ -75,10 +75,10 @@ The folder of your choice
 
 If you're unsure how to do so, there are a few methods to get to WSL and set this up.  
 My go-to is opening VSCode (doesn't matter where) and searching for "Remote-WSL: New Window" which will open a new VSCode window at the Linux root (running through WSL properly), and you can create the folders in VSCode.  
-{{< image path="img/VSCodeRemoteWSL" alt="VSCode --> Remote-WSL Terminal" >}}
+![VSCode --> Remote-WSL Terminal](img/VSCodeRemoteWSL.png)
 
 Another way is to navigate to the Linux file system in Windows Explorer, and create the folders from there.  
-{{< image path="img/ExplorerLinux" alt="Linux files in Windows Explorer folder tree" >}}
+![Linux files in Windows Explorer folder tree](img/ExplorerLinux.png)
 
 The last I can think of is navigating there using the Command Line.  
 Windows Terminal has a built in WSL profile, or on any other Command Line running `wsl` will give you a prompt in your current folder (`cd ~` to get to the Linux root)  
@@ -130,7 +130,7 @@ The container starts SQL server, waits for it to get set up, then runs a sql scr
 > The [docs](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash) recommend this kind of script also update the `sa` password since it's exposed as an environment variable in Docker (and thus anyone who looks at the container can see it)  
 > Also note that the password has some rules to follow, check the [docs](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash) for more info.
 
-{{< image path="img/SQLSAPasswordInDocker" alt="SA password exposed as an environment variable in Docker Desktop" >}}
+![SA password exposed as an environment variable in Docker Desktop](img/SQLSAPasswordInDocker.png)
 
 ``` sql {title=InitialSQL.sql}
 -- Basic DB setup script for testing
@@ -305,7 +305,7 @@ I very much want to have an F5 experience with this API project in Visual Studio
 
 The key is ensuring the same URL is used to address the F5 AND the `DockerFile_API` containers.  
 I'll expose port 5555 in both Dockerfiles, and adjust the Visual Studio Launch Settings to get Kestral to run on port 5555.  
-{{< image path="img/VSLaunchSettings" alt="Visual Studio custom launch configurations" >}}
+![Visual Studio custom launch configurations](img/VSLaunchSettings.png)
 
 In the launch settings, you can also see the container name and network are set to `api` and my mature naming standards respectively.  
 Docker containers are isolated by default, so my F5 container can't talk to any of my other containers unless we hook it up.  
@@ -442,16 +442,16 @@ The network this creates was mentioned in the [API section](#api), and is requir
 # Running it all up  
 Now, in the root, run `docker compose up` and the app will "just work".  
 You can visit `http://localhost:3000` and see the page with "Learn React from me" showing!  
-{{< image path="img/FinalResult" alt="It's done!" >}}
+![It's done!](img/FinalResult.png)
 
 We've got it all running! If you open Docker Desktop, you can see the containers all listed there.  
 
 {{< splitter >}}
 {{< split side=left title="Running in stack" >}}
-{{< image path="img/YoloSwagginsInDockerDesktop" alt="Final setup in Docker Desktop" >}}
+![Final setup in Docker Desktop](img/YoloSwagginsInDockerDesktop.png)
 {{< /split >}}
 {{< split side=right title="Debugging with Visual Studio F5" >}}
-{{< image path="img/DockerSplitStack" alt="Final setup in Docker Desktop running through VS" >}}
+![Final setup in Docker Desktop running through VS](img/DockerSplitStack.png)
 {{< /split >}}
 {{< /splitter >}}  
 
@@ -464,7 +464,7 @@ Let's take a look at the experience working with each of the three pieces.
 
 ### Database  
 In the `docker-compose.yaml`, I mapped the database container port 1433 --> 1633 on the host, so we can connect to it as we would any other database.  
-{{< image path="img/ADSLogin" alt="Logging into the database container SQL database with Azure Data Studio" >}}
+![Logging into the database container SQL database with Azure Data Studio](img/ADSLogin.png)
 
 ### API  
 I wanted to be able to F5 the solution, and I can!  
@@ -545,7 +545,7 @@ Several Stackoverflows and documentation pages later, I'm wondering how it was e
 So...all of the article will work fine, IF you don't have node installed on the host and DO have it in WSL.  
 
 I also realised that the **whole point** of this was to eliminate as many dependencies for the user as possible, and I was expecting a NodeJS dependency in WSL...  
-{{< image path="img/AnakinDestroy" alt="No Anakin!" >}}  
+![No Anakin!](img/AnakinDestroy.png)  
 
 Let's see what we can do about that. 
 

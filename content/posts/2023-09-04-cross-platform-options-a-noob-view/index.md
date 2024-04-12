@@ -18,7 +18,7 @@ As devs, we tend to want one codebase to rule them all, instead of one for web, 
 
 Which inevitably leads us...here.  
 
-{{< image path="img/Architect" alt="The matrix was written in Javascript all along!" >}}
+![The matrix was written in Javascript all along!](img/Architect.png)
 
 The contenders I've decided to run with are:  
 - Flutter, Google's shiny cross platform framework using Dart.  
@@ -138,7 +138,7 @@ Widget build(BuildContext context) {
 Padding wrapping sizing wrapping columns...  
 I find it very difficult to read and understand, but perhaps I just need to git gud.   
 
-{{< image path="img/GitGud" alt="Git gud scrub" >}}
+![Git gud scrub](img/GitGud.png)
 
 ## Overall thoughts as a C# and web dev
 I don't really like it, but that feels like my own bias/thought patterns, not that it's actually a bad experience.  

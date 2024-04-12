@@ -17,4 +17,4 @@ So when starting the emulator, set the DNS with `-dns-server 8.8.8.8` or whateve
 Running through the command line, `emulator.exe -avd <avdname> -dns-server 8.8.8.8`.  
 
 If you use the emulator with Visual Studio (Xamarin for example), you can pass this to the emulator by going: `Tools --> Xamarin --> Android Settings` and setting the `Additional Emulator Launch Arguments`.
-{{< image path="img/VS_Android_Emulator_DNS" alt="Visual Studio Android Emulator DNS Launch Settings" >}}  
+![Visual Studio Android Emulator DNS Launch Settings](img/VS_Android_Emulator_DNS.png)  

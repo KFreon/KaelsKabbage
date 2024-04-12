@@ -28,7 +28,7 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
   - *NOTE: Only Github, Bitbucket, and Google accounts supported at time of writing i.e. MUST have one of these to continue :(*  
 - Go to Account Settings  
 - Show and copy the API key  
-{{< image path="img/SnykAccount" >}}
+![](img/SnykAccount.png)
 
 <br/>    
 
@@ -37,9 +37,9 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
 - In VSTS (Azure DevOps now, so ADOps?)  
   - Create new variable in pipeline for the API key  
   - Add new steps to build pipeline (I used these 3)
-{{< image path="img/SnykVstsTasks" alt="Task setup in VSTS">}}
+![Task setup in VSTS](img/SnykVstsTasks.png)  
     - *NOTE: The environment variable is **key** here, explained later*  
-{{< image path="img/SnykVstsInstall" alt="Snyk Install Task" >}}
+![Snyk Install Task](img/SnykVstsInstall.png)
     - **First step** installs Snyk to the Agent: `npm install -g snyk`  
     - **Second step** performs the Snyk checks on the npm packages: `snyk test`  
     - **Third step** performs Snyk checks on Nuget packages (different folder, so different task): `snyk test --file=slnname.sln`  
@@ -49,10 +49,10 @@ As such, I've gone and used the API instead!  It was fairly straightforward to s
 
 # Output
 ### Safe  
-{{< image path="img/SnykOutputSafe" alt="Snyk output for safe project" >}}  
+![Snyk output for safe project](img/SnykOutputSafe.png)  
 
 ### Vulnerable  
-{{< image path="img/SnykOutputVulnerable" alt="Snyk output for vulnerability" >}}  
+![Snyk output for vulnerability](img/SnykOutputVulnerable.png)  
 
 ## Some Explanations  
 Snyk requires authentication, but if the environment variable **SNYK_TOKEN** is present, it's used automatically as the authentication key. As such, ALL commands you want to run with Snyk will require this environment variable set.    

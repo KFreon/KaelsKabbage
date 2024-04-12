@@ -36,7 +36,7 @@ The initial setup experience is fairly nice.
 Projects are scaffolded out with useful yet minimal setup, e.g. Some basic components as a reminder of how to do things, Bootstrap included to reduce requirements on custom styling.  
 
 The finished project structure is below, and much of it was there to begin with. I just added some files.  
-{{< image path="img/GeneralStructure" alt="Project Structure from template is pretty good" >}}  
+![Project Structure from template is pretty good](img/GeneralStructure.png)  
 
 # Tooling is...there  
 ## Not-so-hot reload  
@@ -97,7 +97,7 @@ Those "validator" bits are key, and there's no templates or prompts for that.
 
 ## Attributes  
 Validation is done through attributes on data models, shown below:  
-{{< image path="img/ModelAttributes" alt="Attributes describe that property is required and needs to be at least 10 and at most 50" >}}  
+![Attributes describe that property is required and needs to be at least 10 and at most 50](img/ModelAttributes.png)  
 They seem fairly easy to understand and use.  
 
 
@@ -132,7 +132,7 @@ I found it most useful for `NavigationManager` which is how you trigger navigati
 - Can't F12 on custom Razor components :(  
 - VS has nice file nesting for all this, so the `.razor` is top level, with scss, css, and cs all hiding under it.  
 
-{{< image path="img/VSFileNesting" alt="Code-behind, SASS, and CSS files all nested under Razor file" >}}
+![Code-behind, SASS, and CSS files all nested under Razor file](img/VSFileNesting.png)
 
 
 # Conclusions  

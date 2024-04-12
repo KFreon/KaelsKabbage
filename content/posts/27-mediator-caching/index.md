@@ -71,7 +71,7 @@ public class GetSomethingQueryMediatorCache : MediatorCacheConfiguration<GetSome
 }
 ```
 
-{{< image path="img/MediatorCacheStructure" alt="Nice neat Query/Handler/CacheConfig file structure" >}}  
+![Nice neat Query/Handler/CacheConfig file structure](img/MediatorCacheStructure.png)  
 
 ## Cache Configuration/Invalidation  
 Cache Invalidation is always fun right?  
@@ -143,10 +143,10 @@ Below is a comparison of the same duration before and after the change to the mo
 
 {{< splitter >}}
 {{< split side=left title="Five days Before Caching" >}}
-{{< image path="img/MediatorCacheDurationComparison_OLD" alt="200k requests taking a sum of 1.5m seconds." >}}
+![200k requests taking a sum of 1.5m seconds.](img/MediatorCacheDurationComparison_OLD.png)
 {{< /split >}}
 {{< split side=right title="Five days After Caching" >}}
-{{< image path="img/MediatorCacheDurationComparison_NEW" alt="300k requests taking a sum of ~400k seconds." >}}
+![300k requests taking a sum of ~400k seconds.](img/MediatorCacheDurationComparison_NEW.png)
 {{< /split >}}
 {{< /splitter >}}  
 

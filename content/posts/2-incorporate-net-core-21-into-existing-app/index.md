@@ -14,7 +14,7 @@ The recently announced [.NET Core 2.1](https://blogs.msdn.microsoft.com/dotnet/2
 
 There’s a slight catch though. .NET Core 2.1 projects can’t be referenced by UWP and .NET Framework projects, so if you have a desktop application in need of a (potential) performance boost to, it’s not as easy as it could be.
 
-{{< image path="img/UWP_Reference_Error" alt="UWP Reference Error" >}}
+![UWP Reference Error](img/UWP_Reference_Error.png)
 
 That’s a bummer.
 
@@ -24,20 +24,20 @@ One is to wrap up the .NET Core project as a Nuget package, however the developm
 
 The most suitable solution investigated was to directly reference the .dll (instead of the project itself), although requiring a bit more setup than usual. Referencing the .dll doesn’t build the project it comes from, so if changes aren’t reflected until the project is manually rebuilt.
 
-{{< image path="img/Direct_Reference_DLL" alt="Directly referencing the generated DLL (requires initial build to generate it)" >}}
+![Directly referencing the generated DLL (requires initial build to generate it)](img/Direct_Reference_DLL.png)
 
 This can be alleviated by setting the Core project as a dependency of the non-core project, causing it to be built prior.
 
 _Right click Solution –> Properties_
 
-{{< image path="img/Dependencies" alt="Dependent projects are built first" >}}
+![Dependent projects are built first](img/Dependencies.png)
 This leads to the usual F5 experience!
 
 The caveat here is that the configuration doesn’t adapt to the configuration. There is apparently [a way of conditionally referencing different dlls](https://stackoverflow.com/questions/1786917/is-there-a-way-to-specify-assembly-references-based-on-build-configuration-in-vis/1787075#1787075) to fit configurations, however this might be excessive for most use cases.
 
  
 
-{{< image path="img/Configuration_Manager" alt="Build configuration can specify different project build types" >}}
+![Build configuration can specify different project build types](img/Configuration_Manager.png)
  
 This is only required as long as the tooling doesn’t support these combinations, however this method should continue to work for the cutting edge versions.
 

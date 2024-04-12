@@ -23,9 +23,9 @@ It works, but is tedious and can become confusing.
 That's it. Any npm commands are then run using the locally installed node version.  
 
 My currently installed version of node is 10.15.3, so running `node -v` as part of an npm script gives me the following:  
-{{< image path="img/Node_Before" alt="Node version is the globally installed node version" >}}  
+![Node version is the globally installed node version](img/Node_Before.png)  
 
 After installing node as a dependency, the build uses the local version instead!  
-{{< image path="img/Node_After" alt="Now it's using the locally installed version" >}}
+![Now it's using the locally installed version](img/Node_After.png)
 
 Enjoy!

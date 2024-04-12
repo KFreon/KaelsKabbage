@@ -18,7 +18,7 @@ I definitely don't know much about Linux, Apache, or reverse proxies whatnot, so
 
 > Use at own risk!
 
-{{< image path="img/I-Have-No-Idea-What-I-Am-Doing-Dog" alt="I have little idea what I'm doing" >}}
+![I have little idea what I'm doing](img/I-Have-No-Idea-What-I-Am-Doing-Dog.png)
 
 # Process
 ```bash

@@ -22,7 +22,7 @@ They're both great either way.
 
 {{< splitter >}}
 {{< split side=left title="Fork" >}}
-{{< image path="img/ForkUI" alt="Fork is a fairly simple UI, nothing flashy" >}}  
+![Fork is a fairly simple UI, nothing flashy](img/ForkUI.png)  
 
 <!-- silly fix for markdown rendering inside other shortcodes -->
 {{< simplemarkdown >}}  
@@ -47,7 +47,7 @@ They're both great either way.
 
 {{< /split >}}
 {{< split side=right title="Gitkraken" >}}
-{{< image path="img/GitkrakenUI" alt="Gitkraken's UI is possibly simpler, but has some fancier looks" >}}
+![Gitkraken's UI is possibly simpler, but has some fancier looks](img/GitkrakenUI.png)
 
 <!-- silly fix for markdown rendering inside other shortcodes -->
 {{< simplemarkdown >}}
@@ -98,7 +98,7 @@ They both have similar features, although I'd say Gitkrakens is slightly better,
 {{< video path="img/ForkDiff" alt="Fork has a clean simple diff in the Git vein, nothing flashy" >}}
 {{< /split >}}
 {{< split side=right title="Gitkraken Diff" >}}
-{{< image path="img/GitkrakenDiff" alt="Gitkrakens diff has some syntax highlighting!" >}}
+![Gitkrakens diff has some syntax highlighting!](img/GitkrakenDiff.png)
 {{< /split >}}
 {{< /splitter >}}  
 

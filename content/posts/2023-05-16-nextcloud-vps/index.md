@@ -120,7 +120,7 @@ So we can enable a feature called [External Storage](https://docs.nextcloud.com/
 
 After it's enabled, you can add a directory anywhere and we now have access to the synced directory.
 
-{{< image path="img/ExternalSetup" alt="Nextcloud External Setup" >}}
+![Nextcloud External Setup](img/ExternalSetup.png)
 
 I ended up having to run `sudo -u www-data occ files:scan --all` to get it to be detected though.  
 

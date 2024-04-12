@@ -260,6 +260,6 @@ The fun one that I didn't have to worry about was the one where you cache someth
 Getting your head around the service worker lifecycle is essential to understand when changes you've deployed actually come to light.  
 The Chrome Dev Tools can provide some assistance here, allowing manual update checking, forced installations, etc  
 
-{{< image path="img/ServiceWorker_DevTools" alt="Service Worker area in Chrome Dev Tools" >}}
+![Service Worker area in Chrome Dev Tools](img/ServiceWorker_DevTools.png)
 
 This was all done on Chrome ~74-ish and an Android tablet.  

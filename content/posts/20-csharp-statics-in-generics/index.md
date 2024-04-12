@@ -19,7 +19,7 @@ The conversation went something like this:
 - Wait...that didn't help?   
 - Debugging shows it's still concurrent?! HOW!?!?!11  
 
-{{< image path="img/Statics-Generics" alt="Parallel stacks indicating the bypassing of the semaphore" >}}  
+![Parallel stacks indicating the bypassing of the semaphore](img/Statics-Generics.png)  
 
 # Background  
 I had: 

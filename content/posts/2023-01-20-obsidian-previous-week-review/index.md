@@ -61,7 +61,7 @@ dv.table(['File', 'Tags'], mySource)
 ```
 
 # The Result
-{{< image path="img/ObsidianDataviewV2" alt="Looks pretty shiny to me!" >}}
+![Looks pretty shiny to me!](img/ObsidianDataviewV2.png)
 
 ---
 
@@ -103,4 +103,4 @@ dv.table(['Tag', 'Files'], filesAndTags)
 ```
 
 ## Result  
-{{< image path="img/ObsidianDataviewV3" alt="Maybe I'll use this more than before." >}}
+![Maybe I'll use this more than before.](img/ObsidianDataviewV3.png)
