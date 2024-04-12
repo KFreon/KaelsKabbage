@@ -1,5 +1,5 @@
 let searchResults = [];
-let resultsElement = document.getElementById('results');
+let resultsElement = document.getElementById('the-search-results-element');
 let searchInputElement = document.getElementById('searchbox');
 
 function showIfNecessary() {
