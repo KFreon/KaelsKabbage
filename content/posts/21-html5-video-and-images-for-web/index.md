@@ -27,7 +27,7 @@ ffmpeg -i input.mp4 -b:v 0 -c:v libsvtav1 -qp 50 -preset 3 out_AV1.mp4
 # EDIT 11-9-20: AV1 is faster now!  
 It feels like many changes have been made, and FFMpeg 4.3.1 now makes AV1's faster than before (subjectively at least).  
 Still takes a while, but not a crushingly long time.  
-[See here]({{< ref "/posts/23-revisiting-av1/index.md">}}).  
+[See here](/content/posts/23-revisiting-av1/index.md).  
 
 --------  
 
@@ -83,8 +83,8 @@ Now that we've seen the components that can use new shiny things, let's look at 
 | ------ | ----- |
 | Video Codecs  | AV1, h264, VP9 |
 | Image Codecs  | webp , png, jpg  |
-| Video Sources | PNGs from a Blender animation: ~8mb each, 1100 of them. [Result]({{< ref "/renders/2020-05-08_AncientDoor/index.md" >}}) |
-| Image Sources | [The Floating Rock render PNG]({{< ref "/renders/2020-01-18_FloatingRocks/index.md" >}}) and [Sword]({{< ref "/renders/2020-04-06_Sword/index.md" >}}) |
+| Video Sources | PNGs from a Blender animation: ~8mb each, 1100 of them. [Result](/renders/2020-05-08_AncientDoor) |
+| Image Sources | [The Floating Rock render PNG](/renders/2020-01-18_FloatingRocks) and [Sword](/renders/2020-04-06_Sword) |
 | Tools  | [FFMpeg](https://www.ffmpeg.org/) and the [Webp](https://developers.google.com/speed/webp) tools from google because they're common, simple, and reasonably well documented. |
 
 Edit: Using  FFMpeg 4.2.1  

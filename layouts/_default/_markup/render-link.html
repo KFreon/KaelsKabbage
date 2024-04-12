@@ -1,0 +1,16 @@
+{{- $u := urls.Parse .Destination -}}
+{{- $href := .Destination -}}
+
+{{ if and (not $u.IsAbs) (hasPrefix .Destination "/") }}
+  {{  $href = (ref .Page (replace .Destination "/content/" "/"))}}
+{{end}}
+
+<a href="{{ $href | safeURL }}"
+    {{- with .Title }} title="{{ . }}"{{ end -}}
+    {{- if $u.IsAbs }} rel="external" target="_blank" {{ end -}}
+  >
+    {{- with .Text | safeHTML }}{{ . }}{{ end -}}
+  </a>
+
+{{- /* chomp trailing newline */ -}}
+

@@ -28,7 +28,7 @@ As such, I believe there are three stages to working on a Managed Services proje
 > This is 1000% an opinion piece, and it feels like I'm telling on myself a bit as well...  
 
 # Stage 1: The overwhelming stage  
-You've been given a codebase and client, and you often know little about either, even after a [handover]({{< ref "/posts/2022-07-12-managed-services-handovers-the-good-the-bad-and-the-rest/index.md" >}})  
+You've been given a codebase and client, and you often know little about either, even after a [handover](/content/posts/2022-07-12-managed-services-handovers-the-good-the-bad-and-the-rest/index.md)  
 Broadly, you don't know where anything is, how anything works, or why anything is there.  
 
 This tends to mean simple things like text changes or colours are fine, but anything requiring understanding is difficult and time consuming.  
@@ -36,7 +36,7 @@ I mentioned communication styles above and I think it's a really important part 
 
 > Some clients REALLY don't like their devs changing and will make your life even more difficult in this period.  
 > You'll often hear "go ask `<previous dev>`" or "look, I just need this now, make it happen"  
-> I get where they're coming from, but a good [handover]({{< ref "/posts/2022-07-12-managed-services-handovers-the-good-the-bad-and-the-rest/index.md" >}}) can help, and aside from that, devs change sometimes ¯\\_(ツ)_/¯.  
+> I get where they're coming from, but a good [handover](/content/posts/2022-07-12-managed-services-handovers-the-good-the-bad-and-the-rest/index.md) can help, and aside from that, devs change sometimes ¯\\_(ツ)_/¯.  
 
 # Stage 2: The comfort stage  
 You're now familiar with the codebase, the client, and their business (and how the solution fits within it)  

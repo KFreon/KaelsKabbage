@@ -24,7 +24,7 @@ e.g. You have a cube, you rotate it to align with something else, but then you w
 
 # Quick Geometry Nodes Displace setup  
 The below nodes plug into the Offset socket of the "Set Position" node.  
-{{< image path="img/Geonodes_displace" alt="Basic displacement geometry nodes setup" >}}  
+![Basic displacement geometry nodes setup](img/Geonodes_displace.png)  
 
 # Geometry nodes weirdness  
 - Collection Info node sometimes needs "Realise Instances" node
@@ -36,7 +36,7 @@ The below nodes plug into the Offset socket of the "Set Position" node.
   - Especially useful for node groups that take scalar values e.g. seed
   - Issue is that if you plug "Random Value" into Seed so you get a random value per displace, it does it as a field (Random output is a field), which means that EACH POINT gets a different seed
   - Instead, turn the Random output into a scalar with this trick  
-{{< image path="img/Scalar-Field-Conversion" alt="Weird trick to get a scalar value out of a field" >}}  
+![Weird trick to get a scalar value out of a field](img/Scalar-Field-Conversion.png)  
 
 
 
@@ -45,4 +45,4 @@ No example, but just a noise texture with some distortion stretched on one axis,
 
 
 # Geometry nodes: Look at  
-{{< image path="img/LookAt" alt="Have all instances look into the middle" >}}
+![Have all instances look into the middle](img/LookAt.png)

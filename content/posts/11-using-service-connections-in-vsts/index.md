@@ -23,27 +23,27 @@ Most of this is based off [this tutorial](https://docs.microsoft.com/en-us/azure
 They use applications and service principals and the like to connect to Azure Resources (or a [multitide](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops#common-service-connection-types) of other services like Github), and provide them for Pipeline access.  
 
 So to illustrate the situation:  
-{{< image path="img/Situation" alt="Situation is two accounts with different access" >}}  
+![Situation is two accounts with different access](img/Situation.png)  
 
 Starting with the **Azure Portal account**, let's create an app registration to represent our connection to Azure AD.  
-{{< image path="img/CreatingAppRegistration" alt="Creating an App Registration in AD" >}} 
-{{< image path="img/CreatingApp" alt="Signon url is not important here" >}} 
+![Creating an App Registration in AD](img/CreatingAppRegistration.png) 
+![Signon url is not important here](img/CreatingApp.png) 
 
 Then we need to assign that registration to the subscription containing the resources we want via Access Control.
-{{< image path="img/GettingSubscription" alt="Assigning app registration to subscription" >}} 
-{{< image path="img/SubscriptionRoleAssignment" alt="Creating the role assignment" >}} 
+![Assigning app registration to subscription](img/GettingSubscription.png) 
+![Creating the role assignment](img/SubscriptionRoleAssignment.png) 
 
 That's the basic plumbing. There's security and stuff that can be added at those various steps (e.g. who's allowed to access the app registration, etc), but that's all I needed.   
 
 Now we need to get some bits that Azure DevOps needs to make the link.  
-{{< image path="img/GettingAppRegistrationId" alt="Get the service connection ID (App registration ID)" >}} 
-{{< image path="img/DirectoryGuid" alt="AAD Tenant ID" >}} 
+![Get the service connection ID (App registration ID)](img/GettingAppRegistrationId.png) 
+![AAD Tenant ID](img/DirectoryGuid.png) 
 
 Now using the **Azure DevOps account** in Azure DevOps:
-{{< image path="img/NewServiceConnection" alt="Creating a new service connection in Azure DevOps" >}}  
+![Creating a new service connection in Azure DevOps](img/NewServiceConnection.png)  
 
 NOTE the slight catch here is that we need to go to the advanced view in order to specify the app registration we created.
-{{< image path="img/AdvancedNewServiceConnection" alt="Additional steps when creating the service connection" >}} 
+![Additional steps when creating the service connection](img/AdvancedNewServiceConnection.png) 
 
 
 And that's done! Now your pipelines can access the Azure resources.  

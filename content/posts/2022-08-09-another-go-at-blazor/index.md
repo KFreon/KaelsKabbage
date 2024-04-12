@@ -6,7 +6,7 @@ slug: "another-go-at-blazor"
 tags: ["blazor"]
 ---
 
-Previously on [Blazor: Good and Bad]({{< ref "/25-blazor-net5" >}}) I played with Blazor and made a toy app to test things out.  
+Previously on [Blazor: Good and Bad](/25-blazor-net5) I played with Blazor and made a toy app to test things out.  
 I came to the conclusion that some was good, some was bad, time will tell.  
 Now that I've come back to it with a much more complex app, my opinion hasn't really changed, but I did have a go at more complex state management.    
 
@@ -68,7 +68,7 @@ The idea is to just have a data caching/translation layer where all the UI talks
 
 Anyway, it works well enough here, and while I'm not convinced it's the best idea, I don't think it's a bad one either.  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="AppState" %}}
 ```cs
 public class AppState

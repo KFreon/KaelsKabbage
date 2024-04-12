@@ -7,7 +7,7 @@ tags: ["net5", "json"]
 ---
 
 [System.Text.Json](https://devblogs.microsoft.com/dotnet/try-the-new-system-text-json-apis/) was released with dotnetcore 3 in 2019, and has been improved in NET 5.  
-After recently upgrading [this project]({{< ref "/posts/18-migrating-to-dotnetcore3-with-efcore/index.md" >}}) to dotnetcore 5 (which was much easier than the linked upgrade to dotnetcore 3...), I was curious to see what the migration path looked like for a real project.  
+After recently upgrading [this project](/content/posts/18-migrating-to-dotnetcore3-with-efcore/index.md) to dotnetcore 5 (which was much easier than the linked upgrade to dotnetcore 3...), I was curious to see what the migration path looked like for a real project.  
 
 <!--more-->  
 
@@ -46,7 +46,7 @@ Another sticking point was our use of `JsonProperty(Required)` on some of our at
 The docs [call this out](https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to?pivots=dotnet-5-0#required-properties) and provide a workaround, however I struggled a little with their examples, as it didn't really feel nice or practical to do it that way.  
 Eventually, I settled on a method of generating custom converters for any types with `Required` properties at startup via generics and DI (Autofac in this case):    
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="DI Registration" %}}
 ``` csharp
 public static class JsonSerializerOptionsExtensions
@@ -309,7 +309,7 @@ CreatedOn = 01/01/0001 00:00:00;
 In order to get those parameters set, you can put a `[JsonInclude]` attribute on the properties.  
 Another option is to add a base constructor and use that, which would require `[JsonConstructor]` attribute as well.  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="JsonInclude Example" %}}
 ```csharp  
 public abstract class AggregateRoot 

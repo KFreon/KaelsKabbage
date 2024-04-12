@@ -381,6 +381,7 @@ blockquote {
 
     a:hover {
       color: var(--darkgreen);
+      text-shadow: none;
     }
   }
 }
@@ -648,5 +649,17 @@ details {
 
   .next-post {
     justify-self: end;
+  }
+}
+
+.my-header {
+  .anchor-link {
+    color: transparentize($color: $link, $amount: 0.75);
+  }
+
+  &:hover {
+    a {
+      color: var(--link);
+    }
   }
 }

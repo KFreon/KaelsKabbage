@@ -9,7 +9,7 @@ tags: ["sql", "perf"]
 Databases are magic black boxes that we developers use all the time, but rarely really understand.  
 Sure, we *could* understand them, but:  
 
-{{< image path="img/AintNobodyGotTimeFoDat" alt="Ain't nobody got time for that!" >}}
+![Ain't nobody got time for that!](img/AintNobodyGotTimeFoDat.png)
 
 So what can we mere lazy mortals do when SQL Server databases misbehave?  
 
@@ -19,7 +19,7 @@ So what can we mere lazy mortals do when SQL Server databases misbehave?
 
 {{% toc %}}  
 
-I've written about [database performance investigations before]({{% ref "/posts/24-sql-perf-chasing/index.md" %}}), but this is a more general set of tips.  
+I've written about [database performance investigations before](/content/posts/24-sql-perf-chasing/index.md), but this is a more general set of tips.  
 
 # Check the query execution plan  
 For the luckily uninitiated, SQL Server parses your query and ~~makes a pact with Cthulhu~~ determines how best to execute it.  
@@ -35,12 +35,12 @@ To investigate execution plans using [SSMS](https://learn.microsoft.com/en-us/sq
 
 ### Getting the Actual Execution Plan
 
-{{< splitter >}}
-{{< split side=left title="SSMS" >}}
-{{< image path="img/ActualExecutionPlan_SSMS" alt="Getting actual execution plan in SSMS" >}}
+{{% splitter %}}
+{{% split side=left title="SSMS" %}}
+![Getting actual execution plan in SSMS](img/ActualExecutionPlan_SSMS.png)
 {{< /split >}}
-{{< split side=right title="Azure Data Studio" >}}
-{{< image path="img/ActualExecutionPlan_ADS" alt="Getting actual execution plan in Azure Data Studio" >}}
+{{% split side=right title="Azure Data Studio" %}}
+![Getting actual execution plan in Azure Data Studio](img/ActualExecutionPlan_ADS.png)
 {{< /split >}}
 {{< /splitter >}}  
 
@@ -60,14 +60,14 @@ Finding expensive operations sounds easy, but even when you do, how do you fix t
 - **Some steps working with way more rows than expected:** These two are hard, but if the right side of the plan is processing millions of rows, but ultimately the left returns two rows, it might be worth trying to alter the query to limit the right side rows.  
 - **Many more rows in the result-set than expected:** Similar to above, if the left is returning loads of near duplicate rows, it's worth reconsidering your query, possibly splitting it or filtering in other places.  
 
-{{< splitter >}}
-{{< split side=left title="Potential Cardinality Issue" >}}
-{{< image path="img/ExampleOfPotentialCardinalityIssues" alt="Example of potential cardinality issue" >}}
-{{< /split >}}
-{{< split side=right title="No Statistics" >}}
-{{< image path="img/PlanWithNoStatistics" alt="Example of warning about no statistics" >}}
-{{< /split >}}
-{{< /splitter >}}  
+{{% splitter %}}
+{{% split side=left title="Potential Cardinality Issue" %}}  
+![Example of potential cardinality issue](img/ExampleOfPotentialCardinalityIssues.png)  
+{{% /split %}}  
+{{% split side=right title="No Statistics" %}}  
+![Example of warning about no statistics](img/PlanWithNoStatistics.png)  
+{{% /split %}}  
+{{% /splitter %}}  
 
 ## Analyse query plan  
 Right click anywhere on the plan and select "Analyse query plan".  
@@ -75,7 +75,7 @@ The only analysis I've been able to get it to show is "inaccurate cardinality" w
 Statistics are even more magic than the rest of this to me, so I just run `exec sp_updatestats`.  
 I suspect this isn't wise to run in Production without some planned downtime.  
 
-{{< image path="img/AnalyseQueryPlan" alt="Example of query plan analysis" >}}
+![Example of query plan analysis](img/AnalyseQueryPlan.png)
 
 # Check on missing indexes  
 Indexes can make a massive difference to performance.  

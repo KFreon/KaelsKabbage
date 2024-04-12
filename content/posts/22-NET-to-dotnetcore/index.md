@@ -12,7 +12,7 @@ It's been a loooong journey...Nancy and Castle have been interesting to migrate 
 
 <!--more-->  
 
-Coming from doing a [dotnetcore 2 -> 3 + EFCore]({{< ref "/posts/18-migrating-to-dotnetcore3-with-efcore/index.md" >}}) upgrade last year, and the Nancy deprecation, I figured it'd be easy to bring this project up to snuff!  
+Coming from doing a [dotnetcore 2 -> 3 + EFCore](/content/posts/18-migrating-to-dotnetcore3-with-efcore/index.md) upgrade last year, and the Nancy deprecation, I figured it'd be easy to bring this project up to snuff!  
 I was wrong.  
 
 # tl;dr  

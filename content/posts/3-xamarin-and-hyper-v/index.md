@@ -15,13 +15,13 @@ The [Visual Studio Blog](https://blogs.msdn.microsoft.com/visualstudio/2018/05/0
 # Method
 ### Enable new Windows Hypervisor features (Requires April 2018 Update)
 
-{{< image path="img/WindowsFeaturesHyperV" alt="Enable Hypervisor" >}}
+![Enable Hypervisor](img/WindowsFeaturesHyperV.png)
 ### Update the Android Emulator to 27.8.3+ via SDKManager (Android Studio, Visual Studio, or command line) 
-{{< image path="img/EmulatorUpdate" alt="Update Android Emulator" >}}
+![Update Android Emulator](img/EmulatorUpdate.png)
 ### Create/run an Android Virtual Device (AVD) and it'll pick up the new acceleration!
-{{< image path="img/AndroidEmulatorScreen" alt="Run Emulator" >}}
+![Run Emulator](img/AndroidEmulatorScreen.png)
 ### Run project through Visual Studio AFTER starting the AVD and once it's finished booting (You'll get Package Manager access errors otherwise)
-{{< image path="img/AndroidEmulatorXamarin" alt="Run Xamarin" >}}
+![Run Xamarin](img/AndroidEmulatorXamarin.png)
 
 Debugging looks to work fine using this method as well, but the best part is just being able to run the app without weird emulation issues or disabling Hyper-V!  
 
@@ -31,6 +31,6 @@ EDIT: Something else that came up was that some of the build configurations fail
 
 [Turns out](https://stackoverflow.com/questions/24572052/install-failed-no-matching-abis-when-install-apk) this was due to a missing checkbox that seems to be enabled for `debug` but not for most of the other default configs.  
 Unwrapping the link, the fix is:  
-{{< image path="img/Armx86Fix" alt="Arm vs x86 checkboxes" >}}
+![Arm vs x86 checkboxes](img/Armx86Fix.png)
 
 Another thing I noticed was that sometimes deploying to this emulator (in the setup described here) could take on the order of minutes to get running.

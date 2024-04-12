@@ -15,7 +15,7 @@ I succeeded! Kinda...
 {{% toc levels="two" %}}  
 
 ----------   
-I had to do a [LOT of reading]({{< relref "#readings" >}}) for this, and the final code solution is [here](https://github.com/kfreon/DockerisationExperiment) on [Github](https://github.com/kfreon/DockerisationExperiment).  
+I had to do a [LOT of reading](#readings) for this, and the final code solution is [here](https://github.com/kfreon/DockerisationExperiment) on [Github](https://github.com/kfreon/DockerisationExperiment).  
 
 This is a POC! I'm not saying this is how to do it and it's the best way to do it.  
 This is the way I did it, and it seems to work, but I'm sure there are better ways.  
@@ -35,7 +35,7 @@ We'll be able to visit `https://localhost:3000` and see the standard CRA app, wh
 
 # Setup  
 - Windows
-- WSL2 with Ubuntu distro installed (with NodeJS installed, but also [without]({{< relref "#what-about-without-nodejs-on-wsl" >}}))  
+- WSL2 with Ubuntu distro installed (with NodeJS installed, but also [without](#what-about-without-nodejs-on-wsl))  
 - Visual Studio 2022 (with Container Tools installed)  
 - VSCode (with Remote-WSL and container extensions installed)  
 - Docker Desktop with Linux containers  
@@ -51,7 +51,7 @@ It was causing all sorts of problems, like the `docker` command not working, alo
 Ensure your default WSL2 distro is set to something proper (Ubuntu for me).
 You can check with `wsl --list`, and set it with `wsl -s Ubuntu` (for example)  
 
-{{< image path="img/WSL2DefaultDistro" alt="My WSL2 Distros" >}}  
+![My WSL2 Distros](img/WSL2DefaultDistro.png)  
 
 ### File watching issues in WSL  
 File watching across the Windows/WSL file system boundary is currently [not working correctly](https://github.com/microsoft/WSL/issues/4739).  
@@ -75,10 +75,10 @@ The folder of your choice
 
 If you're unsure how to do so, there are a few methods to get to WSL and set this up.  
 My go-to is opening VSCode (doesn't matter where) and searching for "Remote-WSL: New Window" which will open a new VSCode window at the Linux root (running through WSL properly), and you can create the folders in VSCode.  
-{{< image path="img/VSCodeRemoteWSL" alt="VSCode --> Remote-WSL Terminal" >}}
+![VSCode --> Remote-WSL Terminal](img/VSCodeRemoteWSL.png)
 
 Another way is to navigate to the Linux file system in Windows Explorer, and create the folders from there.  
-{{< image path="img/ExplorerLinux" alt="Linux files in Windows Explorer folder tree" >}}
+![Linux files in Windows Explorer folder tree](img/ExplorerLinux.png)
 
 The last I can think of is navigating there using the Command Line.  
 Windows Terminal has a built in WSL profile, or on any other Command Line running `wsl` will give you a prompt in your current folder (`cd ~` to get to the Linux root)  
@@ -126,11 +126,11 @@ sleep 30s
 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P y0l0Swaggins -d master -i /app/InitialSQL.sql
 ```  
 
-The container starts SQL server, waits for it to get set up, then runs a sql script against the DB using the username and password setup by docker compose ([later]({{< relref "#docker-compose" >}})).  
+The container starts SQL server, waits for it to get set up, then runs a sql script against the DB using the username and password setup by docker compose ([later](#docker-compose)).  
 > The [docs](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash) recommend this kind of script also update the `sa` password since it's exposed as an environment variable in Docker (and thus anyone who looks at the container can see it)  
 > Also note that the password has some rules to follow, check the [docs](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash) for more info.
 
-{{< image path="img/SQLSAPasswordInDocker" alt="SA password exposed as an environment variable in Docker Desktop" >}}
+![SA password exposed as an environment variable in Docker Desktop](img/SQLSAPasswordInDocker.png)
 
 ``` sql {title=InitialSQL.sql}
 -- Basic DB setup script for testing
@@ -196,7 +196,7 @@ The folder of your choice
 
 Edit the VS Dockerfile and `DockerFile_API` as below.  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="DockerFile_API" %}}
 ``` docker 
 # This is the Dockerfile we use during the main stack build.
@@ -244,11 +244,11 @@ EXPOSE 5555
 
 I'll refer to running the Visual Studio Dockerfile as the "F5 container" throughout this article.  
 
-> Why have two dockerfiles? I'll discuss it [later]({{< relref "#why-have-the-vs-f5-container-why-so-complicated" >}}), but I do have reasons!   
+> Why have two dockerfiles? I'll discuss it [later](#why-have-the-vs-f5-container-why-so-complicated), but I do have reasons!   
 
 Let's add EFCore and create a simple endpoint that returns the first row from the database container.  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Program.cs" %}}
 ``` cs
 using Microsoft.EntityFrameworkCore;
@@ -305,12 +305,12 @@ I very much want to have an F5 experience with this API project in Visual Studio
 
 The key is ensuring the same URL is used to address the F5 AND the `DockerFile_API` containers.  
 I'll expose port 5555 in both Dockerfiles, and adjust the Visual Studio Launch Settings to get Kestral to run on port 5555.  
-{{< image path="img/VSLaunchSettings" alt="Visual Studio custom launch configurations" >}}
+![Visual Studio custom launch configurations](img/VSLaunchSettings.png)
 
 In the launch settings, you can also see the container name and network are set to `api` and my mature naming standards respectively.  
 Docker containers are isolated by default, so my F5 container can't talk to any of my other containers unless we hook it up.  
 
-When we setup [Docker Compose later]({{< relref "#docker-compose" >}}), the other containers will run in a private bridge network, and this configuration adds the F5 container to that network.  
+When we setup [Docker Compose later](#docker-compose), the other containers will run in a private bridge network, and this configuration adds the F5 container to that network.  
 Further, by setting the name of the container to `api`, the other containers can address it by `http://api:5555`.  
 We'll set the Compose API project container name to `api` as well, meaning we won't need to edit the UI project files in order to change which container it uses (F5 or Compose stack)  
 Pretty cool!  
@@ -320,7 +320,7 @@ I also set `httpPort` to 5555 in `launchsettings.json` so I can access it extern
 
 ## UI  
 > I use NodeJS installed in WSL here, but you could set this up without it, fully inside Docker, but I wanted the Dev experience to be able to use npm commands later on.  
-> See [further on]({{< relref "#what-about-without-nodejs-on-wsl" >}}) for a solution WITHOUT NodeJS on WSL (Full Docker!!!)  
+> See [further on](#what-about-without-nodejs-on-wsl) for a solution WITHOUT NodeJS on WSL (Full Docker!!!)  
 
 I'm going to use [Create-React-App](https://reactjs.org/docs/create-a-new-react-app.html) to spin up a quick React project to play with.   
 
@@ -382,7 +382,7 @@ In `package.json`, add `"proxy": "http://api:5555"`, as we set our api container
 
 # Docker Compose  
 All those Dockerfiles are great, and you could tweak them to run together as they are, but let's get them all chummy and more easily controlled.  
-Create `docker-compose.yaml` in the root (as per the [project structure]({{< relref "#project-structure" >}})):   
+Create `docker-compose.yaml` in the root (as per the [project structure](#project-structure)):   
 
 ``` yml  {title="docker-compose.yaml"}
 version: '3.9'
@@ -434,7 +434,7 @@ services:
 
 [Docker Compose](https://docs.docker.com/compose/) is about container orchestration, and lets us connect and control the separate containers more easily.  
 In this case, the main things we get for free are a bridge network connecting all three containers, and the ability to build and run them all in one command.  
-The network this creates was mentioned in the [API section]({{< relref "#api">}}), and is required to get the F5 container in Visual Studio connecting to the SQL and UI containers.  
+The network this creates was mentioned in the [API section](#api), and is required to get the F5 container in Visual Studio connecting to the SQL and UI containers.  
 
 > This network is named whatever the stack name is (usually the root folder name) + "_default" by default.  
 > You can view docker networks using `docker network list`  
@@ -442,16 +442,16 @@ The network this creates was mentioned in the [API section]({{< relref "#api">}}
 # Running it all up  
 Now, in the root, run `docker compose up` and the app will "just work".  
 You can visit `http://localhost:3000` and see the page with "Learn React from me" showing!  
-{{< image path="img/FinalResult" alt="It's done!" >}}
+![It's done!](img/FinalResult.png)
 
 We've got it all running! If you open Docker Desktop, you can see the containers all listed there.  
 
-{{< splitter >}}
-{{< split side=left title="Running in stack" >}}
-{{< image path="img/YoloSwagginsInDockerDesktop" alt="Final setup in Docker Desktop" >}}
+{{% splitter %}}
+{{% split side=left title="Running in stack" %}}
+![Final setup in Docker Desktop](img/YoloSwagginsInDockerDesktop.png)
 {{< /split >}}
-{{< split side=right title="Debugging with Visual Studio F5" >}}
-{{< image path="img/DockerSplitStack" alt="Final setup in Docker Desktop running through VS" >}}
+{{% split side=right title="Debugging with Visual Studio F5" %}}
+![Final setup in Docker Desktop running through VS](img/DockerSplitStack.png)
 {{< /split >}}
 {{< /splitter >}}  
 
@@ -464,12 +464,12 @@ Let's take a look at the experience working with each of the three pieces.
 
 ### Database  
 In the `docker-compose.yaml`, I mapped the database container port 1433 --> 1633 on the host, so we can connect to it as we would any other database.  
-{{< image path="img/ADSLogin" alt="Logging into the database container SQL database with Azure Data Studio" >}}
+![Logging into the database container SQL database with Azure Data Studio](img/ADSLogin.png)
 
 ### API  
 I wanted to be able to F5 the solution, and I can!  
 All the normal workflows are fine here EXCEPT tests, and the build is run on the host which could cause issues for projects that have issues with WSL or Windows.   
-I go over that a bit [later](what-about-running-tests-and-other-useful-things)
+I go over that a bit [later](#what-about-running-tests-and-other-useful-things)
 Otherwise...Good!  
 
 ### UI  
@@ -478,7 +478,7 @@ I didn't quite get that...
 
 Editing files and Hot Reload work as expected, but running the code isn't what I wanted.  
 We need to open VSCode at the root, so we have `docker-compose.yaml` available, and then we can run a bunch of docker commands like `docker compose up ui` to run the UI only so we don't have to spin sql up and down.  
-I added some scripts to help out, but they currently don't work because my [NodeJS in WSL]({{< relref "#what-about-without-nodejs-on-wsl">}}) is broken and now I can't debug them...  
+I added some scripts to help out, but they currently don't work because my [NodeJS in WSL](#what-about-without-nodejs-on-wsl) is broken and now I can't debug them...  
 They need to be tweaked to use the docker compose
 
 ### Overall  
@@ -511,7 +511,7 @@ Feel free to [take  a look](https://github.com/kfreon/DockerisationExperiment/tr
 
 ## Do I need NodeJS installed on WSL?  
 > As alluded to earlier, I broke my Node install...  
-> [Here's]({{< relref "#what-about-without-nodejs-on-wsl" >}}) a method without Node installed in WSL  
+> [Here's](#what-about-without-nodejs-on-wsl) a method without Node installed in WSL  
 
 This is more personal taste flavoured by inexperience with Docker and WSL.  
 Currently, I work a lot with npm, so running projects by doing `npm run ...` is natural, and I know where to look for the commands I have available in the project (package.json)  
@@ -545,14 +545,14 @@ Several Stackoverflows and documentation pages later, I'm wondering how it was e
 So...all of the article will work fine, IF you don't have node installed on the host and DO have it in WSL.  
 
 I also realised that the **whole point** of this was to eliminate as many dependencies for the user as possible, and I was expecting a NodeJS dependency in WSL...  
-{{< image path="img/AnakinDestroy" alt="No Anakin!" >}}  
+![No Anakin!](img/AnakinDestroy.png)  
 
 Let's see what we can do about that. 
 
 ## Working with a dev-only NodeJS Docker container  
 I'll adjust `Dockerfile_UI` and `docker-compose.yaml` to add a new definition:  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="DockerFile_UI" %}}
 ``` docker  
 # Rest of the file from before
@@ -638,7 +638,7 @@ Looots of stack overflow
 # Convenience: Final Dockerfiles side by side with relevant docker compose sections  
 ## Database  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Dockerfile_SQL" %}}
 ``` docker
 FROM mcr.microsoft.com/mssql/server:2019-latest
@@ -676,7 +676,7 @@ sql:
 
 ## API  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Dockerfile_API" %}}
 ``` docker
 # This is the Dockerfile we use during the main stack build.
@@ -725,7 +725,7 @@ api:
 
 ## UI and nodeexec  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Dockerfile_UI" %}}
 ``` docker
 FROM node:14-alpine AS development 

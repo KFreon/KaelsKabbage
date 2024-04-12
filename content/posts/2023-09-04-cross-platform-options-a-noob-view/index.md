@@ -18,7 +18,7 @@ As devs, we tend to want one codebase to rule them all, instead of one for web, 
 
 Which inevitably leads us...here.  
 
-{{< image path="img/Architect" alt="The matrix was written in Javascript all along!" >}}
+![The matrix was written in Javascript all along!](img/Architect.png)
 
 The contenders I've decided to run with are:  
 - Flutter, Google's shiny cross platform framework using Dart.  
@@ -138,7 +138,7 @@ Widget build(BuildContext context) {
 Padding wrapping sizing wrapping columns...  
 I find it very difficult to read and understand, but perhaps I just need to git gud.   
 
-{{< image path="img/GitGud" alt="Git gud scrub" >}}
+![Git gud scrub](img/GitGud.png)
 
 ## Overall thoughts as a C# and web dev
 I don't really like it, but that feels like my own bias/thought patterns, not that it's actually a bad experience.  
@@ -150,7 +150,7 @@ Composition especially just doesn't click for me, however it seems easy enough t
 # MAUI  
 Calling MAUI Xamarin Forms is perhaps a bit harsh, as it seems quite a bit of rework/fixing has gone into it, but it really is just Xamarin Forms++.  
 While that's true, the experience feels better to me than XF did.  
-I've written about [MAUI before]({{< ref "/posts/2023-06-10-my-journey-with-maui/index.md" >}}) and it was...fine.  It's fairly middle-of-the-road, decent but not amazing.  
+I've written about [MAUI before](/content/posts/2023-06-10-my-journey-with-maui/index.md) and it was...fine.  It's fairly middle-of-the-road, decent but not amazing.  
 
 {{< video path="img/Demo_MAUI" alt="Microsoft is pushing MAUI, and it turns out to be ok" >}}
 
@@ -191,7 +191,7 @@ Feels pretty nice too, considering it's just Blazor with a MAUI shell.
 That shell is very thin and I didn't need to consider it at all with my silly app.  
 > Perhaps using things like camera or biometrics would require digging into the MAUI side?  
 
-I've written about [Blazor]({{< ref "/posts/2022-08-09-another-go-at-blazor/index.md" >}}) before as well, and I found it to be above average.  
+I've written about [Blazor](/content/posts/2022-08-09-another-go-at-blazor/index.md) before as well, and I found it to be above average.  
 
 {{< video path="img/Demo_MAUIBlazor" alt="Blazor can be wrapped in MAUI?? Yes! It can!" >}}
 

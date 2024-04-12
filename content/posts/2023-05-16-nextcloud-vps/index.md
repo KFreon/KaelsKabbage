@@ -6,13 +6,13 @@ slug: "nextcloud-journey-so-far"
 tags: ["nextcloud"]
 ---
 
-After admitting defeat on my [previous post]({{< ref "/posts/2023-04-04-nextcloud-lan-only/index.md" >}}) attempting to get Nextcloud running locally (and remembering that I wanted an offsite backup anyway), I've bought a VPS and installed Nextcloud on it.  
+After admitting defeat on my [previous post](/content/posts/2023-04-04-nextcloud-lan-only/index.md) attempting to get Nextcloud running locally (and remembering that I wanted an offsite backup anyway), I've bought a VPS and installed Nextcloud on it.  
 
 <!--more-->  
 
 # Previously, on Nextcloud...  
 I was adamant on just testing out Nextcloud and tried to install it locally in my network.  
-This was [not easy]({{< ref "/posts/2023-04-04-nextcloud-lan-only/index.md" >}}), and ultimately I gave up.  
+This was [not easy](/content/posts/2023-04-04-nextcloud-lan-only/index.md), and ultimately I gave up.  
 
 In short, the Snap worked fine, but I wasn't able to add HEIC support among other things, so I started doing crazy things like building the docker images from scratch with required edits, and I realised I was going too far...  
 I eventually remembered I wanted an offsite backup anyway, so I gave up and bought a Virtual Private Server.
@@ -120,7 +120,7 @@ So we can enable a feature called [External Storage](https://docs.nextcloud.com/
 
 After it's enabled, you can add a directory anywhere and we now have access to the synced directory.
 
-{{< image path="img/ExternalSetup" alt="Nextcloud External Setup" >}}
+![Nextcloud External Setup](img/ExternalSetup.png)
 
 I ended up having to run `sudo -u www-data occ files:scan --all` to get it to be detected though.  
 

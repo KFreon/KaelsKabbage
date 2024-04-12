@@ -72,7 +72,7 @@ services.AddAuthentication(config => config.DefaultScheme = "myscheme").AddCooki
 but no, that's not how it works.  
 I ended up reusing the original handler, changing some types (mostly service resolution), I ended up with this:
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Original" %}}
 ```c#
 public class MyAuthHandler : IAuthenticationHandler
@@ -243,7 +243,7 @@ host.Run();
 The Release Pipeline also required changes from Topshelf installs to:
 
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Uninstall Old Service" %}}
 ``` bash
 sc stop "$(Application)"

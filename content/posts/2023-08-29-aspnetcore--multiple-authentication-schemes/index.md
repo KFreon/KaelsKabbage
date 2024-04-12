@@ -45,7 +45,7 @@ This was part of a migration project, and they didn't use `[Authorize]` and I di
 As such, I only use `[Authorize(SCHEME)]` when I want a non-default policy, and `[AllowAnonymous]` for no auth.  
 
 ## Original  
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Original" %}}
 ```cs
 // Note that in NET 7, if there's only one scheme, it will still be registered as the default if omitted.  

@@ -20,9 +20,9 @@ They're both great either way.
 
 # The Facts   
 
-{{< splitter >}}
-{{< split side=left title="Fork" >}}
-{{< image path="img/ForkUI" alt="Fork is a fairly simple UI, nothing flashy" >}}  
+{{% splitter %}}
+{{% split side=left title="Fork" %}}
+![Fork is a fairly simple UI, nothing flashy](img/ForkUI.png)  
 
 <!-- silly fix for markdown rendering inside other shortcodes -->
 {{< simplemarkdown >}}  
@@ -46,8 +46,8 @@ They're both great either way.
 {{< /simplemarkdown >}}
 
 {{< /split >}}
-{{< split side=right title="Gitkraken" >}}
-{{< image path="img/GitkrakenUI" alt="Gitkraken's UI is possibly simpler, but has some fancier looks" >}}
+{{% split side=right title="Gitkraken" %}}
+![Gitkraken's UI is possibly simpler, but has some fancier looks](img/GitkrakenUI.png)
 
 <!-- silly fix for markdown rendering inside other shortcodes -->
 {{< simplemarkdown >}}
@@ -93,12 +93,12 @@ Let's take a closer look at some facts.
 ## Diff  
 They both have similar features, although I'd say Gitkrakens is slightly better, better syntax highlighting, better support for entire file view, etc.  
 
-{{< splitter >}}
-{{< split side=left title="Fork Diff" >}}
+{{% splitter %}}
+{{% split side=left title="Fork Diff" %}}
 {{< video path="img/ForkDiff" alt="Fork has a clean simple diff in the Git vein, nothing flashy" >}}
 {{< /split >}}
-{{< split side=right title="Gitkraken Diff" >}}
-{{< image path="img/GitkrakenDiff" alt="Gitkrakens diff has some syntax highlighting!" >}}
+{{% split side=right title="Gitkraken Diff" %}}
+![Gitkrakens diff has some syntax highlighting!](img/GitkrakenDiff.png)
 {{< /split >}}
 {{< /splitter >}}  
 
@@ -121,7 +121,7 @@ They both have similar features, although I'd say Gitkrakens is slightly better,
 
 ## Other features  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Fork" nocollapse="true" %}}  
 
 - Allows opening the system default terminal

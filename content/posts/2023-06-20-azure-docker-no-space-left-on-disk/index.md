@@ -13,12 +13,12 @@ This took me too long to figure out NOT to write a blog post about it 🥲
 My Azure build pipeline builds several docker images as part of it's process (multiple artifacts and tests).  
 For some reason, recently it started to fail with "no space left on device".  
 
-{{< image path="img/NoSpaceLeftOnDevice" alt="No space left ☹️" >}}
+![No space left ☹️](img/NoSpaceLeftOnDevice.png)
 
 I tried to slim down the images I was building, etc to no avail.  
 Eventually, I came across: `docker system df` which lists what space docker "owns".  
 
-{{< image path="img/DockerDF" alt="Such build, so yuge!" >}}
+![Such build, so yuge!](img/DockerDF.png)
 
 The images looks about right but wow...that build cache is yuge.  
 

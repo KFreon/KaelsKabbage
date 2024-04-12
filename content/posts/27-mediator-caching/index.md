@@ -6,7 +6,7 @@ slug: "mediatr-caching"
 tags: ['perf']
 ---
 
-[Previously]({{< ref "/posts/26-azure-perf-investigation" >}}), I did some performance investigations in Azure. The cause remains elusive, so I've started looking into caching, most interestingly caching Mediatr Query results.  
+[Previously](/content/posts/26-azure-perf-investigation/index.md), I did some performance investigations in Azure. The cause remains elusive, so I've started looking into caching, most interestingly caching Mediatr Query results.  
 
 <!--more-->  
 
@@ -50,7 +50,7 @@ Seeing as the caching libraries use the [Mediatr Pipeline Behaviours](https://gi
 # Mediatr Caching  
 I had spare time and an interest in performance, so I got to dig into it!  
 Things weren't quite that simple, as the caching libraries mentioned earlier ([This one](https://github.com/SorenZ/Alamut.MediatR.Caching) by SorenZ and [this one](https://github.com/Imprise/Imprise.MediatR.Extensions.Caching) by Imprise) were pretty close, but didn't give me good invalidation or the level of control I wanted.  
-Note that [my solution](./MediatorCaching_Example.7z) is influenced heavily by SorenZ's solution.  
+Note that [my solution](MediatorCaching_Example.7z) is influenced heavily by SorenZ's solution.  
 
 ## Registering a Query for Caching  
 I wanted an easy way to register the cache. Something that sat alongside our `Query` and `QueryHandler` in their folders.  
@@ -71,7 +71,7 @@ public class GetSomethingQueryMediatorCache : MediatorCacheConfiguration<GetSome
 }
 ```
 
-{{< image path="img/MediatorCacheStructure" alt="Nice neat Query/Handler/CacheConfig file structure" >}}  
+![Nice neat Query/Handler/CacheConfig file structure](img/MediatorCacheStructure.png)  
 
 ## Cache Configuration/Invalidation  
 Cache Invalidation is always fun right?  
@@ -141,12 +141,12 @@ An example solution with those details is at the end of this post if you'd like 
 So, did it help?  
 Below is a comparison of the same duration before and after the change to the most common Mediatr query.  
 
-{{< splitter >}}
-{{< split side=left title="Five days Before Caching" >}}
-{{< image path="img/MediatorCacheDurationComparison_OLD" alt="200k requests taking a sum of 1.5m seconds." >}}
+{{% splitter %}}
+{{% split side=left title="Five days Before Caching" %}}
+![200k requests taking a sum of 1.5m seconds.](img/MediatorCacheDurationComparison_OLD.png)
 {{< /split >}}
-{{< split side=right title="Five days After Caching" >}}
-{{< image path="img/MediatorCacheDurationComparison_NEW" alt="300k requests taking a sum of ~400k seconds." >}}
+{{% split side=right title="Five days After Caching" %}}
+![300k requests taking a sum of ~400k seconds.](img/MediatorCacheDurationComparison_NEW.png)
 {{< /split >}}
 {{< /splitter >}}  
 
@@ -166,4 +166,4 @@ If not, it's been a fun ride!
 
 ### Full example solution  
 [Github](https://github.com/kfreon/Mediator-Caching)  
-[7z](./MediatorCaching_Example.7z)
+[7z](MediatorCaching_Example.7z)

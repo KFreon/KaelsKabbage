@@ -12,15 +12,15 @@ The theme I was (still am) using didn't have great support for some of the markd
 
 <!--more-->  
 
-**EDIT (1-2-2020):** I rewrote the syntax highlighting bits at the bottom. See [the revisit]({{% ref "/posts/19-hugo-syntax-extension" %}}) for the updated syntaxes.  
+**EDIT (1-2-2020):** I rewrote the syntax highlighting bits at the bottom. See [the revisit](/content/posts/19-hugo-syntax-extension/index.md) for the updated syntaxes.  
 **EDIT:** After this, I realised my shortcodes were a bit annoying to type, so I made some snippets for them (at the end of the page)
 
 This ended up working fine, things displayed how I wanted them and all was right, except when I went back to posts and had a look.  
-{{< image path="img/HugoShortcodes_NoExtension" alt="Hugo Shortcodes with no syntax highlighting" >}}  
+![Hugo Shortcodes with no syntax highlighting](img/HugoShortcodes_NoExtension.png)  
 
 Bit hard to see and visually differentiate all the elements.   
 After installing my extension:   
-{{< image path="img/HugoShortcodes_WithExtension" alt="Syntax highlighting enabled via TextMate Markdown extension" >}}
+![Syntax highlighting enabled via TextMate Markdown extension](img/HugoShortcodes_WithExtension.png)
 
 At the time, it wasn't possible to have an extension that modified VSCode's markdown syntax (as far as I could tell), so I was forced to dive into the `markdown.tmLanguage` file directly and change stuff. It wasn't ideal and I had to do it every time VSCode updated.  
 
@@ -49,10 +49,10 @@ After doing a `yo code` and following the instructions, you end up with a fairly
 ## Code Dive
 ### package.json
 **Languages** should be filled out and isn't really relevant to this situation as it relates to adding support for a currently unsupported language.  
-{{< image path="img/Hugo_Languages" alt="Languages section in package.json" >}}  
+![Languages section in package.json](img/Hugo_Languages.png)  
 
 **Grammars** contains information about how the syntax highlighting should behave.  
-{{< image path="img/Hugo_Grammars" alt="Grammars section in package.json" >}}  
+![Grammars section in package.json](img/Hugo_Grammars.png)  
 
 It's name is the language name from the id above (not relevant here either), scope name is something to do with styles and needs to match the `<name>.tmLanguage.json` file ([see this post](https://www.apeth.com/nonblog/stories/textmatebundle.html) for more info on scopes and themes)  
 
@@ -107,7 +107,7 @@ In the end, I came up with some syntax highlighting rules for Hugo Shortcodes, s
 
 [Extension repository](https://dev.azure.com/kaellarkin/_git/Hugo-Shortcode-Syntax-Highlighting) (not currently published)  
 **EDIT (1-2-2020):** Repository has [changed](https://github.com/kfreon/hugo-vscode-shortcode-syntax-highlighting) and it is now [published](https://marketplace.visualstudio.com/items?itemName=kaellarkin.hugo-shortcode-syntax
-). For more info, see [The Revisit]({{% ref "/posts/19-hugo-syntax-extension" %}}).  
+). For more info, see [The Revisit](/content/posts/19-hugo-syntax-extension/index.md).  
 
 EDIT  
 <details>
