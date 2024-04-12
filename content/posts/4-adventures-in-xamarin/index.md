@@ -50,7 +50,7 @@ It should be noted that these options didn't work for me. They definitely solved
 <br>
 
 #### Incorrect architectures and Simulation
-I've included these for completeness, but I've gone through them in [another post]({{% ref "/posts/3-xamarin-and-hyper-v" %}}) (at the bottom).
+I've included these for completeness, but I've gone through them in [another post](/content/posts/3-xamarin-and-hyper-v/index.md) (at the bottom).
 The biggest bit out of those is that the build architecture defaults were incorrect, and the simulator needs to be started prior to running the first time (it takes a while to start up)
 <br>  
 

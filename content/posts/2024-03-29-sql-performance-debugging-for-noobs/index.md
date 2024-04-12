@@ -19,7 +19,7 @@ So what can we mere lazy mortals do when SQL Server databases misbehave?
 
 {{% toc %}}  
 
-I've written about [database performance investigations before]({{% ref "/posts/24-sql-perf-chasing/index.md" %}}), but this is a more general set of tips.  
+I've written about [database performance investigations before](/content/posts/24-sql-perf-chasing/index.md), but this is a more general set of tips.  
 
 # Check the query execution plan  
 For the luckily uninitiated, SQL Server parses your query and ~~makes a pact with Cthulhu~~ determines how best to execute it.  

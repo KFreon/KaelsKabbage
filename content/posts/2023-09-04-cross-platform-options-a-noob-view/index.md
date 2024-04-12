@@ -150,7 +150,7 @@ Composition especially just doesn't click for me, however it seems easy enough t
 # MAUI  
 Calling MAUI Xamarin Forms is perhaps a bit harsh, as it seems quite a bit of rework/fixing has gone into it, but it really is just Xamarin Forms++.  
 While that's true, the experience feels better to me than XF did.  
-I've written about [MAUI before]({{< ref "/posts/2023-06-10-my-journey-with-maui/index.md" >}}) and it was...fine.  It's fairly middle-of-the-road, decent but not amazing.  
+I've written about [MAUI before](/content/posts/2023-06-10-my-journey-with-maui/index.md) and it was...fine.  It's fairly middle-of-the-road, decent but not amazing.  
 
 {{< video path="img/Demo_MAUI" alt="Microsoft is pushing MAUI, and it turns out to be ok" >}}
 
@@ -191,7 +191,7 @@ Feels pretty nice too, considering it's just Blazor with a MAUI shell.
 That shell is very thin and I didn't need to consider it at all with my silly app.  
 > Perhaps using things like camera or biometrics would require digging into the MAUI side?  
 
-I've written about [Blazor]({{< ref "/posts/2022-08-09-another-go-at-blazor/index.md" >}}) before as well, and I found it to be above average.  
+I've written about [Blazor](/content/posts/2022-08-09-another-go-at-blazor/index.md) before as well, and I found it to be above average.  
 
 {{< video path="img/Demo_MAUIBlazor" alt="Blazor can be wrapped in MAUI?? Yes! It can!" >}}
 

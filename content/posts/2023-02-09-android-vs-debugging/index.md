@@ -6,7 +6,7 @@ slug: "android-vs-debugging"
 tags: ["xamarin", "android"]
 ---
 
-In my spelunking with [Android Foreground Services]({{< ref "/posts/2023-02-08-android-foreground-services/index.md" >}}), I needed to do debugging, and since I'm in Xamarin Forms, I used built in Visual Studio tools.
+In my spelunking with [Android Foreground Services](/content/posts/2023-02-08-android-foreground-services/index.md), I needed to do debugging, and since I'm in Xamarin Forms, I used built in Visual Studio tools.
 
 <!--more-->  
 

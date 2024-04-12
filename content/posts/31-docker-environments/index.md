@@ -434,7 +434,7 @@ services:
 
 [Docker Compose](https://docs.docker.com/compose/) is about container orchestration, and lets us connect and control the separate containers more easily.  
 In this case, the main things we get for free are a bridge network connecting all three containers, and the ability to build and run them all in one command.  
-The network this creates was mentioned in the [API section]({{< relref "#api">}}), and is required to get the F5 container in Visual Studio connecting to the SQL and UI containers.  
+The network this creates was mentioned in the [API section](#api), and is required to get the F5 container in Visual Studio connecting to the SQL and UI containers.  
 
 > This network is named whatever the stack name is (usually the root folder name) + "_default" by default.  
 > You can view docker networks using `docker network list`  
@@ -469,7 +469,7 @@ In the `docker-compose.yaml`, I mapped the database container port 1433 --> 1633
 ### API  
 I wanted to be able to F5 the solution, and I can!  
 All the normal workflows are fine here EXCEPT tests, and the build is run on the host which could cause issues for projects that have issues with WSL or Windows.   
-I go over that a bit [later](what-about-running-tests-and-other-useful-things)
+I go over that a bit [later](#what-about-running-tests-and-other-useful-things)
 Otherwise...Good!  
 
 ### UI  
@@ -478,7 +478,7 @@ I didn't quite get that...
 
 Editing files and Hot Reload work as expected, but running the code isn't what I wanted.  
 We need to open VSCode at the root, so we have `docker-compose.yaml` available, and then we can run a bunch of docker commands like `docker compose up ui` to run the UI only so we don't have to spin sql up and down.  
-I added some scripts to help out, but they currently don't work because my [NodeJS in WSL]({{< relref "#what-about-without-nodejs-on-wsl">}}) is broken and now I can't debug them...  
+I added some scripts to help out, but they currently don't work because my [NodeJS in WSL](#what-about-without-nodejs-on-wsl) is broken and now I can't debug them...  
 They need to be tweaked to use the docker compose
 
 ### Overall  

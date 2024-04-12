@@ -7,7 +7,7 @@ tags: ["net5", "json"]
 ---
 
 [System.Text.Json](https://devblogs.microsoft.com/dotnet/try-the-new-system-text-json-apis/) was released with dotnetcore 3 in 2019, and has been improved in NET 5.  
-After recently upgrading [this project]({{< ref "/posts/18-migrating-to-dotnetcore3-with-efcore/index.md" >}}) to dotnetcore 5 (which was much easier than the linked upgrade to dotnetcore 3...), I was curious to see what the migration path looked like for a real project.  
+After recently upgrading [this project](/content/posts/18-migrating-to-dotnetcore3-with-efcore/index.md) to dotnetcore 5 (which was much easier than the linked upgrade to dotnetcore 3...), I was curious to see what the migration path looked like for a real project.  
 
 <!--more-->  
 

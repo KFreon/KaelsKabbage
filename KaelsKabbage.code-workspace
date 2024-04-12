@@ -5,9 +5,6 @@
 		}
 	],
 	"settings": {
-		"path-autocomplete.pathMappings": {
-			"/": "${folder}/content"
-		},
 		"cSpell.words": [
 			"SSMS"
 		]

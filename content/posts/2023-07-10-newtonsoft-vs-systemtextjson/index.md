@@ -51,7 +51,7 @@ As such, I've only really done enough for it to **be** possible, not to make it 
 Doubtless there's many things I could do to improve this on both sides.  
 
 Also, the changes I had to make to get it to work weren't a 5 minute job.  
-There's a bunch of differences between these two implementations, see my older post [Migrating Newtonsoft to System.Text.Json]({{< ref "/posts/28-newtonsoft-to-system-net-json/index.md">}}).  
+There's a bunch of differences between these two implementations, see my older post [Migrating Newtonsoft to System.Text.Json](/content/posts/28-newtonsoft-to-system-net-json/index.md).  
 
 # Benchmarks  
 Here's my code for the benchmarks  
@@ -172,7 +172,7 @@ And drumroll 🥁🥁🥁
 
 # Conclusions  
 The benchmarks are pretty clear: System.Text.Json is faster and more memory efficient.  
-This does come with the caveat that it's also a needy little thing as well, and I had a lot of converters and reworking constructors as per my other post on [Migrating Newtonsoft to System.Text.Json]({{< ref "/posts/28-newtonsoft-to-system-net-json/index.md">}})  
+This does come with the caveat that it's also a needy little thing as well, and I had a lot of converters and reworking constructors as per my other post on [Migrating Newtonsoft to System.Text.Json](/content/posts/28-newtonsoft-to-system-net-json/index.md)  
 
 The source generated version is even faster to serialise, but essentially the same to deserialise.  
 I might be using it wrong though.  

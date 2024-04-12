@@ -7,7 +7,7 @@ slug: "android-emulator-dns"
 tags: ["android"]
 ---
 
-The [Android Emulator](https://developer.android.com/studio/run/emulator) is pretty sweet now. Fairly performant, [works with Hyper-V]({{% ref "/posts/3-xamarin-and-hyper-v" %}}) still enabled, etc.  
+The [Android Emulator](https://developer.android.com/studio/run/emulator) is pretty sweet now. Fairly performant, [works with Hyper-V](/content/posts/3-xamarin-and-hyper-v/index.md) still enabled, etc.  
 Recently I started having an issue where the emulator wouldn't get it's network set up properly. My adapter list looks pretty crazy (15 or so adapters), so maybe it's getting confused? Anyway, seems to be an issue that others have come across as well, because I found a few StackOverflow issues about it.
 <!--more-->  
 
