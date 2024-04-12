@@ -15,7 +15,7 @@ I succeeded! Kinda...
 {{% toc levels="two" %}}  
 
 ----------   
-I had to do a [LOT of reading]({{< relref "#readings" >}}) for this, and the final code solution is [here](https://github.com/kfreon/DockerisationExperiment) on [Github](https://github.com/kfreon/DockerisationExperiment).  
+I had to do a [LOT of reading](#readings) for this, and the final code solution is [here](https://github.com/kfreon/DockerisationExperiment) on [Github](https://github.com/kfreon/DockerisationExperiment).  
 
 This is a POC! I'm not saying this is how to do it and it's the best way to do it.  
 This is the way I did it, and it seems to work, but I'm sure there are better ways.  
@@ -35,7 +35,7 @@ We'll be able to visit `https://localhost:3000` and see the standard CRA app, wh
 
 # Setup  
 - Windows
-- WSL2 with Ubuntu distro installed (with NodeJS installed, but also [without]({{< relref "#what-about-without-nodejs-on-wsl" >}}))  
+- WSL2 with Ubuntu distro installed (with NodeJS installed, but also [without](#what-about-without-nodejs-on-wsl))  
 - Visual Studio 2022 (with Container Tools installed)  
 - VSCode (with Remote-WSL and container extensions installed)  
 - Docker Desktop with Linux containers  
@@ -126,7 +126,7 @@ sleep 30s
 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P y0l0Swaggins -d master -i /app/InitialSQL.sql
 ```  
 
-The container starts SQL server, waits for it to get set up, then runs a sql script against the DB using the username and password setup by docker compose ([later]({{< relref "#docker-compose" >}})).  
+The container starts SQL server, waits for it to get set up, then runs a sql script against the DB using the username and password setup by docker compose ([later](#docker-compose)).  
 > The [docs](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash) recommend this kind of script also update the `sa` password since it's exposed as an environment variable in Docker (and thus anyone who looks at the container can see it)  
 > Also note that the password has some rules to follow, check the [docs](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash) for more info.
 
@@ -244,7 +244,7 @@ EXPOSE 5555
 
 I'll refer to running the Visual Studio Dockerfile as the "F5 container" throughout this article.  
 
-> Why have two dockerfiles? I'll discuss it [later]({{< relref "#why-have-the-vs-f5-container-why-so-complicated" >}}), but I do have reasons!   
+> Why have two dockerfiles? I'll discuss it [later](#why-have-the-vs-f5-container-why-so-complicated), but I do have reasons!   
 
 Let's add EFCore and create a simple endpoint that returns the first row from the database container.  
 
@@ -310,7 +310,7 @@ I'll expose port 5555 in both Dockerfiles, and adjust the Visual Studio Launch S
 In the launch settings, you can also see the container name and network are set to `api` and my mature naming standards respectively.  
 Docker containers are isolated by default, so my F5 container can't talk to any of my other containers unless we hook it up.  
 
-When we setup [Docker Compose later]({{< relref "#docker-compose" >}}), the other containers will run in a private bridge network, and this configuration adds the F5 container to that network.  
+When we setup [Docker Compose later](#docker-compose), the other containers will run in a private bridge network, and this configuration adds the F5 container to that network.  
 Further, by setting the name of the container to `api`, the other containers can address it by `http://api:5555`.  
 We'll set the Compose API project container name to `api` as well, meaning we won't need to edit the UI project files in order to change which container it uses (F5 or Compose stack)  
 Pretty cool!  
@@ -320,7 +320,7 @@ I also set `httpPort` to 5555 in `launchsettings.json` so I can access it extern
 
 ## UI  
 > I use NodeJS installed in WSL here, but you could set this up without it, fully inside Docker, but I wanted the Dev experience to be able to use npm commands later on.  
-> See [further on]({{< relref "#what-about-without-nodejs-on-wsl" >}}) for a solution WITHOUT NodeJS on WSL (Full Docker!!!)  
+> See [further on](#what-about-without-nodejs-on-wsl) for a solution WITHOUT NodeJS on WSL (Full Docker!!!)  
 
 I'm going to use [Create-React-App](https://reactjs.org/docs/create-a-new-react-app.html) to spin up a quick React project to play with.   
 
@@ -382,7 +382,7 @@ In `package.json`, add `"proxy": "http://api:5555"`, as we set our api container
 
 # Docker Compose  
 All those Dockerfiles are great, and you could tweak them to run together as they are, but let's get them all chummy and more easily controlled.  
-Create `docker-compose.yaml` in the root (as per the [project structure]({{< relref "#project-structure" >}})):   
+Create `docker-compose.yaml` in the root (as per the [project structure](#project-structure)):   
 
 ``` yml  {title="docker-compose.yaml"}
 version: '3.9'
@@ -511,7 +511,7 @@ Feel free to [take  a look](https://github.com/kfreon/DockerisationExperiment/tr
 
 ## Do I need NodeJS installed on WSL?  
 > As alluded to earlier, I broke my Node install...  
-> [Here's]({{< relref "#what-about-without-nodejs-on-wsl" >}}) a method without Node installed in WSL  
+> [Here's](#what-about-without-nodejs-on-wsl) a method without Node installed in WSL  
 
 This is more personal taste flavoured by inexperience with Docker and WSL.  
 Currently, I work a lot with npm, so running projects by doing `npm run ...` is natural, and I know where to look for the commands I have available in the project (package.json)  
