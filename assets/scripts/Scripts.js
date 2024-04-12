@@ -24,10 +24,10 @@ function setRenderDisplay(displayType) {
 }
 
 function setTheme(theme) {
-  if (theme === 'dark') {
-    document.getElementById("main-body").className = 'dark';
-  } else {
+  if (theme === 'light') {
     document.getElementById("main-body").className = 'light';
+  } else {
+    document.getElementById("main-body").className = 'dark';
   }
 }
 

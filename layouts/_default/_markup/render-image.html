@@ -1,5 +1,5 @@
 {{- $u := urls.Parse .Destination -}}
-{{- $desc := .Text -}}
+{{- $desc := .Text | safeHTML -}}
 {{- $title := .Title -}}
 {{- $pagePermalink := .Page.Permalink -}}
 {{- if not $u.IsAbs -}}
@@ -9,8 +9,8 @@
 
 <div class="media image" onclick="zoomImage(this)">
   <picture class="fullsize-frame media-frame">
-      <source srcset='{{ $webp.Permalink }}' type="image/webp">
-      <source srcset='{{ $png.Permalink }}' type="image/png"> 
+      <source srcset='{{ $webp.Permalink }}' type="image/webp" width="{{.Width}}" height="{{.Height}}">
+      <source srcset='{{ $png.Permalink }}' type="image/png" width="{{.Width}}" height="{{.Height}}"> 
       {{- with $png -}}
       <img class="image inner" 
           src="{{ .Permalink }}"  
