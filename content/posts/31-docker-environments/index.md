@@ -196,7 +196,7 @@ The folder of your choice
 
 Edit the VS Dockerfile and `DockerFile_API` as below.  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="DockerFile_API" %}}
 ``` docker 
 # This is the Dockerfile we use during the main stack build.
@@ -248,7 +248,7 @@ I'll refer to running the Visual Studio Dockerfile as the "F5 container" through
 
 Let's add EFCore and create a simple endpoint that returns the first row from the database container.  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Program.cs" %}}
 ``` cs
 using Microsoft.EntityFrameworkCore;
@@ -446,11 +446,11 @@ You can visit `http://localhost:3000` and see the page with "Learn React from me
 
 We've got it all running! If you open Docker Desktop, you can see the containers all listed there.  
 
-{{< splitter >}}
-{{< split side=left title="Running in stack" >}}
+{{% splitter %}}
+{{% split side=left title="Running in stack" %}}
 ![Final setup in Docker Desktop](img/YoloSwagginsInDockerDesktop.png)
 {{< /split >}}
-{{< split side=right title="Debugging with Visual Studio F5" >}}
+{{% split side=right title="Debugging with Visual Studio F5" %}}
 ![Final setup in Docker Desktop running through VS](img/DockerSplitStack.png)
 {{< /split >}}
 {{< /splitter >}}  
@@ -552,7 +552,7 @@ Let's see what we can do about that.
 ## Working with a dev-only NodeJS Docker container  
 I'll adjust `Dockerfile_UI` and `docker-compose.yaml` to add a new definition:  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="DockerFile_UI" %}}
 ``` docker  
 # Rest of the file from before
@@ -638,7 +638,7 @@ Looots of stack overflow
 # Convenience: Final Dockerfiles side by side with relevant docker compose sections  
 ## Database  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Dockerfile_SQL" %}}
 ``` docker
 FROM mcr.microsoft.com/mssql/server:2019-latest
@@ -676,7 +676,7 @@ sql:
 
 ## API  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Dockerfile_API" %}}
 ``` docker
 # This is the Dockerfile we use during the main stack build.
@@ -725,7 +725,7 @@ api:
 
 ## UI and nodeexec  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Dockerfile_UI" %}}
 ``` docker
 FROM node:14-alpine AS development 

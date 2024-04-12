@@ -141,11 +141,11 @@ An example solution with those details is at the end of this post if you'd like 
 So, did it help?  
 Below is a comparison of the same duration before and after the change to the most common Mediatr query.  
 
-{{< splitter >}}
-{{< split side=left title="Five days Before Caching" >}}
+{{% splitter %}}
+{{% split side=left title="Five days Before Caching" %}}
 ![200k requests taking a sum of 1.5m seconds.](img/MediatorCacheDurationComparison_OLD.png)
 {{< /split >}}
-{{< split side=right title="Five days After Caching" >}}
+{{% split side=right title="Five days After Caching" %}}
 ![300k requests taking a sum of ~400k seconds.](img/MediatorCacheDurationComparison_NEW.png)
 {{< /split >}}
 {{< /splitter >}}  

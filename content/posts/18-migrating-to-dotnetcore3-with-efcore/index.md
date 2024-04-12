@@ -33,7 +33,7 @@ Easy as that!
 There were also some simple changes to Program.cs and Startup.cs (in my case, YMMV).  
 **Program.cs**   
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Original" %}}
 ```go
 var webHostBuilder = WebHost.CreateDefaultBuilder(args)
@@ -64,7 +64,7 @@ Note the different method of registering Autofac.
 In `ConfigureServices`, `UseMvc` changed to `AddControllers`. As I understand it, there can be a few ways to configure that method, but in my case that's all I needed (basic endpoint configuration)  
 `Configure` was getting an `IHostingEnvironment`, that's now `IWebHostEnvironment`.  
 Also:  
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Original" %}}
 ```go
 app.UseStaticFiles();
@@ -85,7 +85,7 @@ app.UseEndpoints(endpoints => endpoints.MapControllers());  <-- instead of UseMv
 {{< /splitter >}}  
 
 Test config needed adjusting: 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Original" %}}
 ```cs
 Server = new TestServer(Program

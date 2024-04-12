@@ -26,7 +26,7 @@ Sometimes we'd get a list of vehicles then `foreach` vehicle, concat the part na
 This seems reasonable, but let's say we didn't pull the Parts in with the vehicles? What if it wasn't that simple?   
 
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Bad versions" %}}  
 
 ``` csharp

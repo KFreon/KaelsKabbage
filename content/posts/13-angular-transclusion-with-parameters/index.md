@@ -18,7 +18,7 @@ Were it so easy...
 *Solution*: Use `ng-template` with `ng-container *ngTemplateOutlet` with a `context: { $implicit: variable-name }` property.  
 
 # The problem  
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Html" %}}
 ``` html
 <div>
@@ -137,7 +137,7 @@ I had a hard time putting this succinctly, so let's start with the finished sour
 
 ## Extracted component   
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Html" %}}
 ``` html
 <div *ngFor="let holiday of holidays">
@@ -178,7 +178,7 @@ export class ExtractedComponent implements OnInit {
 
 ## Refactored component  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Html" %}}
 ``` html
 <div>

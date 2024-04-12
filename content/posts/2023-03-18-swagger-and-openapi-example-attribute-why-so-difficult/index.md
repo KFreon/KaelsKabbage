@@ -48,11 +48,11 @@ Further, it also annotates the whole class instead of the individual property.
 It formats quite strangely for me as well, but I'm sure that can be fixed as well, but I don't want any of that!  
 
 
-{{< splitter >}}
-{{< split side=left title="Class level Example" >}}
+{{% splitter %}}
+{{% split side=left title="Class level Example" %}}
 ![Class level OpenAPI example, which is too complex for me](img/OpenApiExample_Class.png)
 {{< /split >}}
-{{< split side=right title="Property level Example" >}}
+{{% split side=right title="Property level Example" %}}
 ![Property level example, which is what I want](img/OpenApiExample_Property.png)
 {{< /split >}}
 {{< /splitter >}}  

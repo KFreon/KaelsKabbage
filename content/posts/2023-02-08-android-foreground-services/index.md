@@ -33,7 +33,7 @@ Foreground services are those persistent notifications that show up in the notif
 The most obvious for me is a music player, which displays the song details and controls regardless of what app I'm using. 
 The Xamarin Forms docs are ok for this, but I came across a [Stackoverflow post](https://stackoverflow.com/questions/61079610/how-to-create-a-xamarin-foreground-service) that goes over it quite well, and mine is strongly based on it.  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="The Service" %}}
 ```cs
 // In the Android project of Xamarin Forms

@@ -35,11 +35,11 @@ To investigate execution plans using [SSMS](https://learn.microsoft.com/en-us/sq
 
 ### Getting the Actual Execution Plan
 
-{{< splitter >}}
-{{< split side=left title="SSMS" >}}
+{{% splitter %}}
+{{% split side=left title="SSMS" %}}
 ![Getting actual execution plan in SSMS](img/ActualExecutionPlan_SSMS.png)
 {{< /split >}}
-{{< split side=right title="Azure Data Studio" >}}
+{{% split side=right title="Azure Data Studio" %}}
 ![Getting actual execution plan in Azure Data Studio](img/ActualExecutionPlan_ADS.png)
 {{< /split >}}
 {{< /splitter >}}  

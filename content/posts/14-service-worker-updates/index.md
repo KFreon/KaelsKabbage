@@ -66,7 +66,7 @@ It's the external bit that runs outside your webpage.
 
 The below is from the generated files from create-react-app (using Workbox)
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="sw.ts" %}}
 ``` js
 workbox.precaching.precacheAndRoute(['/index.html'], {});
@@ -216,7 +216,7 @@ Service workers can be communicated to and from the parent website via messages/
 In the service worker file (sw.ts) we register a event handler to listen for messages, specifically `skipWaiting`.   
 We also pass it the route listener from that posts the `skipWaiting` message when the route matches.  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="sw.ts" %}}
 ```js
 // This runs in the service worker. We listen for the 'skipWaiting'.

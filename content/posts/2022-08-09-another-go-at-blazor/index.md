@@ -68,7 +68,7 @@ The idea is to just have a data caching/translation layer where all the UI talks
 
 Anyway, it works well enough here, and while I'm not convinced it's the best idea, I don't think it's a bad one either.  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="AppState" %}}
 ```cs
 public class AppState

@@ -50,7 +50,7 @@ Another major reason I want to use it here is that it makes working with EFCore 
 
 The setup and usage is essentially the same as in aspnetcore:
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="MauiProgram.cs" %}}
 ```cs
 public static MauiApp CreateMauiApp()
@@ -84,7 +84,7 @@ I've created extension methods to register them to keep `MauiProgram.cs` clean, 
 
 Consuming DI is done via constructor injection or `IServiceProvider` as normal, however there is a [current bug](https://github.com/dotnet/maui/issues/11485) where the very first view can't have constructor injection for it's view model.  
 As such, the first view (usually `App.cs`) has to resolve it with `IServiceProvider`, but the rest can be as normal.  
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="App.cs" %}}
 ```cs
 public App(IServiceProvider services, IConfigurationService config)
@@ -146,7 +146,7 @@ private void ShowInfoPopup()
 ```
 
 It's a bit of an involved process to get that for the view models:  
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Sync Version" %}}
 ```cs
 public void ShowPopup<T, V>(Action<V> viewModelSetup = null) where T : Popup where V : ViewModelBase
@@ -304,11 +304,11 @@ For some reason, this took me a bit of time to figure out, but it's actually pre
 ## Nicer Text Input
 Here's a nicer text input control with some nicer placeholder behaviour. 
 
-{{< splitter >}}
-{{< split side=left title="Before" >}}
+{{% splitter %}}
+{{% split side=left title="Before" %}}
 {{< video path="img/NormalEntry" alt="Default Entry behaviour" width="25rem" >}}
 {{< /split >}}
-{{< split side=right title="After" >}}
+{{% split side=right title="After" %}}
 {{< video path="img/NiceEntry" alt="Nicer entry behaviour, similar to Material design" width="25rem" >}}
 {{< /split >}}
 {{< /splitter >}}  
@@ -322,7 +322,7 @@ Used thusly:
 ```
 
 It's quite a bit of backend code to make it work though, primarily in all the bindable properties I want to expose.  
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="XAML" %}}
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>

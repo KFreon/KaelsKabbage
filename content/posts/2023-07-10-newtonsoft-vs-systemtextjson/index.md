@@ -56,7 +56,7 @@ There's a bunch of differences between these two implementations, see my older p
 # Benchmarks  
 Here's my code for the benchmarks  
 
-{{< splitter >}}
+{{% splitter %}}
 {{% split side=left title="Serialisation" %}}
 ```cs
 [MemoryDiagnoser]
