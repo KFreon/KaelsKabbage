@@ -7,8 +7,6 @@ slug: "adventures-in-xamarin"
 tags: ["xamarin"]
 ---
 
-### Issues getting started, and differences to WPF/UWP
-
 Xamarin Forms should be an easy sell.
 
 - Work in C# and XAML. Two good (XAML...?) and well defined languages  
