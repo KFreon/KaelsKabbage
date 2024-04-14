@@ -1,6 +1,13 @@
-<!-- // TODO: handle width/height automatically -->
-<!-- // Renders? -->
 <!-- https://www.brycewray.com/posts/2022/06/responsive-optimized-images-hugo/ -->
+
+<!-- todo -->
+<!-- commit content?? directory -->
+<!-- Test that this all actually works -->
+<!-- Can I merge render shortcode and this one? -->
+<!-- clean up mediascripts -->
+<!-- clean up css -->
+<!-- Is quality good enough? -->
+<!-- Does zoom work properly? -->
 
 
 {{- $u := urls.Parse .Destination -}}
@@ -10,20 +17,19 @@
 {{- if not $u.IsAbs -}}
   {{- with or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
     {{- $png := . -}}
-    {{- $webp := .Process "webp q90" -}}
+    {{- $webp := .Process "webp q80" -}}
+    {{- $jpg := .Process "jpg q90" -}}
 
 <div class="media image" onclick="zoomImage(this)">
   <picture class="fullsize-frame media-frame">
       <source srcset='{{ $webp.Permalink }}' type="image/webp" width="{{.Width}}" height="{{.Height}}">
-      <source srcset='{{ $png.Permalink }}' type="image/png" width="{{.Width}}" height="{{.Height}}"> 
-      {{- with $png -}}
+      <source srcset='{{ $jpg.Permalink }}' type="image/jpg" width="{{.Width}}" height="{{.Height}}"> 
       <img class="image inner" 
-          src="{{ .Permalink }}"  
+          src="{{ $png.Permalink }}"  
           width="{{ .Width }}" 
           height="{{ .Height }}"
           alt="{{ $desc }}"
           loading="lazy" />
-      {{- end -}}  
   </picture>
 
   <div class='alt-text-container'>

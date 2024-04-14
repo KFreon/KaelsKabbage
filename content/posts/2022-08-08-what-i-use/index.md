@@ -95,4 +95,4 @@ Has mobile apps.
 - **Hugo/Netlify:** Static site builder for blog, hosted on Netlify. Simple and cheap.
 - **Visual Studio/VSCode:** Backend/Fronend dev. Haven't gotten into Jetbrains stuff.  
 - **ffmpeg:** Video conversion tool. Industry standard, text based.  
-- Some Visual Studio and VSCode [tips and tricks](/content/posts//15-vs-vscode-tips-and-tricks/index.md) I've written about before
+- Some Visual Studio and VSCode [tips and tricks](/content/posts/15-vs-vscode-tips-and-tricks/index.md) I've written about before

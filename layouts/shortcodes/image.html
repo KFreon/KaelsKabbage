@@ -1,92 +1,51 @@
-{{ $halfsize := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") "_halfsize.webp") ""))}}
-{{ $webp := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".webp") ""))}}
-{{ $png := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".png") ""))}}
-{{ $jpg := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".jpg") ""))}}
+{{- $pagePermalink := .Page.Permalink -}}
+{{- $png := .Page.Resources.GetMatch (string (delimit (slice (.Get "path") ".png") "")) -}}
+{{- with $png -}}
+{{- $webp := .Process "webp q90" -}}
 
-<!-- Not sure why we need it in here. Dunno what's nil, but something is and I can't find it. -->
+{{ $imageSizes := slice "320" "640" "960" "1280" "1920" }}
+{{ $dataSizes := "(max-width: 960), 100% 50%" }}
+
 <div class="media image" onclick="zoomImage(this)">
-    <picture class="quartersize-frame media-frame">
-        <!-- need .Permalink in srcset so it also works in the list page -->
-        <!-- NOTE: There's currently no quartersize images so just duplicate the halfsize -->
-        <!-- This disgusts me, but I can't see a way besides shortcodes to reuse this in other places. -->
-        {{ if ne $halfsize nil }}<source srcset='{{ $halfsize.Permalink }}' media="(max-width: 960px)" type="image/webp">{{end}}
-        <source srcset='{{ $webp.Permalink }}' type="image/webp">
-        {{ if ne $png nil }}
-        <source srcset='{{ $png.Permalink }}' type="image/png"> 
-        {{ else }}
-        <source srcset='{{ $jpg.Permalink }}' type="image/jpg"> 
-        {{ end }}
-        <img class="image inner" 
-            {{ with $png }}
-            src='{{ .Permalink }}' 
-            width="{{ .Width }}" 
-            height="{{ .Height }}"
-            {{ end }}
-            {{ with $jpg }}
-            src='{{ .Permalink }}' 
-            width="{{ .Width }}" 
-            height="{{ .Height }}"
-            {{ end }}
-            alt='{{ with .Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}' 
-            loading="lazy">
-    </picture>
+  <picture class="fullsize-frame media-frame">
+      <source type="image/webp" srcset="
+        {{- with $imageSizes -}}
+            {{- range $i, $e := . -}}
+                {{- if ge $png.Width . -}}
+                    {{- if $i }}, {{ end -}}{{- ($png.Resize (printf "%sx%s" . " webp") ).RelPermalink }} {{ . }}w
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}"
+        sizes="{{ $dataSizes }}"
+    />
 
-    <picture class="halfsize-frame media-frame">
-        <!-- need .Permalink in srcset so it also works in the list page -->
-        {{ if ne $halfsize nil }}<source srcset='{{ $halfsize.Permalink }}' media="(max-width: 960px)" type="image/webp">{{end}}
-        <source srcset='{{ $webp.Permalink }}' type="image/webp">
-        {{ if ne $png nil }}
-        <source srcset='{{ $png.Permalink }}' type="image/png"> 
-        {{ else }}
-        <source srcset='{{ $jpg.Permalink }}' type="image/jpg"> 
-        {{ end }}
-        <img class="image inner" 
-        {{ with $png }}
-            src='{{ .Permalink }}' 
-            width="{{ .Width }}" 
-            height="{{ .Height }}"
-            {{ end }}
-            {{ with $jpg }}
-            src='{{ .Permalink }}' 
-            width="{{ .Width }}" 
-            height="{{ .Height }}"
-            {{ end }}
-            alt='{{ with .Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}' 
-            loading="lazy">
-    </picture>
+      <source type="image/jpg" srcset="
+        {{- with $imageSizes -}}
+            {{- range $i, $e := . -}}
+                {{- if ge $png.Width . -}}
+                    {{- if $i }}, {{ end -}}{{- ($png.Resize (printf "%sx%s" . " jpg") ).RelPermalink }} {{ . }}w
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}"
+        sizes="{{ $dataSizes }}"
+        />
 
-    <picture class="fullsize-frame media-frame">
-        <!-- need .Permalink in srcset so it also works in the list page -->
-        <source srcset='{{ $webp.Permalink }}' type="image/webp">
-        {{ if ne $png nil }}
-        <source srcset='{{ $png.Permalink }}' type="image/png"> 
-        {{ else }}
-        <source srcset='{{ $jpg.Permalink }}' type="image/jpg"> 
-        {{ end }}
-        <img class="image inner" 
-        {{ with $png }}
-            src='{{ .Permalink }}' 
-            width="{{ .Width }}" 
-            height="{{ .Height }}"
-            {{ end }}
-            {{ with $jpg }}
-            src='{{ .Permalink }}' 
-            width="{{ .Width }}" 
-            height="{{ .Height }}"
-            {{ end }}
-            alt='{{ with .Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}' 
-            loading="lazy">
-    </picture>
-    
-    <!--Note that anchors don't work for images on refresh for some reason-->
-    
-    <div class='alt-text-container'>
-        {{ if in .Page.Permalink "renders" }}
-        <a href='{{ $webp.Permalink }}'>Bigger</a>
-        {{end}}
-        <span class="alt-text">{{ .Get "alt" }}</span>
-        {{ if in .Page.Permalink "renders" }}
-        <a href='{{ $png.Permalink }}'>PNG</a>
-        {{end}}
-    </div>
+      <img class="image inner" 
+          src="{{ $png.Permalink }}"  
+          width="{{ .Width }}" 
+          height="{{ .Height }}"
+          alt='{{ with $.Get "alt" }}{{ . }}{{ else }} "No Alt Text" {{ end }}' 
+          loading="lazy" />
+  </picture>
+
+  <div class='alt-text-container'>
+    {{- if in $pagePermalink "renders" -}}
+    <a href='{{ $webp.Permalink }}'>Bigger</a>
+    {{- end -}}
+    <span class="alt-text">{{ $.Get "alt" }}</span>
+    {{- if in $pagePermalink "renders" -}}
+    <a href='{{ $png.Permalink }}'>PNG</a>
+    {{- end -}}
+  </div>
 </div>
+{{- end -}}
