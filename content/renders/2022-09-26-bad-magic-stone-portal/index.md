@@ -5,10 +5,10 @@ postcard: "BadMagicStonePortal_postcard"
 slug: "bad-magic-stone-portal"
 ---
 
-{{< render_img
+{{% render_img
   description="I like this one except for the ground. It's trash :("
   rendertime="15 seconds"
   samples="200"
->}}
-{{< image path="img/RockCircle" alt="This mage, activating magic stone circles. Probably not a good idea." >}}
-{{< /render_img >}}
+%}}
+![This mage, activating magic stone circles. Probably not a good idea.](img/RockCircle.png)
+{{% /render_img %}}

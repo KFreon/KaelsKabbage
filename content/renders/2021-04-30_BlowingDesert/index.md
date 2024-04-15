@@ -5,7 +5,7 @@ postcard: "BlowingDesert_postcard"
 slug: "blowing-desert"
 ---
 
-{{< render_img
+{{% render_img
   description="I saw Pwnisher's car scene and for some reason, the moving volume got me."
   renderdate="2021-04-30"
   rendertime="2 hours"
@@ -14,7 +14,7 @@ slug: "blowing-desert"
   engine="Cycles (with denoiser node)"
   frames="100"
   tutorialUrl=""
-  tutorialText="" >}}
-{{< video path="img/BlowingDesert" alt="Abandoned site in a blowing desert" >}}
-{{< /render_img >}}
+  tutorialText="" %}}
+{{% video path="img/BlowingDesert" alt="Abandoned site in a blowing desert" %}}
+{{% /render_img %}}
 

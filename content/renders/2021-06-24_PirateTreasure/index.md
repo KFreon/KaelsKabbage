@@ -5,12 +5,12 @@ postcard: "PirateTreasure_postcard"
 slug: "pirate-treasure"
 ---
 
-{{< render_img
+{{% render_img
   description="Pirate Treasure for a Reddit contest"
   renderdate="2021-06-24"
   rendertime="80 seconds"
   samples="200"
-  >}}
-{{< image path="img/PirateTreasure" alt="Pirates Treasure chest with gold, the typical pirate treasure scene :)" >}}
-{{< /render_img >}}
+  %}}
+![Pirates Treasure chest with gold, the typical pirate treasure scene :)](img/PirateTreasure.png)
+{{% /render_img %}}
 

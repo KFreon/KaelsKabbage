@@ -5,10 +5,10 @@ postcard: "knurled-glass_postcard"
 slug: "knurled-glass"
 ---
 
-{{< render_img
+{{% render_img
   description="I wanted to play with the new shadow caustics but I didn't get enough time, so for now, a fancy glass will do!"
   rendertime="10 seconds"
   samples="200"
->}}
-{{< image path="img/KnurledGlass" alt="Relaxing view with a fancy glass" >}}
-{{< /render_img >}}
+%}}
+![Relaxing view with a fancy glass](img/KnurledGlass.png)
+{{% /render_img %}}
