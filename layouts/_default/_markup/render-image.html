@@ -3,11 +3,8 @@
 <!-- todo -->
 <!-- commit resources directory? -->
 
-<!-- Test that this all actually works -->
-<!-- Can I merge render shortcode and this one? -->
 <!-- clean up mediascripts -->
 <!-- clean up css -->
-<!-- Is quality good enough? -->
 <!-- Does zoom work properly? -->
 
 {{ $imageSizes := slice "320" "640" "960" "1280" "1920" }}
@@ -17,8 +14,6 @@
 {{ if in .Page.Permalink "renders"}}
   {{ $quality = 90 }}
 {{ end }}
-
-{{ $jpgString := printf "%sjpg" }}
 
 {{- $u := urls.Parse .Destination -}}
 {{- $desc := .Text | safeHTML -}}
