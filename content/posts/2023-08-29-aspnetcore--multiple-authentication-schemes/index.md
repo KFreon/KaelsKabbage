@@ -4,6 +4,7 @@ date: 2023-08-29T07:27:03+10:00
 type: "post"
 slug: "aspnetcore--multiple-authentication-schemes"
 tags: ["auth", "aspnetcore"]
+aliases: aspnetcore-multiple-authentication-schemes
 ---
 
 Many of the Aspnetcore auth samples and tutorials discuss using multiple authentication schemes, but I ran into an interesting issue that I found interesting.  
