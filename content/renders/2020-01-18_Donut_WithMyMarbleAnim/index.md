@@ -5,8 +5,8 @@ postcard: "Donut_WithMyMarble_postcard"
 slug: "moovin-doonut"
 ---
 
-{{% render_img description="Donut gettin spun into scene like a champ" rendertime="~2 minutes" samples="20" frames="60" renderdate="2020-01-18" %}}
+{{< render_img description="Donut gettin spun into scene like a champ" rendertime="~2 minutes" samples="20" frames="60" renderdate="2020-01-18" >}}
 {{% video path="img/Donut_WithMyMarble" width="1920" height="1080" alt="I can almost hear it" %}}  
-{{% /render_img %}}
+{{< /render_img >}}
 
 

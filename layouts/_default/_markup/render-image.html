@@ -15,8 +15,10 @@
 
 {{ $quality := 80 }}
 {{ if in .Page.Permalink "renders"}}
-{{ $quality = 95 }}
+  {{ $quality = 90 }}
 {{ end }}
+
+{{ $jpgString := printf "%sjpg" }}
 
 {{- $u := urls.Parse .Destination -}}
 {{- $desc := .Text | safeHTML -}}
@@ -25,8 +27,6 @@
 {{- if not $u.IsAbs -}}
   {{- with or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
     {{- $png := . -}}
-    {{- $webp := .Process "webp q80" -}}
-    {{- $jpg := .Process "jpg q90" -}}
 
 <div class="media image" onclick="zoomImage(this)">
   <picture class="fullsize-frame media-frame">
@@ -34,39 +34,36 @@
       {{- with $imageSizes -}}
           {{- range $i, $e := . -}}
               {{- if ge $png.Width . -}}
-                  {{- if $i }}, {{ end -}}{{- ($png.Resize (printf "%sx%s" . " webp") ).RelPermalink }} {{ . }}w
+                  {{- if $i }}, {{ end -}}{{- ($png.Resize (printf "%sx%s q%d" . " webp" $quality) ).RelPermalink }} {{ . }}w
               {{- end -}}
           {{- end -}}
       {{- end -}}"
       sizes="{{ $dataSizes }}"
-  />
+    />
 
     <source type="image/jpg" srcset="
       {{- with $imageSizes -}}
           {{- range $i, $e := . -}}
               {{- if ge $png.Width . -}}
-                  {{- if $i }}, {{ end -}}{{- ($png.Resize (printf "%sx%s" . " jpg") ).RelPermalink }} {{ . }}w
+                  {{- if $i }}, {{ end -}}
+                  {{- ($png.Resize (printf "%sx%s q%d" . " jpg" $quality) ).RelPermalink }} {{ . }}w
               {{- end -}}
           {{- end -}}
       {{- end -}}"
       sizes="{{ $dataSizes }}"
       />
 
-    <img class="image inner" 
-        src="{{ $png.Permalink }}"  
-        width="{{ .Width }}" 
-        height="{{ .Height }}"
-        alt='{{ $desc }}' 
-        loading="lazy" />
-</picture>
-
+  <img class="image inner" 
+      src="{{ $png.Permalink }}"  
+      width="{{ .Width }}" 
+      height="{{ .Height }}"
+      alt='{{ $desc }}' 
+      loading="lazy" />
+  </picture>
   <div class='alt-text-container'>
-    {{- if in $pagePermalink "renders" -}}
-    <a href='{{ $webp.Permalink }}'>Bigger</a>
-    {{- end -}}
     <span class="alt-text">{{ $desc }}</span>
     {{- if in $pagePermalink "renders" -}}
-    <a href='{{ $png.Permalink }}'>PNG</a>
+    <a href='{{ $png.Permalink }}'>Original</a>
     {{- end -}}
   </div>
 </div>
