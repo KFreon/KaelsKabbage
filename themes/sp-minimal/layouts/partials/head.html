@@ -6,15 +6,15 @@
     <meta name="author" content="{{ with .Site.Params.name }}{{ . }}{{ end }}">
     {{ hugo.Generator }}
     <meta name="description" content='{{ if eq .Type "post" }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:image" content='{{ if .Param "postcard"}}{{.Site.BaseURL}}{{if eq (.Param "type") "post" }}{{"posts"}}{{ else }}{{ "renders" }}{{ end }}/{{ .Params.slug }}/img/{{ .Param "postcard" }}.jpg{{ else }}{{ .Site.Params.Kabbage }}{{ end }}'/>
 
     <link rel="shortcut icon" async href="{{ .Site.BaseURL }}img/Cabbage_Shortcut.png">
     <link rel="manifest" href="manifest.json">
 
-    {{ with .OutputFormats.Get "rss" -}}
-        {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-    {{ end -}}
+    {{- with .OutputFormats.Get "rss" -}}
+        {{- printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML -}}
+    {{- end -}}
 
     {{- partial "stylesheets.html" . -}}
     {{- partial "scripts.html" . -}}

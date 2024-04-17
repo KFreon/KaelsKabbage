@@ -14,6 +14,6 @@ slug: "crazy-concentric-voronoi-(from-tute)"
   frames="250"
   tutorialUrl="https://www.youtube.com/watch?v=_bdcQXMQ4e0"
   tutorialText="CG Matter" >}}
-{{< video path="img/ConcentricVoronoi" alt="Some crazy vector node stuff to get this cool voronoi columns effect" >}}
+{{% video path="img/ConcentricVoronoi" alt="Some crazy vector node stuff to get this cool voronoi columns effect" %}}
 {{< /render_img >}}
 

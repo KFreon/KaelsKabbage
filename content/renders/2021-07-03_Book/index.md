@@ -12,6 +12,6 @@ slug: "relaxing-nighttime-writing"
   frames="60"
   samples="200"
   >}}
-{{< video path="img/Book" alt="Book with candle, pen, and hot drink!" >}}
+{{% video path="img/Book" alt="Book with candle, pen, and hot drink!" %}}
 {{< /render_img >}}
 

@@ -5,10 +5,10 @@ postcard: "TheLighthouse_postcard"
 slug: "the-lighthouse"
 ---
 
-{{< render_img
+{{% render_img
   description="Quick 1h render of some volumetrics that I turned into a lighthouse"
   rendertime="5 seconds"
   samples="100"
->}}
-{{< image path="img/TheTower" alt="A lighthouse among the stars" >}}
-{{< /render_img >}}
+%}}
+![A lighthouse among the stars](img/TheTower.png)
+{{% /render_img %}}

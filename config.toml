@@ -6,6 +6,7 @@ paginate        = 10
 pygmentsCodeFences = true
 pygmentsStyle = "native"
 assetDir = "."
+timeout = "120s"
 
 [markup]
   [markup.goldmark]
@@ -21,7 +22,7 @@ assetDir = "."
   subtitle    = "Tech Superfood"
   description = "Cabbage is awful, but this blog isn't :)"
   copyright   = "Kael Larkin 2018"
-  authorImage = "Cabbage.png"
+  authorImage = "Cabbage.webp"
   email       = "kael.larkin@outlook.com"
 
   #"single" or "multi"
@@ -32,4 +33,4 @@ assetDir = "."
 
   name = "Kael Larkin"
   pageNotFoundTitle = "Uh oh, that page wasn't found!"
-  kabbage = "https://www.kaels-kabbage.com/img/Cabbage.png"
+  kabbage = "https://www.kaels-kabbage.com/img/Cabbage.webp"

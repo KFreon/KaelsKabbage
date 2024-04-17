@@ -5,10 +5,10 @@ postcard: "BadAsteroidFieldTech_postcard"
 slug: "bad-asteroid-field-jump-gate"
 ---
 
-{{< render_img
+{{% render_img
   description="These next few are a series of renders I'm not happy with, but just want to get out and done."
   rendertime="1 minute"
   samples="100"
->}}
-{{< image path="img/AsteroidFieldWithTech" alt="Ship approaching asteroid field jump gate" >}}
-{{< /render_img >}}
+%}}
+![Ship approaching asteroid field jump gate](img/AsteroidFieldWithTech.png)
+{{% /render_img %}}

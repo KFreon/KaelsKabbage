@@ -12,6 +12,6 @@ slug: "prepare-for-exploration!"
   samples="400"
   frames="220"
   >}}
-{{< video path="img/ShipDock" alt="Orbital platform with a ship in it!" >}}
+{{% video path="img/ShipDock" alt="Orbital platform with a ship in it!" %}}
 {{< /render_img >}}
 

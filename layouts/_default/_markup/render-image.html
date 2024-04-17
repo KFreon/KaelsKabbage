@@ -1,3 +1,12 @@
+<!-- https://www.brycewray.com/posts/2022/06/responsive-optimized-images-hugo/ -->
+{{ $imageSizes := slice "320" "640" "960" "1280" "1920" }}
+{{ $dataSizes := "(max-width: 960), 100% 50%" }}
+
+{{ $quality := 80 }}
+{{ if in .Page.Permalink "renders"}}
+  {{ $quality = 90 }}
+{{ end }}
+
 {{- $u := urls.Parse .Destination -}}
 {{- $desc := .Text | safeHTML -}}
 {{- $title := .Title -}}
@@ -5,29 +14,43 @@
 {{- if not $u.IsAbs -}}
   {{- with or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
     {{- $png := . -}}
-    {{- $webp := .Process "webp q90" -}}
 
 <div class="media image" onclick="zoomImage(this)">
-  <picture class="fullsize-frame media-frame">
-      <source srcset='{{ $webp.Permalink }}' type="image/webp" width="{{.Width}}" height="{{.Height}}">
-      <source srcset='{{ $png.Permalink }}' type="image/png" width="{{.Width}}" height="{{.Height}}"> 
-      {{- with $png -}}
-      <img class="image inner" 
-          src="{{ .Permalink }}"  
-          width="{{ .Width }}" 
-          height="{{ .Height }}"
-          alt="{{ $desc }}"
-          loading="lazy" />
-      {{- end -}}  
-  </picture>
+  <picture>
+    <source type="image/webp" srcset="
+      {{- with $imageSizes -}}
+          {{- range $i, $e := . -}}
+              {{- if ge $png.Width . -}}
+                  {{- if $i }}, {{ end -}}{{- ($png.Resize (printf "%sx%s q%d" . " webp" $quality) ).RelPermalink }} {{ . }}w
+              {{- end -}}
+          {{- end -}}
+      {{- end -}}"
+      sizes="{{ $dataSizes }}"
+    />
 
+    <source type="image/jpg" srcset="
+      {{- with $imageSizes -}}
+          {{- range $i, $e := . -}}
+              {{- if ge $png.Width . -}}
+                  {{- if $i }}, {{ end -}}
+                  {{- ($png.Resize (printf "%sx%s q%d" . " jpg" $quality) ).RelPermalink }} {{ . }}w
+              {{- end -}}
+          {{- end -}}
+      {{- end -}}"
+      sizes="{{ $dataSizes }}"
+      />
+
+  <img class="image inner" 
+      src="{{ $png.Permalink }}"  
+      width="{{ .Width }}" 
+      height="{{ .Height }}"
+      alt='{{ $desc }}' 
+      loading="lazy" />
+  </picture>
   <div class='alt-text-container'>
-    {{- if in $pagePermalink "renders" -}}
-    <a href='{{ $webp.Permalink }}'>Bigger</a>
-    {{- end -}}
     <span class="alt-text">{{ $desc }}</span>
     {{- if in $pagePermalink "renders" -}}
-    <a href='{{ $png.Permalink }}'>PNG</a>
+    <a href='{{ $png.Permalink }}'>Original</a>
     {{- end -}}
   </div>
 </div>

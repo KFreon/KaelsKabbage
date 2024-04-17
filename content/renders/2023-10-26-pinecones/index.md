@@ -5,11 +5,11 @@ postcard: "Pinecones_postcard"
 slug: "pinecones"
 ---
 
-{{< render_img
+{{% render_img
   description="Fiancee asked for Pinecones, so here's some exotic pinecones 🤗"
   rendertime="140 seconds"
   samples="2000"
->}}
-{{< image path="img/Pinecones-unprocessed" alt="Original pinecones with no artistic flair" >}}
-{{< image path="img/Pinecones-processed" alt="More magical pinecones" >}}
-{{< /render_img >}}
+%}}
+![Original pinecones with no artistic flair](img/Pinecones-unprocessed.png)
+![More magical pinecones](img/Pinecones-processed.png)
+{{% /render_img %}}

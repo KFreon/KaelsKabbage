@@ -12,6 +12,6 @@ slug: "gateways-to-infinity"
   samples="500"
   frames="140"
   >}}
-{{< video path="img/ManyRings" alt="Purple rings off into infinity on a starry night :)" >}}
+{{% video path="img/ManyRings" alt="Purple rings off into infinity on a starry night :)" %}}
 {{< /render_img >}}
 

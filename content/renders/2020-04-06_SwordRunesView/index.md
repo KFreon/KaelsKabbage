@@ -5,13 +5,13 @@ postcard: "SwordRunesView_postcard"
 slug: "sword-showing-runes"
 ---
 
-{{< render_img 
+{{% render_img 
   description="I did another one from the other side so I could see all those cool runes :D" 
   rendertime="5 seconds" 
   samples="64" 
   engine="Eevee" 
-  renderdate="2020-04-06" >}}
-{{< image path="img/SwordRunesView" alt="Sword showing runes" >}}
-{{< /render_img >}}   
+  renderdate="2020-04-06" %}}
+![Sword showing runes](img/SwordRunesView.png)
+{{% /render_img %}}   
 
 

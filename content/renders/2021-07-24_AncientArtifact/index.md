@@ -11,6 +11,6 @@ slug: "desert-archeology"
   rendertime="4 days or something..."
   samples="50"
   frames="1150" >}}
-{{< video path="img/AncientArtifact" alt="The Ancient Default Cube rises!" >}}
+{{% video path="img/AncientArtifact" alt="The Ancient Default Cube rises!" %}}
 {{< /render_img >}}
 

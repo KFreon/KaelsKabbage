@@ -5,10 +5,10 @@ postcard: "DarkLake_postcard"
 slug: "dark-lake"
 ---
 
-{{< render_img
+{{% render_img
   description="A quick render of a dark lake that was thinking about on holidays"
   rendertime="2.5 minutes"
   samples="2000"
->}}
-{{< image path="img/DarkLake" alt="Dark Lake with nice moon" >}}
-{{< /render_img >}}
+%}}
+![Dark Lake with nice moon](img/DarkLake.png)
+{{% /render_img %}}

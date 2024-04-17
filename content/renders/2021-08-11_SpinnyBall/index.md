@@ -11,6 +11,6 @@ slug: "spinny-metal-ball"
   rendertime="4 hours"
   samples="200"
   frames="250" >}}
-{{< video path="img/SpinnyBall" alt="Maybe an artifact found by an archer/mage in a forest?" >}}
+{{% video path="img/SpinnyBall" alt="Maybe an artifact found by an archer/mage in a forest?" %}}
 {{< /render_img >}}
 

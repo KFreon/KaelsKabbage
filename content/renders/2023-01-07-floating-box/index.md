@@ -11,5 +11,5 @@ slug: "floating-box"
   samples="100"
   frames="250"
 >}}
-{{< video path="img/FloatingBox" alt="2023" >}}
+{{% video path="img/FloatingBox" alt="2023" %}}
 {{< /render_img >}}

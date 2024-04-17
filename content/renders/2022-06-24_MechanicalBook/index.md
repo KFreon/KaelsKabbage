@@ -11,5 +11,5 @@ slug: "mechanical-book"
   samples="100"
   frames="320"
 >}}
-{{< video path="img/MechanicalBook" alt="A mechanical book" >}}
+{{% video path="img/MechanicalBook" alt="A mechanical book" %}}
 {{< /render_img >}}

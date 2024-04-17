@@ -11,5 +11,5 @@ slug: "moving-my-riches"
   samples="100"
   frames="340"
 >}}
-{{< video path="img/IngotCrane" alt="Stacking my riches" >}}
+{{% video path="img/IngotCrane" alt="Stacking my riches" %}}
 {{< /render_img >}}

@@ -10,6 +10,8 @@ slug: "bad-scifi-coffee"
   rendertime="3h"
   samples="100"
   frames="1222"
->}}
-{{< video path="img/Scifi-Coffee" alt="Even bad scifi coffee is delicious" >}}
+>}}  
+
+{{% video path="img/Scifi-Coffee" alt="Even bad scifi coffee is delicious" %}}  
+
 {{< /render_img >}}

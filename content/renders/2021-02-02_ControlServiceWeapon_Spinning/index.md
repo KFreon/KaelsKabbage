@@ -11,8 +11,8 @@ slug: "control-service-weapon"
   samples="200" 
   renderdate="2021-02-02" 
   frames="240" >}}
-{{< video path="img/ControlServiceWeapon_Spinning" alt="Animation is hard, so this was good practice." >}}
-{{< video path="img/ControlServiceWeapon_Still" alt="Another one with less motion." width="500px" >}}
+{{% video path="img/ControlServiceWeapon_Spinning" alt="Animation is hard, so this was good practice." %}}
+{{% video path="img/ControlServiceWeapon_Still" alt="Another one with less motion." width="500px" %}}
 {{< /render_img >}}
 
 

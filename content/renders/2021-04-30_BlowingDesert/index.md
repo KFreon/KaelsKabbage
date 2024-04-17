@@ -15,6 +15,6 @@ slug: "blowing-desert"
   frames="100"
   tutorialUrl=""
   tutorialText="" >}}
-{{< video path="img/BlowingDesert" alt="Abandoned site in a blowing desert" >}}
+{{% video path="img/BlowingDesert" alt="Abandoned site in a blowing desert" %}}
 {{< /render_img >}}
 

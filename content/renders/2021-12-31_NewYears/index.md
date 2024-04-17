@@ -12,6 +12,6 @@ slug: "happy-new-year!"
   samples="600"
   frames="90"
   >}}
-{{< video path="img/NewYears" alt="New years fireworks!!" >}}
+{{% video path="img/NewYears" alt="New years fireworks!!" %}}
 {{< /render_img >}}
 

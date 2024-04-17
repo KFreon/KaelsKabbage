@@ -12,6 +12,6 @@ slug: "infraspace-city-animated"
   samples="20"
   credits="Infraspace@https://store.steampowered.com/app/1511460/InfraSpace"
   frames="180" >}}
-{{< video path="img/Infraspace" alt="Flying out over the city" >}}
+{{% video path="img/Infraspace" alt="Flying out over the city" %}}
 {{< /render_img >}}
 

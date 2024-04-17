@@ -1,32 +1,32 @@
-{{ $cssOptions := cond (.Site.IsServer) (dict "enableSourceMap" false) (dict "outputStyle" "compressed") }}
+{{- $cssOptions := cond (.Site.IsServer) (dict "enableSourceMap" false) (dict "outputStyle" "compressed") -}}
 
-{{ $stylesCSS := resources.Get "assets/scss/mystyles.scss" | toCSS }}
-{{ $mobileCSS := resources.Get "assets/scss/mobile.scss" | toCSS }}
-{{ $darkCSS := resources.Get "assets/scss/dark.scss" | toCSS}}
-{{ $code := resources.Get "assets/scss/code.scss" | toCSS}}
-{{ $tags := resources.Get "assets/scss/tags.scss" | toCSS}}
-{{ $header := resources.Get "assets/scss/header.scss" | toCSS}}
+{{- $stylesCSS := resources.Get "assets/scss/mystyles.scss" | toCSS  -}}
+{{- $mobileCSS := resources.Get "assets/scss/mobile.scss" | toCSS  -}}
+{{- $darkCSS := resources.Get "assets/scss/dark.scss" | toCSS -}}
+{{- $code := resources.Get "assets/scss/code.scss" | toCSS -}}
+{{- $tags := resources.Get "assets/scss/tags.scss" | toCSS -}}
+{{- $header := resources.Get "assets/scss/header.scss" | toCSS -}}
 
-{{ $themeStylesCSS := resources.Get "themes/sp-minimal/static/css/styles.css" }}
-{{ $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" }}
-{{ $minimalSimpleCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal-simple.css" }}
+{{- $themeStylesCSS := resources.Get "themes/sp-minimal/static/css/styles.css" -}}
+{{- $minimalStylesCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal.css" -}}
+{{- $minimalSimpleCSS := resources.Get "themes/sp-minimal/static/css/sp-minimal-simple.css" -}}
 
-{{ $prism := resources.Get "assets/css/prism.css" }}
-{{ $prismOverrides := resources.Get "assets/css/prism-overrides.css" }}
+{{- $prism := resources.Get "assets/css/prism.css" -}}
+{{- $prismOverrides := resources.Get "assets/css/prism-overrides.css" -}}
 
-{{ $firstSheets := slice $themeStylesCSS $minimalStylesCSS $minimalSimpleCSS $stylesCSS $code $tags $header $prism $prismOverrides }}
+{{- $firstSheets := slice $themeStylesCSS $minimalStylesCSS $minimalSimpleCSS $stylesCSS $code $tags $header $prism $prismOverrides -}}
 
 <!-- These need to be last -->
-{{ $lastSheets := slice $mobileCSS $darkCSS }}
-{{ $combined := union $firstSheets $lastSheets }}
+{{- $lastSheets := slice $mobileCSS $darkCSS -}}
+{{- $combined := union $firstSheets $lastSheets -}}
 
-{{ if .Site.IsServer }}
-{{ range $combined }}
+{{- if .Site.IsServer -}}
+{{- range $combined -}}
     <link rel="stylesheet" defer href="{{ .Permalink }}">
-{{ end }}
-{{ else }}
-{{ range $combined }}
-  {{ $style := . | minify}} <!-- Hugo types are dumb (cos they're hidden) and I need to coerce it's type to the correct one -->
+{{- end -}}
+{{- else -}}
+{{- range $combined -}}
+  {{- $style := . | minify -}} <!-- Hugo types are dumb (cos they're hidden) and I need to coerce it's type to the correct one -->
   <link rel="stylesheet" defer href="{{ $style.Permalink }}">
-{{ end }}
-{{ end }}
+{{- end -}}
+{{- end -}}
