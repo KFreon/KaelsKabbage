@@ -1,14 +1,14 @@
 {{ $IsServer := .Site.IsServer }}
-{{ with resources.Match "assets/scripts/*" }}
-{{ range sort . }}
-{{ if $IsServer }}
+{{- with resources.Match "assets/scripts/*" -}}
+{{- range sort . -}}
+{{- if $IsServer -}}
 <script type="text/javascript" defer src="{{ .Permalink  }}"></script>
 {{ else }}
-{{ $minified := . | minify }}
+{{- $minified := . | minify -}}
 <script type="text/javascript" defer src="{{ $minified.Permalink  }}"></script>
-{{ end }}
-{{ end }}
-{{ end }}
+{{- end -}}
+{{- end -}}
+{{- end -}}
 
 <!-- My self hosted analytics -->
 <script defer data-domain="kaels-kabbage.com" src="https://analytics.kaels-kabbage.com/js/script.js"></script>

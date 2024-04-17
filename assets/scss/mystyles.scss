@@ -1,5 +1,4 @@
 @import "./variables.scss";
-@import "./renders.scss";
 
 @font-face {
   font-family: 'Fira Code';
@@ -8,22 +7,6 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-}
-
-* {
-  scroll-behavior: smooth;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-p {
-  > img {
-    margin: auto;
-    display: block;
-  }
 }
 
 #main-body.light {
@@ -53,6 +36,24 @@ p {
   --blur-colour: 150%;
   --codeblock-header-background: var(--main-colour);
   --codeblock-header-text: var(--main-background);
+}
+
+
+
+* {
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  > img {
+    margin: auto;
+    display: block;
+  }
 }
 
 p {
@@ -97,25 +98,6 @@ body {
 
 strong {
   color: var(--strong-colour);
-}
-
-header {
-  width: unset;
-  position: unset;
-
-  .description {
-    font-size: 1rem;
-    text-align: center;
-  }
-
-  #hamburger-menu-button {
-    display: none;
-  }
-
-  .profile-picture {
-    width: 30%;
-    height: auto;
-  }
 }
 
 table {
@@ -260,8 +242,6 @@ small {
 .alt-text-container {
   display: flex;
 }
-
-
 
 .pagination {
   display: flex;

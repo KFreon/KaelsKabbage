@@ -8,3 +8,22 @@
     margin-top: 0.5rem;
   }
 }
+
+header {
+  width: unset;
+  position: unset;
+
+  .description {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  #hamburger-menu-button {
+    display: none;
+  }
+
+  .profile-picture {
+    width: 30%;
+    height: auto;
+  }
+}
