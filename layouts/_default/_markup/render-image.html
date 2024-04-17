@@ -22,7 +22,7 @@
     {{- $png := . -}}
 
 <div class="media image" onclick="zoomImage(this)">
-  <picture class="fullsize-frame media-frame">
+  <picture>
     <source type="image/webp" srcset="
       {{- with $imageSizes -}}
           {{- range $i, $e := . -}}

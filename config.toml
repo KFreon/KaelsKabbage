@@ -6,6 +6,7 @@ paginate        = 10
 pygmentsCodeFences = true
 pygmentsStyle = "native"
 assetDir = "."
+timeout = "120s"
 
 [markup]
   [markup.goldmark]
