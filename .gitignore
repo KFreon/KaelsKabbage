@@ -1,5 +1,5 @@
 public
-resources
+resources/**/assets
 node_modules
 .vs
 Properties
