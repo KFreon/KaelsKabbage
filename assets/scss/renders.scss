@@ -128,9 +128,6 @@
 
 .render-container {
   margin-bottom: 5rem;
-  height: 90vh;
-  scroll-snap-stop: always;
-  scroll-snap-align: start;
 }
 
 .render-list {
@@ -210,14 +207,10 @@
     .slides {
       display: flex;
       flex-direction: column;
-
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
-      scroll-snap-type: both mandatory;
-      overflow: auto;
-
+      
       .render {
-        width: 80vw;
 
         .header-link {
           align-self: flex-start;

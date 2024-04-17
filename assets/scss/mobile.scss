@@ -371,6 +371,9 @@
     }
 
     .render-list {
+        padding-left: 1rem;
+        padding-right: 1rem;
+
         .render-images {
             .tiles {
                 > div {
@@ -420,14 +423,20 @@
             }
 
             .slides {
+                flex-direction: row;
+                scroll-snap-type: both mandatory;
+                overflow: auto;
+
                 .render-container {
                     margin-left: 4px;
                     margin-right: 4px;
+                    scroll-snap-stop: always;
+                    scroll-snap-align: start;
+                    max-height: 80vh;
                 }
                 .render {
-                    width: auto;
+                    width: 95vw;
                     min-height: auto;
-                    margin-top: 5rem;
 
                     .header-text {
                         margin-top: -10px;

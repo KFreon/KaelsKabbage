@@ -1,16 +1,49 @@
 {{ define "main" }}
-  <section style='width: 100%'>
-    <h1>Blender Renders</h1>
-      <div class="render-list" id="render-list">
-      {{ .Content }}
+<script>
+  function createRendersScrollUpdater() {
+    let options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.99
+    };
 
-      <div class="render-images slider" id="render-images">
-        <div class="slides" id='slides'>
-          {{ range .Pages }}
-          {{ .Content }}
-          {{ end }}
-        </div>
+    const callback = (entries, observer) => {
+      entries.forEach(e => {
+          if (e.intersectionRatio > 0 && e.isIntersecting) {
+            window.history.pushState(null, null, `#${e.target.id}`)
+          }
+        }) 
+      }
+
+    let observer = new IntersectionObserver(callback, options)
+
+    const elements = document.querySelectorAll(".render-container");
+    elements.forEach(e => observer.observe(e))
+  }
+
+  window.addEventListener("load", e => {
+    const isMobile = window.innerWidth < 960
+    console.log(isMobile)
+    if (isMobile) {
+      setRenderDisplay('carousel')
+      createRendersScrollUpdater()
+    }else {
+      setRenderDisplay('tiles')
+    }
+  })
+</script>
+
+<section style='width: 100%'>
+  <div class="render-list" id="render-list">
+    {{ .Content }}
+
+    <div class="render-images slider" id="render-images">
+      <div class="slides" id='slides'>
+        {{ range .Pages }}
+        {{ .Content }}
+        {{ end }}
       </div>
-      </div>
-  </section>
+    </div>
+  </div>
+</section>
 {{ end }}
