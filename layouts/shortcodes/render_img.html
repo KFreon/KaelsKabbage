@@ -1,4 +1,4 @@
-<div class="render-container">
+<div class="render-container" id="{{- replace .Page.Title " " "-" -}}">
     <div class="render" onclick="imageContainerClicked('{{- .Page.Permalink -}}')">
         <a class="header-link" href="{{- .Page.Permalink -}}">
             <h3 class="header-text" id="{{ .Page.Title }}">{{- .Page.Title -}}</h3>
