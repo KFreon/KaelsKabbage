@@ -4,7 +4,7 @@
 
 {{ $quality := 80 }}
 {{ if in .Page.Permalink "renders"}}
-  {{ $quality = 90 }}
+  {{ $quality = 95 }}
 {{ end }}
 
 {{- $u := urls.Parse .Destination -}}
@@ -17,31 +17,31 @@
 
 <div class="media image" onclick="zoomImage(this)">
   <picture>
-    <source type="image/webp" srcset="
-      {{- with $imageSizes -}}
-          {{- range $i, $e := . -}}
-              {{- if ge $png.Width . -}}
-                  {{- if $i }}, {{ end -}}{{- ($png.Resize (printf "%sx%s q%d" . " webp" $quality) ).RelPermalink }} {{ . }}w
-              {{- end -}}
+<source type="image/webp" srcset="
+  {{- with $imageSizes -}}
+      {{- range $i, $e := . -}}
+          {{- if ge $png.Width . -}}
+              {{- if $i -}}, {{- end -}}{{ ($png.Resize (printf "%sx%s q%d" . " webp MitchellNetravali " $quality) ).RelPermalink }} {{ . }}w
           {{- end -}}
-      {{- end -}}"
-      sizes="{{ $dataSizes }}"
-    />
+      {{- end -}}
+  {{- end -}}"
+  sizes="{{- $dataSizes -}}"
+/>
 
-    <source type="image/jpg" srcset="
-      {{- with $imageSizes -}}
-          {{- range $i, $e := . -}}
-              {{- if ge $png.Width . -}}
-                  {{- if $i }}, {{ end -}}
-                  {{- ($png.Resize (printf "%sx%s q%d" . " jpg" $quality) ).RelPermalink }} {{ . }}w
-              {{- end -}}
+<source type="image/jpg" srcset="
+  {{- with $imageSizes -}}
+      {{- range $i, $e := . -}}
+          {{- if ge $png.Width . -}}
+              {{- if $i -}}, {{- end -}}
+              {{ ($png.Resize (printf "%sx%s q%d" . " jpg MitchellNetravali " $quality) ).RelPermalink }} {{ . }}w
           {{- end -}}
-      {{- end -}}"
-      sizes="{{ $dataSizes }}"
-      />
+      {{- end -}}
+  {{- end -}}"
+  sizes="{{- $dataSizes -}}"
+  />
 
   <img class="image inner" 
-      src="{{ $png.Permalink }}"  
+      src="{{- $png.Permalink -}}"  
       width="{{ .Width }}" 
       height="{{ .Height }}"
       alt='{{ $desc }}' 
