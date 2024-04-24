@@ -15,6 +15,7 @@
   {{- with or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
     {{- $png := . -}}
 
+<!-- this indenting is intended. Otherwise if doesn't properly render. The { { - syntax should be handling it, but I must be doing it wrong. -->
 <div class="media image" onclick="zoomImage(this)">
   <picture>
 <source type="image/webp" srcset="

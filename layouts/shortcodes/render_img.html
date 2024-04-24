@@ -1,59 +1,59 @@
 <div class="render-container" id="{{- replace .Page.Title " " "-" -}}">
     <div class="render" onclick="imageContainerClicked('{{- .Page.Permalink -}}')">
         <a class="header-link" href="{{- .Page.Permalink -}}">
-            <h3 class="header-text" id="{{ .Page.Title }}">{{- .Page.Title -}}</h3>
+            <h3 class="header-text" id="{{- .Page.Title -}}">{{- .Page.Title -}}</h3>
             <span class="header-date">{{- .Page.Date.Format "2006-01-02" -}}</span>
         </a>
         
 {{ .Inner }}
 
 <div class="info">
-<div class="description">
-    {{- with .Get "description" -}}
-    {{- $arg := split . "|" -}}
-        {{- range $arg -}}
-            <p>{{- . -}}</p>
-        {{- end -}}
-    {{- end -}}
-</div>
-<div class="credits">
-    {{- with .Get "credits" -}}
-        <span class="title">Credits:</span>
+    <div class="description">
+        {{- with .Get "description" -}}
         {{- $arg := split . "|" -}}
             {{- range $arg -}}
-                {{- $bits := split . "@" -}}
-                {{- $name := index ($bits) 0 -}}
-                {{- $link := index ($bits) 1 -}}
-                <a class="link" target="_blank" href="{{- $link -}}">{{- $name -}}</a>
+                <p>{{- . -}}</p>
             {{- end -}}
-    {{- end -}}
-</div>
-<div class="details">
-    <p>
-        <strong>🛠Engine: </strong>
-        <span>{{- with .Get "engine" -}}{{- . -}}{{- else -}}Cycles (with denoiser node){{- end -}}</span>
-    </p>
-    <p>
-        <strong>🕑Render Time: </strong>
-        <span>{{- .Get "rendertime" -}}</span>
-    </p>
-    <p>
-        <strong>🔢Samples: </strong>
-        <span>{{- .Get "samples" -}}</span>
-    </p>
-    {{- with .Get "frames" -}}
-    <p>
-        <strong>🎬Frames: </strong>
-        <span>{{- . -}}</span>
-    </p>
-    {{- end -}}
-    {{- if isset .Params "tutorialUrl" -}}
-    <p>
-        <strong>Tutorial: </strong>
-        <a href='{{- .Get "tutorialUrl" -}}'>{{- .Get "tutorialText" -}}</a>
-    </p>
-    {{- end -}}
-</div>
+        {{- end -}}
+    </div>
+    <div class="credits">
+        {{- with .Get "credits" -}}
+            <span class="title">Credits:</span>
+            {{- $arg := split . "|" -}}
+                {{- range $arg -}}
+                    {{- $bits := split . "@" -}}
+                    {{- $name := index ($bits) 0 -}}
+                    {{- $link := index ($bits) 1 -}}
+                    <a class="link" target="_blank" href="{{- $link -}}">{{- $name -}}</a>
+                {{- end -}}
+        {{- end -}}
+    </div>
+    <div class="details">
+        <p>
+            <strong>🛠Engine: </strong>
+            <span>{{- with .Get "engine" -}}{{- . -}}{{- else -}}Cycles (with denoiser node){{- end -}}</span>
+        </p>
+        <p>
+            <strong>🕑Render Time: </strong>
+            <span>{{- .Get "rendertime" -}}</span>
+        </p>
+        <p>
+            <strong>🔢Samples: </strong>
+            <span>{{- .Get "samples" -}}</span>
+        </p>
+        {{- with .Get "frames" -}}
+        <p>
+            <strong>🎬Frames: </strong>
+            <span>{{- . -}}</span>
+        </p>
+        {{- end -}}
+        {{- if isset .Params "tutorialUrl" -}}
+        <p>
+            <strong>Tutorial: </strong>
+            <a href='{{- .Get "tutorialUrl" -}}'>{{- .Get "tutorialText" -}}</a>
+        </p>
+        {{- end -}}
+    </div>
 </div>
 </div>
 </div>
