@@ -94,8 +94,10 @@ Let's take a closer look at some facts.
 They both have similar features, although I'd say Gitkrakens is slightly better, better syntax highlighting, better support for entire file view, etc.  
 
 {{% splitter %}}
-{{% split side=left title="Fork Diff" %}}
+{{< split side=left title="Fork Diff" >}}  
+
 {{< video path="img/ForkDiff" alt="Fork has a clean simple diff in the Git vein, nothing flashy" >}}
+
 {{< /split >}}
 {{% split side=right title="Gitkraken Diff" %}}
 ![Gitkrakens diff has some syntax highlighting!](img/GitkrakenDiff.png)
@@ -124,17 +126,17 @@ They both have similar features, although I'd say Gitkrakens is slightly better,
 {{% splitter %}}
 {{% split side=left title="Fork" nocollapse="true" %}}  
 
-- Allows opening the system default terminal
+- Allows opening the system default terminal  
 - Has a button that allows opening any detected sln in Visual Studio, the whole repo in VSCode, and the Azure Devops url in the default browser
 
 {{% /split %}}
 {{% split side=right title="Gitkraken" nocollapse="true" %}}
 
-- Has it's own Workspaces feature allowing a custom board and whatnot for teams, etc
+- Has it's own Workspaces feature allowing a custom board and whatnot for teams, etc  
 - Has a custom terminal with additional git features  
 
 {{% /split %}}
-{{< /splitter >}}  
+{{% /splitter %}}  
 
 ---
 

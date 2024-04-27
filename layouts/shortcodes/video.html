@@ -11,36 +11,36 @@
 {{- $width := default "unset" (.Get "width") -}}
 
 <div class="media video" onclick="zoomImage(this)">
-    <!-- Turns out this is the way it has to be. Media/sizes not supported in video tags. -->
+<!-- Turns out this is the way it has to be. Media/sizes not supported in video tags. -->
+<!-- the formatting is this way on purpose, due to some weirdness with spacing -->
+<!-- These errors are too bad, but we need it this way. -->
+<video class="inner quartersize-frame media-frame lazy" autoplay muted loop playsinline style="width: {{- $width -}}; max-width: 100%;">
+<source data-src='{{- $av1quarter.Permalink -}}' type="video/mp4; codecs=av01.0.05M.08">
+<source data-src='{{- $vp9quarter.Permalink -}}' type="video/webm; codecs=vp9">
+<source data-src='{{- $mp4.Permalink -}}' type="video/mp4">
+</video>
 
-    <!-- These errors are too bad, but we need it this way. -->
-    <video class="inner quartersize-frame media-frame lazy" autoplay muted loop playsinline style="width: {{- $width -}}; max-width: 100%;">
-        <source data-src='{{- $av1quarter.Permalink -}}' type="video/mp4; codecs=av01.0.05M.08">
-        <source data-src='{{- $vp9quarter.Permalink -}}' type="video/webm; codecs=vp9">
-        <source data-src='{{- $mp4.Permalink -}}' type="video/mp4">
-    </video>
+<video class="inner halfsize-frame media-frame lazy" autoplay muted loop playsinline style="width: {{- $width -}}; max-width: 100%;">
+<source data-src='{{- $av1half.Permalink -}}' type="video/mp4; codecs=av01.0.05M.08">
+<source data-src='{{- $vp9half.Permalink -}}' type="video/webm; codecs=vp9">
+<source data-src='{{- $mp4.Permalink -}}' type="video/mp4">
+</video>
 
-    <video class="inner halfsize-frame media-frame lazy" autoplay muted loop playsinline style="width: {{- $width -}}; max-width: 100%;">
-        <source data-src='{{- $av1half.Permalink -}}' type="video/mp4; codecs=av01.0.05M.08">
-        <source data-src='{{- $vp9half.Permalink -}}' type="video/webm; codecs=vp9">
-        <source data-src='{{- $mp4.Permalink -}}' type="video/mp4">
-    </video>
+<video class="inner fullsize-frame media-frame lazy" autoplay muted loop playsinline style="width: {{- $width -}}; max-width: 100%;">
+<source data-src='{{- $av1.Permalink -}}' type="video/mp4; codecs=av01.0.05M.08">
+<source data-src='{{- $vp9.Permalink -}}' type="video/webm; codecs=vp9">
+<source data-src='{{- $mp4.Permalink -}}' type="video/mp4">
+</video>
 
-    <video class="inner fullsize-frame media-frame lazy" autoplay muted loop playsinline style="width: {{- $width -}}; max-width: 100%;">
-        <source data-src='{{- $av1.Permalink -}}' type="video/mp4; codecs=av01.0.05M.08">
-        <source data-src='{{- $vp9.Permalink -}}' type="video/webm; codecs=vp9">
-        <source data-src='{{- $mp4.Permalink -}}' type="video/mp4">
-    </video>
+<span id="edge-av1-message">AV1 support in Edge requires a <a href="https://apps.microsoft.com/store/detail/av1-video-extension/9MVZQVXJBQ9V?hl=en-us&gl=US">Microsoft Store Extension</a>.</span>
 
-    <span id="edge-av1-message">AV1 support in Edge requires a <a href="https://apps.microsoft.com/store/detail/av1-video-extension/9MVZQVXJBQ9V?hl=en-us&gl=US">Microsoft Store Extension</a>.</span>
-
-    <div class="hq-links">
-        {{- if in .Page.Permalink "renders" -}}
-        <a href='{{- $vp9.Permalink -}}'>Webm</a>
-        {{- end -}}
-        <div class="alt-text">{{- .Get "alt" -}}</div>
-        {{- if in .Page.Permalink "renders" -}}
-        <a href='{{- $mp4.Permalink -}}'>MP4</a>
-        {{- end -}}
-    </div>
+<div class="hq-links">
+{{- if in .Page.Permalink "renders" -}}
+<a href='{{- $vp9.Permalink -}}'>Webm</a>
+{{- end -}}
+<div class="alt-text">{{- .Get "alt" -}}</div>
+{{- if in .Page.Permalink "renders" -}}
+<a href='{{- $mp4.Permalink -}}'>MP4</a>
+{{- end -}}
+</div>
 </div>

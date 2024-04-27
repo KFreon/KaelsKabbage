@@ -13,9 +13,9 @@ This time, it's about serialisation performance, specifically regarding memory a
 
 # Why am I looking at Serialisation?   
 The app in question is performing badly, but there's nothing obvious in App Insights.  
-is running alongside a load of others and the tier is just too low, and Azure calls out one or two of the apps for "high memory" at around 300mb...    
+It's running alongside a load of other apps and the plan tier is too low; Azure is calling out one or two of the apps for "high memory" at around 300mb...    
 
-We should/will upgrade it's tier, but first I wanted to see if there was something simple I could do.  
+We should/will upgrade its tier, but first I wanted to see if there was something simple I could do.  
 That escalated into investigating replacing [Newtonsoft](https://www.newtonsoft.com/json) with [System.Text.Json](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to?pivots=dotnet-7-0)
 
 There are a number of comparisons between these two online, but they often used toy examples and I wanted to know what a real Enterprise example would look like.  
@@ -24,8 +24,8 @@ Proper Enterprise, you know, megabytes of json.
 ## Profiling  
 Before I go further, yes I did some profiling, and no it didn't really point at serialisation as an issue.  
 It did show huge allocations and GC time waiting and I had a thought that it could be the massive objects we're serialising out to the UI.  
-I thought "Even if it isn't that (since it wasn't really showing in my profiler) I want to see what the difference is.  
-> The profilers call out EFCore as the highest allocator for reading data from DB, but I can't really do anything about that...  
+I thought "Even if it isn't that (since it wasn't really showing in my profiler) I want to see what the difference is".  
+> The profilers call out EFCore as the highest allocator, but that's because it's reading data from the database and I can't really do anything about that...  
 
 # Setup  
 I grabbed an example output from my Test environment, and it looks like this:  

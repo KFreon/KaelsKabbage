@@ -1,10 +1,10 @@
 <div class={{ .Get "side" }}>
-  {{ if eq (.Get "nocollapse") "true" }}
-    {{ with .Get "title" }}
+  {{- if eq (.Get "nocollapse") "true" -}}
+    {{- with .Get "title" -}}
       <h3>{{ . }}</h3>
-    {{ end }}
+    {{- end -}}
     {{ .Inner }}
-  {{ else }}
+  {{- else -}}
   <details class="split-codeblock" open>
       <summary>
           <p class="codeblock-summary">
@@ -13,5 +13,5 @@
       </summary>
       {{ .Inner }}
   </details>
-  {{ end }}
+  {{- end -}}
 </div>
