@@ -85,15 +85,15 @@ I searched around the internet [and](https://stackoverflow.com/questions/4297808
 Transclusion was the first stop. This is where an element indicates where it's child content will be rendered without explicitly knowing what the content is.  
 Angular provides the `ng-content` component for this purpose.  
 
-##### transclusion.component.html
-``` html
+``` html {title=transclusion.component.html}
 <div> 
     <p>This is a title</p>
     <ng-content></ng-content>
 </div>
-```   
+```  
 
 Such a component would be used like this:
+
 ``` html
 <transclusion>
     <p>This is some content</p>

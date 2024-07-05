@@ -33,7 +33,7 @@ Aside from the standard injection and registration, the only main change is for 
 The following method finds closed generic implementations based on a name and registers it as Transient
 (usage is: `services.RegisterMultiple(nameof(IQueryExecutor))` and it finds `public class DoThingExecutor : IQueryExecutor<DoThingQuery>`)  
 
-```c#
+```cs
 private static void RegisterMultiple(this IServiceCollection builder, string name)
 {
     var apiTypes = typeof(Program)
@@ -65,7 +65,7 @@ There's a lot of "I thought this should work, but it doesn't".
 My difficulties were exacerbated by my not especially great understanding of authentication and authorisation in the first place, but the docs didn't help as much as expected.  
 
 The original solution implemented `IAuthenticationHandler` and implement it directly, but I figured I'd be able to:  
-```c#
+```cs
 services.AddAuthentication(config => config.DefaultScheme = "myscheme").AddCookie(config => <some lambda for validation>)
 ```
 
@@ -74,7 +74,7 @@ I ended up reusing the original handler, changing some types (mostly service res
 
 {{% splitter %}}
 {{% split side=left title="Original" %}}
-```c#
+```cs
 public class MyAuthHandler : IAuthenticationHandler
 {
     public Task<AuthenticateResult> AuthenticateAsync()
@@ -148,8 +148,8 @@ public static class AuthConfig
 }
 ```
 {{% /split %}}
-{{% split side=right title="net 6" %}}
-```c#
+{{% split side=right title="NET 6" %}}
+```cs
 public class MyAuthSchemeOptions : AuthenticationSchemeOptions
 {
     public const string MyAuthScheme = "MyAuthScheme";
@@ -193,7 +193,7 @@ I wanted to have the primary policy used by default unless something more specif
 Apparently, the `DefaultPolicy` is the base policy that all others build off, not the one to use if all others fail.  
 What I wanted was actually the `FallbackPolicy`.  
 
-``` c#
+```cs
 services.AddAuthentication(d => d.DefaultScheme = MyAuthSchemeOptions.MyAuthScheme)
     .AddScheme<MyAuthSchemeOptions, MyAuthHander>(MyAuthSchemeOptions.MyAuthScheme, opts => { })
     .AddScheme<OtherSchemeOptions, OtherSchemeHandler>(OtherSchemeOptions.OtherScheme, opts => { })
@@ -230,7 +230,7 @@ Essentially, I just had to:
 - Use [this](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices) Nuget
 - Add `.UseWindowsService()` at the end of the `IHostBuilder` just before the `.Build()`
 
-``` c#
+```cs
 var host = Host.CreateDefaultBuilder(args)
     // Other configuration and setup
     .UseWindowsService()

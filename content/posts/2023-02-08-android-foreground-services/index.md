@@ -28,8 +28,9 @@ I soon found that this was fine, until you switch to another app, and the timer 
 Turns out there are [limits to background activity](https://learn.microsoft.com/en-us/xamarin/android/app-fundamentals/services/#background-execution-limits-in-android-80) since Android 8, and it seems in that documentation that the app CAN do some background things, but not necessarily...
 We can't rely on the grace of the Android OS to let the app do background things, so what can we do to ensure it still works?
 
-# [Foreground Services](https://learn.microsoft.com/en-us/xamarin/android/app-fundamentals/services/foreground-services)
-Foreground services are those persistent notifications that show up in the notification area, indicating a long running activity. 
+# Foreground Services
+
+[Foreground services](https://learn.microsoft.com/en-us/xamarin/android/app-fundamentals/services/foreground-services) are those persistent notifications that show up in the notification area, indicating a long running activity. 
 The most obvious for me is a music player, which displays the song details and controls regardless of what app I'm using. 
 The Xamarin Forms docs are ok for this, but I came across a [Stackoverflow post](https://stackoverflow.com/questions/61079610/how-to-create-a-xamarin-foreground-service) that goes over it quite well, and mine is strongly based on it.  
 

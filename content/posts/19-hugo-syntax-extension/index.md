@@ -26,7 +26,8 @@ The new area of the `.tmLanguages.json` is below.
 
 {{% splitter %}}
 {{% split side=left title="Before" %}}
-```json
+
+```json  
 "patterns": [{
     "match": "(\\w+)\\s([a-zA-Z]+)=\\\"(\\S+)\\\"\\s*(?:([a-zA-Z]+)=\\\"([^\"]+)\\\")*",
     "name": "support.function.hugo.main",
@@ -49,6 +50,7 @@ The new area of the `.tmLanguages.json` is below.
     }
 },
 ```
+
 {{% /split %}}
 {{% split side=right title="After" %}}
 ```json

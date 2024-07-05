@@ -1,7 +1,7 @@
 ---
 title: "Xamarin and Hyper V"
 date: 2018-07-10T16:08:35+10:00
-draft: false
+type: "post"
 slug: "xamarin-and-hyper-v"
 tags: ["xamarin"]
 ---

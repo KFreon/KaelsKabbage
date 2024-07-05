@@ -7,7 +7,7 @@ slug: "building-ios-certs-on-windows"
 tags: ["ios"]
 ---
 
-UPDATE Oct 2019: 2FA breaks things :(  
+**UPDATE Oct 2019:** 2FA causes significant problems  
 
 How many times have you been working on a cross platform app and been ready to submit to the app stores, but then the Apple store needs a .csr that you should “use a Mac” to generate?  
 
@@ -15,11 +15,7 @@ When I google this, I got lots of complicated methods using IIS to request certi
   
 <!--more-->  
 
-UPDATE: 2FA breaks the automated links with the AppStore, making things quite painful indeed.  
-While this is all still correct, you may still need a Mac to help if you have 2FA on the Apple Id.  
-Details at the end.  
-
-ANOTHER UPDATE: This is slightly unrelated to certificates, but the `codeSignIdentity` MUST be `iPhone Developer` regardless of production/development.  
+> This is slightly unrelated to certificates, but the `codeSignIdentity` MUST be `iPhone Developer` regardless of production/development.  
 
 I’m sure some of those guides work, but I was sure it had to be easier than that. I found [this post](http://www.iandevlin.com/blog/2012/11/phonegap/building-an-ios-signing-key-for-phonegap-in-windows/) which does it all in four commands…A colleague pointed out that it’s from 2012 and is still relevant, but it works.  
 
@@ -37,20 +33,27 @@ I’ll pull it out here in case the links break but this is all Ian Devlin’s w
 
     ``` cmd
         openssl req -new -key ios.key -out <csrName>.csr -subj '/emailAddress=MY-EMAIL-ADDRESS, CN=COMPANY-NAME, C=COUNTRY-CODE'
+
+        // Or if you have a config file (which replaces the passed in config above)
+        openssl req -new -key ios.key -out <csrName>.csr -config config.txt
     ```
 
 4. Upload the .CSR to the portal which then gives you a .CER in return
 5. Convert .CER to a .P12 (Required to sign apps, or at least Cordova apps)
 
-    ``` cmd 
+    ``` cmd  
         openssl x509 -in ios_<development/distribution>.cer -inform DER -out <pemName>.pem -outform PEM
     ```
 
-    ``` cmd 
+    ``` cmd  
         openssl pkcs12 -export -inkey ios.key -in <pemName>.pem -out <p12Name>.p12
+
+        // Or if you get a .crt that needs to be a .pfx
+        openssl pkcs12 -export -inkey ios.key -in <crtName>.crt -out <pfxName>.pfx
     ```
 
 That’s it! No more hunting for someone around the office with a Mac.  
+
 **Update Aug 2020**: If you do want to run things up on a Mac at some point, you'll need those `.CER` and `.P12` files to install into the keychain.  The `CER` is the certificate, and the `P12` is the private key.  
 Should just be able to double click them (`CER` first) and follow any prompts to get them into the keychain.  
 
@@ -64,7 +67,7 @@ This caused the old 'deploy to AppStores' stuff to break, and apparently there a
 - Deploy from AppCenter (Needs App Specific passwords, which it'll tell you about and is fairly well documented)  
   - NOTE that this automatically deploys and you aren't able to change any settings outside of what AppCenter provides (name, icons, screenshots, etc)  
 - Get a Fastlane session token for use with the Azure Devops task  
-  - Get a mac :(  
+  - Get a mac 😢  
   - Install Ruby and Fastlane  
   - Be logged in with the relevant Apple Id  
   - `fastlane spaceauth -u <appleId user name>`

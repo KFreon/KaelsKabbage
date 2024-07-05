@@ -1,4 +1,4 @@
-{{ if gt (.Inner | strings.Count "\n") 10}}
+{{ if or (gt (.Inner | strings.Count "\n") 10) (isset .Attributes "title")}}
 
 <details class="default-codeblock" open>
   <summary>

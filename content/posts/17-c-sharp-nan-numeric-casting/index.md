@@ -15,7 +15,7 @@ But wait, how did I not get an exception?
 
 I had:  
 
-```c#
+```cs
 double first = 0;
 double second = 0;
 var result = (int)Math.Round(first / second);
@@ -23,7 +23,7 @@ var result = (int)Math.Round(first / second);
 
 In the above case, `result` was `-2147483648`, but why! Feels like an overflow, so expanding it out, I got:  
 
-```c#
+```cs
 double first = 0;
 double second = 0;
 var division = first / second;       // NaN
