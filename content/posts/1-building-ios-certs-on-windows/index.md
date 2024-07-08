@@ -9,7 +9,7 @@ tags: ["ios"]
 
 **UPDATE Oct 2019:** 2FA causes significant problems  
 
-How many times have you been working on a cross platform app and been ready to submit to the app stores, but then the Apple store needs a .csr that you should “use a Mac” to generate?  
+How many times have you been working on a cross platform app and been ready to submit to the app stores, but then the Apple store needs a .csr that you should "use a Mac" to generate?  
 
 When I google this, I got lots of complicated methods using IIS to request certificates through a quite frankly terrible UI/UX, and most of the guides glossed over how to actually get that .p12 at the end you needed.
   
@@ -19,7 +19,7 @@ When I google this, I got lots of complicated methods using IIS to request certi
 
 I’m sure some of those guides work, but I was sure it had to be easier than that. I found [this post](http://www.iandevlin.com/blog/2012/11/phonegap/building-an-ios-signing-key-for-phonegap-in-windows/) which does it all in four commands…A colleague pointed out that it’s from 2012 and is still relevant, but it works.  
 
-I’ll pull it out here in case the links break but this is all Ian Devlin’s work. I’m just replicating it.  
+I’ll pull it out here in case the links break but this is all Ian Devlin's work. I’m just replicating it.  
 
 1. Install [OpenSSL](https://www.openssl.org/) (Directly didn’t work for me, but it came installed with [Cmder](http://cmder.net/))  
 

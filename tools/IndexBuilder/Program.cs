@@ -1,9 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Text.Unicode;
 using Core;
+
+const string frontmatterDelimeter = "---";
 
 // Below paths for VS
 //var allPosts = Directory.GetFiles("../../../../Content/Posts", "index.md", SearchOption.AllDirectories);
@@ -12,6 +17,7 @@ using Core;
 var basePath = Environment.GetCommandLineArgs()[1];
 var posts = Directory.GetFiles(Paths.PostsFolder, "index.md", SearchOption.AllDirectories);
 var renders = Directory.GetFiles(Paths.RendersFolder, "index.md", SearchOption.AllDirectories);
+
 
 Func<string[], string, string> parseFrontMatterEntry = (string[] frontMatter, string key) =>
 {
@@ -23,30 +29,38 @@ Func<string[], string, string> parseFrontMatterEntry = (string[] frontMatter, st
 };
 
 var postIndexEntries = posts.Concat(renders)
-  .Select(filePath => new { IsRender = filePath.Contains("renders", StringComparison.OrdinalIgnoreCase), Lines = File.ReadAllLines(filePath) })
-  .Select(item =>
-    new
+  .Select(filePath => new 
+  { 
+    IsRender = filePath.Contains("renders", StringComparison.OrdinalIgnoreCase), 
+    Lines = File.ReadAllLines(filePath) 
+  })
+  .Select(item => new
     {
       IsRender = item.IsRender,
       FrontMatter = item.Lines
         .Skip(1)
-        .Take(7)
-        .ToArray()
+        .TakeWhile(x => x != frontmatterDelimeter)
+        .ToArray(),
+      Lines = item.Lines
     })
   .Select(item =>
   {
+      var remainingContent = item.Lines.Skip(item.FrontMatter.Length + 1);
+      var tags = parseFrontMatterEntry(item.FrontMatter, "tags")
+        ?.Replace("[", "").Replace("]", "")
+        .Split(',')
+        .Select(x => x.Trim())
+        .ToArray();
+
       bool.TryParse(parseFrontMatterEntry(item.FrontMatter, "draft"), out var draft);
       return new
       {
           title = parseFrontMatterEntry(item.FrontMatter, "title"),
-          draft = draft,
+          draft,
           slug = parseFrontMatterEntry(item.FrontMatter, "slug"),
           isRender = item.IsRender,
-          tags = parseFrontMatterEntry(item.FrontMatter, "tags")
-        ?.Replace("[", "").Replace("]", "")
-        .Split(',')
-        .Select(x => x.Trim())
-        .ToArray()
+          tags,
+          remainingContent
       };
   })
   .Where(post => !post.draft)
@@ -55,10 +69,11 @@ var postIndexEntries = posts.Concat(renders)
       post.title,
       post.tags,
       href = $"{(post.isRender ? "/renders/" : "/posts/")}{Regex.Replace(post.slug.ToLowerInvariant(), "[^0-9a-z]", "-")}".Replace("--", "-"),  // Occasionally, there were doubles that needed removal.
-      post.isRender
+      post.isRender,
+      post.remainingContent
   });
 
-var allEntries = postIndexEntries.Select(x => new 
+var metadataResults = postIndexEntries.Select(x => new 
 {
   x.title,
   x.href,
@@ -66,7 +81,45 @@ var allEntries = postIndexEntries.Select(x => new
   x.tags
 }).ToArray();
 
-var serialiserOptions = new JsonSerializerOptions();
-serialiserOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
-var serialised = "const pagesIndex = " + JsonSerializer.Serialize(allEntries, options: serialiserOptions) + ";";
-File.WriteAllText(Path.Combine(basePath, "../assets/scripts/PagesIndex.js"), serialised);
+
+// strip out all symbols (regex?)
+// Remove all common words
+string[] commonWords = ["if", "the", "of", "some", "var", "is", "and", "an", "in", "for", "that", "this", "for", "to", "I", "my", "a", "like", "with", "can", "be", "but", "have", "all", "are"];
+string[] commonSymbols = ["=", "\"", "'", "/", "(", ")", "-", ",", ".", ":", "*", "\r", "\n", "\t", "[", "]", "?", "<", ">", "{", "}", "@", "%"];
+var fullTextResults = postIndexEntries
+  .Where(x => !x.isRender)
+  .Select(x => {
+    StringBuilder sb = new StringBuilder(string.Join(Environment.NewLine, x.remainingContent));
+    foreach(var word in commonWords) {
+      sb = sb.Replace(" " + word + " ", " ");
+    }
+
+    foreach(var symbol in commonSymbols) {
+      sb = sb.Replace(symbol, "");
+    }
+
+    var text = sb.ToString();
+    var cleanedUp = Regex.Replace(text, @"\s+", " ");
+
+    // strip common shortcodes
+    // Unicode everywhere?
+
+    return new {
+      x.href,
+      x.isRender,
+      x.title,
+      x.tags,
+      text = cleanedUp
+    };
+});
+
+var serialiserOptions = new JsonSerializerOptions
+{
+    DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+    Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
+};
+var serialisedIndex = "const pagesIndex = " + JsonSerializer.Serialize(metadataResults, options: serialiserOptions) + ";";
+File.WriteAllText(Path.Combine(basePath, "../assets/scripts/PagesIndex.js"), serialisedIndex);
+
+var serialisedFullText = "const fullText = " + JsonSerializer.Serialize(fullTextResults, options: serialiserOptions) + ";";
+File.WriteAllText(Path.Combine(basePath, "../assets/scripts/FullText.js"), serialisedFullText);

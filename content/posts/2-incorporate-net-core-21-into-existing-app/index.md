@@ -28,7 +28,7 @@ The most suitable solution investigated was to directly reference the .dll (inst
 
 This can be alleviated by setting the Core project as a dependency of the non-core project, causing it to be built prior.
 
-_Right click Solution –> Properties_
+_Right click Solution -> Properties_
 
 ![Dependent projects are built first](img/Dependencies.png)
 This leads to the usual F5 experience!
