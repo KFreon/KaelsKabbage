@@ -30,11 +30,8 @@
         placeholder="Search..."
         type="text"
         class="search-box"
-        onkeyup="search()"
-        onblur="hideIfNecessary()"
-        onfocus="showIfNecessary()"
+        onclick="showBigSearch()"
       />
-      <ul class="results-list" id="the-search-results-element"></ul>
     </div>
 
     <h2 class="recent-posts-title">Recent Posts</h2>
@@ -76,3 +73,19 @@
 
   <button id="hamburger-menu-button" onclick="toggleHamburger()">☰</button>
 </header>
+
+<div id="big-search-background" class="big-search-background" onclick="hideBigSearch()">
+  <div class="big-search-container">
+    <input
+      id="big-search-box"
+      placeholder="Search..."
+      type="text"
+      class="search-box"
+      onkeyup="search()"
+      onblur="hideBigSearch()"
+      onclick="insideSearchTextbox(event)"
+    />
+
+    <ul class="results-list" id="the-search-results-element"></ul>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 // MUST be Loaded last
 setupLazyVideos();
-getTagFromQueryString()
+getTagFromQueryString();
 
 if (window.location.host !== "localhost:1313") {
   // Not using the service worker for now

@@ -297,8 +297,13 @@ blockquote {
   border-radius: 50px;
 }
 
-.search-box {
-  width: 90%;
+.search-frame {
+  margin-left: 20rem;
+}
+
+.search-box, .search-box-big {
+  width: 100%;
+  box-sizing: border-box;
   border: var(--lightgrey) 1px solid; // CLean up styles --> SASS, up fontsize for search results
   border-radius: 0.5rem;
   padding: 0.3rem 0.2rem;
@@ -310,13 +315,18 @@ blockquote {
   }
 }
 
-.results-list {
-  margin: auto;
-  width: 90%;
+.search-box.hidden {
+  display: none;
+}
+
+.results-list, .results-list-big {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   opacity: 0;
   transition: opacity 0.3s;
   height: unset;
-  max-height: 12rem;
+  max-height: 20rem;
 
   &.visible {
     opacity: 1;
@@ -331,14 +341,14 @@ blockquote {
     border: var(--search-result-border) 1px solid;
     transition: all 0.1s;
     color: var(--lightgrey);
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     padding: 0.2rem;
     line-height: 1.3;
     max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
+    height: 5rem;
 
     &.is-render {
       a {
@@ -646,5 +656,57 @@ details {
     a {
       color: var(--link);
     }
+  }
+}
+
+.big-search-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -100;
+  background-color: var(--transparentish-main-background);
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  
+  &.fade-in {
+    animation: fade-in 0.25s forwards;
+  }
+
+  &.fade-out {
+    animation: fade-out 0.25s forwards;
+  }
+
+  .big-search-container {
+    .search-box {
+      font-size: 2rem;
+      padding: 1rem 2rem;
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    z-index: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    z-index: -100;
   }
 }

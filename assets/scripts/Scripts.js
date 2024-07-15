@@ -42,6 +42,8 @@ function toggleHamburger() {
 
 function getTagFromQueryString() {
   const queryTag = window.location.search.slice(1);
+  if (!queryTag) return;
+  
   const matchingElement = document.getElementById(queryTag);
   if (matchingElement) {
     matchingElement.classList.add('highlighted-tag');

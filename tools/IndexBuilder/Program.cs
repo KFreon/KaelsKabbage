@@ -84,8 +84,8 @@ var metadataResults = postIndexEntries.Select(x => new
 
 // strip out all symbols (regex?)
 // Remove all common words
-string[] commonWords = ["if", "the", "of", "some", "var", "is", "and", "an", "in", "for", "that", "this", "for", "to", "I", "my", "a", "like", "with", "can", "be", "but", "have", "all", "are"];
-string[] commonSymbols = ["=", "\"", "'", "/", "(", ")", "-", ",", ".", ":", "*", "\r", "\n", "\t", "[", "]", "?", "<", ">", "{", "}", "@", "%"];
+string[] commonWords = [];//["if", "the", "of", "some", "var", "is", "and", "an", "in", "for", "that", "this", "for", "to", "I", "my", "a", "like", "with", "can", "be", "but", "have", "all", "are"];
+string[] commonSymbols = ["`", ";", "’", "=", "\"", "'", "/", "(", ")", "-", ",", ".", ":", "*", "\r", "\n", "\t", "[", "]", "?", "<", ">", "{", "}", "@", "%"];
 var fullTextResults = postIndexEntries
   .Where(x => !x.isRender)
   .Select(x => {
@@ -98,18 +98,15 @@ var fullTextResults = postIndexEntries
       sb = sb.Replace(symbol, "");
     }
 
-    var text = sb.ToString();
-    var cleanedUp = Regex.Replace(text, @"\s+", " ");
-
-    // strip common shortcodes
-    // Unicode everywhere?
+    var spaces = Regex.Replace(sb.ToString(), @"\s+", " ");
+    var slashes = Regex.Replace(spaces, @"\+", "\\");
 
     return new {
       x.href,
       x.isRender,
       x.title,
       x.tags,
-      text = cleanedUp
+      text = slashes
     };
 });
 
@@ -122,4 +119,5 @@ var serialisedIndex = "const pagesIndex = " + JsonSerializer.Serialize(metadataR
 File.WriteAllText(Path.Combine(basePath, "../assets/scripts/PagesIndex.js"), serialisedIndex);
 
 var serialisedFullText = "const fullText = " + JsonSerializer.Serialize(fullTextResults, options: serialiserOptions) + ";";
-File.WriteAllText(Path.Combine(basePath, "../assets/scripts/FullText.js"), serialisedFullText);
+var noUtf8 = Regex.Replace(serialisedFullText, @"[^\u0000-\u00FF]+", string.Empty);
+File.WriteAllText(Path.Combine(basePath, "../assets/scripts/FullText.js"), noUtf8);
