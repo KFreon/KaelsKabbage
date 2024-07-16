@@ -710,3 +710,8 @@ details {
     z-index: -100;
   }
 }
+
+.highlighted {
+  font-weight: bold;
+  color: var(--strong-colour);
+}
