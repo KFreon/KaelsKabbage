@@ -1,6 +1,9 @@
 let resultsElement = document.getElementById('the-search-results-element');
 let searchInputElement = document.getElementById('big-search-box');
 
+// The order is still badly incorrect somehow. Not sure how.
+// For the love of all holy things, TYPSCRTIPT
+
 let searcher = undefined;
 
 function showBigSearch() {
@@ -40,12 +43,13 @@ function search() {
     }
 
     if (searcher === undefined) {
-        // searcher = new Fuse(fullText, {"keys": ['title', 'tags', 'text'], "includeMatches": true})
-        searcher = new Fuse(fullText, {"keys": ['title'], "includeMatches": true})
+        searcher = new Fuse(fullText, {"keys": ['title', 'tags', 'text'], "includeMatches": true, "includeScore": true})
+        // searcher = new Fuse(fullText, {"keys": ['title'], "includeMatches": true})
     }
     const query = searchInputElement.value;
 
     const searchResults = searcher.search(query);
+    searchResults.reverse() // Sorted backwards by default for some reason
     renderResults(query, searchResults);
 }
 
@@ -57,12 +61,12 @@ function renderResults(query, searchResults) {
 
     toggleResults(true);
 
+    console.log(searchResults)
+
     // Only show the ten first results
     searchResults.slice(0, 4).forEach(function(result) {
         const item = result.item;
-        const textMatches = result.matches; // []
-        const title = item.title;
-        const matchingText = "";
+        const textMatches = result.matches
 
         const node = document.createElement("li");
         node.classList.add('search-result');
@@ -73,52 +77,99 @@ function renderResults(query, searchResults) {
 
         const link = document.createElement('a');
         link.href = item.href;
-        link.create
+        link.classList.add('search-element')
 
-        const highlightInfo = getHighlightedText(title, query, textMatches)
-        generateHighlightedNodes(link, highlightInfo)
+        // Get title highlights, tags, etc
+        const titleHighlights = getHighlightedText('title', textMatches, item.title)
+        const titleNodes = generateHighlightedNodes('title', titleHighlights)
 
-        const matchingTextEl = document.createElement('span');
-        matchingTextEl.textContent = matchingText;
+        const tagsHighlights = getHighlightedText('tags', textMatches, item.tags)
+        const tagNodes = generateHighlightedNodes('tags', tagsHighlights)
+
+        const textHighlights = getHighlightedText('text', textMatches, item.text)
+        const textNodes = generateHighlightedNodes('text', textHighlights)
+
+        titleNodes.forEach(n => link.appendChild(n))
+        textNodes.forEach(n => link.appendChild(n))
+        tagNodes?.forEach(n => link.appendChild(n))
 
         node.appendChild(link);
-        node.appendChild(matchingTextEl);
         resultsElement.appendChild(node);
     });
 }
 
-function generateHighlightedNodes(node, highlightedText) {
-    console.log()
-    highlightedText.forEach(text => {
-        const element = document.createElement('span')
-        element.textContent = text.text
+function generateHighlightedNodes(field, highlightedText) {
+    // highlighedText [{key, parts: [{type, text}]}]
+    // multiple is only tags really
+    const elements = highlightedText?.filter(item => item !== undefined)
+    .map(item => {
+        const outer = document.createElement('p')
+        outer.classList.add('search-element-' + field)
 
-        if (text.type === 'highlighted') {
-            element.classList.add('highlighted')
-        }
-        node.appendChild(element)
+        const parts = item.parts.map(p => {
+            const element = document.createElement('span')
+            element.textContent = p.text
+    
+            if (p.type === 'highlighted') {
+                element.classList.add('highlighted')
+            }
+            return element;
+        })
+        parts.forEach(p => outer.appendChild(p))
+        return outer;
     })
+    return elements
 }
 
-function getHighlightedText(title, query, textMatches) {
-    let parts = [];
-    let index = 0;
-    textMatches
-        .flatMap(match => match.indices.map(i => ({ range: i, key: match.key, value: match.value })))
-        .forEach(match => {
-            const range = match.range
-            // range [[start, len]]
+function getHighlightedText(field, textMatches, original) {
+    const test = textMatches
+    .filter(match => match.key === field)
+    .map(match => {
+        // match {indicies: [], key, value}
 
-            const normal = title.substring(index, range[0]);
-            const matchText = title.substring(range[0], range[1] + 1);
+        let index = 0;
+        let parts = [];
+        const value = match.value
+
+        match.indices.slice(0, 5).forEach(range => {
+            let normal = value.substring(index, range[0]);
+            const matchText = value.substring(range[0], range[1] + 1);
+            
             parts.push({type: 'normal', text: normal})
             parts.push({type: 'highlighted', text: matchText})
+            index = +range[1] + 1;
+        })
+        let remaining = value.substring(index)
+        parts.push({type: 'normal', text: remaining })
 
-            index = +range[1] + 1; // + makes them numbers
+        // Truncate long text
+        if (field === 'text') {
+            parts = parts.map(p => {
+                if (p.type === 'normal' && p.text.length > 20) {
+                    return {type: 'normal', text: p.text.substring(0, 5) + '...' + p.text.substring(p.text.length - 6)}
+                }
+                return p;
+            })
+        }
+
+        return { parts, key: match.key }
     })
-    parts.push({type: 'normal', text: title.substring(index)})
 
-    return parts;
+    if (test.length > 0) return test;
+
+    if (original === undefined) {
+        return undefined;
+    }
+
+    if (original instanceof Array) {
+        return original.map(o => ({
+           key: field,
+           parts: [{type: 'normal', text: o}] // tags aren't long 
+        }))
+    }
+    else {
+        return [{key: field, parts: [{type: 'normal', text: original.substring(0, 20) + '...'}]}];
+    }
 }
 
 function toggleResults(isVisible) {

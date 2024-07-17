@@ -714,4 +714,31 @@ details {
 .highlighted {
   font-weight: bold;
   color: var(--strong-colour);
+  text-decoration: underline;
+}
+
+.search-element {
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+}
+
+.search-element-title {
+
+}
+
+.search-element-tags {
+  display: inline;
+  border: 1px solid var(--grey);
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.search-element-text {
+  font-size: 0.9rem;
+  font-style: italic;
 }

@@ -1,4 +1,4 @@
-{{ $IsServer := .Site.IsServer }}
+{{ $IsServer := hugo.IsServer }}
 {{- with resources.Match "assets/scripts/*" -}}
 {{- range sort . -}}
 {{- if $IsServer -}}
