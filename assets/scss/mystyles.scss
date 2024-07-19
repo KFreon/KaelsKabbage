@@ -325,8 +325,7 @@ blockquote {
   width: 100%;
   opacity: 0;
   transition: opacity 0.3s;
-  height: unset;
-  max-height: 20rem;
+  height: 20rem;
 
   &.visible {
     opacity: 1;
@@ -350,6 +349,14 @@ blockquote {
     align-items: center;
     height: 5rem;
 
+    &:first-child {
+
+    }
+
+    &:last-child {
+
+    }
+
     &.is-render {
       a {
         height: unset;
@@ -360,9 +367,9 @@ blockquote {
         content: '';
         background: url("/img/BlenderIcon.png");
         background-size: contain;
-        height: 25px;
-        width: 25px;
-        margin-right: 1rem;
+        background-repeat: no-repeat;
+        height: 50px;
+        width: 50px;
       }
     }
 
@@ -682,6 +689,9 @@ details {
   }
 
   .big-search-container {
+    width: 50rem;
+    max-width: 50rem;
+
     .search-box {
       font-size: 2rem;
       padding: 1rem 2rem;
@@ -719,9 +729,12 @@ details {
 
 .search-element {
   text-align: center;
+  overflow: hidden;
+  height: 100%;
 
   p {
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
@@ -739,6 +752,9 @@ details {
 }
 
 .search-element-text {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
   font-style: italic;
 }

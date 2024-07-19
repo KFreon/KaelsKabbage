@@ -81,13 +81,9 @@ var metadataResults = postIndexEntries.Select(x => new
   x.tags
 }).ToArray();
 
-
-// strip out all symbols (regex?)
-// Remove all common words
-string[] commonWords = [];//["if", "the", "of", "some", "var", "is", "and", "an", "in", "for", "that", "this", "for", "to", "I", "my", "a", "like", "with", "can", "be", "but", "have", "all", "are"];
-string[] commonSymbols = ["`", ";", "’", "=", "\"", "'", "/", "(", ")", "-", ",", ".", ":", "*", "\r", "\n", "\t", "[", "]", "?", "<", ">", "{", "}", "@", "%"];
+string[] commonWords = [];
+string[] commonSymbols = ["\r", "\n", "\t", "-"];
 var fullTextResults = postIndexEntries
-  .Where(x => !x.isRender)
   .Select(x => {
     StringBuilder sb = new StringBuilder(string.Join(Environment.NewLine, x.remainingContent));
     foreach(var word in commonWords) {
@@ -115,8 +111,8 @@ var serialiserOptions = new JsonSerializerOptions
     DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
     Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
 };
-var serialisedIndex = "const pagesIndex = " + JsonSerializer.Serialize(metadataResults, options: serialiserOptions) + ";";
-File.WriteAllText(Path.Combine(basePath, "../assets/scripts/PagesIndex.js"), serialisedIndex);
+// var serialisedIndex = "const pagesIndex = " + JsonSerializer.Serialize(metadataResults, options: serialiserOptions) + ";";
+// File.WriteAllText(Path.Combine(basePath, "../assets/scripts/PagesIndex.js"), serialisedIndex);
 
 var serialisedFullText = "const fullText = " + JsonSerializer.Serialize(fullTextResults, options: serialiserOptions) + ";";
 var noUtf8 = Regex.Replace(serialisedFullText, @"[^\u0000-\u00FF]+", string.Empty);

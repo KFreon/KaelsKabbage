@@ -1,7 +1,6 @@
 let resultsElement = document.getElementById('the-search-results-element');
 let searchInputElement = document.getElementById('big-search-box');
 
-// The order is still badly incorrect somehow. Not sure how.
 // For the love of all holy things, TYPSCRTIPT
 
 let searcher = undefined;
@@ -43,13 +42,10 @@ function search() {
     }
 
     if (searcher === undefined) {
-        searcher = new Fuse(fullText, {"keys": ['title', 'tags', 'text'], "includeMatches": true, "includeScore": true})
-        // searcher = new Fuse(fullText, {"keys": ['title'], "includeMatches": true})
+        searcher = new Fuse(fullText, {"keys": ['title', 'tags', 'text'], threshold: 0.05, ignoreLocation: true, includeMatches: true, minMatchCharLength: 3, includeScore: true})
     }
     const query = searchInputElement.value;
-
     const searchResults = searcher.search(query);
-    searchResults.reverse() // Sorted backwards by default for some reason
     renderResults(query, searchResults);
 }
 
@@ -144,9 +140,17 @@ function getHighlightedText(field, textMatches, original) {
 
         // Truncate long text
         if (field === 'text') {
-            parts = parts.map(p => {
-                if (p.type === 'normal' && p.text.length > 20) {
-                    return {type: 'normal', text: p.text.substring(0, 5) + '...' + p.text.substring(p.text.length - 6)}
+            parts = parts.map((p, i) => {
+                if (p.type === 'normal' && p.text.length > 50) {
+                    if (i === 0) {
+                        // first
+                        return {type: 'normal', text: '...' + p.text.substring(p.text.length - 50)}
+                    }else if (i === parts.length - 1) {
+                        // last
+                        return {type: 'normal', text: p.text.substring(0, 50) + '...'}
+                    } else {
+                        return {type: 'normal', text: p.text.substring(0, 30) + '...' + p.text.substring(p.text.length - 30)}
+                    }
                 }
                 return p;
             })
