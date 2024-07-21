@@ -3,7 +3,19 @@ let searchInputElement = document.getElementById('big-search-box');
 
 // For the love of all holy things, TYPSCRTIPT
 
+let fullText = undefined;
 let searcher = undefined;
+let currentQueue = undefined;
+
+if (searcher === undefined) {
+    fetch('search/FullText.json')
+        .then(resp => {
+            resp.json().then(json => fullText = json).catch(e => console.error(e));
+        })
+        .catch(err => console.error(err))
+}
+
+const fuseOptions = {"keys": ['title', 'tags', 'text'], threshold: 0.05, ignoreLocation: true, includeMatches: true, minMatchCharLength: 3, includeScore: true};
 
 function showBigSearch() {
     const bigSearchModal = document.getElementById("big-search-background");
@@ -30,7 +42,24 @@ function insideSearchTextbox(event) {
     event.stopPropagation();
 }
 
+function queueSearch() {
+    if (currentQueue) {
+        // cancel existing timeout
+        clearTimeout(currentQueue)
+    }
+
+    currentQueue = setTimeout(() => {
+        clearTimeout(currentQueue)
+        currentQueue = undefined;
+        search()
+    }, 300);
+}
+
 function search() {
+    if (fullText === undefined) {
+        return;
+    }
+
     // Clear
     while (resultsElement.firstChild) {
         resultsElement.removeChild(resultsElement.lastChild);
@@ -42,8 +71,12 @@ function search() {
     }
 
     if (searcher === undefined) {
-        searcher = new Fuse(fullText, {"keys": ['title', 'tags', 'text'], threshold: 0.05, ignoreLocation: true, includeMatches: true, minMatchCharLength: 3, includeScore: true})
+        searcher = new Fuse(fullText, fuseOptions)
     }
+    else {
+        searcher = new Fuse(fullText, fuseOptions)
+    }
+
     const query = searchInputElement.value;
     const searchResults = searcher.search(query);
     renderResults(query, searchResults);
@@ -56,8 +89,6 @@ function renderResults(query, searchResults) {
     }
 
     toggleResults(true);
-
-    console.log(searchResults)
 
     // Only show the ten first results
     searchResults.slice(0, 4).forEach(function(result) {

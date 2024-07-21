@@ -8,4 +8,4 @@ obj
 latest-render-results
 .hugo_build.lock
 assets/scripts/PagesIndex.js
-assets/scripts/FullText.js
+static/search/FullText.json

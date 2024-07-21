@@ -73,36 +73,31 @@ var postIndexEntries = posts.Concat(renders)
       post.remainingContent
   });
 
-var metadataResults = postIndexEntries.Select(x => new 
-{
-  x.title,
-  x.href,
-  x.isRender,
-  x.tags
-}).ToArray();
-
 string[] commonWords = [];
 string[] commonSymbols = ["\r", "\n", "\t", "-"];
 var fullTextResults = postIndexEntries
   .Select(x => {
-    StringBuilder sb = new StringBuilder(string.Join(Environment.NewLine, x.remainingContent));
-    foreach(var word in commonWords) {
-      sb = sb.Replace(" " + word + " ", " ");
+    string slashes = string.Empty;
+    if (x.isRender) {
+      StringBuilder sb = new StringBuilder(string.Join(Environment.NewLine, x.remainingContent));
+      foreach(var word in commonWords) {
+        sb = sb.Replace(" " + word + " ", " ");
+      }
+
+      foreach(var symbol in commonSymbols) {
+        sb = sb.Replace(symbol, "");
+      }
+
+      var spaces = Regex.Replace(sb.ToString(), @"\s+", " ");
+      slashes = Regex.Replace(spaces, @"\+", "\\");
     }
-
-    foreach(var symbol in commonSymbols) {
-      sb = sb.Replace(symbol, "");
-    }
-
-    var spaces = Regex.Replace(sb.ToString(), @"\s+", " ");
-    var slashes = Regex.Replace(spaces, @"\+", "\\");
-
+    
     return new {
       x.href,
       x.isRender,
       x.title,
       x.tags,
-      text = slashes
+      text = x.isRender ? string.Empty : slashes  // Don't want text for renders
     };
 });
 
@@ -111,9 +106,6 @@ var serialiserOptions = new JsonSerializerOptions
     DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
     Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
 };
-// var serialisedIndex = "const pagesIndex = " + JsonSerializer.Serialize(metadataResults, options: serialiserOptions) + ";";
-// File.WriteAllText(Path.Combine(basePath, "../assets/scripts/PagesIndex.js"), serialisedIndex);
-
-var serialisedFullText = "const fullText = " + JsonSerializer.Serialize(fullTextResults, options: serialiserOptions) + ";";
+var serialisedFullText = JsonSerializer.Serialize(fullTextResults, options: serialiserOptions);
 var noUtf8 = Regex.Replace(serialisedFullText, @"[^\u0000-\u00FF]+", string.Empty);
-File.WriteAllText(Path.Combine(basePath, "../assets/scripts/FullText.js"), noUtf8);
+File.WriteAllText(Path.Combine(basePath, "../static/search/FullText.json"), noUtf8);
