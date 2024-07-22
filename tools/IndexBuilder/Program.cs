@@ -108,4 +108,7 @@ var serialiserOptions = new JsonSerializerOptions
 };
 var serialisedFullText = JsonSerializer.Serialize(fullTextResults, options: serialiserOptions);
 var noUtf8 = Regex.Replace(serialisedFullText, @"[^\u0000-\u00FF]+", string.Empty);
-File.WriteAllText(Path.Combine(basePath, "../static/search/FullText.json"), noUtf8);
+
+var searchPath = Path.Combine(basePath, "../static/search");
+Directory.CreateDirectory(searchPath);
+File.WriteAllText(Path.Combine(searchPath, "FullText.json"), noUtf8);
