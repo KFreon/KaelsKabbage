@@ -73,8 +73,8 @@ var postIndexEntries = posts.Concat(renders)
       post.remainingContent
   });
 
-string[] commonWords = [];
-string[] commonSymbols = ["\r", "\n", "\t", "-"];
+string[] commonWords = Array.Empty<string>();
+string[] commonSymbols = new string[] {"\r", "\n", "\t", "-"};
 var fullTextResults = postIndexEntries
   .Select(x => {
     string slashes = string.Empty;
