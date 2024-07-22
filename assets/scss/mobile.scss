@@ -456,4 +456,33 @@
         margin: unset;
         margin-bottom: 1rem;
     }
+
+    .big-search-background {
+        .big-search-container {
+            display: grid;
+            width: 95%;
+    
+            .results-list {
+                .search-result {
+                    height: 10rem;
+
+                    .search-element {
+                        overflow: unset;
+                        overflow-y: hidden;
+                        
+                        .search-element-text {
+                            height: 2.8rem;
+                            font-size: 1.15rem;
+                            text-wrap: wrap;
+
+                        }
+    
+                        .search-element-tags {
+                            font-size: 0.9rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

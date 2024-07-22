@@ -1,4 +1,4 @@
-{{- $cssOptions := cond (.Site.IsServer) (dict "enableSourceMap" false) (dict "outputStyle" "compressed") -}}
+{{- $cssOptions := cond (hugo.IsServer) (dict "enableSourceMap" false) (dict "outputStyle" "compressed") -}}
 
 {{- $stylesCSS := resources.Get "assets/scss/mystyles.scss" | toCSS  -}}
 {{- $mobileCSS := resources.Get "assets/scss/mobile.scss" | toCSS  -}}
@@ -20,7 +20,7 @@
 {{- $lastSheets := slice $mobileCSS $darkCSS -}}
 {{- $combined := union $firstSheets $lastSheets -}}
 
-{{- if .Site.IsServer -}}
+{{- if hugo.IsServer -}}
 {{- range $combined -}}
     <link rel="stylesheet" defer href="{{ .Permalink }}">
 {{- end -}}

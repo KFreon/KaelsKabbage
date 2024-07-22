@@ -6,7 +6,7 @@ slug: "another-go-at-blazor"
 tags: ["blazor"]
 ---
 
-Previously on [Blazor: Good and Bad](/25-blazor-net5) I played with Blazor and made a toy app to test things out.  
+Previously on [Blazor: Good and Bad](/content/posts/25-blazor-net5/index.md) I played with Blazor and made a toy app to test things out.  
 I came to the conclusion that some was good, some was bad, time will tell.  
 Now that I've come back to it with a much more complex app, my opinion hasn't really changed, but I did have a go at more complex state management.    
 
