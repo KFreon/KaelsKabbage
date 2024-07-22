@@ -1,4 +1,6 @@
-import Fuse, { FuseResult, FuseResultMatch } from "fuse.js";
+import Fuse, { FuseResult, FuseResultMatch } from "../../node_modules/fuse.js/dist/fuse";
+const fuseOptions = {"keys": ['title', 'tags', 'text'], threshold: 0.05, ignoreLocation: true, includeMatches: true, minMatchCharLength: 3, includeScore: true};
+
 interface SearchResult {
     isRender: boolean;
     href: string;
@@ -10,23 +12,24 @@ interface SearchResult {
 let resultsElement = document.getElementById('the-search-results-element');
 let searchInputElement = document.getElementById('big-search-box') as HTMLInputElement;
 
-let fullText: any[] | undefined = undefined;
+let fullText: SearchResult[] | undefined = undefined;
 let searcher: Fuse<SearchResult> | undefined = undefined;
 let currentQueue: number | undefined = undefined;
 
 
-// Load the full text search when we can
-if (searcher === undefined) {
-    fetch('search/FullText.json')
-        .then(resp => {
-            resp.json().then(json => fullText = json).catch(e => console.error(e));
-        })
-        .catch(err => console.error(err))
+export function setupSearch() {
+    // Load the full text search when we can
+    if (searcher === undefined) {
+        fetch('search/FullText.json')
+            .then(resp => {
+                resp.json().then(json => fullText = json).catch(e => console.error(e));
+            })
+            .catch(err => console.error(err))
+    }
 }
 
-const fuseOptions = {"keys": ['title', 'tags', 'text'], threshold: 0.05, ignoreLocation: true, includeMatches: true, minMatchCharLength: 3, includeScore: true};
 
-function showBigSearch() {
+export function showBigSearch() {
     const bigSearchModal = document.getElementById("big-search-background");
     bigSearchModal?.classList.add('fade-in')
     bigSearchModal?.classList.remove('fade-out')
@@ -35,7 +38,7 @@ function showBigSearch() {
     box?.focus();
 }
 
-function hideBigSearch() {
+export function hideBigSearch() {
     const search = document.getElementById('big-search-box') as HTMLInputElement;
     const small = document.getElementById('searchbox') as HTMLInputElement;
     if (search === undefined) {
@@ -48,17 +51,17 @@ function hideBigSearch() {
     search.value = "";
     small.value = "";
 
-    const bigSearchModal = document.getElementById("big-search-background");
-    bigSearchModal?.classList.remove('fade-in')
-    bigSearchModal?.classList.add('fade-out')
+    // const bigSearchModal = document.getElementById("big-search-background");
+    // bigSearchModal?.classList.remove('fade-in')
+    // bigSearchModal?.classList.add('fade-out')
 }
 
-function insideSearchTextbox(event: Event) {
+export function insideSearchTextbox(event: Event) {
     event.preventDefault();
     event.stopPropagation();
 }
 
-function queueSearch() {
+export function queueSearch() {
     if (currentQueue) {
         // cancel existing timeout
         clearTimeout(currentQueue)
@@ -87,7 +90,7 @@ function search() {
     }
 
     if (searcher === undefined) {
-        searcher = new Fuse(fullText, fuseOptions)
+        searcher = new Fuse<SearchResult>(fullText, fuseOptions)
     }
 
     const query = searchInputElement.value;
@@ -217,7 +220,9 @@ function getHighlightedText(field: string, textMatches: readonly FuseResultMatch
         }))
     }
     else {
-        return [{key: field, parts: [{type: 'normal', text: original.substring(0, 20) + '...'}]}];
+        const truncedIfNeeded = original.substring(0, 20) + '...';
+
+        return [{key: field, parts: [{type: 'normal', text: field === 'title' ? original : truncedIfNeeded }]}];
     }
 }
 

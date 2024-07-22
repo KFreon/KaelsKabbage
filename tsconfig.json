@@ -1,9 +1,11 @@
 {
     "compilerOptions": {
         "noImplicitAny": true,
-        "target": "ESNext"
+        "target": "ESNext",
+        "allowJs": true,
+        "outDir": "tstemp",
+        "module": "ESNext"
     },
-    
     "exclude": ["public"],
-    "include": ["node_modules"]
+    "include": ["./assets/scripts/*"]
 }

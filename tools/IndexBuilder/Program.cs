@@ -78,7 +78,7 @@ string[] commonSymbols = ["\r", "\n", "\t", "-"];
 var fullTextResults = postIndexEntries
   .Select(x => {
     string slashes = string.Empty;
-    if (x.isRender) {
+    if (!x.isRender) {
       StringBuilder sb = new StringBuilder(string.Join(Environment.NewLine, x.remainingContent));
       foreach(var word in commonWords) {
         sb = sb.Replace(" " + word + " ", " ");

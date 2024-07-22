@@ -9,3 +9,4 @@ latest-render-results
 .hugo_build.lock
 assets/scripts/PagesIndex.js
 static/search/FullText.json
+tstemp

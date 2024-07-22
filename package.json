@@ -2,10 +2,11 @@
   "name": "kaels-kabbage.com",
   "version": "1.0.0",
   "description": "",
-  "main": "scripts/scripts.ts",
+  "type": "module",
   "scripts": {
     "build-index": "dotnet run --project tools/IndexBuilder/IndexBuilder.csproj --configuration Release ./content",
-    "build": "npm-run-all build-index optimise-assets update-latest-render",
+    "build": "npm-run-all install tsc build-index optimise-assets update-latest-render",
+    "build-ts": "tsc",
     "newpost": "node build-scripts/newitem.js post",
     "newrender": "node build-scripts/newitem.js render",
     "start": "hugo server -D --watch=false",
@@ -17,7 +18,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.5.3"
   },
   "dependencies": {
     "fuse.js": "^7.0.0"

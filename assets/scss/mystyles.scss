@@ -350,11 +350,13 @@ blockquote {
     height: 5rem;
 
     &:first-child {
-
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
     }
 
     &:last-child {
-
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
     }
 
     &.is-render {
@@ -752,7 +754,7 @@ details {
 }
 
 .search-element-text {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   overflow: hidden;
   text-wrap: nowrap;
   text-overflow: ellipsis;

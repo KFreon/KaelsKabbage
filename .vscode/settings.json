@@ -6,5 +6,8 @@
         "drilldown",
         "shortcode",
         "shortcodes"
-    ]
+    ],
+    "search.exclude": {
+        "**/public": true
+    }
 }

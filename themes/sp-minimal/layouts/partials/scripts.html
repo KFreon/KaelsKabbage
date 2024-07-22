@@ -1,14 +1,6 @@
 {{ $IsServer := hugo.IsServer }}
-{{- with resources.Match "assets/scripts/*" -}}
-{{- range sort . -}}
-{{- if $IsServer -}}
-<script type="text/javascript" defer src="{{ .Permalink  }}"></script>
-{{ else }}
-{{- $minified := . | minify -}}
-<script type="text/javascript" defer src="{{ $minified.Permalink  }}"></script>
-{{- end -}}
-{{- end -}}
-{{- end -}}
+{{- $js := resources.Get "assets/scripts/main.ts" | js.Build -}}
+<script type="text/javascript" defer src="{{ $js.Permalink  }}"></script>
 
 <!-- My self hosted analytics -->
 <script defer data-domain="kaels-kabbage.com" src="https://analytics.kaels-kabbage.com/js/script.js"></script>

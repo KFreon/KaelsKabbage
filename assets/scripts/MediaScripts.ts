@@ -21,7 +21,7 @@ function removeAV1VideoSource() {
 // Edge doesn't support AV1 natively
 // If the extension is installed, use it.
 // If not, remove it
-function handleEdgeAV1Support() {
+export function handleEdgeAV1Support() {
   let isEdge = false;
   // @ts-ignore
   if (navigator.userAgentData) {
@@ -47,7 +47,7 @@ function handleEdgeAV1Support() {
   }
 }
 
-function imageContainerClicked(url: string) {
+export function imageContainerClicked(url: string) {
   // Ignore if not in a render list
   const renderList = document.getElementsByClassName("render-list");
   const isRenderList = renderList && renderList.length > 0;
@@ -56,7 +56,7 @@ function imageContainerClicked(url: string) {
   }
 }
 
-function setupLazyVideos() {
+export function setupLazyVideos() {
   document.addEventListener("DOMContentLoaded", function() {
     let lazyVideos = document.querySelectorAll("video.lazy");
   
@@ -85,7 +85,7 @@ function setupLazyVideos() {
   });
 }
 
-function zoomImage(e: HTMLElement & { metaZ: string }) {
+export function zoomImage(e: HTMLElement & { metaZ: string }) {
   const {x, y, width, height, top} = e.getBoundingClientRect();
   const left = x;
 
@@ -147,8 +147,7 @@ function zoomImage(e: HTMLElement & { metaZ: string }) {
 // So I've created two elements, and toggle between them here.
 // The reason it has to be a timer instead of just normal CSS is that it still renders some of them.
 // I think it's a timing thing where the default visibility is being fetched before it knows the element isn't visible.
-setTimeout(() => {
-
+export function setupImageSizes() {
   const media = document.getElementsByClassName('media-frame') as HTMLCollectionOf<HTMLElement>;
 
   const halfsize = document.getElementsByClassName('halfsize-frame') as HTMLCollectionOf<HTMLElement>;
@@ -171,8 +170,4 @@ setTimeout(() => {
   setMediaSizeDisplayVisibility(media, mediaSizeType === 'normal' || !anyOtherSizes)
   setMediaSizeDisplayVisibility(halfsize, mediaSizeType === 'half')
   setMediaSizeDisplayVisibility(quartersize, mediaSizeType === 'quarter')
-}, 100);
-
-setTimeout(() => {
-  handleEdgeAV1Support();
-}, 1000);
+}
