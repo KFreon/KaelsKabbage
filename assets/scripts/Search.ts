@@ -1,12 +1,21 @@
+import Fuse, { FuseResult, FuseResultMatch } from "fuse.js";
+interface SearchResult {
+    isRender: boolean;
+    href: string;
+    title: string;
+    tags: string[]
+    text: string;
+}
+
 let resultsElement = document.getElementById('the-search-results-element');
-let searchInputElement = document.getElementById('big-search-box');
+let searchInputElement = document.getElementById('big-search-box') as HTMLInputElement;
 
-// For the love of all holy things, TYPSCRTIPT
+let fullText: any[] | undefined = undefined;
+let searcher: Fuse<SearchResult> | undefined = undefined;
+let currentQueue: number | undefined = undefined;
 
-let fullText = undefined;
-let searcher = undefined;
-let currentQueue = undefined;
 
+// Load the full text search when we can
 if (searcher === undefined) {
     fetch('search/FullText.json')
         .then(resp => {
@@ -19,25 +28,32 @@ const fuseOptions = {"keys": ['title', 'tags', 'text'], threshold: 0.05, ignoreL
 
 function showBigSearch() {
     const bigSearchModal = document.getElementById("big-search-background");
-    bigSearchModal.classList.add('fade-in')
-    bigSearchModal.classList.remove('fade-out')
+    bigSearchModal?.classList.add('fade-in')
+    bigSearchModal?.classList.remove('fade-out')
 
     const box = document.getElementById("big-search-box")
-    box.focus();
+    box?.focus();
 }
 
 function hideBigSearch() {
-    const search = document.getElementById('big-search-box');
-    const small = document.getElementById('searchbox');
+    const search = document.getElementById('big-search-box') as HTMLInputElement;
+    const small = document.getElementById('searchbox') as HTMLInputElement;
+    if (search === undefined) {
+        console.error('search element not found')
+        return;
+    }
+    if (small === undefined) {
+        console.error('searchbox not found')
+    }
     search.value = "";
     small.value = "";
 
-    // const bigSearchModal = document.getElementById("big-search-background");
-    // bigSearchModal.classList.remove('fade-in')
-    // bigSearchModal.classList.add('fade-out')
+    const bigSearchModal = document.getElementById("big-search-background");
+    bigSearchModal?.classList.remove('fade-in')
+    bigSearchModal?.classList.add('fade-out')
 }
 
-function insideSearchTextbox(event) {
+function insideSearchTextbox(event: Event) {
     event.preventDefault();
     event.stopPropagation();
 }
@@ -56,13 +72,13 @@ function queueSearch() {
 }
 
 function search() {
-    if (fullText === undefined) {
+    if (fullText === undefined || resultsElement === null || searchInputElement === null) {
         return;
     }
 
     // Clear
     while (resultsElement.firstChild) {
-        resultsElement.removeChild(resultsElement.lastChild);
+        resultsElement.removeChild(resultsElement.lastChild!);
     }
 
     if (searchInputElement.value.length < 2) {
@@ -73,16 +89,15 @@ function search() {
     if (searcher === undefined) {
         searcher = new Fuse(fullText, fuseOptions)
     }
-    else {
-        searcher = new Fuse(fullText, fuseOptions)
-    }
 
     const query = searchInputElement.value;
     const searchResults = searcher.search(query);
-    renderResults(query, searchResults);
+    renderResults(searchResults);
 }
 
-function renderResults(query, searchResults) {
+function renderResults(searchResults: FuseResult<SearchResult>[]) {
+    if (resultsElement === null) return;
+    
     if (!searchResults.length) {
         toggleResults(false);
         return;
@@ -92,6 +107,7 @@ function renderResults(query, searchResults) {
 
     // Only show the ten first results
     searchResults.slice(0, 4).forEach(function(result) {
+        
         const item = result.item;
         const textMatches = result.matches
 
@@ -116,8 +132,8 @@ function renderResults(query, searchResults) {
         const textHighlights = getHighlightedText('text', textMatches, item.text)
         const textNodes = generateHighlightedNodes('text', textHighlights)
 
-        titleNodes.forEach(n => link.appendChild(n))
-        textNodes.forEach(n => link.appendChild(n))
+        titleNodes?.forEach(n => link.appendChild(n))
+        textNodes?.forEach(n => link.appendChild(n))
         tagNodes?.forEach(n => link.appendChild(n))
 
         node.appendChild(link);
@@ -125,7 +141,7 @@ function renderResults(query, searchResults) {
     });
 }
 
-function generateHighlightedNodes(field, highlightedText) {
+function generateHighlightedNodes(field: string, highlightedText: ReturnType<typeof getHighlightedText>) {
     // highlighedText [{key, parts: [{type, text}]}]
     // multiple is only tags really
     const elements = highlightedText?.filter(item => item !== undefined)
@@ -148,15 +164,13 @@ function generateHighlightedNodes(field, highlightedText) {
     return elements
 }
 
-function getHighlightedText(field, textMatches, original) {
+function getHighlightedText(field: string, textMatches: readonly FuseResultMatch[] | undefined, original: string | string[]) {
     const test = textMatches
-    .filter(match => match.key === field)
+    ?.filter(match => match.key === field)
     .map(match => {
-        // match {indicies: [], key, value}
-
         let index = 0;
-        let parts = [];
-        const value = match.value
+        let parts: {type: 'normal' | 'highlighted', text: string}[] = [];
+        const value = match.value ?? ""
 
         match.indices.slice(0, 5).forEach(range => {
             let normal = value.substring(index, range[0]);
@@ -190,7 +204,7 @@ function getHighlightedText(field, textMatches, original) {
         return { parts, key: match.key }
     })
 
-    if (test.length > 0) return test;
+    if (test && test.length > 0) return test;
 
     if (original === undefined) {
         return undefined;
@@ -207,10 +221,10 @@ function getHighlightedText(field, textMatches, original) {
     }
 }
 
-function toggleResults(isVisible) {
+function toggleResults(isVisible: boolean) {
     if (isVisible) {
-        resultsElement.classList.add("visible")
+        resultsElement?.classList.add("visible")
     } else {
-        resultsElement.classList.remove("visible")        
+        resultsElement?.classList.remove("visible")        
     }
 }

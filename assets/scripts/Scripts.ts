@@ -1,28 +1,30 @@
 function setRenderDisplay(displayType) {
   // Clear all first
+  const element = document.getElementById("slides")
 
-  document.getElementById("slides").classList.remove("tiles");
-  document.getElementById("slides").classList.remove("slides");
+  element?.classList.remove("tiles");
+  element?.classList.remove("slides");
 
   switch (displayType) {
     case 'tiles':
-      document.getElementById("slides").classList.add("tiles");
+      element?.classList.add("tiles");
       break;
     case 'carousel':
-      document.getElementById("slides").classList.add("slides");
+      element?.classList.add("slides");
       break;
     default:
-      document.getElementById("slides").classList.add("tiles");
+      element?.classList.add("tiles");
       break;
   }
   localStorage.setItem('render-display', displayType);
 }
 
 function setTheme(theme) {
+  const body = document.getElementById("main-body")!;
   if (theme === 'light') {
-    document.getElementById("main-body").className = 'light';
+    body.className = 'light';
   } else {
-    document.getElementById("main-body").className = 'dark';
+    body.className = 'dark';
   }
 }
 
