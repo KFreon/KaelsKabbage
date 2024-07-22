@@ -51,9 +51,9 @@ export function hideBigSearch() {
     search.value = "";
     small.value = "";
 
-    // const bigSearchModal = document.getElementById("big-search-background");
-    // bigSearchModal?.classList.remove('fade-in')
-    // bigSearchModal?.classList.add('fade-out')
+    const bigSearchModal = document.getElementById("big-search-background");
+    bigSearchModal?.classList.remove('fade-in')
+    bigSearchModal?.classList.add('fade-out')
 }
 
 export function insideSearchTextbox(event: Event) {
