@@ -681,6 +681,7 @@ details {
   align-content: center;
   backdrop-filter: blur(5px);
   opacity: 0;
+  pointer-events: none;
   
   &.fade-in {
     animation: fade-in 0.25s forwards;
@@ -704,11 +705,14 @@ details {
 @keyframes fade-in {
   0% {
     opacity: 0;
+    z-index: 1;
+    pointer-events: all;
   }
 
   100% {
     opacity: 1;
     z-index: 1;
+    pointer-events: all;
   }
 }
 
@@ -720,6 +724,7 @@ details {
   100% {
     opacity: 0;
     z-index: -100;
+    pointer-events: none;
   }
 }
 

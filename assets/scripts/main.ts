@@ -81,6 +81,8 @@ function setupFunctionsInHtml() {
 }
 
 function atStartup() {
+  setupFunctionsInHtml();
+
   setupLazyVideos();
   getTagFromQueryString();
 
@@ -112,8 +114,6 @@ function atStartup() {
   setTimeout(() => {
     handleEdgeAV1Support();
   }, 1000);
-
-  setupFunctionsInHtml()
 }
 
 atStartup();

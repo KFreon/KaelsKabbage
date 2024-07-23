@@ -20,7 +20,7 @@ let currentQueue: number | undefined = undefined;
 export function setupSearch() {
     // Load the full text search when we can
     if (searcher === undefined) {
-        fetch('search/FullText.json')
+        fetch('/search/FullText.json')
             .then(resp => {
                 resp.json().then(json => fullText = json).catch(e => console.error(e));
             })
