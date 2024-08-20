@@ -21,7 +21,8 @@ I’m sure some of those guides work, but I was sure it had to be easier than th
 
 I’ll pull it out here in case the links break but this is all Ian Devlin's work. I’m just replicating it.  
 
-1. Install [OpenSSL](https://www.openssl.org/) (Directly didn’t work for me, but it came installed with [Cmder](http://cmder.net/))  
+1. Install [OpenSSL](https://www.openssl.org/) (Directly didn’t work for me, but it came installed with [Cmder](http://cmder.net/)) 
+> Now I'd recommend using wsl.   
 
 2. Generate a key  
 
@@ -46,6 +47,7 @@ I’ll pull it out here in case the links break but this is all Ian Devlin's wor
     ```
 
     ``` cmd  
+        // May need `-legacy` now as the cipher has changed.  e.g. `...-export -legacy -inkey...`
         openssl pkcs12 -export -inkey ios.key -in <pemName>.pem -out <p12Name>.p12
 
         // Or if you get a .crt that needs to be a .pfx
