@@ -39,23 +39,21 @@ export function showBigSearch() {
 }
 
 export function hideBigSearch() {
-    setTimeout(() => {
-        const search = document.getElementById('big-search-box') as HTMLInputElement;
-        const small = document.getElementById('searchbox') as HTMLInputElement;
-        if (search === undefined) {
-            console.error('search element not found')
-            return;
-        }
-        if (small === undefined) {
-            console.error('searchbox not found')
-        }
-        search.value = "";
-        small.value = "";
+    const search = document.getElementById('big-search-box') as HTMLInputElement;
+    const small = document.getElementById('searchbox') as HTMLInputElement;
+    if (search === undefined) {
+        console.error('search element not found')
+        return;
+    }
+    if (small === undefined) {
+        console.error('searchbox not found')
+    }
+    search.value = "";
+    small.value = "";
 
-        const bigSearchModal = document.getElementById("big-search-background");
-        bigSearchModal?.classList.remove('fade-in')
-        bigSearchModal?.classList.add('fade-out')
-    }, 100);
+    const bigSearchModal = document.getElementById("big-search-background");
+    bigSearchModal?.classList.remove('fade-in')
+    bigSearchModal?.classList.add('fade-out')
 }
 
 export function insideSearchTextbox(event: Event) {
