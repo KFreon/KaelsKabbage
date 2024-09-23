@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-AU">
     {{- partial "head.html" . -}}
-    <body id="main-body" class="">
-        <aside id="default-sidebar" class="fixed top-0 left-0 w-64 h-screen transition-transform">
+    <body id="main-body">
+        <div class="sidebar">
             {{- partial "header.html" . -}}
             {{- partial "footer.html" . -}}
-        </aside>
+        </div>
         
-        <div id="wrapper" class="p-4 sm:ml-64">
+        <div id="wrapper" class="">
             {{- block "main" . -}}{{- end -}}
         </div>
     </body>

@@ -4,8 +4,8 @@
 :root {
   --background: rgb(29, 29, 29);
   --text: rgb(218, 218, 218);
-  --link: green;
-  --visitedLink: lightgreen;
+  --link: rgb(0, 160, 48);
+  --visitedLink: #90ee9052;
 }
 
 @font-face {
@@ -19,6 +19,10 @@
   font-display: swap;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 18px;
   font-family: 'Segoe UI';
@@ -26,14 +30,54 @@ html {
   color: var(--text);
 }
 
+h1 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
 a {
   color: var(--link);
 
-  :hover {
+  &:hover {
     color: var(--link);
   }
 
-  :visited {
+  &:visited {
     color: var(--visitedLink);
+  }
+}
+
+body {
+  display: grid;
+  grid-template-areas: "sidebar" "content";
+  grid-template-columns: 15rem auto;
+  gap: 0.5rem;
+}
+
+ul {
+  padding-inline-start: 1rem;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+
+  .profile-link {
+    display: flex;
+    justify-content: center;
+
+    .profile-picture {
+      width: 5rem;
+      height: 5rem;
+      padding: 0.2rem;
+      border-radius: 5rem;
+      border: 1px solid white;
+    }
+  }
+
+  .site-title {
+    text-align: center;
   }
 }

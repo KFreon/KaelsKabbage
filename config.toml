@@ -3,7 +3,6 @@ languageCode = "en-us"
 title = "Kael's Kabbage"
 pygmentsCodeFences = true
 pygmentsStyle = "native"
-assetDir = "."
 timeout = "120s"
 
 [markup]

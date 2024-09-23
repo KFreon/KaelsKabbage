@@ -1,16 +1,17 @@
 <header>
-  <a href="{{ $.Site.BaseURL }}" class="grid w-20">
+  <a href="{{ $.Site.BaseURL }}" class="profile-link">
     <img
       async
       src="{{ $.Site.BaseURL }}img/Cabbage.webp"
       width="252"
       height="241"
-      class="img-circle profile-picture"
+      class="profile-picture"
       alt="Profile Picture of CABBAGE"
-  /></a>
+    />
+  </a>
 
   {{ with .Site.Params.title }}
-  <h1 class="border-bottom add-padding-bottom site-title">
+  <h1 class="site-title">
     <a href="{{ $.Site.BaseURL }}">{{ . | markdownify }}</a>
   </h1>
   {{ end }}
@@ -35,7 +36,7 @@
     </div>
 
     <h2 class="recent-posts-title">Recent Posts</h2>
-    <ul class="recent-posts">
+    <ul class="recent-posts list-without-bullets">
       {{ range first 3 (where .Site.Pages "Type" "post") }}
       <li>
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
@@ -74,7 +75,7 @@
   <button id="hamburger-menu-button" onclick="toggleHamburger()">☰</button>
 </header>
 
-<div id="big-search-background" class="big-search-background" onclick="hideBigSearch()">
+<!-- <div id="big-search-background" class="big-search-background" onclick="hideBigSearch()">
   <div class="big-search-container">
     <input
       id="big-search-box"
@@ -87,4 +88,4 @@
 
     <ul class="results-list" id="the-search-results-element"></ul>
   </div>
-</div>
+</div> -->

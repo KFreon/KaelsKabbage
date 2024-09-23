@@ -1,7 +1,7 @@
-{{- $mainCSS := resources.Get "assets/css/main.css" -}}
-{{- $prism := resources.Get "assets/css/prism.css" -}}
-{{- $prismOverrides := resources.Get "assets/css/prism-overrides.css" -}}
+{{- $mainCSS := resources.Get "css/main.css" -}}
+{{- $prism := resources.Get "css/prism.css" -}}
+{{- $prismOverrides := resources.Get "css/prism-overrides.css" -}}
 
 {{- $styles := slice $mainCSS $prism $prismOverrides | resources.Concat "styles.css" -}}
 
-<link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+<link rel="preload stylesheet" href="{{ $styles.Permalink }}">
