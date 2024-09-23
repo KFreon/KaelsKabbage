@@ -1,6 +1,0 @@
-{{ $IsServer := hugo.IsServer }}
-{{- $js := resources.Get "assets/scripts/main.ts" | js.Build -}}
-<script type="text/javascript" defer src="{{ $js.Permalink  }}"></script>
-
-<!-- My self hosted analytics -->
-<script defer data-domain="kaels-kabbage.com" src="https://analytics.kaels-kabbage.com/js/script.js"></script>
