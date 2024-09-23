@@ -1,6 +1,13 @@
 /* reset */
 /* font size, family, colours (dark mode first) etc */
 
+:root {
+  --background: rgb(29, 29, 29);
+  --text: rgb(218, 218, 218);
+  --link: green;
+  --visitedLink: lightgreen;
+}
+
 @font-face {
   font-family: 'Fira Code';
   src: 
@@ -15,4 +22,18 @@
 html {
   font-size: 18px;
   font-family: 'Segoe UI';
+  background-color: var(--background);
+  color: var(--text);
+}
+
+a {
+  color: var(--link);
+
+  :hover {
+    color: var(--link);
+  }
+
+  :visited {
+    color: var(--visitedLink);
+  }
 }
