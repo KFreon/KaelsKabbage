@@ -1,8 +1,6 @@
 baseURL = "https://www.kaels-kabbage.com/"
 languageCode = "en-us"
 title = "Kael's Kabbage"
-theme = "sp-minimal"
-paginate        = 10
 pygmentsCodeFences = true
 pygmentsStyle = "native"
 assetDir = "."

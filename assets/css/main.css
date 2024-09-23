@@ -1,0 +1,18 @@
+/* reset */
+/* font size, family, colours (dark mode first) etc */
+
+@font-face {
+  font-family: 'Fira Code';
+  src: 
+    local('FiraCode-Regular')
+    url('/fonts/FiraCode-Regular.woff2') format('woff2'),
+    url("/fonts/FiraCode-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  font-size: 18px;
+  font-family: 'Segoe UI';
+}

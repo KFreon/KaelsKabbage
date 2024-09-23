@@ -1,11 +1,11 @@
 {{- $cssOptions := cond (hugo.IsServer) (dict "enableSourceMap" false) (dict "outputStyle" "compressed") -}}
 
-{{- $tailwindCSS := resources.Get "assets/css/main.css" | css.TailwindCSS -}}
+{{- $mainCSS := resources.Get "assets/css/main.css" -}}
 
 {{- $prism := resources.Get "assets/css/prism.css" -}}
 {{- $prismOverrides := resources.Get "assets/css/prism-overrides.css" -}}
 
-{{- $combined := slice $tailwindCSS $prism $prismOverrides -}}
+{{- $combined := slice $mainCSS $prism $prismOverrides -}}
 
 {{- if hugo.IsServer -}}
 {{- range $combined -}}

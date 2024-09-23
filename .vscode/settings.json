@@ -9,5 +9,6 @@
     ],
     "search.exclude": {
         "**/public": true
-    }
+    },
+    "editor.tabSize": 2
 }
