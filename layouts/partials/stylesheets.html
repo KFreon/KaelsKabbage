@@ -2,15 +2,6 @@
 {{- $prism := resources.Get "assets/css/prism.css" -}}
 {{- $prismOverrides := resources.Get "assets/css/prism-overrides.css" -}}
 
-{{- $combined := slice $mainCSS $prism $prismOverrides -}}
+{{- $styles := slice $mainCSS $prism $prismOverrides | resources.Concat "styles.css" -}}
 
-{{- if hugo.IsServer -}}
-{{- range $combined -}}
-    <link rel="stylesheet" defer href="{{ .Permalink }}">
-{{- end -}}
-{{- else -}}
-{{- range $combined -}}
-  {{- $style := . | minify | fingerprint -}} <!-- Hugo types are dumb (cos they're hidden) and I need to coerce it's type to the correct one -->
-  <link rel="stylesheet" defer href="{{ $style.Permalink }}">
-{{- end -}}
-{{- end -}}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}">
