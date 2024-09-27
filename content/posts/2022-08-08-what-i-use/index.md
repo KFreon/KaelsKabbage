@@ -3,7 +3,7 @@ title: "What I Use"
 date: 2022-08-08T15:45:12+10:00
 type: "post"
 slug: "what-i-use"
-tags: []
+tags: ["productivity"]
 ---
 
 I recently mentioned `Win + V` in some internal channels and people are always surprised it exists.  

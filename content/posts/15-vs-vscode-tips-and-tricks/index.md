@@ -4,7 +4,7 @@ date: 2019-06-26T18:14:13+10:00
 draft: false
 type: "post"
 slug: "vs-vscode-tips-and-tricks"
-tags: ["visual-studio", "vscode"]
+tags: ["visual-studio", "vscode", "productivity"]
 ---
 
 A colleague mentioned they weren't aware of Logpoints in Visual Studio, so here's some things that aren't on or known about by default (usually because they're experimental or stylistic)  
