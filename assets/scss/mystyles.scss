@@ -145,6 +145,7 @@ footer {
   .me {
     display: flex;
     justify-content: space-around;
+    margin-top: 1rem;
   }
 
   .citations {
@@ -485,6 +486,12 @@ a {
 
   &:hover {
     text-shadow: 0 0 5px darken($link, 20%);
+  }
+}
+
+p {
+  a{
+    text-decoration: underline;
   }
 }
 
