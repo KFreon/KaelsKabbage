@@ -1,8 +1,9 @@
 <!-- https://www.brycewray.com/posts/2022/06/responsive-optimized-images-hugo/ -->
-{{ $imageSizes := slice "640" "960" "1280" "1920" }}
-{{ $dataSizes := "(max-width: 960), 100% 50%" }}
+{{ $imageTypes := slice "webp" "jpg"}}
+{{ $imageSizes := slice "320" "640" "960" "1280" "1920" }}
+{{ $dataSizes := "100vw" }}
 
-{{ $quality := 85 }}
+{{ $quality := 70 }}
 {{ if in .Page.Permalink "renders"}}
   {{ $quality = 95 }}
 {{ end }}
@@ -15,31 +16,39 @@
   {{- with or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
     {{- $png := . -}}
 
+{{ $pngFilesize := len $png.Content }}
+
 <!-- this indenting is intended. Otherwise if doesn't properly render. The { { - syntax should be handling it, but I must be doing it wrong. -->
 <div class="media image" onclick="zoomImage(this)">
   <picture>
-<source type="image/webp" srcset="
+
+
+{{- range $imageTypes -}}
+{{ $imgType := . }}
+{{ $appliedSizes := 0 }}
+<source type="image/{{ . }}" srcset="
   {{- with $imageSizes -}}
       {{- range $i, $e := . -}}
           {{- if ge $png.Width . -}}
-              {{- if $i -}}, {{- end -}}{{ ($png.Resize (printf "%sx%s q%d" . " webp CatmullRom " $quality) ).RelPermalink }} {{ . }}w
+            {{ $resized := $png.Resize (printf "%sx %s MitchellNetravali q%d" . $imgType $quality) }}
+              {{/* Only use the resized image if its actually smaller than the original */}}
+
+              {{- if ge $pngFilesize (len $resized.Content) -}}
+              {{ $appliedSizes = math.Add $appliedSizes 1}}
+              {{- if $i -}}, {{- end -}}
+              {{ $resized.RelPermalink }} {{ . }}w
+              {{- end -}}
           {{- end -}}
       {{- end -}}
+
+      {{/* Ideally Id only do this if it was smaller than $ png, but I cant bypass it, and itll always pick one of these even if theres a png that matches later */}}
+      {{ $actualSizeImage := $png.Resize (printf "%dx%d %s MitchellNetravali q%d" $png.Width $png.Height $imgType $quality) }}
+      {{- if ne $appliedSizes 0 -}}, {{- end -}}
+      {{ $actualSizeImage.RelPermalink }} {{ $png.Width }}w
   {{- end -}}"
   sizes="{{- $dataSizes -}}"
 />
-
-<source type="image/jpg" srcset="
-  {{- with $imageSizes -}}
-      {{- range $i, $e := . -}}
-          {{- if ge $png.Width . -}}
-              {{- if $i -}}, {{- end -}}
-              {{ ($png.Resize (printf "%sx%s q%d" . " jpg CatmullRom " $quality) ).RelPermalink }} {{ . }}w
-          {{- end -}}
-      {{- end -}}
-  {{- end -}}"
-  sizes="{{- $dataSizes -}}"
-  />
+{{- end -}}
 
   <img class="image inner" 
       src="{{- $png.Permalink -}}"  
