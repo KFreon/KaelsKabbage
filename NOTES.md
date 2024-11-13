@@ -123,7 +123,170 @@ Maybe it's a pacing thing, maybe it's a natural reactions thing (e.g. people jus
 Once again it's hard to know how it'll end up, but it's a decent read.
 
 
+## Contest
+Standalone
+Good
+A normal man is suddenly a part of a huge contest for the fate of the Earth.  
+It's such a contest that some may go to any lengths to win.  
+
+Short and sweet, well put together.  
+Has a nice vibe of mystery but gets nicely wrapped up in the end.  
+
+
+## Temple
+Standalone
+Good
+I DON"T REMEMBER
+
+
+## Ice station
+Standalone, but ties into future books
+Good
+The American relief force rushes to their Antarctic station after a classified message, but are they the first to arrive? 
+Can they trust anyone they meet once there?  
+
+Great book. Typical of Matthew Reilly, lots of action and twists.  
+Good characters, good world building, etc  
+It's all a bit simplistic, but it's like Maccas. Simple but delicious.    
+
+
+## Area 7
+Standalone, but ties into past and future books
+Good
+The president and his escort are on the way to a secret military base, but when he arrives, something is off with the soldiers.  
+Scarecrow's forces must keep the president out of trouble at all costs.
+
+Another good one in the military vein.  
+It's good and has all the usual characters and intrigue.
+Short and sweet.  
+
+
+## Scarecrow
+Technically standalone I guess, but does make more sense after the other two.
+Good
+Scarecrow has a bounty placed on his head, but why and by whom?  
+What will he have to do to survive the greatest bounty hunters in the world?  
+
+This is another great book, but I will say this is where it starts to get a bit excessive.  
+I still definitely enjoyed it though.  
+
+
+## Seven ancient wonders
+Series (who knows if it's finished)
+Good
+A treasure hunter searches for the mysterious seventh ancient wonder, but other parties are in too, and a race for the fate of the world is on!
+
+Excessive is good here though :D
+Ancient mythic history is always cool, and it feels pretty cool here too.  
+It's all highly improbable and I don't care.  
+But...foreshadowing, this is pretty much the only one in the series I like without qualification.  
+
+
+## The chess one
+Standalone
+Not bad
+CANT REMEMBER
+
+
+## Murderbot
+Series (ongoing?)
+Good
+A cyborg security bot assigned to a research team, which is fine with him. Easy job, lots of time his shows.  
+But when an alien artifact brings unwanted attention, he'll have to take extreme actions to protect his charges. 
+
+That synopsis is a weak description of these books, they're great and interesting and has some great worldbuilding.  
+It's that slice of life world building where it slowly fills things in but doesn't just exposit everything.  
+They're out of order though, like the 4th book or something as released first but actually comes after the 5th book in the story.
+Something like that. 
+
+
+## Sphere
+Standalone
+Good
+The submarine research team finds a wreacked...thing at the bottom of the ocean.  
+The team finds something inside, which finds something inside each of them.  
+Even if they make it to the surface, will they be the same?  
+
+An older scifi book but it checks out.  
+The storytelling isn't quite my bag, but it kept me reading and wondering.  
+The ending is an old school brutal ending too.  
+
+
+## Prey
+Standalone
+Good
+A mans wife invites him to her secret research base for a demonstration, but...something isn't right.  
+His life is in danger from his own wife...or is it?  
 
 
 
-LOADS MORE
+
+## Jurassic Park
+
+
+## Magicians apprentice
+Series (didn't finish it)
+Not bad
+A boy who learns magic faces off against a mysterious enemy.
+
+I don't remember much about this one. 
+The writing style didn't click with me, the story wasn't up my alley somehow either, despite me thinking it would be.
+
+
+## The fold
+Standalone (I think?)
+Good
+Mike works a nice quiet job teaching, until a friend from his past at DARPA has a mystery he can't refuse.  
+When time and space start misbehaving, Mike is the only one who can set it straight.  
+
+It has some nice characters and storytelling.  
+Sometimes it gets a bit lost in the weeds though.  
+And the ending left a bit to be desired.  
+
+
+## Dead silence
+Standalone
+Good
+Her job almost complete, a distress signal catches her attention.  
+An abandoned ship that looks too good to be true, but when little details start to get weird, the crew wonders whether it's worth it...
+
+I liked this one, the reviews called it "Titanic cross Event Horizon" which sounds about right.  
+The writing and storytelling were a bit simple, but it got the point across.  
+
+
+## Dead witch walking
+Series (completed)
+Good
+Magic coexists with the rest of the world, brought to the fore by accident.  
+Rachel Morgan is a witch who wants to leave her job, only when she does, she's marked for death...
+
+Oh boy, ok this is a weird one.  
+**Technically**, this is basically a romance series, which is why it's so frustrating that the story is pretty well written and has some interesting characters...which are all butchered for sexiness later on, but anyway. 
+The world is interesting and kinda well built.  
+I'm a little annoyed I got sucked into it, but I did cos it's kinda good.  
+
+
+## Deltora quest
+
+
+
+## Hyperion
+Series (completed, I believe?)
+Good, mostly
+As the pilgrims head to the time tombs, they each tell their story.  
+Why does it seem like they all might...tie together?  
+
+The first book is 100% pure scifi cocaine. 
+It's so good.  
+The quality does decrease, but only because it felt more and more tropey and leant more on stranger things.  
+Even so, the last book is still fantastic.  
+
+
+## That one about the guy who imitates a prince and becomes him in the end
+Series (kinda maybe?)
+Good
+A travelling entertainer gets roped into being a body double for the prince.  
+He's good at it too...too good?  
+
+I really liked how much it got done in such a short story.  
+Good characters, good world building, good storytelling, etc  
