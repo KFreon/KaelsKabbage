@@ -8,6 +8,7 @@ layout: books
 - Spoilers?
 - links?
 - categories, etc
+- Oo can I make a nice book flipping animation as an spa? Maybe in svelte?
 
 
 ## Furies of Calderon
