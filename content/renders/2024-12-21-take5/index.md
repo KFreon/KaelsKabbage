@@ -6,7 +6,7 @@ slug: "take5"
 ---
 
 {{% render_img
-  description="Tutorial: Take5 bounce"
+  description="I love Take5, so I did Polyfjord's tutorial, but got more complicated than expected..."
   rendertime="5 minutes"
   credits="Polyfjord"
   samples="20"
