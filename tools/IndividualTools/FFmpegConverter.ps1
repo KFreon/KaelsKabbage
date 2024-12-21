@@ -15,7 +15,9 @@ param(
   [string]$start = 0,
   [string]$digits = 4,
   [string]$prefix = '',
-  [switch]$webp = $False)
+  [switch]$webp = $False,
+  [string]$audio = ""
+  )
 
 if ($help) {
   Write-Host "***FFmpegConverter***" -ForegroundColor Green
@@ -37,8 +39,21 @@ if ($help) {
   Write-Host "    -digits: Number of digits in the filename.                   " $digits -ForegroundColor Yellow
   Write-Host "    -prefix: Filename prefix.                                    " $prefix -ForegroundColor Yellow
   Write-Host "    -webp: Use webps.                                            " $webp -ForegroundColor Yellow
+  Write-Host "    -audio: Add audio track.                                     " $audio -ForegroundColor Yellow
   Exit
 }
+
+# Write-Host("This is the audio")
+# $ParameterList = (Get-Command -Name $MyInvocation.InvocationName).Parameters;
+#     foreach ($key in $ParameterList.keys)
+#     {
+#         $var = Get-Variable -Name $key -ErrorAction SilentlyContinue;
+#         if($var)
+#         {
+#             write-host "$($var.name) > $($var.value)"
+#         }
+#     }
+
 
 $sizeName = if ($halfsize) { "_halfsize" }
 elseif ($smaller) { "_quartersize" }
@@ -52,20 +67,23 @@ $scaleExpression = if ($halfsize) { "-vf scale=-1:720:flags=lanczos" } elseif ($
 $start = if ($start -ne 0) { "-start_number $start" } else { "" }
 $ext = if ($webp) { "webp" } else { "png" }
 
+$audioTrack = if($audio) { "-i `"$audio`" -c:a libopus -b:a 128k" } else { "" }
+Write-Host $audioTrack
 
 if ($video) {
-  Start-Process ffmpeg "-i $videoSrc $scaleExpression -enable-tpl 1 -c:v $encoder -b:v $bv -crf $crf -row-mt 1 -threads 8 -pass 1 -pix_fmt $pixfmt $extras -f null -" -Wait -NoNewWindow
+  Start-Process ffmpeg "-i $videoSrc $audioTrack $scaleExpression  -enable-tpl 1 -c:v $encoder -b:v $bv -crf $crf -row-mt 1 -threads 8 -pass 1 -pix_fmt $pixfmt $extras -f null -" -Wait -NoNewWindow
 
-  Start-Process ffmpeg "-i $videoSrc $scaleExpression -tiles 2x2 -enable-tpl 1 -c:v $encoder -b:v $bv -crf $crf -row-mt 1 -threads 8 -speed 2 -pass 2 -pix_fmt $pixfmt $extras $outputName" -Wait -NoNewWindow
+  Start-Process ffmpeg "-i $videoSrc $audioTrack $scaleExpression  -tiles 2x2 -enable-tpl 1 -c:v $encoder -b:v $bv -crf $crf -row-mt 1 -threads 8 -speed 2 -pass 2 -pix_fmt $pixfmt $extras $outputName" -Wait -NoNewWindow
 } 
 elseif ($vp9) {
-  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $scaleExpression -enable-tpl 1 -c:v $encoder -b:v $bv -crf $crf -row-mt 1 -threads 8 -pass 1 -pix_fmt $pixfmt $extras -f null -" -Wait -NoNewWindow
+  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $audioTrack $scaleExpression -enable-tpl 1 -c:v $encoder -b:v $bv -crf $crf -row-mt 1 -threads 8 -pass 1 -pix_fmt $pixfmt $extras -f null -" -Wait -NoNewWindow
 
-  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $scaleExpression -tiles 2x2 -enable-tpl 1 -c:v $encoder -b:v $bv -crf $crf -row-mt 1 -threads 8 -speed 2 -pass 2 -pix_fmt $pixfmt $extras $outputName" -Wait -NoNewWindow
+  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $audioTrack $scaleExpression -tiles 2x2 -enable-tpl 1 -c:v $encoder -b:v $bv -crf $crf -row-mt 1 -threads 8 -speed 2 -pass 2 -pix_fmt $pixfmt $extras $outputName" -Wait -NoNewWindow
 } 
 elseif ($av1) {
-  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $scaleExpression -c:v $encoder -qp $crf -preset 3 $extras $outputName" -Wait -NoNewWindow
+  Write-Host 'here'
+  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $audioTrack $scaleExpression -c:v $encoder -qp $crf -preset 3 $extras $outputName" -Wait -NoNewWindow
 } 
 else {
-  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $scaleExpression -c:v $encoder -b:v $bv -crf $crf -pix_fmt $pixfmt -threads 8 $extras $outputName" -Wait -NoNewWindow
+  Start-Process ffmpeg "-framerate $fps $start -i ${prefix}%0${digits}d.${ext} $audioTrack $scaleExpression -c:v $encoder -b:v $bv -crf $crf -pix_fmt $pixfmt -threads 8 $extras $outputName" -Wait -NoNewWindow
 }
