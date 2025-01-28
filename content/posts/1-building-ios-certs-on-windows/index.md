@@ -53,6 +53,8 @@ I’ll pull it out here in case the links break but this is all Ian Devlin's wor
         // Or if you get a .crt that needs to be a .pfx
         openssl pkcs12 -export -inkey ios.key -in <crtName>.crt -out <pfxName>.pfx
     ```
+> If you get "MAC verification failed, password incorrect?" augment the pkcs12 line above `...-export -legacy -inkey...` as the Azure agents haven't updated to openssl v3 yet apparently.
+> [For reference](https://stackoverflow.com/questions/70431528/mac-verification-failed-during-pkcs12-import-wrong-password-azure-devops), it's an algorithm change between versions of openssl.  
 
 That’s it! No more hunting for someone around the office with a Mac.  
 
