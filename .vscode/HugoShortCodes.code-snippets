@@ -16,22 +16,14 @@
 	// 	"description": "Log output to console"
     // }
     
-    "HugoShortcode Image": {
-        "prefix": "himg",
-        "body": [
-            "{{< image path=\"img/${1:filename}\" alt=\"${2:alt-text}\" >}}"
-        ],
-        "description": "Image ShortCode"
-    },
-
     "HugoShortcode Split Image": {
         "prefix": "hsplitimg",
         "body": [
             "{{% splitter %}}",
-            "{{% split side=left title=\"$1\" %}}",
-            "himg$0",
+            "{{% split side=left title=\"$2\" %}}",
+            "![$0]($1)",
             "{{< /split %}}",
-            "{{% split side=right title=\"$2\" %}}",
+            "{{% split side=right title=\"$3\" %}}",
             "himg",
             "{{% /split %}}",
             "{{% /splitter %}}  "
@@ -64,7 +56,7 @@
         "prefix": "hrender",
         "body": [
             "{{% render_img\n\tdescription=\"${1:description1|description2}\"\n\trendertime=\"${3:xx seconds}\"\n\tsamples=\"${4:20}\"\n\tcredits=\"${6:name@link|name@link}\"\n\tengine=\"${7:Cycles}\"\n\tframes=\"${8:framecount}\"\n\ttutorialUrl=\"${9:tutorialUrl}\"\n\ttutorialText=\"${10:tutorial description}\" \n%}}",
-            "himg\nhvideo$0",
+            "![imageAlt](img/URL)\nhvideo$0",
             "{{% /render_img %}}",
         ],
         "description": "Render Shortcode"
