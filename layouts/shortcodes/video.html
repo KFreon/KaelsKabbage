@@ -14,19 +14,19 @@
 <!-- Turns out this is the way it has to be. Media/sizes not supported in video tags. -->
 <!-- the formatting is this way on purpose, due to some weirdness with spacing -->
 <!-- These errors are too bad, but we need it this way. -->
-<video class="inner quartersize-frame media-frame lazy" autoplay loop playsinline style="width: {{- $width -}}; max-width: 100%;">
+<video class="inner quartersize-frame media-frame lazy" autoplay controls muted loop playsinline style="width: {{- $width -}}; max-width: 100%;">
 <source data-src='{{- $av1quarter.Permalink -}}' type="video/mp4; codecs=av01.0.05M.08">
 <source data-src='{{- $vp9quarter.Permalink -}}' type="video/webm; codecs=vp9">
 <source data-src='{{- $mp4.Permalink -}}' type="video/mp4">
 </video>
 
-<video class="inner halfsize-frame media-frame lazy" autoplay loop playsinline style="width: {{- $width -}}; max-width: 100%;">
+<video class="inner halfsize-frame media-frame lazy" autoplay controls muted loop playsinline style="width: {{- $width -}}; max-width: 100%;">
 <source data-src='{{- $av1half.Permalink -}}' type="video/mp4; codecs=av01.0.05M.08">
 <source data-src='{{- $vp9half.Permalink -}}' type="video/webm; codecs=vp9">
 <source data-src='{{- $mp4.Permalink -}}' type="video/mp4">
 </video>
 
-<video class="inner fullsize-frame media-frame lazy" autoplay loop playsinline style="width: {{- $width -}}; max-width: 100%;">
+<video class="inner fullsize-frame media-frame lazy" autoplay controls muted loop playsinline style="width: {{- $width -}}; max-width: 100%;">
 <source data-src='{{- $av1.Permalink -}}' type="video/mp4; codecs=av01.0.05M.08">
 <source data-src='{{- $vp9.Permalink -}}' type="video/webm; codecs=vp9">
 <source data-src='{{- $mp4.Permalink -}}' type="video/mp4">

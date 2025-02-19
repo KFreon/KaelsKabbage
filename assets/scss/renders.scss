@@ -162,6 +162,10 @@
       display: flex;
       flex-flow: row wrap;
 
+      > p {
+        display: none;
+      }
+
       .render {
         transition: transform 0.2s;
         padding: 1rem;

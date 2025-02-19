@@ -80,6 +80,39 @@ function setupFunctionsInHtml() {
   window.queueSearch = queueSearch;
 }
 
+function createRendersScrollUpdater() {
+  let options: IntersectionObserverInit = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.99
+  };
+
+  const callback: IntersectionObserverCallback = (entries, observer) => {
+    entries.forEach(e => {
+        if (e.intersectionRatio > 0 && e.isIntersecting) {
+          window.history.pushState(null, null, `#${e.target.id}`)
+        }
+      }) 
+    }
+
+  let observer = new IntersectionObserver(callback, options)
+
+  const elements = document.querySelectorAll(".render-container");
+  elements.forEach(e => observer.observe(e))
+}
+
+function setupRenders(){
+  window.addEventListener("load", e => {
+    const isMobile = window.innerWidth < 960
+    if (isMobile) {
+      setRenderDisplay('carousel')
+      createRendersScrollUpdater()
+    }else {
+      setRenderDisplay('tiles')
+    }
+  })
+}
+
 function atStartup() {
   setupFunctionsInHtml();
 
@@ -89,10 +122,11 @@ function atStartup() {
   setTheme(theme);
 
   setupSearch();
-  
-  if (document.getElementById("render-tiles-button")) {
+
+  if (document.getElementById("render-list")) {
     const renderDisplay = localStorage.getItem('render-display') as RenderDisplayType | undefined;
     setRenderDisplay(renderDisplay);
+    setupRenders();
   }
 
   if (window.location.host !== "localhost:1313") {
