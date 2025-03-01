@@ -12,7 +12,7 @@
         {{- with .Get "description" -}}
         {{- $arg := split . "|" -}}
             {{- range $arg -}}
-                <p>{{- . -}}</p>
+                <p>{{- . | markdownify -}}</p>
             {{- end -}}
         {{- end -}}
     </div>
