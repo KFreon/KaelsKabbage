@@ -12,9 +12,19 @@ var destination = $"{destinationName}.png";
 
 var renders = Directory.EnumerateFiles(Core.Paths.RendersFolder, "index.md", SearchOption.AllDirectories);
 
-var latestRenderPath = renders.OrderByDescending(x => x).FirstOrDefault();
+// If there are more than one on the same day, it can get the ordering wrong.
+// So find all in the latest day, THEN get the files.
+var latestRenders = renders.GroupBy(x => x[..10]).FirstOrDefault().Select(x => x).ToArray();
 
-var latestImage = Directory.EnumerateFiles(Path.Combine(Path.GetDirectoryName(latestRenderPath), "img"), "*.png").FirstOrDefault();
+string latestRenderPath = null;
+if (latestRenders.Length == 1) {
+    latestRenderPath = latestRenders.FirstOrDefault();
+}else{
+    latestRenderPath = latestRenders.OrderByDescending(x => File.GetCreationTime(x)).FirstOrDefault();
+}
+
+var latestImage = Directory.EnumerateFiles(Path.Combine(Path.GetDirectoryName(latestRenderPath), "img"), "*.png")
+.FirstOrDefault();
 var latestVideo = Directory.EnumerateFiles(Path.Combine(Path.GetDirectoryName(latestRenderPath), "img"), "*_VP9.webm").FirstOrDefault();
 
 if (File.Exists(latestImage)) {
