@@ -28,9 +28,11 @@ var latestImage = Directory.EnumerateFiles(Path.Combine(Path.GetDirectoryName(la
 var latestVideo = Directory.EnumerateFiles(Path.Combine(Path.GetDirectoryName(latestRenderPath), "img"), "*_VP9.webm").FirstOrDefault();
 
 if (File.Exists(latestImage)) {
-    await Process.Start(Paths.FFMpegPath, $"-i {latestImage} -y -vf scale=275:-1 {destination}").WaitForExitAsync();
+    Console.WriteLine($"Processing {latestImage}");
+    await Process.Start(Paths.FFMpegPath, $"-i \"{latestImage}\" -y -vf scale=275:-1 {destination}").WaitForExitAsync();
 } else if (File.Exists(latestVideo)) {
-    await Process.Start(Paths.FFMpegPath, $"-i {latestVideo} -y -vframes 1 -vf scale=275:-1 {destination}").WaitForExitAsync();
+    Console.WriteLine($"Processing {latestVideo}");
+    await Process.Start(Paths.FFMpegPath, $"-i \"{latestVideo}\" -y -vframes 1 -vf scale=275:-1 {destination}").WaitForExitAsync();
 }
 
 // Convert to webp as well
