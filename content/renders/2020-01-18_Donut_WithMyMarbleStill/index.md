@@ -10,7 +10,7 @@ slug: "doonut"
   rendertime="~30 seconds" 
   samples="20" 
   renderdate="2020-01-18" 
-  tutorialUrl="https://www.youtube.com/watch?v=TPrnSACiTJ4"
-  tutorialText="The Infamous BlenderGuru!" %}}
+  tutorial="[The Infamous BlenderGuru!](https://www.youtube.com/watch?v=TPrnSACiTJ4)"
+%}}
   ![](img/Donut_WithMyMarble.png)
 {{% /render_img %}} 

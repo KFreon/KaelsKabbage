@@ -11,8 +11,8 @@ slug: "borg-cube"
   samples="400" 
   engine="Cycles" 
   renderdate="2020-08-07" 
-  tutorialUrl="https://www.blendernation.com/2020/04/08/create-a-borg-cube-using-displacements/" 
-  tutorialText="By Dikko" %}}
+  tutorials="[By Dikko](https://www.blendernation.com/2020/04/08/create-a-borg-cube-using-displacements/)"
+  %}}
 ![Borg Cube - you will be assimilated](img/BorgCube.png)
 {{% /render_img %}}
 

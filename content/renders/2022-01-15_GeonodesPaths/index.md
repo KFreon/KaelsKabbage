@@ -12,11 +12,8 @@ slug: "dry-riverbeds"
   rendertime="45 seconds"
   samples="400"
   engine="Cycles"
-  tutorialUrl="https://www.youtube.com/watch?v=Wp_Fhbbfkxw"
-  tutorialText="How to make procedural pathways" %}}  
-
+  tutorials="[How to make procedural pathways](https://www.youtube.com/watch?v=Wp_Fhbbfkxw)"
+  %}}  
 ![Dry riverbeds crossing a field](img/GeonodesPaths.png)  
-
 {{% /render_img %}}
-
 {{< video path="img/GeonodesPathsDevelopment" alt="Progress of construction" >}}  

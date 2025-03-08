@@ -10,8 +10,7 @@ slug: "little-wooden-crate"
   renderdate="2021-11-22"
   rendertime="1 minute"
   samples="500"
-  tutorialUrl="https://www.youtube.com/watch?v=1PWGCWIG_Sk"
-  tutorialText="Draw Curves on Surfaces FAST in Blender 2.81-Quick and Dirty"
+  tutorials="[Draw Curves on Surfaces FAST in Blender 2.81-Quick and Dirty](https://www.youtube.com/watch?v=1PWGCWIG_Sk)"
    %}}
 ![A wooden crate with rope I found while helping my girlfriend move.](img/LisasWoodenBox.png)
 {{% /render_img %}}

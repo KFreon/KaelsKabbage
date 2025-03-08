@@ -13,8 +13,7 @@ slug: "blowing-desert"
   credits=""
   engine="Cycles (with denoiser node)"
   frames="100"
-  tutorialUrl=""
-  tutorialText="" >}}
+ >}}
 {{% video path="img/BlowingDesert" alt="Abandoned site in a blowing desert" %}}
 {{< /render_img >}}
 

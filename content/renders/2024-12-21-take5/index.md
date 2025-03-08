@@ -12,8 +12,7 @@ slug: "take5"
   samples="20"
   engine="EEVEE"
   frames="1403"
-  tutorialUrl="https://www.youtube.com/watch?v=6emfSUtWnOw&t=88s"
-  tutorialText="Making a Bouncing Curve Audiovisualiser in Blender 4.2" 
+  tutorials="[Making a Bouncing Curve Audiovisualiser in Blender 4.2](https://www.youtube.com/watch?v=6emfSUtWnOw&t=88s)"
 %}}
 {{< video path="img/Take5Music" width="1920" height="1080" alt="Take5 audio visual fun" >}}
 {{% /render_img %}}

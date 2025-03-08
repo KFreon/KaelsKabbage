@@ -47,10 +47,10 @@
             <span>{{- . -}}</span>
         </p>
         {{- end -}}
-        {{- if isset .Params "tutorialUrl" -}}
+        {{- if isset .Params "tutorials" -}}
         <p>
             <strong>Tutorial: </strong>
-            <a href='{{- .Get "tutorialUrl" -}}'>{{- .Get "tutorialText" -}}</a>
+            <p>{{- .Get "tutorials" | markdownify -}}</p>
         </p>
         {{- end -}}
     </div>

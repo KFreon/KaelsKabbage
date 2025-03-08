@@ -11,8 +11,8 @@ slug: "sword-from-cg-fasttrack"
   samples="64" 
   engine="Eevee" 
   renderdate="2020-04-06" 
-  tutorialUrl="https://www.youtube.com/watch?v=zHv4VDoCwYc"
-  tutorialText="CG Fasttrack" %}}
+  tutorials="[CG Fasttrack](https://www.youtube.com/watch?v=zHv4VDoCwYc)"
+   %}}
 ![Sword with cinematic compositing](img/Sword.png)
 {{% /render_img %}}
 
