@@ -362,17 +362,26 @@ blockquote {
 
     &.is-render {
       a {
-        height: unset;
+        height: 100%;
+        width: 100%;
         padding: 0;
-      }
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-      &::before {
-        content: '';
-        background: url("/img/BlenderIcon.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 50px;
-        width: 50px;
+        .search-element-title {
+          display: flex;
+          align-items: center;
+
+          &::before {
+            content: '';
+            background: url("/img/BlenderIcon.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 50px;
+            width: 50px;
+          }
+        }
       }
     }
 

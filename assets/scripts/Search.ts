@@ -136,8 +136,11 @@ function renderResults(searchResults: FuseResult<SearchResult>[]) {
         const textNodes = generateHighlightedNodes('text', textHighlights)
 
         titleNodes?.forEach(n => link.appendChild(n))
-        textNodes?.forEach(n => link.appendChild(n))
-        tagNodes?.forEach(n => link.appendChild(n))
+
+        if (!item.isRender) {
+            textNodes?.forEach(n => link.appendChild(n))
+            tagNodes?.forEach(n => link.appendChild(n))
+        }
 
         node.appendChild(link);
         resultsElement.appendChild(node);
