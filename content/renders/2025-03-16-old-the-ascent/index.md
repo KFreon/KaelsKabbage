@@ -10,5 +10,5 @@ slug: "old-the-ascent"
   rendertime="150 seconds"
   samples="1000"
 %}}
-![A scifi, cyberpunk tower](img/The Ascent.png)
+![A scifi, cyberpunk tower](img/TheAscent.png)
 {{% /render_img %}}

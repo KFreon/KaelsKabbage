@@ -1,5 +1,5 @@
 ---
-title: "ShadowRaiders_Rework"
+title: "ShadowRaiders Rework"
 date: 2025-03-16T18:14:59+10:00
 postcard: "Shadowraiders_rework_postcard"
 slug: "shadowraiders_rework"

@@ -162,13 +162,14 @@
       display: flex;
       flex-flow: row wrap;
 
-      > p {
+      > :not(div) {
         display: none;
       }
 
       .render {
         transition: transform 0.2s;
         padding: 1rem;
+        transform-origin: top;
 
         .hq-links, .alt-text-container {
           a{
