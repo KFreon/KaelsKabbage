@@ -12,6 +12,11 @@
 {{- $desc := .Text | safeHTML -}}
 {{- $title := .Title -}}
 {{- $pagePermalink := .Page.Permalink -}}
+
+{{- if hasSuffix $u.Path "gif" -}}
+<img src="{{$u.Path}}" alt="{{$desc}}" />
+{{- else -}}
+
 {{- if not $u.IsAbs -}}
   {{- with or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
     {{- $png := . -}}
@@ -35,7 +40,7 @@
 
               {{- if ge $pngFilesize (len $resized.Content) -}}
               {{ $appliedSizes = math.Add $appliedSizes 1}}
-              {{- if $i -}}, {{- end -}}
+                {{- if $i -}}, {{- end -}}
               {{ $resized.RelPermalink }} {{ . }}w
               {{- end -}}
           {{- end -}}
@@ -67,4 +72,5 @@
   {{- end -}}
 {{- else -}}
   <img src="{{ $u.String }}" />
+{{- end -}}
 {{- end -}}
