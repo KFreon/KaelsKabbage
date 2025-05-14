@@ -81,12 +81,14 @@ I'm still using `eslintrc.json`.
 
 ```json
 // eslintrc.json
-plugins: [
-  ...others,
+{
+  "plugins": [
+  //...others,
   'my-custom-rules'
-],
-rules: {
-  "my-custom-rules/no-builtin-date-functions": "warn"
+  ],
+  "rules": {
+    "my-custom-rules/no-builtin-date-functions": "warn"
+  }
 }
 ```
 
