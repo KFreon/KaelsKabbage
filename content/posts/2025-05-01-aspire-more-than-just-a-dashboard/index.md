@@ -26,7 +26,10 @@ When adding it (the standard way) you get `AppHost` and `ServiceDefaults` projec
 
 ![The extra projects Aspire adds](img/AspireProjects.png)
 
-At the end, you get this:  ![Default view, showing information about all the resources](img/Resources.png)
+At the end, you get this:  ![Default view, showing information about all the resources](img/Resources.png)  
+
+> NOTE that I'm only using it for local dev, not for deployment or publishing or anything like that.  
+> It's to help easily run things up in a transferable way.  
 
 # How is it more than just a dashboard, and why should I care?  
 While the above dashboard is useful and informative, I think the best part of Aspire is its orchestration.  
