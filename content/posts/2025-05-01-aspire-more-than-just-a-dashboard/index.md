@@ -86,7 +86,8 @@ This way, it's all managed in one place.
 ![Hot reload of Vite](img/UIContainerHMR.png)
 
 If you don't want to run in the orchesration for some reason, you can fairly easily pull it apart.  
-You can't directly tell Aspire to only run a subset of services, but you can comment them out, or just run each project the normal way.  
+If you only want to run a subset of configured services, you can mark them as `.WithExplicitStart()` so they show up in the dashboard but aren't started.  
+This is useful for seed data projects or DbUp projects.  
 The configuration that Aspire does is injected during execution, but can be provided through appsettings.json and other config sources as well.  
 
 > Aspire host will override appsettings.json connection strings because they're injected as environment variables  
@@ -97,7 +98,31 @@ The configuration that Aspire does is injected during execution, but can be prov
 As mentioned above, having configuration in appsettings.json seems to be the easiest way to get things running in Prod.  
 Aspire just having control over the local execution.  
 
-Just don't forget to update any config changes in Aspire AND appsettings.json if necessary   
+Just don't forget to update any config changes in Aspire AND appsettings.json if necessary.  
+
+# Messy things  
+## Health checks   
+Some containers/nugets have their own health checks, and there doesn't seem to be a proper way around them.  
+This was a problem for me when I had Oracle, and I had a startup creation script that creates some users and seed data.  
+I had different passwords for those users (which also wasn't easy to configure), which I was then overriding, but I broke the default user by doing it.  
+Dunno how I did it, but it's done, which breaks the health check, which means I can't wait for it and it looks messy in the dashboard. 
+
+Am I doing it wrong? Probably, but I couldn't see a nice way around it.  
+So my solution was to essentially replace the default check: 
+- Find it's name in the dashboard  
+- Find the services changed when doing the container addition  
+- Remove the `HealthCheckOptions` service  
+- Register a new healthcheck with that name  
+  - If you don't use that name, you get an `AnnotationValidation` exception
+  - Sidenote, you can't remove annotations either 😢
+```cs
+builder.Services.AddHealthChecks()
+    .AddOracle(x =>
+    {
+        var connectionString = oracle.Resource.ConnectionStringExpression.GetValueAsync(default).Result;
+        return connectionString;
+    }, name: "original healthcheck name");
+```
 
 # Conclusion  
 Dashboards are nice, especially when they're free, but the orchestration magic that Aspire has makes it very nice to pick up as a new dev to a project.  
@@ -128,7 +153,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 // Can also do builder.AddConnectionString without the sql + db step to use an existing database.
 
 // Build sql container called "thedatabase" containing a database called "mydatabase"
-var sql = builder.AddSqlServer("thedatabase")
+var sql = builder.AddSqlServer("thedatabase", port: 5592)  // We can access the sql server from host port 5592 now
     //.WithImageTag("2019-latest") // Allows easily changing the desired image
     .WithLifetime(ContainerLifetime.Persistent); // will not destroy "thedatabase" container on exit. Should reuse any existing container with that name.
 var db = sql.AddDatabase("mydatabase");
