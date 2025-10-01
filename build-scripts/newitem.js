@@ -15,6 +15,7 @@ if (!process.argv || process.argv.length !== 4) {
     .replace(/,/g, "")
     .replace(/\s/g, "-")
     .replace(/--/g, "-")
+    .replace(/\?/g, "")
     .toLowerCase()
   
   const indexFileName = `${postType}s/${formatted}-${formattedName}`
