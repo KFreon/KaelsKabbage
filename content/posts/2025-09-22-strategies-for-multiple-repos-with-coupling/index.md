@@ -1,5 +1,5 @@
 ---
-title: "Coupled services: Submodule vs Monorepo?"
+title: "Distributed Monolith bad: What options do we have?"
 date: 2025-09-22T12:21:01+10:00
 draft: true
 type: "post"
@@ -9,13 +9,11 @@ tags: ["git"]
 
 I've been working on some clients who have a bunch of sites, Azure functions, and whatnot (microservices, but not so micro) and each one is it's own git repo.  
 They started off with limited data sharing and intercommunication, but over time this interdependency increases, now I'm asking why these apps are different apps in the first place.  
+It has come to my attention that it has a name: distibuted monolith.  
 Changes that ripple through them are difficult to do, track, and maintain, so what options do I have?  
 Well I went down this road of three options, let's see how it's turned out.  
 
 <!--more-->  
-
-# Why coupled? Coupling bad!  
-Coupling indeed bad (although `it depends`), but I'm going to try and explain myself and my decisions and in doing so, learn something about git, coupling services, and perhaps myself.  
 
 # Setup  
 ```mermaid
@@ -50,9 +48,6 @@ The loose contracts between these apps were handled manually, and changes made i
 > The ETL process might be strange too, I'm not sure how common it is to have an Azure function that does it's ETL by calling the API for the data using those contracts...
 > It feels kinds nice, but also leads to this stronger coupling.  
 
-After some discussions with my colleagues, it seems likely that this was more of a distributed monolith as opposed to microservices...  
-I don't have great exposure to either setup.  
-
 Before we go on, let's just simplify that diagram above for later use.  
 We'll focus on the interaction between two services and how the coupling there worked.  
 Just note that these contracts were used in many of those other projects too.  
@@ -71,16 +66,17 @@ architecture-beta
     
 ```
 
-# What's wrong with loose contracts?  
-In this case, the coupling was high enough that it was both tedious and error prone.  
-Also, at the time, there were some team changes occurring, and a team member forgot to add a property to the ETL datacontract (and DbContext) leading to the Test ETL process failing.  
+# What's wrong with a distributed monolith?  
+The projects have strong coupling, which makes changes and deployments tedious and error prone.  
+When a new team member forgot to add a property to the ETL datacontract (and DbContext), the Test ETL process crashed and burned and there was nothing prompting them to have done anything else.  
 PR's help catch these incidents, but it still felt like an unnecessary risk in this day and age (circa 2018)  
 
 Refactoring becomes difficult to maintain, with no built-in way of preventing contracts getting out of date.  
 
-What follows is how we've worked with it over the last 5+ years to try and improve the situation (in chronological order)  
-
-> I'm certain there are strategies around these challenges, but these are what I went with instead.   
+## What is the destination?  
+In the beginning, I didn't know what the goal was going to be.  
+I didn't have time to rework everything, so a full upfront rewrite/rework wasn't possible.  
+What follows is the sequence of solutions we've worked through over the last 5+ years to try and improve the situation (in chronological order)  
 
 # First attempt: Shared nuget package  
 The idea is:
