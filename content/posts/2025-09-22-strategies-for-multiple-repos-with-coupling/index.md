@@ -1,9 +1,8 @@
 ---
 title: "Distributed Monolith bad: What options do we have?"
 date: 2025-09-22T12:21:01+10:00
-draft: true
 type: "post"
-slug: "strategies-for-handling-multiple-coupled-repos"
+slug: "strategies-for-handling-distribted-monoliths"
 tags: ["git"]
 ---
 
@@ -67,14 +66,17 @@ architecture-beta
 ```
 
 # What's wrong with a distributed monolith?  
-The projects have strong coupling, which makes changes and deployments tedious and error prone.  
-When a new team member forgot to add a property to the ETL datacontract (and DbContext), the Test ETL process crashed and burned and there was nothing prompting them to have done anything else.  
-PR's help catch these incidents, but it still felt like an unnecessary risk in this day and age (circa 2018)  
+Distributed monoliths are a set of services that have strong coupling between them, but are deployed separately.  
+In my experience, this is rarely the intent, and results from microservices getting more and more coupled as time goes on. 
+You can imagine that deploying part of your app (which is essentially what distributed monoliths are doing) without the rest can lead to strange, tedious, and error prone releases.  
+In this particular case, a new team member forgot to add a property to the ETL datacontract (and DbContext) and the Test ETL process crashed and burned.  
+That wasn't their fault in my opinion as there was no gate preventing such a mistake, no message or anything prompting them to have done so.    
+We have PR's to help catch these incidents, but it still felt like an unnecessary risk in this day and age (circa 2018)  
 
 Refactoring becomes difficult to maintain, with no built-in way of preventing contracts getting out of date.  
 
-## What is the destination?  
-In the beginning, I didn't know what the goal was going to be.  
+## Before we start: What do I want?  
+All I really want is to make the releases simpler, more easily tracable, and less error prone.  
 I didn't have time to rework everything, so a full upfront rewrite/rework wasn't possible.  
 What follows is the sequence of solutions we've worked through over the last 5+ years to try and improve the situation (in chronological order)  
 
@@ -83,6 +85,22 @@ The idea is:
 - Extract and distill both sides of the contracts into their own project  
 - Publish this project as a nuget package during CI (on internal feed)
 - Reference nuget in related projects
+
+```mermaid
+---
+config:
+  theme: 'dark'
+---
+
+architecture-beta
+    service userinput(server)[User Input Portal UIP]
+    service nuget(cloud)[Nuget package]
+    service etl(server)[ETL]    
+    
+    userinput:T --> B:nuget
+    nuget:R --> T:etl
+    userinput:R -- L:etl
+```
 
 **Pros:**   
 - Easy to setup   
@@ -116,23 +134,28 @@ gitGraph
     commit id: "Version 1.3.0"    
     checkout dev1
     branch feature-release
-    commit id: "Expecting 1.2.0, but could be 1.3.0 if accidentally updated"
+    commit id: "Expecting 1.2.0, but could accidentally update to 1.3.0"
 ```
 
-It also means that when I see `version 2.3.0` what does it mean? Which branch was it?  
+When I see `version 2.3.0` what does it mean? Which branch was it?  
+The no-context information was lacking.  
 
 This is almost certainly the laziest and least useful method of versioning in this scenario, but I couldn't figure out a better way a the time.  
-Local dev was pretty frustrating, as you'd build, push, wait, update nuget, and continue working.  
+Local dev was pretty frustrating when working with the dependent project if you needed changes in the nuget package.  
+You could build the source in CI, update nuget, and continue working, but it was way easier to just temporarily reference the source dll while developing. 
+Not a great experience.  
 
-## Rebuild and redeploy required but not enforced  
-While this his is technically a requirement for all options, here there was no physical or mental trigger to enforce it.  
-Sometimes we'd just forget to trigger the build for that project.  
-
-I wanted to try and ensure that we couldn't just *forget*.  
+## Rebuild and redeploy (usually) required but not enforced  
+Rebuilding and redeploying is technically a requirement for all of these options, but in the nuget case, there was no trigger to enforce it.   
+You could forget to update it, and the build may not complain depending what changes were made, and the deployment would succeed, and it would fail at runtime.  
+I really wanted to ensure that we couldn't just *forget*.  
 
 # Second attempt: Git Submodules  
 [Git submodules](https://github.blog/open-source/git/working-with-submodules/) are a way of embedding one repo into another.  
-I figured it was a low friction way of making it more difficult to forget changes, while improving the dev experience.  
+Following a similar idea to the nuget idea, I just pulled the project that used to be a nuget into it's own git repo.  
+Then this repo was submoduled into the related projects.  
+I figured it was a low friction way of forcing the shared code to be correct, while improving the dev experience.  
+> Foreshadowing: this is not quite how it worked...
 
 ```mermaid
 ---
@@ -150,7 +173,6 @@ architecture-beta
     dc:T -- B:etl
 ```
 
-Instead of just a project, the shared contracts were split out into their own repo, then made a submodule of the other projects for use.  
 The dev flow was you'd make branches in the app repo and DataContracts submodule if required, then that branch could be shared across the multiple projects that needed it.  
 
 **Pros:**  
@@ -194,24 +216,38 @@ In reality,
 This means that in practice you have `projectCount` copies of the DataContracts repo on your machine, each potentially with different branches going at once...  
 
 ## Reasoning with branches! 🤢  
-As mentioned above, it can get confusing when you have three different DataContracts repos open for different apps, and you're trying to understand which bits are on what branches in order to support the various apps.  
-My submodules wouldn't auto-fetch either, so sometimes I'd thing I was up to date on this repo, but I didn't have the latest changes.  
-I'm bad with force pushing as well, so I think I made this harder for myself than it needed to be.  
+As foreshadowed above, the shared code isn't as forced as I thought it'd be.  
+The submodules need to be `git pull`ed in each project, and devs can still forget to do that.  
+This could be fixed with submodule auto-fetch, but I didn't try that as I thought the other negatives outweighted this.  
 
-## Commit message: Updated submodule  
-When pulling in changes from other branches, we'd have lots of commits like: "Update submodule", or "Pull in changes from contracts"  
-This was noisy but could be ignored, however it made rebasing super messy.  
+I felt it can get confusing with branches when you have three different DataContracts repos open for different apps, and you're trying to understand what code is on which branch in order to support the various apps. 
+
+> I'm a force pusher, so I think I made this harder for myself than it needed to be.  
+
+## Commit message: 'Updated submodule'  
+When pulling in changes from other branches, we'd have lots of commits that were solely: "Update submodule", or "Pull in changes from contracts"  
+This was noisy to look at and worse, it made rebasing super messy.  
 There was almost always conflicts with the submodules (I assume simply because the commit hash is different?)  
-As such, rebases almost always went: "Ignore any submodule changes and just set the submodule commit at the end", but then the commits don't work in isolation, and you have to stop to fix it every. single. commit.  
+As such, rebasing went: 
+- Ignore any submodule changes, just pick one or the other
+- Update submodule commit at the end with 'Updated Datacontracts'
+
+However, the commits don't work in isolation and you have to stop at each commit to fix it.
+Every. Single. Commit.  
 
 ![Updated DC](img/UpdatedDC.png)
 
 # Subtrees?  
-[Git subtrees](https://www.atlassian.com/git/tutorials/git-subtree) are something I saw as similar to submodules, but I didn't end up testing them.  
-It seems to be that it improves on submodules by handling changes more transparently than a commit pointer, but I didn't investigate.  
+[Git subtrees](https://www.atlassian.com/git/tutorials/git-subtree) are something I saw as similar to submodules, and they seem to improve on submodules by handling changes more transparently than a commit pointer.  
+I didn't investigate as I heard about them too late, and upon reflection decided that they would have similar updating issues to submodules.  
 
-# Multirepo --> Monorepo  
+# Distributed Monolith --> Monorepo Monolith  
 ```mermaid
+---
+config:
+  theme: 'dark'
+---
+
 architecture-beta
     group all(cloud)[Monorepo]
     service userinputdb(database)[Database] in all
@@ -234,18 +270,19 @@ architecture-beta
     userinput:R -- L:identity
 ```
 
+Here I moved every service from their own repos into one big repo.  
 But...[monorepo bad](https://medium.com/streamdal/mostly-terrible-the-monorepo-5db704f76bdb)?  
-I needed to do something, and I couldn't see a way to fix what we had in a better way than any of the above.  
-I concluded that a distributed monolith was worse than a monorepo monolith.  
+The general hate is that monorepos are big and hard to use, but I disagree and decided that a distributed monolith was worse than a monorepo monolith.  
 
 ![](img/VaderNo.png)
 
 **Pros:**  
-- Simple, only one sln to build
-- Can't be out of date between projects
+- Simple, only one sln to build (and can use solution filters to narrow it further)
+- Can't be out of date between projects  
+- Single atomic deployment  
 
 **Cons:**  
-- Big  
+- Big and slow to build and test everything  
 - Lots of entrypoints   
 - "Need" to deploy all projects to make simple change in one project  
 
@@ -263,39 +300,45 @@ I broadly followed [this](https://gfscott.com/blog/merge-git-repos-and-keep-comm
   - `--allow-unrelated-histories` keeps the history of the individual repos  
 - Remove remotes  
 
-## Simple changes in one site affects all?  
-This was the sticking point that I had to ultimately overcome.  
-Building and deploying all apps for a tiny text change in one of five sites is excessive, but it's avoids the common issue where one site has way more deployments than the others, and all the version numbers are different.  
-That's common in these scenarios, but when things are coupled like this, and the client asks whether the current deployment has a change in it, I had to dig into multiple repos to find out what was where and why.  
+## Simple changes in one service requires full rebuild/redeploy?  
+This is the main downside for this approach.  
+Building and deploying all apps for a tiny text change in one of five sites is excessive, but it does avoids the common issue where one site has way more deployments than the others, and all the version numbers are different, making deployments harder to trace.  
+In sustained engineering, the time saved by having all five services on the same version by default as opposed to going through multiple repos, builds, and deployments is very much worth it.  
 
 One branch, one build, one deploy, one day later...(cos the build takes ages)  
 
 ![Building!](https://imgs.xkcd.com/comics/compiling.png)
 
 ## Rebuild entire build and release pipeline...  
-This was another major sticking point.  
-Moving to a new repo means consolidating and rebuilding the pipeline.  
-While fun and good for cleaning the cruft out (looots of it too), it's riskier, more time consuming, and may not be something the client wants to pay for.  
-Silver lining is that I now have some experience in yml pipelines!  
+This was another major sticking point as each service is already slow to build and test.  
+Combining all services in one meant rebuilding the pipeline, which was fun and good for cleaning the cruft out (looots of it too), but it does add risk and may not be something the client wants to pay for.  
 
-# What code is where  
+Silver lining is that I now have some experience in yaml pipelines!  
+
+# What code artifact is deployed where?  
 I'm not sure where else to put this, but it's a big part of my life in Managed Services/Sustained Engineering.  
-Let's say UIP was being developed much more than the ETL job, and it had 100 more deployments.  
+
+Let's say UIP service was being developed more often than the ETL job, and it had 5x more deployments.  
 Let's also say that the DataContracts were being changed for UIP and Admin, but not in a way that broke the ETL.  
-e.g. I was adding properties to the contracts, but they weren't 100% required in the ETL job, but they were being used in the Admin app.  
+For example: Adding properties to the contracts for Admin, but weren't 100% required in the ETL job.  
 
 Now the client asks "Ok so now we want the ETL job to use those, will that work?".  
-I find figuring out where the ETL code is up to compared to the others regarding the shared contracts to be pretty hard.  
-If not hard, at least time consuming, flicking back and forth between the repos and environments and trying to determine what changes are going to affect the ETL job in unexpected ways.  
+I find figuring out where the ETL code is up to compared to the others regarding the shared contracts to be pretty difficult and/or time consuming.  
+Flicking back and forth between different repos and environments and trying to determine what changes are going to affect the ETL job and database takes a lot.  
 
 In that example, it could be argued that we should have separate contracts for different apps.  
-Fair, but I didn't want to; I believed they were conceptually the same, and should be represented by one entity.  
+Fair, but it wasn't present when I got it, and I didn't want to add them; I believed they were conceptually the same, and should be represented by one entity.  
 
-In this new monorepo world, is this better?  
-I believe so, because there's one branch, one build, one deploy.  
+So, is this new monorepo world in a better state than before?  
 
 # Conclusion: Which is best?  
-The monorepo feels best for now, but perhaps this coupling that's been creeping in is more avoidable than I believe.  
-Submodules might be ok when doing solo work or only a couple of repos, or if all of them were submoduled into one.  
+As always, it depends.  
+I think that:  
+- Nuget was the worst option  
+- Submodules are not great  
+- Monorepo feels nice, if busy  
 
-It's going to be pretty hard to undo the monorepo, so most likely we'll stick with it.  
+Lots of entrypoints will take time to get used to, but deleting whole swaths of code to centralise and standardise across the projects is pretty satisfying.  
+Hopefully it pays off.  
+
+Also...it's going to be pretty hard to undo the monorepo, so we'll probably stick with it. 
