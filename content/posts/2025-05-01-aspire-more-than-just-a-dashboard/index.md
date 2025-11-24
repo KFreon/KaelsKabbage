@@ -13,6 +13,8 @@ I was halfway through writing this when some guy called David Fowler [beat me to
 When Aspire was released, I created a project and thought the automatic logs and metrics were cool, but left it alone since I had other ways of getting that info.  
 I think this was a mistake.  
 
+> There's a bunch of [new toys](#dec-2025-update) in the v9.4 and v13 releases like custom commands and user interactivity.
+
 <!--more-->  
 
 # What is Aspire  
@@ -93,12 +95,12 @@ The configuration that Aspire does is injected during execution, but can be prov
 > Aspire host will override appsettings.json connection strings because they're injected as environment variables  
 
 # Production???  
-> Disclaimer: I haven't actually got one running in Prod...  
 
 As mentioned above, having configuration in appsettings.json seems to be the easiest way to get things running in Prod.  
 Aspire just having control over the local execution.  
 
 Just don't forget to update any config changes in Aspire AND appsettings.json if necessary.  
+> This is critical. I've forgotten to add the appsettings because it's all managed in Aspire otherwise.  
 
 # Messy things  
 ## Health checks   
@@ -133,6 +135,122 @@ I have Aspirations (😅) to add it to all my existing projects.
 Although...is this the one true best feature of Aspire?
 
 ![The best feature?](img/AspireGraph.gif)
+
+# Dec 2025 update  
+## Get existing resource from builder  
+I wanted to make a nicer way of referencing a resource in projects.  
+e.g. I added Seq to an Aspire project with eight other projects that used Seq, so I'd need to do: `project.WithReference(seq)` on each project.  
+Can I just write `project.WithSeq()`?  
+Yes
+```cs
+public static IResourceBuilder<T> WithSeq<T>(this IResourceBuilder<T> builder) where T : IResourceWithEnvironment
+{
+    var storageBuilder = builder.GetResouceBuilder("seq");  // Where "seq" was the name of the seq resource I added eariler
+    return builder.WithReference(storageBuilder);
+}
+
+public static IResourceBuilder<X> GetResouceBuilder<X>(this IDistributedApplicationBuilder builder, string name) where X : IResource
+{
+    var resource = (X)builder.Resources.First(x => x.Name == name);
+    var resourceBuilder = builder.CreateResourceBuilder(resource);
+    return resourceBuilder;
+}
+```
+
+## Custom commands  
+Usually projects have Start and stop buttons but what if you wanted a "run with some setting enabled/disabled"  
+Primarily from [this](https://github.com/davidfowl/AspireDynamicCommand/blob/main/DynamicCommand.AppHost/AppHost.cs) example from David Fowler.  
+
+```cs
+project
+.WithEnvironment(c =>
+{
+    // Dynamically build the environment based on the interaction from the command
+    foreach(var env in envVars)
+        c.EnvironmentVariables.Add(env.Name, env.Value);
+})
+.WithCommand("Start", "Start", async execute =>
+{
+    var interactionService = c.ServiceProvider.GetRequiredService<IInteractionService>();
+    if (interactionService.IsAvailable)
+    {
+        var result = await interactionService.PromptInputsAsync("Some text here", OPTIONS);
+        if (result.Canceled) return CommandResults.Success();
+
+        envVars = [.. result.Data.Select(x => x)];
+
+        var commandService = c.ServiceProvider.GetRequiredService<ResourceCommandService>();
+        return await commandService.ExecuteCommandAsync(c.ResourceName, KnownResourceCommands.StartCommand);
+    }
+    return CommandResults.Success();
+}, new CommandOptions
+{
+    IsHighlighted = true, // Show near the Start/run button. Otherwise it's in the triple dot menu
+    IconName = "PlaySettings",
+    IconVariant = IconVariant.Regular // This is actually important. Without it, it doesn't draw the image
+})
+```
+
+## Group start projects?  
+I find that Aspire is best with multiple project right?  
+So I always find that I want to start multiple projects at once, but sometimes not all projects at once.  
+How can we run 3 out of 10 projects only?  
+
+There is no built-in grouping mechanism which is a shame, so I had to use a Parameter.  
+I ended up having all projects set to `.WithExplicitStart()` such that none start automatically.  
+The parameter then has a custom command to execute the indicated projects.  
+
+```cs
+public static IResourceBuilder<ParameterResource> AddGroupExecution(this IDistributedApplicationBuilder builder, IResourceBuilder<IResource>[] resources, string iconName, string description)
+{
+    var parent = builder.GetResouceBuilder<IResource>(AspireConstants.GroupedCommands);
+
+    // Dynamically build the display name
+    var paramName = string.Join("-and-", resources.Select(x => x.Resource.Name));
+    return builder.AddParameter(paramName, "nothing") // This is just a grouping construct
+        .WithExplicitStart()
+        .WithIconName(iconName)
+        .WithDescription(description)
+        .WithCommand("Start", "Start", async execute =>
+        {
+            // Wait for the resources to be constructed
+            var notificationService = execute.ServiceProvider.GetRequiredService<ResourceNotificationService>();
+            var runtimeResources = resources.Select(x => notificationService.WaitForResourceAsync(x.Resource.Name, _ => true)).ToArray();
+            await Task.WhenAll(runtimeResources);
+
+            // Now I can find their ID's
+            var buildResources = resources.Select(x => builder.Resources.First(r => r.Name == x.Resource.Name));
+            var startCommandsForResources = buildResources.Select(async x =>
+            {
+                // Grab their start commands
+                if (!x.TryGetAnnotationsOfType<ResourceCommandAnnotation>(out var commands)) return null;
+                var startCommand = commands.First(x => x.Name == "resource-start");
+
+                // Execute them
+                var matchingRuntimeResource = await runtimeResources.First(r => r.Result.Resource.Name == x.Name);
+                return await startCommand.ExecuteCommand(new ExecuteCommandContext
+                {
+                    CancellationToken = execute.CancellationToken,
+                    ResourceName = matchingRuntimeResource.ResourceId,
+                    ServiceProvider = execute.ServiceProvider
+                });
+            });
+
+            var results = startCommandsForResources.Select(async x => await x).Select(x => x.Result);
+
+            if(results.Any(r => r?.Success == false))
+            {
+                var errors = results.Select(r => r?.ErrorMessage);
+                return new ExecuteCommandResult { Success = false, ErrorMessage = string.Join(", ", errors) };
+            }
+            return new ExecuteCommandResult { Success = true };
+        }, new CommandOptions
+        {
+            IsHighlighted = true
+        })
+        .WithParentRelationship(parent);
+}
+```
 
 ---
 

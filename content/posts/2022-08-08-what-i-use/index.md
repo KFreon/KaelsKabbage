@@ -46,6 +46,10 @@ Way nicer and faster than SSMS, but doesn't have most of the features.
 Extensions can provide some of the more common features such as [bacpac](https://docs.microsoft.com/en-us/sql/azure-data-studio/extensions/sql-server-dacpac-extension?view=sql-server-ver16)  
 > It comes with SSMS anyway, so if you have one, you probably have the other!
 
+> This is dead :( Still great but dead.  
+
+So now I just use SSMS with a shortcut to load a folder full of scripts.  
+
 # Onenote/[Obsidian](https://obsidian.md/)
 - Notetaking
 - Onenote good for adding anything. Files, drawing, etc
@@ -53,12 +57,19 @@ Extensions can provide some of the more common features such as [bacpac](https:/
 
 I only recently started with Obsidian, and I'm still not 100% sold compared to Onenote, but it does have some nice linking and organisation (i.e. clicking on the calendar shows the note for that day)
 
-# [Postman](https://www.postman.com/)/[Thunderclient](https://www.thunderclient.com/)
-- Api inspection tools
+# ~~[Postman](https://www.postman.com/)/[Thunderclient](https://www.thunderclient.com/)~~
+~~- Api inspection tools~~
 
-Another one that just does what it says on the tin.  
-Can call API's with various configurations.
-Thunderclient is a VSCode plugin, and is nice and lightweight compared to Postman, but much less featured.  
+~~Another one that just does what it says on the tin.  ~~
+~~Can call API's with various configurations.~~
+~~Thunderclient is a VSCode plugin, and is nice and lightweight compared to Postman, but much less featured.  ~~
+
+# [Bruno](https://www.usebruno.com/)
+- Postman but local (instead of cloud)  
+
+I swear everytime I opened Postman it had an update that needed elevation for some reason.  
+Thunderclient was good, but got expensive and I realised I like a dedicated tool.  
+Has all the wizz bangs I need, like collections and variables.  
 
 # [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-au&gl=AU)  
 - Terminal
@@ -75,6 +86,13 @@ Drop in replacement.
 - Run: `Alt + space` - Like MacOS Spotlight, has some extra things built in compared to Windows Start
 
 As above, some handy little tools that expand on Windows functionality. 
+
+# [Sysinternals Suite](https://learn.microsoft.com/en-us/sysinternals/)  
+Loooots of small useful tools.  
+
+This one is pretty old, but it's been picked up by Microsoft, and some fixes have been added.  
+Of particular note is [RDCMan](https://learn.microsoft.com/en-us/sysinternals/downloads/rdcman) for much better remote desktop.  
+
 
 # [Microsoft Todo](https://to-do.microsoft.com/)
 - Todo app

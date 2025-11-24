@@ -11,6 +11,11 @@ This will keep being updated as I think of them.
 
 <!--more-->  
 
+> Ok pretty much everything here is out of date and just wrong.  
+> Things have updated a lot since.  
+
+---
+
 # Circular Array  
 This used to be a weird, complicated thing about parenting empties with offset origins, etc.  
 Now, we just get a circle with verticies where you want them, then use Geometry nodes to instance whatever you want onto it.  
