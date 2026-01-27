@@ -7,7 +7,8 @@ tags: ["homelab"]
 ---
 
 I've finally had time to fiddle with my Home Assistant setup, specifically I wanted to monitor my ISP download, upload, and ping.  
-Why? Because I wanted to.  
+I wanted this because my internet was playing up and I wanted to track it, and also moar charts on my dashboard makes me happy.  
+The TL;DR is: HA host was too slow, so I ran the test on another machine and reported the results back to HA via MQTT.  
 
 <!--more-->  
 
@@ -25,6 +26,7 @@ The Pi was busy running HA and wifi wasn't doing me any favours either, so I fig
 ## Scripts and systemd services  
 
 > Almost all of this was built with ChatGPT assistance.  
+> I have limited experience with systemd and linux permissions.  
 
 {{% splitter %}}
 {{% split side=left title="systemd files" %}}
@@ -87,9 +89,10 @@ speedtest-cli --json \
 {{% /split %}}
 {{% /splitter %}} 
 
-## Fiddly bits  
+## Linux permissions issues  
 I had issues with SELinux (on Fedora) where the systemd service "couldn't find" the script with "unable to find executable: permission denied".  
 Since the script already had execute permissions (`chmod +x`) and the path and general permissions seeming ok, Chatgippity suggested seeing if SELinux was disallowing it.  
+
 I know so little about SELinux, I basically just did what it told me to do.  
 This `sudo ausearch -m avc -ts recent` seems to show recent SELinux activity, and showed that the systemd service didn't have execute permissions. 
 I had to do this to give it those permissions.
@@ -109,7 +112,7 @@ sudo restorecon -v /usr/local/bin/my-script.sh
 From memory, I went "Add MQTT device" and added the "external speedtest" sensor.  
 Then I added the other two sensors. 
 
-![MQTT device and sensor setup](./img/MQTTHome.png)  
-![MQTT entity config](./img/MQTTDetails.png)
+![MQTT device and sensor setup](img/MQTTHome.png)  
+![MQTT entity config](img/MQTTDetails.png)
 
-![It works!](./img/ItWorks.png)
+![It works!](img/ItWorks.png)
