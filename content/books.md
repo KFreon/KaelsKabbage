@@ -3,7 +3,9 @@ title: "Books"
 layout: books
 ---
 
-# Books
+# Books  
+
+## Ambitions that haven't been realised...  
 - how to do it, collection like posts or just one file?
 - Spoilers?
 - links?

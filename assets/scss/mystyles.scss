@@ -653,7 +653,13 @@ details {
 .nav-links {
   display: grid;
   grid-template-columns: auto auto auto;
-  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background: var(--main-background);
+  border-top: 1px solid var(--lightgrey);
 
   .prev-post, .next-post {
     display: grid;
