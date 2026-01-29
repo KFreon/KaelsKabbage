@@ -3,7 +3,7 @@ title: "My Linux prompt (so I don't forget)"
 date: 2025-06-14T08:07:26+10:00
 type: "post"
 slug: "my-linux-prompt"
-tags: ["linux", "prompt"]
+tags: ["linux"]
 ---
 
 My basic Linux prompt setup, since I've lost it several times now...

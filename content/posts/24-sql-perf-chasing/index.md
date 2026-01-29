@@ -4,7 +4,7 @@ date: 2020-09-28T12:03:07+10:00
 draft: false
 type: "post"
 slug: "24-sql-perf-chasing"
-tags: ["sql", "perf"]
+tags: ["sql", "performance"]
 ---
 
 We're moving a client to Azure from on premises and there were some performance hurdles.  

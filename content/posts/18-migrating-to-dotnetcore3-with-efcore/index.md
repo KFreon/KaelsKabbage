@@ -3,7 +3,7 @@ title: "Migrating to dotnetcore 3.1 (mostly EFCore)"
 date: 2020-02-01T20:57:48+10:00
 type: "post"
 slug: "migrating-to-dotnetcore3-with-efcore"
-tags: ["dotnetcore", "Entity Framework"]
+tags: ["dotnet", "entity-framework"]
 ---
 
 [Dotnetcore 3](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0) has been out for a little while now, and there were some changes I wanted in the project I was working on, so off I went and gave it a burl.   

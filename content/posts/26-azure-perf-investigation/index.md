@@ -4,7 +4,7 @@ date: 2021-03-24T11:48:16+10:00
 draft: false
 type: "post"
 slug: "azure-perf-investigation"
-tags: ["azure", "perf"]
+tags: ["azure", "performance"]
 ---
 
 Semi-recently, we moved a client from On Premises to Azure with the promise that it'd be better.  
