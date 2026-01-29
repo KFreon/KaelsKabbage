@@ -1,6 +1,25 @@
 {{ define "main" }}
 {{ $prev := .CurrentSection.Pages.Prev .}}
 {{ $next := .CurrentSection.Pages.Next .}}
+
+<!-- This is from AI, and just grabs all related pages from tags, randomise, then take 3 -->
+
+{{ $pages := slice }}
+
+{{ range .Params.tags }}
+  {{ with index $.Site.Taxonomies.tags . }}
+    {{ range .Pages }}
+      {{ if ne .Permalink $.Permalink }}
+        {{ $pages = $pages | append . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $pages = $pages | uniq }}
+
+{{ $similarPagesFromTags := first 3 (shuffle $pages) }}
+
 <section>
     <p class="remove-margin-bottom">
         <time datetime="{{ .Date.Format " 02 January 2006 " }}">{{ .Date.Format "02 January 2006" }}</time>
@@ -25,13 +44,22 @@
         {{ end }}
 
         {{ if isset .Params "tags" }}
-        <p class="categories">
-            <small>
+        <div class="categories">
+            <div class="small">
                 Tags: {{ range .Params.tags }}
                 <a class="category" href="{{ $.Site.BaseURL }}tags?{{ . | urlize | lower }}">{{ . }}</a>
+                {{ if ne (len $similarPagesFromTags) 0 }}
+                <ul class="in-page-tag-list">
+                {{ range $similarPagesFromTags }}
+                    <li hugo-nav="{{ .RelPermalink}}">
+                        <a href="{{ .Permalink}}">{{ .LinkTitle }}</a>
+                    </li>
                 {{ end }}
-            </small>
-        </p>
+                </ul>
+                {{ end }}
+                {{ end }}
+            </div>
+        </div>
         {{ end }}
 
         {{ if ne $next nil }}
