@@ -48,6 +48,7 @@
             <div class="small">
                 Tags: {{ range .Params.tags }}
                 <a class="category" href="{{ $.Site.BaseURL }}tags?{{ . | urlize | lower }}">{{ . }}</a>
+                {{ end }}
                 {{ if ne (len $similarPagesFromTags) 0 }}
                 <ul class="in-page-tag-list">
                 {{ range $similarPagesFromTags }}
@@ -56,7 +57,6 @@
                     </li>
                 {{ end }}
                 </ul>
-                {{ end }}
                 {{ end }}
             </div>
         </div>
