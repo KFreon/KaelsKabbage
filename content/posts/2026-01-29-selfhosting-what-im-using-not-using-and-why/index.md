@@ -86,12 +86,16 @@ Home automation and such running on a Pi3.
 It's mostly used to have a single place to manage all my smart devices of different brands.  
 Main usages:  
 - smart plugs to monitor power usage  
+  - [Tapo P110](https://www.tp-link.com/au/home-networking/smart-plug/tapo-p110/) NOT P100, which are only smart, not power monitoring  
 - smart plugs to add smarts to dumb lights (like christmas tree lights)  
 - weather station info  
+  - [Ecowitt WS3900C and co](https://www.amazon.com.au/ECOWITT-WH2910C-Weather-Wireless-Forecast/dp/B07FD3DSXJ?crid=Z55FOPJZKIKH&dib=eyJ2IjoiMSJ9.nO-Huv_hvxP4AwG3qhBSBL4T_aAaaGmZxbxTCOntJQkHEjgXyl_9hS_LhKokK0Leej4Tnt6vkL4SNPGTD7LE5VgaoIpZHBLPqVwnJzIGWP8.LYus4dQ21tT1eAdrxjFKEEQQ6FNeN67ElryWlHGRTDU&dib_tag=se&keywords=WS3900C&qid=1770521775&s=home-garden&sprefix=ws3900c%2Cgarden%2C276&sr=1-1&th=1)
 - contact, presence, motion, etc sensors to control lights based on events  
+  - Tapo T110, T100, etc
 - temperature tracking of nursary, etc  
+  - [Switchbot Temperature meter](https://www.switch-bot.com/products/switchbot-meter)
 
-I really want to control the aircon, but it's too old :( 
+I really want to control the aircon, but it's too old 🙁  
 
 ## [Pihole](https://pi-hole.net/)  
 Network-wide ad blocking.  
