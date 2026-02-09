@@ -1,5 +1,3 @@
-@import "./variables.scss";
-
 .default-codeblock {
   display: block;
 }
@@ -90,7 +88,7 @@ code {
   line-height: 1.3;
 }
 
-// Inline stuff
+ /* Inline stuff */
 p,
 li,
 section {
@@ -102,7 +100,7 @@ section {
   }
 }
 
-// Code blocks
+ /* Code blocks */
 pre {
   overflow-x: auto;
   border-radius: 0 0 10px 10px;
@@ -113,7 +111,7 @@ pre {
   }
 }
 
-// GOAT ascii diagrams
+ /* GOAT ascii diagrams */
 .goat {
   width: 40vw;
   margin: auto;

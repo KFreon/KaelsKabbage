@@ -1,20 +1,14 @@
-{{- $cssOptions := cond (hugo.IsServer) (dict "enableSourceMap" false) (dict "outputStyle" "compressed") -}}
-
-{{- $stylesCSS := resources.Get "assets/scss/mystyles.scss" | toCSS  -}}
-{{- $mobileCSS := resources.Get "assets/scss/mobile.scss" | toCSS  -}}
-{{- $darkCSS := resources.Get "assets/scss/dark.scss" | toCSS -}}
-{{- $code := resources.Get "assets/scss/code.scss" | toCSS -}}
-{{- $tags := resources.Get "assets/scss/tags.scss" | toCSS -}}
-{{- $header := resources.Get "assets/scss/header.scss" | toCSS -}}
-
 {{- $prism := resources.Get "assets/css/prism.css" -}}
 {{- $prismOverrides := resources.Get "assets/css/prism-overrides.css" -}}
 
-{{- $firstSheets := slice $stylesCSS $code $tags $header $prism $prismOverrides -}}
+{{- $variables := resources.Get "assets/css/variables.css" -}}
+{{- $header := resources.Get "assets/css/header.css" -}}
+{{- $tags := resources.Get "assets/css/tags.css" -}}
+{{- $code := resources.Get "assets/css/code.css" -}}
+{{- $renders := resources.Get "assets/css/renders.css" -}}
+{{- $mystyles := resources.Get "assets/css/mystyles.css" -}}
 
-<!-- These need to be last -->
-{{- $lastSheets := slice $mobileCSS $darkCSS -}}
-{{- $combined := union $firstSheets $lastSheets -}}
+{{- $combined := slice $variables $mystyles $header $tags $code $renders $prism $prismOverrides -}}
 
 {{- if hugo.IsServer -}}
 {{- range $combined -}}

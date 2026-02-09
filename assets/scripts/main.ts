@@ -26,13 +26,9 @@ export function setRenderDisplay(displayType: RenderDisplayType | undefined) {
   localStorage.setItem('render-display', displayType);
 }
 
-export function setTheme(theme: Theme | undefined) {
-  const body = document.getElementById("main-body")!;
-  if (theme === 'light') {
-    body.className = 'light';
-  } else {
-    body.className = 'dark';
-  }
+export function setTheme(theme: Theme | null) {
+  const root = document.documentElement;
+  root.setAttribute("data-theme", theme ?? "dark");
 }
 
 export function toggleTheme() {
