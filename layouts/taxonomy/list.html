@@ -1,0 +1,16 @@
+{{ define "main" }}
+<section>
+    <ul class="tag-list">
+        {{ range $key, $taxonomy := .Site.Taxonomies.tags }}
+        <li class="tag" id="{{$key}}">
+            <h1 class="tag-header">{{ humanize $key }}</h1>
+            <ul>
+                {{ range $taxonomy.Pages }}
+                <li hugo-nav="{{ .RelPermalink}}"><a href="{{ .Permalink}}">{{ .LinkTitle }}</a></li>
+                {{ end }}
+            </ul>
+        </li>
+        {{ end }}
+    </ul>
+</section>
+{{ end }}
