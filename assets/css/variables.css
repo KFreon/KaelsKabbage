@@ -1,56 +1,60 @@
-@function --darken(--color <color>, --amount <number>) returns <color> {
-    result: color-mix(in srgb var(--color), var(--amount), black);
-}
-
-@function --lighten(--color <color>, --amount <number>) returns <color>  {
-    result: color-mix(in srgb var(--color), var(--amount), white);
-}
-
-@function --transparentize(--color <color>, --amount <number>) returns <color>  {
-    result: rgb(var(--color) / var(--amount))
-}
-
 :root[data-theme="light"]{
-    --main-background: rgb(255, 255, 255);
-    --main-colour: rgb(60,60,60);
-    --lightened-black: rgba(0, 0, 0, .7);
-    --very-light-black: rgba(0, 0, 0, .1);
-    --slategray: slategray;
-    --grey: grey;
-    --page-link-active: #90ee9052;
-    --green: green;
-    --lightgrey: lightgrey;
-    --lightgreen: lightgreen;
-    --darkgreen: darkslategray;
-    --link: rgb(0, 195, 255);
+    --lighten-mix: black;
+    --darken-mix: white;
+    --main-background-color: rgb(255, 255, 255);
+    --main-colour-color: rgb(60,60,60);
+    --lightened-black-color: rgba(0, 0, 0, .7);
+    --very-light-black-color: rgba(0, 0, 0, .1);
+    --slategray-color: slategray;
+    --grey-color: grey;
+    --page-link-active-color: #90ee9052;
+    --green-color: green;
+    --lightgrey-color: lightgrey;
+    --lightgreen-color: lightgreen;
+    --darkgreen-color: darkslategray;
+    --link-color: rgb(0, 195, 255);
 }
 
 :root[data-theme="dark"]{
-    --main-background: --darken(var(--main-background), 95%);
-    --transparentish-main-background: --transparentize(--darken(var(--main-background), 95%), 0.1);
-    --main-colour: --transparentize(--lighten(var(--main-colour), 75%), 0.1);
-    --lightened-black: invert(var(--lightened-black), 100%);
-    --very-light-black: invert(var(--very-light-black), 100%);
-    --slategray: invert(var(--slategray), 100%);
-    --grey: invert(var(--grey), 100%);
-    --page-link-active: invert(var(--page-link-active), 100%);
-    --green: --lighten(var(--green), 10%);
-    --lightgrey: invert(var(--lightgrey), 100%);
-    --lightgreen: var(--lightgreen);
-    --darkgreen: var(--darkgreen);
-    --link: rgb(97, 218, 255);
+    --darken-mix: white;
+    --lighten-mix: black;
+    --main-background-color: rgb(20, 20, 20);
+    --main-colour-color: rgb(250,250,250);
+    --lightened-black-color: rgba(255, 255, 255, .7);
+    --very-light-black-color: rgba(255, 255, 255, .1);
+    --slategray-color: slategray;
+    --grey-color: grey;
+    --page-link-active-color: #90ee9052;
+    --green-color: green;
+    --lightgrey-color: lightgrey;
+    --lightgreen-color: lightgreen;
+    --darkgreen-color: darkslategray;
+    --link-color: rgb(0, 195, 255);
 }
 
 :root {
-    --strong-colour: --darken(var(--main-colour), 10%);
-    --h1-colour: --darken(var(--main-colour), 40%);
-    --h2-colour: --darken(var(--main-colour), 35%);
-    --h3-colour: --darken(var(--main-colour), 13.6%);
-    --darker-background: --darken(var(--main-background), 2%);
-    --quote-background: --transparentize(var(--lightgreen), 0.5);
-    --search-result-background: --transparentize(var(--lightgreen), 0.1);
-    --search-result-border: --transparentize(var(--lightgrey), 0.3);
-    --sidebar-border: --darken(var(--main-background), 20%);
+    --main-background: var(--main-background-color);
+    --main-colour: var(--main-colour-color);
+    --lightened-black: var(--lightened-black-color);
+    --very-light-black: var(--very-light-black-color);
+    --page-link-active: var(--page-link-active-color);
+    --slategray: var(--slategray-color);
+    --grey: var(--grey-color);
+    --green: var(--green-color);
+    --lightgrey: var(--lightgrey-color);
+    --lightgreen: var(--lightgreen-color);
+    --darkgreen: var(--darkgreen-color);
+    --link: var(--link-color);
+
+    --strong-colour:  color-mix(in srgb,var(--main-colour) 90%, var(--lighten-mix));
+    --h1-colour: color-mix(in srgb,var(--main-colour) 60%, var(--darken-mix));
+    --h2-colour: color-mix(in srgb,var(--main-colour) 65%, var(--darken-mix));
+    --h3-colour: color-mix(in srgb,var(--main-colour) 77%, var(--darken-mix));
+    --darker-background: color-mix(in srgb, var(--main-background) 98%, var(--darken-mix));
+    --quote-background: rgb(var(--lightgreen) / 0.5);
+    --search-result-background: rgb(var(--lightgreen) / 0.1);
+    --search-result-border: rgb(var(--lightgrey) / 0.3);
+    --sidebar-border: color-mix(in srgb,var(--main-background) 80%, var(--lighten-mix));
     --blur-colour: 150%;
     --codeblock-header-background: var(--main-colour);
     --codeblock-header-text: var(--main-background);
