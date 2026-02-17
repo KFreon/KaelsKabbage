@@ -18,18 +18,18 @@
 :root[data-theme="dark"]{
     --darken-mix: white;
     --lighten-mix: black;
-    --main-background-color: rgb(20, 20, 20);
+    --main-background-color: rgb(15, 15, 15);
     --main-colour-color: rgb(250,250,250);
     --lightened-black-color: rgba(255, 255, 255, .7);
     --very-light-black-color: rgba(255, 255, 255, .1);
     --slategray-color: slategray;
     --grey-color: grey;
     --page-link-active-color: #90ee9052;
-    --green-color: green;
-    --lightgrey-color: lightgrey;
+    --green-color: rgb(0, 176, 0);
+    --lightgrey-color: rgb(42, 42, 42);
     --lightgreen-color: lightgreen;
     --darkgreen-color: darkslategray;
-    --link-color: rgb(0, 195, 255);
+    --link-color: rgb(97, 218, 255);
 }
 
 :root {
@@ -50,7 +50,7 @@
     --h1-colour: color-mix(in srgb,var(--main-colour) 60%, var(--darken-mix));
     --h2-colour: color-mix(in srgb,var(--main-colour) 65%, var(--darken-mix));
     --h3-colour: color-mix(in srgb,var(--main-colour) 77%, var(--darken-mix));
-    --darker-background: color-mix(in srgb, var(--main-background) 98%, var(--darken-mix));
+    --darker-background: color-mix(in srgb, var(--main-background) 97%, var(--darken-mix));
     --quote-background: rgb(var(--lightgreen) / 0.5);
     --search-result-background: rgb(var(--lightgreen) / 0.1);
     --search-result-border: rgb(var(--lightgrey) / 0.3);

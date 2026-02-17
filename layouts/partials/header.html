@@ -10,14 +10,15 @@
   /></a>
 
   {{ with .Site.Params.title }}
-  <h1 class="border-bottom add-padding-bottom site-title">
+  <h1 class="border-bottom site-title">
     <a href="{{ $.Site.BaseURL }}">{{ . | markdownify }}</a>
   </h1>
+  <hr/>
   {{ end }}
 
   <div class="header-menu-container">
     {{ with .Site.Params.subtitle }}
-    <h2 class="text-right add-padding-right site-subtitle">
+    <h2 class="text-right site-subtitle">
       {{ . | markdownify }}
     </h2>
     {{ end }} {{ with .Site.Params.description }}

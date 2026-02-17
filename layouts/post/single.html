@@ -21,9 +21,7 @@
 {{ $similarPagesFromTags := first 3 (shuffle $pages) }}
 
 <section>
-    <p class="remove-margin-bottom">
-        <time datetime="{{ .Date.Format " 02 January 2006 " }}">{{ .Date.Format "02 January 2006" }}</time>
-    </p>
+    <time datetime="{{ .Date.Format " 02 January 2006 " }}">{{ .Date.Format "02 January 2006" }}</time>
 
     <h1 class="post-title">{{ .Title }}</h1>
     {{ .Content }}
