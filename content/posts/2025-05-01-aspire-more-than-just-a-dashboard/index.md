@@ -43,7 +43,25 @@ It can stay local only too, with production config being specified in the usual 
 I believe this should be standard for any greenfields project in the dotnet ecosystem.  
 What about existing projects, and is it really worth doing outside toy projects and demos?    
 
-![Logging is nice](img/StructuredLogs.png)
+![Logging is nice](img/StructuredLogs.png)  
+
+# Documentation++?  
+As alluded to above, I consider the documentation possibilities of Aspire to outweigh it's other positives.  
+The ability to control launches and configs and show pretty dashboards is useful to a dev, but the ability to convey the intent of app launches and configuration is greater.  
+Consider a codebase with a 10k line readme explaining what all the things are, versus an interactive dashboard that can convey it in a more visual way.  
+
+The most compelling areas for me are:  
+- These two apps rely on each other, so on the dashboard there's [a button](#group-start-projects) to run them both up at once.  
+- We need various dependencies, auto set them up
+- This app has a load of different launch types (like an Azure Function with lots of Triggers), so the dashboard shows a launch button that pops up an [interactive input](#custom-commands) that lets you pick which one to run.  
+- Expose user secrets as parameters and let the Aspire Dashboard notify the user that they need to supply the values  
+- Basic infrastructure diagram, or at least the general relations between the projects  
+
+In all of the above examples I've seen in the wild, it's usually a Readme doing that explaining that users (i.e. me) can skip over and not realise until debugging later.  
+In the best case, it's a `ResetTheWorld.bat` or something that does all the dependency setup and such, and VS launch profiles that convey the linked projects, but I feel like this is a nicer way to do so.  
+
+Doubtless there are other opportunities to convey intent and knowledge with this, but those are the biggest ones for me.  
+
 
 # All smoke, no fire?  
 ![Give me the meat, and give it to me raw](img/Give%20me%20the%20meat.png)  
