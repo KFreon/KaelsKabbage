@@ -3,7 +3,7 @@ title: "Sql Performance Debugging for Developers"
 date: 2024-03-29T19:38:45+10:00
 type: "post"
 slug: "sql-performance-debugging-for-developers"
-tags: ["sql", "perf"]
+tags: ["sql", "performance"]
 ---
 
 Databases are magic black boxes that we developers use all the time, but rarely really understand.  

@@ -4,7 +4,7 @@ date: 2020-08-07T14:44:43+10:00
 draft: false
 type: "post"
 slug: "dotnetcore-nancy-castle"
-tags: ["dotnetcore", "nancy"]
+tags: ["dotnet", "nancy"]
 ---
 
 Nancy was deprecated earlier this year, so I decided to do a full upgrade of a codebase from .NET 4.7 to dotnetcore 3.1.  

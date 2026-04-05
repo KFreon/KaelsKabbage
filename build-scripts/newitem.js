@@ -1,4 +1,5 @@
 import { exec } from "child_process"
+import { open } from 'open'
 import { readFileSync, writeFileSync } from "fs"
 
 if (!process.argv || process.argv.length !== 4) {
@@ -16,12 +17,13 @@ if (!process.argv || process.argv.length !== 4) {
     .replace(/\s/g, "-")
     .replace(/--/g, "-")
     .replace(/\?/g, "")
+    .replace(/'/g, "")
     .toLowerCase()
   
   const indexFileName = `${postType}s/${formatted}-${formattedName}`
   const execString = `hugo new --kind ${postType}-bundle ${indexFileName}`
   
-  console.log(execString)
+  console.log('Executing: ', execString)
   
   exec(execString, () => {
     // Callback after completed
@@ -34,7 +36,7 @@ if (!process.argv || process.argv.length !== 4) {
   
     writeFileSync(filename, newContent)
   
-    exec('start ' + filename)
+    open(filename)
   })
 }
 
