@@ -1,5 +1,4 @@
 baseURL = "https://www.kaels-kabbage.com/"
-languageCode = "en-us"
 title = "Kael's Kabbage"
 theme = "sp-minimal"
 pygmentsCodeFences = true

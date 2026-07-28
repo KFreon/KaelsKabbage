@@ -1,4 +1,4 @@
-import Fuse, { FuseResult, FuseResultMatch } from "../../node_modules/fuse.js/dist/fuse";
+import Fuse, { FuseResult, FuseResultMatch } from "fuse.js";
 const fuseOptions = {"keys": ['title', 'tags', 'text'], threshold: 0.05, ignoreLocation: true, includeMatches: true, minMatchCharLength: 3, includeScore: true};
 
 interface SearchResult {
