@@ -22,7 +22,7 @@
             "{{% splitter %}}",
             "{{% split side=left title=\"$2\" %}}",
             "![$0]($1)",
-            "{{< /split %}}",
+            "{{% /split %}}",
             "{{% split side=right title=\"$3\" %}}",
             "himg",
             "{{% /split %}}",
