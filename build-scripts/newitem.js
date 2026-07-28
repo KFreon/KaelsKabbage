@@ -1,6 +1,6 @@
 import { exec } from "child_process"
-import { open } from 'open'
 import { readFileSync, writeFileSync } from "fs"
+import os from 'os';
 
 if (!process.argv || process.argv.length !== 4) {
   console.error('Need two args: postType and name', process.argv)
@@ -36,7 +36,11 @@ if (!process.argv || process.argv.length !== 4) {
   
     writeFileSync(filename, newContent)
   
-    open(filename)
+    let openCommand = 'start'
+    if(os.platform() !== 'win32'){
+      openCommand = 'open'
+    }
+    exec(openCommand + ' ' + filename)
   })
 }
 
