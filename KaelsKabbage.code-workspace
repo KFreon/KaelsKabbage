@@ -7,6 +7,9 @@
 	"settings": {
 		"cSpell.words": [
 			"SSMS"
-		]
+		],
+		"markdown.copyFiles.destination": {
+			"**/*.md": "img/"
+		}
 	}
 }
