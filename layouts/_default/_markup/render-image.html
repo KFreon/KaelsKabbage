@@ -1,12 +1,7 @@
 <!-- https://www.brycewray.com/posts/2022/06/responsive-optimized-images-hugo/ -->
-{{ $imageTypes := slice "webp" "jpg"}}
+{{ $imageTypes := slice (dict "type" "avif" "quality" 60) (dict "type" "jpg" "quality" 80) }}
 {{ $imageSizes := slice "320" "640" "960" "1280" "1920" }}
 {{ $dataSizes := "100vw" }}
-
-{{ $quality := 80 }}
-{{ if in .Page.Permalink "renders"}}
-  {{ $quality = 95 }}
-{{ end }}
 
 {{- $u := urls.Parse .Destination -}}
 {{- $desc := .Text | safeHTML -}}
@@ -29,9 +24,10 @@
 
 
 {{- range $imageTypes -}}
-{{ $imgType := . }}
+{{ $imgType := .type }}
+{{ $quality := .quality }}
 {{ $appliedSizes := 0 }}
-<source type="image/{{ . }}" srcset="
+<source type="image/{{ .type }}" srcset="
   {{- with $imageSizes -}}
       {{- range $i, $e := . -}}
           {{- if ge $png.Width . -}}

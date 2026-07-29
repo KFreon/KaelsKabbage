@@ -23,7 +23,9 @@ export function setRenderDisplay(displayType: RenderDisplayType | undefined) {
       element?.classList.add("tiles");
       break;
   }
-  localStorage.setItem('render-display', displayType);
+  if(displayType){
+    localStorage.setItem('render-display', displayType);
+  }
 }
 
 export function setTheme(theme: Theme | undefined) {
@@ -90,7 +92,7 @@ function createRendersScrollUpdater() {
   const callback: IntersectionObserverCallback = (entries, observer) => {
     entries.forEach(e => {
         if (e.intersectionRatio > 0 && e.isIntersecting) {
-          window.history.pushState(null, null, `#${e.target.id}`)
+          window.history.pushState(null, '', `#${e.target.id}`)
         }
       }) 
     }

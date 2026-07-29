@@ -6,6 +6,10 @@ pygmentsStyle = "native"
 assetDir = "."
 timeout = "120s"
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

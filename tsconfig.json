@@ -3,6 +3,7 @@
         "noImplicitAny": true,
         "target": "ESNext",
         "allowJs": true,
+        "rootDir": ".",
         "outDir": "tstemp",
         "module": "ESNext"
     },
