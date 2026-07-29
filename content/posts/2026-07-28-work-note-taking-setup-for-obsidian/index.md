@@ -6,7 +6,7 @@ slug: "work-note-taking-setup-for-obsidian"
 tags: ["obsidian"]
 ---
 
-I watched a few videos on how to do good notetaking with Obsidian, but they all involved processes, and strategies, and revisiting and bit german words, and I knew that wasn't for me.  
+I watched a few videos on how to do good notetaking with Obsidian, but they all involved processes, and strategies, and revisiting and big German words, and I knew that wasn't for me.  
 I wanted the easiest possible entry, which was just to start writing.  
 Over time, I added and augmented more and more until I developed my own style, and I suggest you do so as well.
 
